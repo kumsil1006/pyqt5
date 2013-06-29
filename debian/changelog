@@ -1,0 +1,5 @@
+pyqt5 (5.0-1) UNRELEASED; urgency=low
+
+  * Initial release, based on python-qt4 packaging (closes: #712630).
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 29 Jun 2013 13:40:16 +0400
