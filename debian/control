@@ -70,30 +70,30 @@ Description: Python 3 bindings for Qt5 (debug extensions)
  .
  This package contains the extensions built for the Python 3 debug interpreter.
 
-#Package: python3-dbus.mainloop.pyqt5
-#Architecture: any
-#Depends: python3-dbus,
-#         ${misc:Depends},
-#         ${python3:Depends},
-#         ${shlibs:Depends}
-#Description: D-Bus Support for PyQt5 with Python 3
-# The D-Bus module of PyQt5 provides integration of PyQt5 applications
-# with the D-Bus main loop for Python 3.
+Package: python3-dbus.mainloop.pyqt5
+Architecture: any
+Depends: python3-dbus,
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: D-Bus Support for PyQt5 with Python 3
+ The D-Bus module of PyQt5 provides integration of PyQt5 applications
+ with the D-Bus main loop for Python 3.
 
-#Package: python3-dbus.mainloop.pyqt5-dbg
-#Architecture: any
-#Priority: extra
-#Section: debug
-#Depends: python3-dbg,
-#         python3-dbus-dbg,
-#         python3-dbus.mainloop.pyqt5 (= ${binary:Version}),
-#         ${misc:Depends},
-#         ${shlibs:Depends}
-#Description: D-Bus Support for PyQt5 (debug extensions for Python 3)
-# The D-Bus module of PyQt5 provides integration of PyQt5 applications
-# with the D-Bus main loop for Python 3.
-# .
-# This package contains the extensions built for the Python debug interpreter.
+Package: python3-dbus.mainloop.pyqt5-dbg
+Architecture: any
+Priority: extra
+Section: debug
+Depends: python3-dbg,
+         python3-dbus-dbg,
+         python3-dbus.mainloop.pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: D-Bus Support for PyQt5 (debug extensions for Python 3)
+ The D-Bus module of PyQt5 provides integration of PyQt5 applications
+ with the D-Bus main loop for Python 3.
+ .
+ This package contains the extensions built for the Python debug interpreter.
 
 Package: python3-pyqt5.qtopengl
 Architecture: any

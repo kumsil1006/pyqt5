@@ -111,7 +111,7 @@ install-arch: build-arch
 	dh_prep -a
 	dh_installdirs -a
 	#sed -i -e '/strip/ d' $(CURDIR)/build-$(DEFAULT_PYTHON)/designer/Makefile
-	#rm -f $(CURDIR)/debian/python3-dbus.mainloop.pyqt5.install
+	rm -f $(CURDIR)/debian/python3-dbus.mainloop.pyqt5.install
 	# This is needed to enforce that the install-arch-% rules are
 	# not run in parallel. Both rules install into the same directory,
 	# and therefore might try to access the same files at the same time.
@@ -131,20 +131,20 @@ d3_qt5_dbg = debian/python3-pyqt5-dbg
 install-arch-3.%:
 	$(MAKE) -C build-3.$* install \
 		INSTALL_ROOT=$(CURDIR)/debian/tmp DESTDIR=$(CURDIR)/debian/tmp
-	#if [ -e $(CURDIR)/debian/tmp$(call py3_dbusmoddir,3.$*)/pyqt5.so ]; then \
-	#	mkdir -p $(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
-	#	mv $(CURDIR)/debian/tmp$(call py3_dbusmoddir,3.$*)/pyqt5.so \
-	#	$(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
-	#	echo 'usr/lib/python3.$*/dist-packages/*' >> $(CURDIR)/debian/python3-dbus.mainloop.pyqt5.install;\
-	#fi
+	if [ -e $(CURDIR)/debian/tmp$(call py3_dbusmoddir,3.$*)/pyqt5.so ]; then \
+		mkdir -p $(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
+		mv $(CURDIR)/debian/tmp$(call py3_dbusmoddir,3.$*)/pyqt5.so \
+		$(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
+		echo 'usr/lib/python3.$*/dist-packages/*' >> $(CURDIR)/debian/python3-dbus.mainloop.pyqt5.install;\
+	fi
 	ls $(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/PyQt5 > ../list
 
 	$(MAKE) -C dbg-build-3.$* install INSTALL_ROOT=$(CURDIR)/$(d3_qt5_dbg) DESTDIR=$(CURDIR)/$(d3_qt5_dbg)
-	#if [ -e $(CURDIR)/$(d3_qt5_dbg)$(call py3_dbusmoddir,3.$*)/pyqt5.so ]; then \
-	#	mkdir -p $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
-	#	mv $(CURDIR)/debian/python3-pyqt5-dbg$(call py3_dbusmoddir,3.$*)/pyqt5.so \
-	#	$(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
-	#fi
+	if [ -e $(CURDIR)/$(d3_qt5_dbg)$(call py3_dbusmoddir,3.$*)/pyqt5.so ]; then \
+		mkdir -p $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
+		mv $(CURDIR)/debian/python3-pyqt5-dbg$(call py3_dbusmoddir,3.$*)/pyqt5.so \
+		$(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
+	fi
 
 	# Don't initiate the uic/widget-plugins
 	touch $(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/PyQt5/uic/widget-plugins/.noinit
@@ -191,7 +191,8 @@ ifeq (,$(findstring -i, $(DH_OPTIONS)))
 	set -e; \
 	for p in python3-pyqt5 python3-pyqt5.qtopengl python3-pyqt5.qtsql \
 	  python3-pyqt5.qtwebkit python3-pyqt5.qtmultimedia \
-	  python3-pyqt5.qtsvg python3-pyqt5.qtxmlpatterns; do \
+	  python3-pyqt5.qtsvg python3-pyqt5.qtxmlpatterns \
+	  python3-dbus.mainloop.pyqt5; do \
 		DH_OPTIONS= dh_strip -p$$p --dbg-package=$$p-dbg; \
 		rm -rf debian/$$p-dbg/usr/share/doc/$$p-dbg; \
 		mkdir -p debian/$$p-dbg/usr/share/doc; \
@@ -204,13 +205,13 @@ endif
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/share/sip
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/lib/python3/dist-packages/PyQt5/uic
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/lib/python3/dist-packages/dbus
-	#rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/bin
-	#rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/share/sip
-	#rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3/dist-packages/PyQt5
-	#rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3.*/dist-packages/PyQt5
-	#rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/debug/usr/bin
-	#rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/debug/usr/lib/python3/dist-packages/PyQt5
-	#rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/debug/usr/lib/python3.*/dist-packages/PyQt5
+	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/bin
+	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/share/sip
+	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3/dist-packages/PyQt5
+	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3.*/dist-packages/PyQt5
+	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/debug/usr/bin
+	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/debug/usr/lib/python3/dist-packages/PyQt5
+	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/debug/usr/lib/python3.*/dist-packages/PyQt5
 
 	dh_fixperms
 	dh_compress -X.py -X.bmp -X.ui -X.sql -X.xml -X.qml -X.xpm -X.mng -X.qss. -X.xbel -Xchilling
