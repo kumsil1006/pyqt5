@@ -171,7 +171,12 @@ Last-Update: 2013-06-30
  
      PyObject *mainloop = DBusPyNativeMainLoop_New4(dbus_qt_conn, dbus_qt_srv,
                  dbus_qt_delete_helper, hlp);
-@@ -405,14 +405,14 @@
+@@ -401,18 +401,18 @@
+ 
+ // The module entry point.
+ #if PY_MAJOR_VERSION >= 3
+-PyMODINIT_FUNC PyInit_qt()
++PyMODINIT_FUNC PyInit_pyqt5()
  {
      static PyModuleDef module_def = {
          PyModuleDef_HEAD_INIT,
