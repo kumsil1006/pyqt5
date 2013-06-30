@@ -12,7 +12,7 @@ py_sitename_sh = $(py_sitename)
 py_libdir_sh = $(py_libdir)
 endif
 
-#py3_dbusmoddir = $(shell python3 -c 'import dbus.mainloop; print(dbus.mainloop.__path__[0])')
+py3_dbusmoddir = $(shell python3 -c 'import dbus.mainloop; print(dbus.mainloop.__path__[0])')
 
 export QMAKESPEC=/usr/share/qt5/mkspecs/linux-g++
 
