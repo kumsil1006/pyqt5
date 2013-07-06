@@ -179,6 +179,7 @@ binary-common:
 	dh_testroot
 	dh_installman
 	dh_installchangelogs NEWS
+	dh_installdocs
 ifeq (,$(findstring -a, $(DH_OPTIONS)))
 	sphinx-build $(CURDIR)/doc/sphinx \
 	$(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/html
@@ -212,7 +213,7 @@ endif
 	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/debug/usr/bin
 	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/debug/usr/lib/python3/dist-packages/PyQt5
 	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/debug/usr/lib/python3.*/dist-packages/PyQt5
-
+	rm -rf $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/webkit/googlechat
 	dh_fixperms
 	dh_compress -X.py -X.bmp -X.ui -X.sql -X.xml -X.qml -X.xpm -X.mng -X.qss. -X.xbel -Xchilling
 	dh_installdeb
