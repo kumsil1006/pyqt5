@@ -14,4 +14,4 @@ pyqt5 (5.0-1) UNRELEASED; urgency=low
     the fancybrowser example with a symlink to the existing copy in the html
     documentation
 
- -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 06 Jul 2013 00:04:17 -0400
+ -- Dmitry Shachnev <mitya57@gmail.com>  Wed, 10 Jul 2013 19:11:02 +0400

@@ -215,7 +215,7 @@ endif
 	rm -rf $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/debug/usr/lib/python3.*/dist-packages/PyQt5
 	rm -rf $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/webkit/googlechat
 	dh_fixperms
-	dh_compress -X.py -X.bmp -X.ui -X.sql -X.xml -X.qml -X.xpm -X.mng -X.qss. -X.xbel -Xchilling
+	dh_compress -Xexamples
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
