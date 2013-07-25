@@ -101,6 +101,9 @@ install-indep: build-indep
 	dh_installdirs -i
 	dh_install -i --list-missing
 	dh_installexamples -i
+	# Use python3 shebangs
+	cd $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/; \
+		find . -name '*.py' -exec sed -i 's/\/env python/\/python3/g' {} +
 	#$(CURDIR)/build-$(DEFAULT_PYTHON)/pyrcc/pyrcc5 -o \
 	#	$(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/demos/qtdemo/qtdemo_rc.py \
 	#	$(CURDIR)/examples/demos/qtdemo/qtdemo.qrc 
