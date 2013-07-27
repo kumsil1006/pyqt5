@@ -1,4 +1,4 @@
-pyqt5 (5.0-1) UNRELEASED; urgency=low
+pyqt5 (5.0-1) experimental; urgency=low
 
   [ Dmitry Shachnev ]
   * Initial release, based on python-qt4 packaging (closes: #712630).
