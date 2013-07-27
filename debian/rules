@@ -171,7 +171,8 @@ install-arch-3.%:
 clean:
 	dh_testdir
 	dh_testroot
-	rm -rf $(PYTHON3S:%=build-%) $(PYTHON3S:%=dbg-build-%) sip/Qt
+	rm -rf $(PYTHON3S:%=build-%) $(PYTHON3S:%=dbg-build-%)
+	cd sip; rm -rf Qt opengl_types.sip pyqt-gpl.sip5
 	dh_clean
 
 # Must not depend on anything. This is to be called by
