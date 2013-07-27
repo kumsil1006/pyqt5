@@ -13,7 +13,7 @@ pyqt5 (5.0-1) UNRELEASED; urgency=low
   * Add debian/pyqt5-doc.links to replace embedded copy of jquery.min.js in
     the fancybrowser example with a symlink to the existing copy in the html
     documentation
-  * Set minimum python3-all-dev version to 3.3.2-10~ to ensure availability of
-    a non-buggy dh_python3 that generates depends correctly
+  * Add debian/patches/fix-example-shebang to fix buggy shebang in
+    examples/sql/connection.py
 
  -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 27 Jul 2013 13:15:13 +0400
