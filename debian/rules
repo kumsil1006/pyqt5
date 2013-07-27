@@ -4,14 +4,6 @@
 
 export DH_OPTIONS=${EXTRA_DH_OPTIONS}
 
--include /usr/share/python/python.mk
-ifeq (,$(py_sitename))
-py_sitename = site-packages
-py_libdir = /usr/lib/python$(subst python,,$(1))/site-packages
-py_sitename_sh = $(py_sitename)
-py_libdir_sh = $(py_libdir)
-endif
-
 py3_dbusmoddir = $(shell python3 -c 'import dbus.mainloop; print(dbus.mainloop.__path__[0])')
 
 export QMAKESPEC=/usr/share/qt5/mkspecs/linux-g++
@@ -63,7 +55,7 @@ build-%/configure-stamp:
 	ln -s ../sip build-$*/sip
 	cd build-$* && python$* ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-config --configdir) \
-			-d /usr/lib/python$*/$(call py_sitename, $*) \
+			-d /usr/lib/python$*/dist-packages \
 			--dbus /usr/include/dbus-1.0 \
 			$(if $(filter $(DEFAULT_PYTHON),$*),,--no-designer-plugin) 
 	touch $@
@@ -75,7 +67,7 @@ dbg-build-%/configure-stamp:
 	cd dbg-build-$* && python$*-dbg ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-dbg-config --configdir) \
 			-l /usr/include/python$*$(if $(filter 3.2, $*),dmu,dm) \
-			-d /usr/lib/python$*/$(call py_sitename, $*) \
+			-d /usr/lib/python$*/dist-packages \
 			--no-designer-plugin
 	touch $@
 
