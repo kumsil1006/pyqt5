@@ -1,0 +1,266 @@
+Description: rename dbus.mainloop.qt module to dbus.mainloop.pyqt5
+Origin: upstream, changeset b72659988feb
+Last-Update: 2013-06-30
+
+--- a/configure.py
++++ b/configure.py
+@@ -59,7 +59,7 @@
+ 
+ # The module meta-data.
+ MODULE_METADATA = {
+-    'dbus':             ModuleMetadata(qmake_QT=['-gui'], qmake_TARGET='qt',
++    'dbus':             ModuleMetadata(qmake_QT=['-gui'], qmake_TARGET='pyqt5',
+                                 in_consolidated=False),
+     'QAxContainer':     ModuleMetadata(qmake_QT=['axcontainer']),
+     'Qt':               ModuleMetadata(qmake_QT=['-core', '-gui'],
+--- a/dbus/dbus.cpp
++++ b/dbus/dbus.cpp
+@@ -34,13 +34,13 @@
+ extern "C" {static dbus_bool_t add_watch(DBusWatch *watch, void *data);}
+ static dbus_bool_t add_watch(DBusWatch *watch, void *data)
+ {
+-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
++    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
+ 
+     int fd = dbus_watch_get_fd(watch);
+     unsigned int flags = dbus_watch_get_flags(watch);
+     dbus_bool_t enabled = dbus_watch_get_enabled(watch);
+ 
+-    pyqtDBusHelper::Watcher watcher;
++    pyqt5DBusHelper::Watcher watcher;
+     watcher.watch = watch;
+ 
+     if (flags & DBUS_WATCH_READABLE)
+@@ -67,15 +67,15 @@
+ extern "C" {static void remove_watch(DBusWatch *watch, void *data);}
+ static void remove_watch(DBusWatch *watch, void *data)
+ {
+-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
++    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
+ 
+     int fd = dbus_watch_get_fd(watch);
+ 
+-    pyqtDBusHelper::Watchers::iterator it = hlp->watchers.find(fd);
++    pyqt5DBusHelper::Watchers::iterator it = hlp->watchers.find(fd);
+ 
+     while (it != hlp->watchers.end() && it.key() == fd)
+     {
+-        pyqtDBusHelper::Watcher &watcher = it.value();
++        pyqt5DBusHelper::Watcher &watcher = it.value();
+ 
+         if (watcher.watch == watch)
+         {
+@@ -99,17 +99,17 @@
+ extern "C" {static void toggle_watch(DBusWatch *watch, void *data);}
+ static void toggle_watch(DBusWatch *watch, void *data)
+ {
+-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
++    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
+ 
+     int fd = dbus_watch_get_fd(watch);
+     unsigned int flags = dbus_watch_get_flags(watch);
+     dbus_bool_t enabled = dbus_watch_get_enabled(watch);
+ 
+-    pyqtDBusHelper::Watchers::const_iterator it = hlp->watchers.find(fd);
++    pyqt5DBusHelper::Watchers::const_iterator it = hlp->watchers.find(fd);
+ 
+     while (it != hlp->watchers.end() && it.key() == fd)
+     {
+-        const pyqtDBusHelper::Watcher &watcher = it.value();
++        const pyqt5DBusHelper::Watcher &watcher = it.value();
+ 
+         if (watcher.watch == watch)
+         {
+@@ -141,7 +141,7 @@
+     if (!QCoreApplication::instance())
+         return true;
+ 
+-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
++    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
+ 
+     int id = hlp->startTimer(dbus_timeout_get_interval(timeout));
+ 
+@@ -158,9 +158,9 @@
+ extern "C" {static void remove_timeout(DBusTimeout *timeout, void *data);}
+ static void remove_timeout(DBusTimeout *timeout, void *data)
+ {
+-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
++    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
+ 
+-    pyqtDBusHelper::Timeouts::iterator it = hlp->timeouts.begin();
++    pyqt5DBusHelper::Timeouts::iterator it = hlp->timeouts.begin();
+ 
+     while (it != hlp->timeouts.end())
+         if (it.value() == timeout)
+@@ -186,7 +186,7 @@
+ extern "C" {static void dbus_qt_delete_helper(void *data);}
+ static void dbus_qt_delete_helper(void *data)
+ {
+-    delete reinterpret_cast<pyqtDBusHelper *>(data);
++    delete reinterpret_cast<pyqt5DBusHelper *>(data);
+ }
+ 
+ 
+@@ -194,7 +194,7 @@
+ extern "C" {static void wakeup_main(void *data);}
+ static void wakeup_main(void *data)
+ {
+-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
++    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
+ 
+     QTimer::singleShot(0, hlp, SLOT(dispatch()));
+ }
+@@ -208,7 +208,7 @@
+ 
+     Py_BEGIN_ALLOW_THREADS
+ 
+-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
++    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
+ 
+     hlp->connections.append(conn);
+ 
+@@ -253,13 +253,13 @@
+ 
+ 
+ // Create a new helper instance.
+-pyqtDBusHelper::pyqtDBusHelper() : QObject()
++pyqt5DBusHelper::pyqt5DBusHelper() : QObject()
+ {
+ }
+ 
+ 
+ // Handle a socket being ready to read.
+-void pyqtDBusHelper::readSocket(int fd)
++void pyqt5DBusHelper::readSocket(int fd)
+ {
+     Watchers::const_iterator it = watchers.find(fd);
+ 
+@@ -287,7 +287,7 @@
+ 
+ 
+ // Handle a socket being ready to write.
+-void pyqtDBusHelper::writeSocket(int fd)
++void pyqt5DBusHelper::writeSocket(int fd)
+ {
+     Watchers::const_iterator it = watchers.find(fd);
+ 
+@@ -313,7 +313,7 @@
+ 
+ 
+ // Handoff to the connection dispatcher while there is data.
+-void pyqtDBusHelper::dispatch()
++void pyqt5DBusHelper::dispatch()
+ {
+     for (Connections::const_iterator it = connections.constBegin(); it != connections.constEnd(); ++it)
+         while (dbus_connection_dispatch(*it) == DBUS_DISPATCH_DATA_REMAINS)
+@@ -322,7 +322,7 @@
+ 
+ 
+ // Reimplemented to handle timer events.
+-void pyqtDBusHelper::timerEvent(QTimerEvent *e)
++void pyqt5DBusHelper::timerEvent(QTimerEvent *e)
+ {
+     DBusTimeout *timeout = timeouts.value(e->timerId());
+ 
+@@ -354,7 +354,7 @@
+     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|i", argnames, &set_as_default))
+         return 0;
+ 
+-    pyqtDBusHelper *hlp = new pyqtDBusHelper;
++    pyqt5DBusHelper *hlp = new pyqt5DBusHelper;
+ 
+     PyObject *mainloop = DBusPyNativeMainLoop_New4(dbus_qt_conn, dbus_qt_srv,
+                 dbus_qt_delete_helper, hlp);
+@@ -401,18 +401,18 @@
+ 
+ // The module entry point.
+ #if PY_MAJOR_VERSION >= 3
+-PyMODINIT_FUNC PyInit_qt()
++PyMODINIT_FUNC PyInit_pyqt5()
+ {
+     static PyModuleDef module_def = {
+         PyModuleDef_HEAD_INIT,
+-        "qt",
++        "pyqt5",
+         NULL,
+         -1,
+         module_functions,
+     };
+ 
+     // Import the generic part of the Python DBus bindings.
+-    if (import_dbus_bindings("dbus.mainloop.qt") < 0)
++    if (import_dbus_bindings("dbus.mainloop.pyqt5") < 0)
+         return 0;
+ 
+     return PyModule_Create(&module_def);
+@@ -421,9 +421,9 @@
+ PyMODINIT_FUNC initqt()
+ {
+     // Import the generic part of the Python DBus bindings.
+-    if (import_dbus_bindings("dbus.mainloop.qt") < 0)
++    if (import_dbus_bindings("dbus.mainloop.pyqt5") < 0)
+         return;
+ 
+-    Py_InitModule("qt", module_functions);
++    Py_InitModule("pyqt5", module_functions);
+ }
+ #endif
+--- a/dbus/helper.h
++++ b/dbus/helper.h
+@@ -33,7 +33,7 @@
+ class QTimerEvent;
+ 
+ 
+-class pyqtDBusHelper : public QObject
++class pyqt5DBusHelper : public QObject
+ {
+     Q_OBJECT
+ 
+@@ -51,7 +51,7 @@
+     typedef QHash<int, DBusTimeout *> Timeouts;
+     typedef QList<DBusConnection *>Connections;
+ 
+-    pyqtDBusHelper();
++    pyqt5DBusHelper();
+ 
+     Watchers watchers;
+     Timeouts timeouts;
+--- a/doc/html/_sources/dbus.txt
++++ b/doc/html/_sources/dbus.txt
+@@ -5,7 +5,7 @@
+ 
+ PyQt5 provides two different modules that implement support for DBus.  The
+ :mod:`~PyQt5.QtDBus` module provides wrappers for the standard Qt DBus classes.
+-The :mod:`dbus.mainloop.qt` module add support for the Qt event loop to the
++The :mod:`dbus.mainloop.pyqt5` module add support for the Qt event loop to the
+ standard ``dbus-python`` Python module.
+ 
+ 
+@@ -62,15 +62,15 @@
+ require if DBus structures are involved.
+ 
+ 
+-:mod:`dbus.mainloop.qt`
+------------------------
++:mod:`dbus.mainloop.pyqt5`
++--------------------------
+ 
+-The :mod:`dbus.mainloop.qt` module provides support for the Qt event loop to
++The :mod:`dbus.mainloop.pyqt5` module provides support for the Qt event loop to
+ ``dbus-python``.  The module's API is almost identical to that of the
+ :mod:`dbus.mainloop.glib` modules that provides support for the GLib event
+ loop.
+ 
+-The :mod:`dbus.mainloop.qt` module contains the following function.
++The :mod:`dbus.mainloop.pyqt5` module contains the following function.
+ 
+ .. function:: DBusQtMainLoop(set_as_default=False)
+ 
+@@ -85,6 +85,6 @@
+ The following code fragment is all that is normally needed to set up the
+ standard ``dbus-python`` language bindings package to be used with PyQt5::
+ 
+-    from dbus.mainloop.qt import DBusQtMainLoop
++    from dbus.mainloop.pyqt5 import DBusQtMainLoop
+ 
+     DBusQtMainLoop(set_as_default=True)

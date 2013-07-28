@@ -1,0 +1,21 @@
+pyqt5 (5.0-1) experimental; urgency=low
+
+  [ Dmitry Shachnev ]
+  * Initial release, based on python-qt4 packaging (closes: #712630).
+  * debian/patches/mainloop_rename.diff: upstream patch to rename
+    dbus.mainloop.qt module to dbus.mainloop.pyqt5, to prevent conflicts
+    with PyQt4.
+
+  [ Scott Kitterman ]
+  * Add call to dh_installdocs in debian/rules
+  * Added doc-base registration, debian/pyqt5-doc.doc-base
+  * Remove empty pyqt5-doc/examples/webkit/googlechat directory
+  * Add debian/pyqt5-doc.links to replace embedded copy of jquery.min.js in
+    the fancybrowser example with a symlink to the existing copy in the html
+    documentation
+  * Add debian/patches/fix-example-shebang to remove a buggy and unneeded
+    shebang in examples/sql/connection.py
+  * Set X-Python3-Version: >= 3.3 in debian/control as a temporary workaround
+    to a dh_python3 issue with extension renaming
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 28 Jul 2013 13:15:13 +0400
