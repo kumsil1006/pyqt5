@@ -13,7 +13,9 @@ pyqt5 (5.0-1) experimental; urgency=low
   * Add debian/pyqt5-doc.links to replace embedded copy of jquery.min.js in
     the fancybrowser example with a symlink to the existing copy in the html
     documentation
-  * Add debian/patches/fix-example-shebang to fix buggy shebang in
-    examples/sql/connection.py
+  * Add debian/patches/fix-example-shebang to remove a buggy and unneeded
+    shebang in examples/sql/connection.py
+  * Set X-Python3-Version: >= 3.3 in debian/control as a temporary workaround
+    to a dh_python3 issue with extension renaming
 
- -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 27 Jul 2013 13:15:13 +0400
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 28 Jul 2013 13:15:13 +0400
