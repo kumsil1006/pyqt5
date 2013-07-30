@@ -1,3 +1,9 @@
+pyqt5 (5.0-2) UNRELEASED; urgency=low
+
+  * Update debian/copyright, thanks Paul Tagliamonte for comments.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Tue, 30 Jul 2013 16:44:16 +0400
+
 pyqt5 (5.0-1) experimental; urgency=low
 
   [ Dmitry Shachnev ]
