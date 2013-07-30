@@ -216,7 +216,7 @@ endif
 	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
-	dh_builddeb -- -Z bzip2
+	dh_builddeb -- -Z xz
 
 # Build architecture independant packages using the common target.
 binary-indep: install-indep
