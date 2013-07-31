@@ -132,7 +132,6 @@ install-arch-3.%:
 		$(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
 		echo 'usr/lib/python3.$*/dist-packages/*' >> $(CURDIR)/debian/python3-dbus.mainloop.pyqt5.install;\
 	fi
-	ls $(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/PyQt5 > ../list
 
 	$(MAKE) -C dbg-build-3.$* install INSTALL_ROOT=$(CURDIR)/$(d3_qt5_dbg) DESTDIR=$(CURDIR)/$(d3_qt5_dbg)
 	if [ -e $(CURDIR)/$(d3_qt5_dbg)$(call py3_dbusmoddir,3.$*)/pyqt5.so ]; then \
