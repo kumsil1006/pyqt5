@@ -1,14 +1,19 @@
-pyqt5 (5.0-2) UNRELEASED; urgency=low
+pyqt5 (5.0-2) experimental; urgency=low
 
+  [ Dmitry Shachnev ]
   * Update debian/copyright, thanks Paul Tagliamonte for comments.
   * Use xz compression for binary packages.
   * Install files to python3-dbus.mainloop.pyqt5{,-dbg} directly instead of
     generating .install files. This fixes a problem of the -dbg package being
     not installable because of unwanted debug-id files (closes: #718551).
-  * Update qreal_float_support.diff with latest upstream changes, and
-    re-enable it.
 
- -- Dmitry Shachnev <mitya57@gmail.com>  Fri, 09 Aug 2013 18:50:42 +0400
+  [ Scott Kitterman ]
+  * Add debian/patches/arm_compile.patch, cherry picked from upstream to
+    enable builds on arm (replaces qreal_float_support.diff that was used in
+    python-qt4)
+  * Remove pycache directories left over in pyqt5-doc
+
+ -- Scott Kitterman <scott@kitterman.com>  Fri, 09 Aug 2013 17:44:19 -0400
 
 pyqt5 (5.0-1) experimental; urgency=low
 

@@ -1,0 +1,786 @@
+Description: Qreal/Double fixes from upstream to fix arm builds
+Author: Phil Thompson <phil@riverbankcomputing.com>
+Origin: upstream
+Forwarded: not-needed
+Reviewed-By: Scott Kitterman <scott@kitterman.com>
+Last-Update: <2012-08-09>
+
+--- pyqt5-5.0.orig/configure.py
++++ pyqt5-5.0/configure.py
+@@ -406,8 +406,10 @@ int main(int argc, char **argv)
+     out << "PyQt_NoOpenGLES\\n";
+ #endif
+ 
+-    if (sizeof (qreal) != sizeof (double))
+-        out << "PyQt_qreal_double\\n";
++// This is the test used in qglobal.h.
++#if defined(QT_NO_FPU) || defined(Q_PROCESSOR_ARM) || defined(Q_OS_WINCE)
++    out << "PyQt_qreal_double\\n";
++#endif
+ 
+     return 0;
+ }
+--- pyqt5-5.0.orig/sip/QtGui/qpainterpath.sip
++++ pyqt5-5.0/sip/QtGui/qpainterpath.sip
+@@ -154,8 +154,8 @@ public:
+     void setCurveThreshold(qreal threshold);
+     qreal curveThreshold() const;
+     void setDashPattern(Qt::PenStyle);
+-    void setDashPattern(const QVector<double> &dashPattern);
+-    QVector<double> dashPattern() const;
++    void setDashPattern(const QVector<qreal> &dashPattern);
++    QVector<qreal> dashPattern() const;
+     QPainterPath createStroke(const QPainterPath &path) const;
+     void setDashOffset(qreal offset);
+     qreal dashOffset() const;
+--- pyqt5-5.0.orig/sip/QtGui/qtextoption.sip
++++ pyqt5-5.0/sip/QtGui/qtextoption.sip
+@@ -64,7 +64,7 @@ public:
+     QFlags<QTextOption::Flag> flags() const;
+     qreal tabStop() const;
+     void setTabArray(const QList<qreal> &tabStops);
+-    QList<double> tabArray() const;
++    QList<qreal> tabArray() const;
+     void setUseDesignMetrics(bool b);
+     bool useDesignMetrics() const;
+     void setAlignment(Qt::Alignment aalignment);
+--- pyqt5-5.0.orig/sip/QtGui/qpen.sip
++++ pyqt5-5.0/sip/QtGui/qpen.sip
+@@ -88,8 +88,8 @@ public:
+     void setCapStyle(Qt::PenCapStyle pcs);
+     Qt::PenJoinStyle joinStyle() const;
+     void setJoinStyle(Qt::PenJoinStyle pcs);
+-    QVector<double> dashPattern() const;
+-    void setDashPattern(const QVector<double> &pattern);
++    QVector<qreal> dashPattern() const;
++    void setDashPattern(const QVector<qreal> &pattern);
+     qreal miterLimit() const;
+     void setMiterLimit(qreal limit);
+     bool operator==(const QPen &p) const;
+--- pyqt5-5.0.orig/sip/QtGui/qbrush.sip
++++ pyqt5-5.0/sip/QtGui/qbrush.sip
+@@ -119,7 +119,7 @@ public:
+ 
+ QDataStream &operator>>(QDataStream &, QBrush & /Constrained/) /ReleaseGIL/;
+ QDataStream &operator<<(QDataStream &, const QBrush & /Constrained/) /ReleaseGIL/;
+-typedef QVector<QPair<double, QColor>> QGradientStops;
++typedef QVector<QPair<qreal, QColor>> QGradientStops;
+ 
+ class QGradient
+ {
+--- pyqt5-5.0.orig/sip/QtCore/qlist.sip
++++ pyqt5-5.0/sip/QtCore/qlist.sip
+@@ -307,311 +307,6 @@ template<TYPE1, TYPE2>
+     return sipGetState(sipTransferObj);
+ %End
+ };
+-// QList<QPair<int, int> > is implemented as a Python list of 2-element tuples.
+-%MappedType QList<QPair<int, int> > /DocType="list-of-tuple-of-int-int"/
+-{
+-%TypeHeaderCode
+-#include <qlist.h>
+-#include <qpair.h>
+-%End
+-
+-%ConvertFromTypeCode
+-    // Create the list.
+-    PyObject *l;
+-
+-    if ((l = PyList_New(sipCpp->size())) == NULL)
+-        return NULL;
+-
+-    // Set the list elements.
+-    for (int i = 0; i < sipCpp->size(); ++i)
+-    {
+-        const QPair<int, int> &p = sipCpp->at(i);
+-        PyObject *pobj;
+-
+-        if ((pobj = Py_BuildValue((char *)"ii", p.first, p.second)) == NULL)
+-        {
+-            Py_DECREF(l);
+-
+-            return NULL;
+-        }
+-
+-        PyList_SET_ITEM(l, i, pobj);
+-    }
+-
+-    return l;
+-%End
+-
+-%ConvertToTypeCode
+-    SIP_SSIZE_T len;
+-
+-    // Check the type if that is all that is required.
+-    if (sipIsErr == NULL)
+-    {
+-        if (!PySequence_Check(sipPy) || (len = PySequence_Size(sipPy)) < 0)
+-            return 0;
+-
+-        for (SIP_SSIZE_T i = 0; i < len; ++i)
+-        {
+-            PyObject *seq = PySequence_ITEM(sipPy, i);
+-
+-            if (!seq || !PySequence_Check(seq) || PySequence_Size(seq) != 2)
+-            {
+-                Py_XDECREF(seq);
+-                return 0;
+-            }
+-
+-            Py_DECREF(seq);
+-        }
+-
+-        return 1;
+-    }
+-
+-    QList<QPair<int, int> > *ql = new QList<QPair<int, int> >;
+-    len = PySequence_Size(sipPy);
+- 
+-    for (SIP_SSIZE_T i = 0; i < len; ++i)
+-    {
+-        PyObject *seq = PySequence_ITEM(sipPy, i);
+-        PyObject *itm0 = PySequence_ITEM(seq, 0);
+-        PyObject *itm1 = PySequence_ITEM(seq, 1);
+-
+-        Py_DECREF(seq);
+-
+-        if (!itm0 || !itm1)
+-        {
+-            Py_XDECREF(itm0);
+-            Py_XDECREF(itm1);
+-
+-            delete ql;
+-            *sipIsErr = 1;
+-
+-            return 0;
+-        }
+-
+-        int first = SIPLong_AsLong(itm0);
+-        int second = SIPLong_AsLong(itm1);
+-
+-        Py_DECREF(itm0);
+-        Py_DECREF(itm1);
+-
+-        ql->append(QPair<int, int>(first, second));
+-    }
+- 
+-    *sipCppPtr = ql;
+- 
+-    return sipGetState(sipTransferObj);
+-%End
+-};
+-// QList<QPair<qreal, qreal> > is implemented as a Python list of 2-element tuples.
+-%MappedType QList<QPair<qreal, qreal> > /DocType="list-of-tuple-of-float-float"/
+-{
+-%TypeHeaderCode
+-#include <qlist.h>
+-#include <qpair.h>
+-%End
+-
+-%ConvertFromTypeCode
+-    // Create the list.
+-    PyObject *l;
+-
+-    if ((l = PyList_New(sipCpp->size())) == NULL)
+-        return NULL;
+-
+-    // Set the list elements.
+-    for (int i = 0; i < sipCpp->size(); ++i)
+-    {
+-        const QPair<qreal, qreal> &p = sipCpp->at(i);
+-        PyObject *pobj;
+-
+-        if ((pobj = Py_BuildValue((char *)"dd", p.first, p.second)) == NULL)
+-        {
+-            Py_DECREF(l);
+-
+-            return NULL;
+-        }
+-
+-        PyList_SET_ITEM(l, i, pobj);
+-    }
+-
+-    return l;
+-%End
+-
+-%ConvertToTypeCode
+-    SIP_SSIZE_T len;
+-
+-    // Check the type if that is all that is required.
+-    if (sipIsErr == NULL)
+-    {
+-        if (!PySequence_Check(sipPy) || (len = PySequence_Size(sipPy)) < 0)
+-            return 0;
+-
+-        for (SIP_SSIZE_T i = 0; i < len; ++i)
+-        {
+-            PyObject *seq = PySequence_ITEM(sipPy, i);
+-
+-            if (!seq || !PySequence_Check(seq) || PySequence_Size(seq) != 2)
+-            {
+-                Py_XDECREF(seq);
+-                return 0;
+-            }
+-        }
+-
+-        return 1;
+-    }
+-
+-    QList<QPair<qreal, qreal> > *ql = new QList<QPair<qreal, qreal> >;
+-    len = PySequence_Size(sipPy);
+- 
+-    for (SIP_SSIZE_T i = 0; i < len; ++i)
+-    {
+-        PyObject *seq = PySequence_ITEM(sipPy, i);
+-        PyObject *itm0 = PySequence_ITEM(seq, 0);
+-        PyObject *itm1 = PySequence_ITEM(seq, 1);
+-
+-        Py_DECREF(seq);
+-
+-        if (!itm0 || !itm1)
+-        {
+-            Py_XDECREF(itm0);
+-            Py_XDECREF(itm1);
+-
+-            delete ql;
+-            *sipIsErr = 1;
+-
+-            return 0;
+-        }
+-
+-        qreal first = PyFloat_AsDouble(itm0);
+-        qreal second = PyFloat_AsDouble(itm1);
+- 
+-        Py_DECREF(itm0);
+-        Py_DECREF(itm1);
+-
+-        ql->append(QPair<qreal, qreal>(first, second));
+-    }
+- 
+-    *sipCppPtr = ql;
+- 
+-    return sipGetState(sipTransferObj);
+-%End
+-};
+-// QList<QPair<qreal, TYPE> > is implemented as a Python list of 2-element tuples.
+-template<qreal, TYPE>
+-%MappedType QList<QPair<qreal, TYPE> > /DocType="list-of-tuple-of-float-TYPE"/
+-{
+-%TypeHeaderCode
+-#include <qlist.h>
+-#include <qpair.h>
+-%End
+-
+-%ConvertFromTypeCode
+-    // Create the list.
+-    PyObject *l;
+-
+-    if ((l = PyList_New(sipCpp->size())) == NULL)
+-        return NULL;
+-
+-    // Set the list elements.
+-    for (int i = 0; i < sipCpp->size(); ++i)
+-    {
+-        const QPair<qreal, TYPE> &p = sipCpp->at(i);
+-        TYPE *t = new TYPE(p.second);
+-        PyObject *pobj;
+-
+-        if ((pobj = sipBuildResult(NULL, "(dN)", p.first, t, sipType_TYPE, sipTransferObj)) == NULL)
+-        {
+-            Py_DECREF(l);
+-            delete t;
+-
+-            return NULL;
+-        }
+-
+-        PyList_SET_ITEM(l, i, pobj);
+-    }
+-
+-    return l;
+-%End
+-
+-%ConvertToTypeCode
+-    SIP_SSIZE_T len;
+-
+-    // Check the type if that is all that is required.
+-    if (sipIsErr == NULL)
+-    {
+-        if (!PySequence_Check(sipPy) || (len = PySequence_Size(sipPy)) < 0)
+-            return 0;
+-
+-        for (SIP_SSIZE_T i = 0; i < len; ++i)
+-        {
+-            PyObject *seq = PySequence_ITEM(sipPy, i);
+-
+-            if (!seq || !PySequence_Check(seq) || PySequence_Size(seq) != 2)
+-            {
+-                Py_XDECREF(seq);
+-                return 0;
+-            }
+-
+-            PyObject *itm1 = PySequence_ITEM(seq, 1);
+-            bool ok = (itm1 && sipCanConvertToType(itm1, sipType_TYPE, SIP_NOT_NONE));
+-
+-            Py_XDECREF(itm1);
+-            Py_DECREF(seq);
+-
+-            if (!ok)
+-                return 0;
+-        }
+-
+-        return 1;
+-    }
+-
+-    QList<QPair<qreal, TYPE> > *ql = new QList<QPair<qreal, TYPE> >;
+-    len = PySequence_Size(sipPy);
+- 
+-    for (SIP_SSIZE_T i = 0; i < len; ++i)
+-    {
+-        PyObject *seq = PySequence_ITEM(sipPy, i);
+-        PyObject *itm0 = PySequence_ITEM(seq, 0);
+-        PyObject *itm1 = PySequence_ITEM(seq, 1);
+-
+-        Py_DECREF(seq);
+-
+-        if (!itm0)
+-        {
+-            Py_DECREF(itm1);
+-
+-            delete ql;
+-            *sipIsErr = 1;
+-
+-            return 0;
+-        }
+-
+-        qreal d;
+-        int state;
+-
+-        d = PyFloat_AsDouble(itm0);
+-        TYPE *t = reinterpret_cast<TYPE *>(sipConvertToType(itm1, sipType_TYPE, sipTransferObj, SIP_NOT_NONE, &state, sipIsErr));
+-
+-        Py_DECREF(itm0);
+-        Py_DECREF(itm1);
+- 
+-        if (*sipIsErr)
+-        {
+-            sipReleaseType(t, sipType_TYPE, state);
+-
+-            delete ql;
+-            return 0;
+-        }
+-
+-        ql->append(QPair<qreal, TYPE>(d, *t));
+-
+-        sipReleaseType(t, sipType_TYPE, state);
+-    }
+- 
+-    *sipCppPtr = ql;
+- 
+-    return sipGetState(sipTransferObj);
+-%End
+-};
+ // QList<int> is implemented as a Python list of integers.
+ %MappedType QList<int> /DocType="list-of-int"/
+ {
+@@ -668,68 +363,6 @@ template<qreal, TYPE>
+ 
+         Py_DECREF(itm);
+     }
+- 
+-    *sipCppPtr = ql;
+- 
+-    return sipGetState(sipTransferObj);
+-%End
+-};
+-// QList<unsigned> is implemented as a Python list of unsigned longs.
+-%MappedType QList<unsigned> /DocType="list-of-int"/
+-{
+-%TypeHeaderCode
+-#include <qlist.h>
+-%End
+-
+-%ConvertFromTypeCode
+-    // Create the list.
+-    PyObject *l;
+-
+-    if ((l = PyList_New(sipCpp->size())) == NULL)
+-        return NULL;
+-
+-    // Set the list elements.
+-    for (int i = 0; i < sipCpp->size(); ++i)
+-    {
+-        PyObject *pobj;
+-
+-        if ((pobj = PyLong_FromUnsignedLong(sipCpp->value(i))) == NULL)
+-        {
+-            Py_DECREF(l);
+-
+-            return NULL;
+-        }
+-
+-        PyList_SET_ITEM(l, i, pobj);
+-    }
+-
+-    return l;
+-%End
+-
+-%ConvertToTypeCode
+-    // Check the type if that is all that is required.
+-    if (sipIsErr == NULL)
+-        return (PySequence_Check(sipPy) && PySequence_Size(sipPy) >= 0);
+-
+-    QList<unsigned> *ql = new QList<unsigned>;
+-    SIP_SSIZE_T len = PySequence_Size(sipPy);
+- 
+-    for (SIP_SSIZE_T i = 0; i < len; ++i)
+-    {
+-        PyObject *itm = PySequence_ITEM(sipPy, i);
+-
+-        if (!itm)
+-        {
+-            delete ql;
+-            *sipIsErr = 1;
+-
+-            return 0;
+-        }
+-
+-        ql->append(PyLong_AsUnsignedLong(itm));
+-
+-        Py_DECREF(itm);
+-    }
+  
+     *sipCppPtr = ql;
+  
+--- pyqt5-5.0.orig/sip/QtCore/qset.sip
++++ pyqt5-5.0/sip/QtCore/qset.sip
+@@ -20,146 +20,6 @@
+ // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ 
+ 
+-// QSet<int> is implemented as a Python set.
+-%MappedType QSet<int> /DocType="set-of-int"/
+-{
+-%TypeHeaderCode
+-#include <qset.h>
+-%End
+-
+-%ConvertFromTypeCode
+-    // Create the set.
+-    PyObject *s;
+-
+-    if ((s = PySet_New(NULL)) == NULL)
+-        return NULL;
+-
+-    // Set the set elements.
+-    QSet<int>::const_iterator it = sipCpp->constBegin();
+-    QSet<int>::const_iterator end = sipCpp->constEnd();
+-
+-    while (it != end)
+-    {
+-        PyObject *el_obj;
+-
+-        if ((el_obj = SIPLong_FromLong(*it)) == NULL)
+-        {
+-            Py_DECREF(s);
+-            return NULL;
+-        }
+-
+-        PySet_Add(s, el_obj);
+-
+-        ++it;
+-    }
+-
+-    return s;
+-%End
+-
+-%ConvertToTypeCode
+-    PyObject *it = PyObject_GetIter(sipPy), *itm;
+-
+-    // Check the type if that is all that is required.
+-    if (sipIsErr == NULL)
+-    {
+-        if (it == NULL)
+-            return 0;
+-
+-        Py_DECREF(it);
+-        return 1;
+-    }
+-
+-    if (it == NULL)
+-    {
+-        *sipIsErr = 1;
+-        return 0;
+-    }
+-
+-    QSet<int> *qs = new QSet<int>;
+-
+-    while ((itm = PyIter_Next(it)) != NULL)
+-    {
+-        qs->insert(SIPLong_AsLong(itm));
+-        Py_DECREF(itm);
+-    }
+-
+-    Py_DECREF(it);
+-
+-    *sipCppPtr = qs;
+-
+-    return sipGetState(sipTransferObj);
+-%End
+-};
+-// QSet<unsigned> is implemented as a Python set.
+-%MappedType QSet<unsigned> /DocType="set-of-int"/
+-{
+-%TypeHeaderCode
+-#include <qset.h>
+-%End
+-
+-%ConvertFromTypeCode
+-    // Create the set.
+-    PyObject *s;
+-
+-    if ((s = PySet_New(NULL)) == NULL)
+-        return NULL;
+-
+-    // Set the set elements.
+-    QSet<unsigned>::const_iterator it = sipCpp->constBegin();
+-    QSet<unsigned>::const_iterator end = sipCpp->constEnd();
+-
+-    while (it != end)
+-    {
+-        PyObject *el_obj;
+-
+-        if ((el_obj = PyLong_FromUnsignedLong(*it)) == NULL)
+-        {
+-            Py_DECREF(s);
+-            return NULL;
+-        }
+-
+-        PySet_Add(s, el_obj);
+-
+-        ++it;
+-    }
+-
+-    return s;
+-%End
+-
+-%ConvertToTypeCode
+-    PyObject *it = PyObject_GetIter(sipPy), *itm;
+-
+-    // Check the type if that is all that is required.
+-    if (sipIsErr == NULL)
+-    {
+-        if (it == NULL)
+-            return 0;
+-
+-        Py_DECREF(it);
+-        return 1;
+-    }
+-
+-    if (it == NULL)
+-    {
+-        *sipIsErr = 1;
+-        return 0;
+-    }
+-
+-    QSet<unsigned> *qs = new QSet<unsigned>;
+-
+-    while ((itm = PyIter_Next(it)) != NULL)
+-    {
+-        qs->insert(PyLong_AsUnsignedLong(itm));
+-        Py_DECREF(itm);
+-    }
+-
+-    Py_DECREF(it);
+-
+-    *sipCppPtr = qs;
+-
+-    return sipGetState(sipTransferObj);
+-%End
+-};
+ // QSet<TYPE *> is implemented as a Python set.
+ template<TYPE>
+ %MappedType QSet<TYPE *> /DocType="set-of-TYPE"/
+--- pyqt5-5.0.orig/sip/QtCore/qhash.sip
++++ pyqt5-5.0/sip/QtCore/qhash.sip
+@@ -228,181 +228,3 @@ template<TYPE>
+     return sipGetState(sipTransferObj);
+ %End
+ };
+-// QMultiHash<TYPE1, TYPE2> is implemented as a Python dictionary.
+-template<TYPE1, TYPE2>
+-%MappedType QMultiHash<TYPE1, TYPE2> /DocType="dict-of-TYPE1-list-of-TYPE2"/
+-{
+-%TypeHeaderCode
+-#include <qhash.h>
+-%End
+-
+-%ConvertFromTypeCode
+-    // Create the dictionary.
+-    PyObject *d = PyDict_New();
+-
+-    if (!d)
+-        return NULL;
+-
+-    // Set the dictionary elements.
+-    QMultiHash<TYPE1, TYPE2>::const_iterator i = sipCpp->constBegin();
+-
+-    while (i != sipCpp->constEnd())
+-    {
+-        TYPE1 *t1 = new TYPE1(i.key());
+-        TYPE2 *t2 = new TYPE2(i.value());
+-
+-        PyObject *t1obj = sipConvertFromNewType(t1, sipType_TYPE1, sipTransferObj);
+-        PyObject *t2obj = sipConvertFromNewType(t2, sipType_TYPE2, sipTransferObj);
+-
+-        if (t1obj == NULL || t2obj == NULL)
+-        {
+-            Py_DECREF(d);
+-
+-            if (t1obj)
+-            {
+-                Py_DECREF(t1obj);
+-            }
+-            else
+-            {
+-                delete t1;
+-            }
+-
+-            if (t2obj)
+-            {
+-                Py_DECREF(t2obj);
+-            }
+-            else
+-            {
+-                delete t2;
+-            }
+-
+-            return NULL;
+-        }
+-
+-        PyObject *vobj = PyDict_GetItem(d, t1obj);
+-
+-        if (vobj != NULL)
+-        {
+-            // Newer items are inserted (rather than appended) to mimic the
+-            // behaviour of QMultiHash::find() that returns an iterator that
+-            // initially references the most recently inserted item.
+-            if (PyList_Insert(vobj, 0, t2obj) < 0)
+-                vobj = NULL;
+-        }
+-        else
+-        {
+-            if ((vobj = PyList_New(1)) != NULL)
+-            {
+-                PyList_SET_ITEM(vobj, 0, t2obj);
+-                Py_INCREF(t2obj);
+-
+-                if (PyDict_SetItem(d, t1obj, vobj) < 0)
+-                {
+-                    Py_DECREF(vobj);
+-                    vobj = NULL;
+-                }
+-            }
+-        }
+-
+-        Py_DECREF(t1obj);
+-        Py_DECREF(t2obj);
+-
+-        if (vobj == NULL)
+-        {
+-            Py_DECREF(d);
+-
+-            return NULL;
+-        }
+-
+-        ++i;
+-    }
+-
+-    return d;
+-%End
+-
+-%ConvertToTypeCode
+-    PyObject *t1obj, *t2obj, *vobj;
+-    SIP_SSIZE_T i = 0, vi, len;
+-
+-    // Check the type if that is all that is required.
+-    if (sipIsErr == NULL)
+-    {
+-        if (!PyDict_Check(sipPy))
+-            return 0;
+-
+-        while (PyDict_Next(sipPy, &i, &t1obj, &vobj))
+-        {
+-            if (!sipCanConvertToType(t1obj, sipType_TYPE1, SIP_NOT_NONE))
+-                return 0;
+-
+-            if (!PySequence_Check(vobj))
+-                return 0;
+-
+-            len = PySequence_Size(vobj);
+-
+-            // The sequence cannot be empty.
+-            if (len <= 0)
+-                return 0;
+-
+-            for (vi = 0; vi < len; ++vi)
+-            {
+-               if ((t2obj = PySequence_ITEM(vobj, vi)) == NULL)
+-                    return 0;
+-
+-                if (!sipCanConvertToType(t2obj, sipType_TYPE2, SIP_NOT_NONE))
+-                {
+-                    Py_DECREF(t2obj);
+-                    return 0;
+-                }
+-
+-                Py_DECREF(t2obj);
+-            }
+-        } 
+-
+-        return 1;
+-    }
+-
+-    QMultiHash<TYPE1, TYPE2> *qm = new QMultiHash<TYPE1, TYPE2>;
+- 
+-    while (PyDict_Next(sipPy, &i, &t1obj, &vobj))
+-    {
+-        int state1;
+-
+-        TYPE1 *t1 = reinterpret_cast<TYPE1 *>(sipConvertToType(t1obj, sipType_TYPE1, sipTransferObj, SIP_NOT_NONE, &state1, sipIsErr));
+-
+-        // Insert from the end of the sequence (see the above comment about
+-        // QMultiHash::find().
+-        for (vi = PySequence_Size(vobj) - 1; vi >= 0; --vi)
+-        {
+-            if ((t2obj = PySequence_ITEM(vobj, vi)) == NULL)
+-                *sipIsErr = 1;
+-
+-            int state2;
+-
+-            TYPE2 *t2 = reinterpret_cast<TYPE2 *>(sipConvertToType(t2obj, sipType_TYPE2, sipTransferObj, SIP_NOT_NONE, &state2, sipIsErr));
+- 
+-            if (*sipIsErr)
+-            {
+-                Py_XDECREF(t2obj);
+-
+-                sipReleaseType(t1, sipType_TYPE1, state1);
+-                sipReleaseType(t2, sipType_TYPE2, state2);
+-
+-                delete qm;
+-                return 0;
+-            }
+-
+-            qm->insert(*t1, *t2);
+-
+-            sipReleaseType(t2, sipType_TYPE2, state2);
+-            Py_DECREF(t2obj);
+-        }
+-
+-        sipReleaseType(t1, sipType_TYPE1, state1);
+-    }
+- 
+-    *sipCppPtr = qm;
+- 
+-    return sipGetState(sipTransferObj);
+-%End
+-};
