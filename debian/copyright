@@ -7,30 +7,26 @@ Copyright (c) 2007-2013 Riverbank Computing Limited
 
 License:
 
-PyQt5 is released under the terms of the GNU General Public License.
+PyQt5 is released under the terms of the GNU General Public License v3.
 
   This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 or version 3 of the
-  License.
+  it under the terms of the GNU General Public License version 3.0 as
+  published by the Free Software Foundation.
 
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL-2;
-  if not, write to the Free Software Foundation, Inc., 51 Franklin St,
-  Fifth Floor, Boston, MA  02110-1301 USA
-
   On Debian systems, the complete text of the GNU General Public
   License, can be found in /usr/share/common-licenses/GPL.
 -------------------------------------------------------------------
 
 
-The files in pyuic/ are (c) 2005 Torsten Marek (shlomme@gmx.net) and
-double-licensted under the GPL and the BSD license.
+The files in pyuic/ are:
+(c) 2005 Torsten Marek (shlomme@gmx.net),
+(c) 2013 Riverbank Computing Limited,
+and double-licensted under the GPL v3 and the BSD license.
 
 Copyright (c) The Regents of the University of California.
 All rights reserved.
@@ -60,12 +56,11 @@ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 -------------------------------------------------------------------
 
-files in examples (except examples/designer/plugins, which are licensed under
-the same terms as the rest of the package) are licensed under the BSD license:
+Files in examples are licensed under the BSD license:
 
 #############################################################################
 ##
-## Copyright (C) 2010 Riverbank Computing Limited.
+## Copyright (C) 2013 Riverbank Computing Limited.
 ## Copyright (C) 2010 Nokia Corporation and/or its subsidiary(-ies).
 ## All rights reserved.
 ##
@@ -103,30 +98,23 @@ the same terms as the rest of the package) are licensed under the BSD license:
 ##
 #############################################################################
 
+The exception are some files in examples/designer/plugins/python and
+examples/designer/plugins/widgets, which are licensed under GNU General
+Public license v2 or later:
 
-The files in elementtree/ are (c) 1999-2004 by Fredrik Lundh.
-By obtaining, using, and/or copying this software and/or its
-associated documentation, you agree that you have read, understood,
-and will comply with the following terms and conditions:
+  Copyright (C) 2006 David Boddie <david@boddie.org.uk>
+  Copyright (C) 2005-2006 Trolltech ASA. All rights reserved.
 
-Permission to use, copy, modify, and distribute this software and
-its associated documentation for any purpose and without fee is
-hereby granted, provided that the above copyright notice appears in
-all copies, and that both that copyright notice and this permission
-notice appear in supporting documentation, and that the name of
-Secret Labs AB or the author not be used in advertising or publicity
-pertaining to distribution of the software without specific, written
-prior permission.
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
 
-SECRET LABS AB AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD
-TO THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANT-
-ABILITY AND FITNESS.  IN NO EVENT SHALL SECRET LABS AB OR THE AUTHOR
-BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY
-DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS
-ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
-OF THIS SOFTWARE.
---------------------------------------------------------------------
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
 
 The files dbus/dbus.cpp and dbus/dbus.h are:
 
@@ -147,6 +135,7 @@ The files dbus/dbus.cpp and dbus/dbus.h are:
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software Foundation,
 // Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+
 
 Copyright and licensing for contrib/sandbox/sandbox.* are:
 Copyright (c) 2007-9 Mark Summerfield. All rights reserved.</font>
