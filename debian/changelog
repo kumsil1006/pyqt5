@@ -5,8 +5,10 @@ pyqt5 (5.0-2) UNRELEASED; urgency=low
   * Install files to python3-dbus.mainloop.pyqt5{,-dbg} directly instead of
     generating .install files. This fixes a problem of the -dbg package being
     not installable because of unwanted debug-id files (closes: #718551).
+  * Update qreal_float_support.diff with latest upstream changes, and
+    re-enable it.
 
- -- Dmitry Shachnev <mitya57@gmail.com>  Tue, 30 Jul 2013 16:44:16 +0400
+ -- Dmitry Shachnev <mitya57@gmail.com>  Fri, 09 Aug 2013 18:50:42 +0400
 
 pyqt5 (5.0-1) experimental; urgency=low
 
