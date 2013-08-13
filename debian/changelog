@@ -1,3 +1,11 @@
+pyqt5 (5.0-3) unstable; urgency=low
+
+  * Upload to unstable
+  * Set X-Python3-Version back to >= 3.2 as the work-around is not longer
+    neeeded (python3.2 is no longer supported in unstable)
+
+ -- Scott Kitterman <scott@kitterman.com>  Mon, 12 Aug 2013 19:49:25 -0400
+
 pyqt5 (5.0-2) experimental; urgency=low
 
   [ Dmitry Shachnev ]
