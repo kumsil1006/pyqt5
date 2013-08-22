@@ -1,2 +1,3 @@
 usr/lib/python3*/*-packages/PyQt5/QtQml.so
 usr/lib/python3*/*-packages/PyQt5/QtQuick.so
+usr/lib/*/qt5/plugins/PyQt5/libpyqt5qmlplugin.so
