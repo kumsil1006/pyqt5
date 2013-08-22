@@ -18,7 +18,6 @@ Build-Depends: dpkg-dev (>= 1.16.1~),
                libsqlite3-dev,
                libxslt1-dev,        
                qtmultimedia5-dev,
-#              qtquick1-5-dev,
                qtdeclarative5-dev,
                qttools5-dev,
                libqt5svg5-dev,
@@ -29,7 +28,7 @@ Build-Depends: dpkg-dev (>= 1.16.1~),
                python3-dbus,
                python3-dbus-dbg,
                python3-sip-dbg,
-               python3-sip-dev (>= 4.14.7-3~),
+               python3-sip-dev (>= 4.15),
                python3-sphinx
 X-Python3-Version: >= 3.2
 Standards-Version: 3.9.4
@@ -91,7 +90,7 @@ Description: D-Bus Support for PyQt5 (debug extensions for Python 3)
  The D-Bus module of PyQt5 provides integration of PyQt5 applications
  with the D-Bus main loop for Python 3.
  .
- This package contains the extensions built for the Python debug interpreter.
+ This package contains the extensions built for the Python 3 debug interpreter.
 
 Package: python3-pyqt5.qtopengl
 Architecture: any
@@ -237,11 +236,36 @@ Depends: python3-dbg,
          python3-pyqt5.qtmultimedia (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python 3 bindings for Qt5's Multimedia module (debug extension)
+Description: Python 3 bindings for Qt5's Multimedia module (debug extensions)
  The Multimedia module of PyQt5 provides a set of APIs to play and record
  media, and manage a collection of media content.
  .
- This package contains the extension built for the Python 3 debug interpreter.
+ This package contains the extensions built for the Python 3 debug interpreter.
+
+Package: python3-pyqt5.qtquick
+Architecture: any
+Depends: python3-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for QtQuick module
+ The QtQuick module of PyQt5 provides a framework for developing applications
+ and libraries with the QML language.
+
+Package: python3-pyqt5.qtquick-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python3-dbg,
+         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.qtquick (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for QtQuick module (debug extension)
+ The QtQuick module of PyQt5 provides a framework for developing applications
+ and libraries with the QML language.
+ .
+ This package contains the extensions built for the Python 3 debug interpreter.
 
 Package: pyqt5-dev
 Architecture: all
@@ -256,6 +280,7 @@ Architecture: all
 Section: doc
 Suggests: qt5-doc
 Depends: ${sphinxdoc:Depends}, ${misc:Depends}
+Recommends: python3-pyqt5
 Description: Documentation and examples for PyQt5
  PyQt5 exposes the Qt5 GUI toolkit in Python.
  .
