@@ -63,7 +63,7 @@ def encode_utf8(ba):
 def decode_utf8(qs):
     try:
         return QByteArray(qs.decode(encoding='utf8'))
-    except NameError:
+    except AttributeError:
         return QByteArray(bytes(qs, encoding='utf8'))
 
 
@@ -154,7 +154,7 @@ class MessageHandler(QAbstractMessageHandler):
 class MainWindow(QMainWindow, Ui_SchemaMainWindow):
 
     def __init__(self):
-        QMainWindow.__init__(self)
+        super(MainWindow, self).__init__()
 
         self.setupUi(self)
 

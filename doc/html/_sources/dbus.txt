@@ -5,7 +5,7 @@ DBus Support
 
 PyQt5 provides two different modules that implement support for DBus.  The
 :mod:`~PyQt5.QtDBus` module provides wrappers for the standard Qt DBus classes.
-The :mod:`dbus.mainloop.qt` module add support for the Qt event loop to the
+The :mod:`dbus.mainloop.pyqt5` module add support for the Qt event loop to the
 standard ``dbus-python`` Python module.
 
 
@@ -62,15 +62,15 @@ Note that this technique can be used for arguments of any type, it is only
 require if DBus structures are involved.
 
 
-:mod:`dbus.mainloop.qt`
------------------------
+:mod:`dbus.mainloop.pyqt5`
+--------------------------
 
-The :mod:`dbus.mainloop.qt` module provides support for the Qt event loop to
+The :mod:`dbus.mainloop.pyqt5` module provides support for the Qt event loop to
 ``dbus-python``.  The module's API is almost identical to that of the
 :mod:`dbus.mainloop.glib` modules that provides support for the GLib event
 loop.
 
-The :mod:`dbus.mainloop.qt` module contains the following function.
+The :mod:`dbus.mainloop.pyqt5` module contains the following function.
 
 .. function:: DBusQtMainLoop(set_as_default=False)
 
@@ -85,6 +85,6 @@ The :mod:`dbus.mainloop.qt` module contains the following function.
 The following code fragment is all that is normally needed to set up the
 standard ``dbus-python`` language bindings package to be used with PyQt5::
 
-    from dbus.mainloop.qt import DBusQtMainLoop
+    from dbus.mainloop.pyqt5 import DBusQtMainLoop
 
     DBusQtMainLoop(set_as_default=True)

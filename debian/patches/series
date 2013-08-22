@@ -1,3 +1,1 @@
-mainloop_rename.diff
-fix-example-shebang
-arm_compile.patch
+libpython_multiarch.diff

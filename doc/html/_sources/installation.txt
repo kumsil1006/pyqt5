@@ -140,6 +140,10 @@ The full set of command line options is:
 
     The PyQt5 modules will not contain automatically generated docstrings.
 
+.. cmdoption:: --no-qml-plugin
+
+    The :program:`qmlscene` plugin will not be built.
+
 .. cmdoption:: --no-qsci-api
 
     The :file:`PyQt5.api` QScintilla API file is not installed even if
@@ -179,6 +183,11 @@ The full set of command line options is:
     This option can be used to specify a particular instance of
     :program:`qmake` to use.  This option is not available on Windows where
     :program:`qmake` must be on :envvar:`PATH`.
+
+.. cmdoption:: --qml-plugindir <DIR>
+
+    The Python plugin for :program:`qmlscene` will be installed in the
+    directory ``<DIR>``.
 
 .. cmdoption:: --qsci-api
 

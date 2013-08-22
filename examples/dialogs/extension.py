@@ -80,7 +80,7 @@ class FindDialog(QDialog):
         moreButton.toggled.connect(extension.setVisible)
 
         extensionLayout = QVBoxLayout()
-        extensionLayout.setMargin(0)
+        extensionLayout.setContentsMargins(0, 0, 0, 0)
         extensionLayout.addWidget(wholeWordsCheckBox)
         extensionLayout.addWidget(backwardCheckBox)
         extensionLayout.addWidget(searchSelectionCheckBox)
@@ -113,4 +113,5 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     dialog = FindDialog()
-    sys.exit(dialog.exec_())
+    dialog.show()
+    sys.exit(app.exec_())

@@ -1,7 +1,7 @@
 // This is the SIP interface definition for the Qt support for the standard
 // Python DBus bindings.
 //
-// Copyright (c) 2012 Riverbank Computing Limited
+// Copyright (c) 2013 Riverbank Computing Limited
 //
 // Licensed under the Academic Free License version 2.1
 //
@@ -34,13 +34,13 @@
 extern "C" {static dbus_bool_t add_watch(DBusWatch *watch, void *data);}
 static dbus_bool_t add_watch(DBusWatch *watch, void *data)
 {
-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
+    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
 
     int fd = dbus_watch_get_fd(watch);
     unsigned int flags = dbus_watch_get_flags(watch);
     dbus_bool_t enabled = dbus_watch_get_enabled(watch);
 
-    pyqtDBusHelper::Watcher watcher;
+    pyqt5DBusHelper::Watcher watcher;
     watcher.watch = watch;
 
     if (flags & DBUS_WATCH_READABLE)
@@ -67,15 +67,15 @@ static dbus_bool_t add_watch(DBusWatch *watch, void *data)
 extern "C" {static void remove_watch(DBusWatch *watch, void *data);}
 static void remove_watch(DBusWatch *watch, void *data)
 {
-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
+    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
 
     int fd = dbus_watch_get_fd(watch);
 
-    pyqtDBusHelper::Watchers::iterator it = hlp->watchers.find(fd);
+    pyqt5DBusHelper::Watchers::iterator it = hlp->watchers.find(fd);
 
     while (it != hlp->watchers.end() && it.key() == fd)
     {
-        pyqtDBusHelper::Watcher &watcher = it.value();
+        pyqt5DBusHelper::Watcher &watcher = it.value();
 
         if (watcher.watch == watch)
         {
@@ -99,17 +99,17 @@ static void remove_watch(DBusWatch *watch, void *data)
 extern "C" {static void toggle_watch(DBusWatch *watch, void *data);}
 static void toggle_watch(DBusWatch *watch, void *data)
 {
-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
+    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
 
     int fd = dbus_watch_get_fd(watch);
     unsigned int flags = dbus_watch_get_flags(watch);
     dbus_bool_t enabled = dbus_watch_get_enabled(watch);
 
-    pyqtDBusHelper::Watchers::const_iterator it = hlp->watchers.find(fd);
+    pyqt5DBusHelper::Watchers::const_iterator it = hlp->watchers.find(fd);
 
     while (it != hlp->watchers.end() && it.key() == fd)
     {
-        const pyqtDBusHelper::Watcher &watcher = it.value();
+        const pyqt5DBusHelper::Watcher &watcher = it.value();
 
         if (watcher.watch == watch)
         {
@@ -141,7 +141,7 @@ static dbus_bool_t add_timeout(DBusTimeout *timeout, void *data)
     if (!QCoreApplication::instance())
         return true;
 
-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
+    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
 
     int id = hlp->startTimer(dbus_timeout_get_interval(timeout));
 
@@ -158,9 +158,9 @@ static dbus_bool_t add_timeout(DBusTimeout *timeout, void *data)
 extern "C" {static void remove_timeout(DBusTimeout *timeout, void *data);}
 static void remove_timeout(DBusTimeout *timeout, void *data)
 {
-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
+    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
 
-    pyqtDBusHelper::Timeouts::iterator it = hlp->timeouts.begin();
+    pyqt5DBusHelper::Timeouts::iterator it = hlp->timeouts.begin();
 
     while (it != hlp->timeouts.end())
         if (it.value() == timeout)
@@ -186,7 +186,7 @@ static void toggle_timeout(DBusTimeout *timeout, void *data)
 extern "C" {static void dbus_qt_delete_helper(void *data);}
 static void dbus_qt_delete_helper(void *data)
 {
-    delete reinterpret_cast<pyqtDBusHelper *>(data);
+    delete reinterpret_cast<pyqt5DBusHelper *>(data);
 }
 
 
@@ -194,7 +194,7 @@ static void dbus_qt_delete_helper(void *data)
 extern "C" {static void wakeup_main(void *data);}
 static void wakeup_main(void *data)
 {
-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
+    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
 
     QTimer::singleShot(0, hlp, SLOT(dispatch()));
 }
@@ -208,7 +208,7 @@ static dbus_bool_t dbus_qt_conn(DBusConnection *conn, void *data)
 
     Py_BEGIN_ALLOW_THREADS
 
-    pyqtDBusHelper *hlp = reinterpret_cast<pyqtDBusHelper *>(data);
+    pyqt5DBusHelper *hlp = reinterpret_cast<pyqt5DBusHelper *>(data);
 
     hlp->connections.append(conn);
 
@@ -253,13 +253,13 @@ static dbus_bool_t dbus_qt_srv(DBusServer *srv, void *data)
 
 
 // Create a new helper instance.
-pyqtDBusHelper::pyqtDBusHelper() : QObject()
+pyqt5DBusHelper::pyqt5DBusHelper() : QObject()
 {
 }
 
 
 // Handle a socket being ready to read.
-void pyqtDBusHelper::readSocket(int fd)
+void pyqt5DBusHelper::readSocket(int fd)
 {
     Watchers::const_iterator it = watchers.find(fd);
 
@@ -287,7 +287,7 @@ void pyqtDBusHelper::readSocket(int fd)
 
 
 // Handle a socket being ready to write.
-void pyqtDBusHelper::writeSocket(int fd)
+void pyqt5DBusHelper::writeSocket(int fd)
 {
     Watchers::const_iterator it = watchers.find(fd);
 
@@ -313,7 +313,7 @@ void pyqtDBusHelper::writeSocket(int fd)
 
 
 // Handoff to the connection dispatcher while there is data.
-void pyqtDBusHelper::dispatch()
+void pyqt5DBusHelper::dispatch()
 {
     for (Connections::const_iterator it = connections.constBegin(); it != connections.constEnd(); ++it)
         while (dbus_connection_dispatch(*it) == DBUS_DISPATCH_DATA_REMAINS)
@@ -322,7 +322,7 @@ void pyqtDBusHelper::dispatch()
 
 
 // Reimplemented to handle timer events.
-void pyqtDBusHelper::timerEvent(QTimerEvent *e)
+void pyqt5DBusHelper::timerEvent(QTimerEvent *e)
 {
     DBusTimeout *timeout = timeouts.value(e->timerId());
 
@@ -354,7 +354,7 @@ static PyObject *DBusQtMainLoop(PyObject *, PyObject *args, PyObject *kwargs)
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|i", argnames, &set_as_default))
         return 0;
 
-    pyqtDBusHelper *hlp = new pyqtDBusHelper;
+    pyqt5DBusHelper *hlp = new pyqt5DBusHelper;
 
     PyObject *mainloop = DBusPyNativeMainLoop_New4(dbus_qt_conn, dbus_qt_srv,
                 dbus_qt_delete_helper, hlp);
@@ -401,29 +401,29 @@ static PyMethodDef module_functions[] = {
 
 // The module entry point.
 #if PY_MAJOR_VERSION >= 3
-PyMODINIT_FUNC PyInit_qt()
+PyMODINIT_FUNC PyInit_pyqt5()
 {
     static PyModuleDef module_def = {
         PyModuleDef_HEAD_INIT,
-        "qt",
+        "pyqt5",
         NULL,
         -1,
         module_functions,
     };
 
     // Import the generic part of the Python DBus bindings.
-    if (import_dbus_bindings("dbus.mainloop.qt") < 0)
+    if (import_dbus_bindings("dbus.mainloop.pyqt5") < 0)
         return 0;
 
     return PyModule_Create(&module_def);
 }
 #else
-PyMODINIT_FUNC initqt()
+PyMODINIT_FUNC initpyqt5()
 {
     // Import the generic part of the Python DBus bindings.
-    if (import_dbus_bindings("dbus.mainloop.qt") < 0)
+    if (import_dbus_bindings("dbus.mainloop.pyqt5") < 0)
         return;
 
-    Py_InitModule("qt", module_functions);
+    Py_InitModule("pyqt5", module_functions);
 }
 #endif

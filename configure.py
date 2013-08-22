@@ -32,9 +32,9 @@ except ImportError:
 
 
 # Initialise the constants.
-PYQT_VERSION_STR = "5.0"
+PYQT_VERSION_STR = "5.0.1"
 
-SIP_MIN_VERSION = '4.14.7'
+SIP_MIN_VERSION = '4.15'
 
 
 class ModuleMetadata:
@@ -59,31 +59,39 @@ class ModuleMetadata:
 
 # The module meta-data.
 MODULE_METADATA = {
-    'dbus':             ModuleMetadata(qmake_QT=['-gui'], qmake_TARGET='qt',
-                                in_consolidated=False),
-    'QAxContainer':     ModuleMetadata(qmake_QT=['axcontainer']),
-    'Qt':               ModuleMetadata(qmake_QT=['-core', '-gui'],
-                                in_consolidated=False),
-    'QtCore':           ModuleMetadata(qmake_QT=['-gui'], qpy_lib='qpycore'),
-    'QtDBus':           ModuleMetadata(qmake_QT=['dbus', '-gui'],
-                                qpy_lib='qpydbus'),
-    'QtDesigner':       ModuleMetadata(qmake_QT=['designer'],
-                                qpy_lib='qpydesigner'),
-    'QtGui':            ModuleMetadata(qpy_lib='qpygui'),
-    'QtHelp':           ModuleMetadata(qmake_QT=['help']),
-    'QtMultimedia':     ModuleMetadata(qmake_QT=['multimedia']),
-    'QtNetwork':        ModuleMetadata(qmake_QT=['network', '-gui']),
-    'QtOpenGL':         ModuleMetadata(qmake_QT=['opengl'],
-                                qpy_lib='qpyopengl'),
-    'QtPrintSupport':   ModuleMetadata(qmake_QT=['printsupport']),
-    'QtSql':            ModuleMetadata(qmake_QT=['sql', 'widgets']),
-    'QtSvg':            ModuleMetadata(qmake_QT=['svg']),
-    'QtTest':           ModuleMetadata(qmake_QT=['testlib', 'widgets']),
-    'QtWebKit':         ModuleMetadata(qmake_QT=['webkit', 'network']),
-    'QtWebKitWidgets':  ModuleMetadata(qmake_QT=['webkitwidgets']),
-    'QtWidgets':        ModuleMetadata(qmake_QT=['widgets']),
-    'QtXmlPatterns':    ModuleMetadata(
-                                qmake_QT=['xmlpatterns', '-gui', 'network'])
+    'dbus':                 ModuleMetadata(qmake_QT=['-gui'],
+                                    qmake_TARGET='pyqt5',
+                                    in_consolidated=False),
+    'QAxContainer':         ModuleMetadata(qmake_QT=['axcontainer']),
+    'Qt':                   ModuleMetadata(qmake_QT=['-core', '-gui'],
+                                    in_consolidated=False),
+    'QtCore':               ModuleMetadata(qmake_QT=['-gui'],
+                                    qpy_lib='qpycore'),
+    'QtDBus':               ModuleMetadata(qmake_QT=['dbus', '-gui'],
+                                    qpy_lib='qpydbus'),
+    'QtDesigner':           ModuleMetadata(qmake_QT=['designer'],
+                                    qpy_lib='qpydesigner'),
+    'QtGui':                ModuleMetadata(qpy_lib='qpygui'),
+    'QtHelp':               ModuleMetadata(qmake_QT=['help']),
+    'QtMultimedia':         ModuleMetadata(qmake_QT=['multimedia']),
+    'QtMultimediaWidgets':  ModuleMetadata(
+                                    qmake_QT=['multimediawidgets',
+                                            'multimedia']),
+    'QtNetwork':            ModuleMetadata(qmake_QT=['network', '-gui']),
+    'QtOpenGL':             ModuleMetadata(qmake_QT=['opengl']),
+    'QtPrintSupport':       ModuleMetadata(qmake_QT=['printsupport']),
+    'QtQml':                ModuleMetadata(qmake_QT=['qml'], qpy_lib='qpyqml'),
+    'QtQuick':              ModuleMetadata(qmake_QT=['quick'],
+                                    qpy_lib='qpyquick'),
+    'QtSql':                ModuleMetadata(qmake_QT=['sql', 'widgets']),
+    'QtSvg':                ModuleMetadata(qmake_QT=['svg']),
+    'QtTest':               ModuleMetadata(qmake_QT=['testlib', 'widgets']),
+    'QtWebKit':             ModuleMetadata(qmake_QT=['webkit', 'network']),
+    'QtWebKitWidgets':      ModuleMetadata(qmake_QT=['webkitwidgets']),
+    'QtWidgets':            ModuleMetadata(qmake_QT=['widgets']),
+    'QtXmlPatterns':        ModuleMetadata(
+                                    qmake_QT=['xmlpatterns', '-gui',
+                                            'network'])
 }
 
 
@@ -277,11 +285,13 @@ class TargetConfiguration:
         self.modules = []
         self.no_designer_plugin = False
         self.no_docstrings = False
+        self.no_qml_plugin = False
         self.prot_is_public = (self.py_platform.startswith('linux') or self.py_platform == 'darwin')
         self.qmake = self._find_exe('qmake')
         self.qmake_variables = []
         self.pydbus_inc_dir = ''
         self.pydbus_module_dir = ''
+        self.qml_plugin_dir = ''
         self.qsci_api = False
         self.qsci_api_dir = ''
         self.qt_disabled_features = []
@@ -406,8 +416,10 @@ int main(int argc, char **argv)
     out << "PyQt_NoOpenGLES\\n";
 #endif
 
-    if (sizeof (qreal) != sizeof (double))
-        out << "PyQt_qreal_double\\n";
+// This is the test used in qglobal.h.
+#if defined(QT_NO_FPU) || defined(Q_PROCESSOR_ARM) || defined(Q_OS_WINCE)
+    out << "PyQt_qreal_double\\n";
+#endif
 
     return 0;
 }
@@ -422,7 +434,7 @@ int main(int argc, char **argv)
         run_command(cmd, verbose)
 
         if not os.access(out_file, os.F_OK):
-            error("%s failed to create %s. Make sure your Qt installation is correct." % (exe_file, out_file))
+            error("%s failed to create %s. Make sure your Qt installation is correct." % (cmd, out_file))
 
         # Read the details.
         f = open(out_file)
@@ -466,27 +478,33 @@ int main(int argc, char **argv)
         # Query qmake.
         qt_config = TargetQtConfiguration(self.qmake)
 
-        self.designer_plugin_dir = qt_config.QT_INSTALL_PLUGINS + '/designer'
-
         self.qt_version = 0
         for v in qt_config.QT_VERSION.split('.'):
             self.qt_version *= 256
             self.qt_version += int(v)
+
+        # Check the Qt version number as soon as possible.
+        if self.qt_version < 0x050000:
+            error("PyQt5 requires Qt v5.0 or later. You seem to be using v%s. Use the --qmake flag to specify the correct version of qmake." % version_to_string(self.qt_version))
+
+        self.designer_plugin_dir = qt_config.QT_INSTALL_PLUGINS + '/designer'
+        self.qml_plugin_dir = qt_config.QT_INSTALL_PLUGINS + '/PyQt5'
 
         # By default, install the API file if QScintilla seems to be installed
         # in the default location.
         self.qsci_api_dir = os.path.join(qt_config.QT_INSTALL_DATA, 'qsci')
         self.qsci_api = os.path.isdir(self.qsci_api_dir)
 
-        # The binary MacOS/X Qt installer defaults to XCode.  If this is what
-        # we might have then use macx-clang.
+        if opts.qmakespec is not None:
+            self.qmake_spec = opts.qmakespec
+
         if sys.platform == 'darwin':
-            if qt_config.QMAKE_SPEC == 'macx-xcode':
-                # This will exist (and we can't check anyway).
-                self.qmake_spec = 'macx-clang'
-            else:
-                # No need to explicitly name the default.
-                self.qmake_spec = ''
+            if opts.qmakespec is None:
+                # The binary MacOS/X Qt installer defaults to XCode.  If this
+                # is what we might have then use macx-clang.
+                if qt_config.QMAKE_SPEC == 'macx-xcode':
+                    # This will exist (and we can't check anyway).
+                    self.qmake_spec = 'macx-clang'
 
             # See if it is a framework.
             if os.access(os.path.join(qt_config.QT_INSTALL_LIBS, 'QtCore.framework'), os.F_OK):
@@ -509,6 +527,9 @@ int main(int argc, char **argv)
         if opts.debug:
             self.debug = True
 
+        if opts.designerplugindir is not None:
+            self.designer_plugin_dir = opts.designerplugindir
+
         if opts.destdir is not None:
             self.module_dir = opts.destdir
 
@@ -521,8 +542,8 @@ int main(int argc, char **argv)
         if opts.nodocstrings:
             self.no_docstrings = True
 
-        if opts.plugindir is not None:
-            self.plugin_dir = opts.plugindir
+        if opts.noqmlplugin:
+            self.no_qml_plugin = True
 
         if opts.protispublic is not None:
             self.prot_is_public = opts.protispublic
@@ -532,9 +553,6 @@ int main(int argc, char **argv)
 
         if opts.pyuicinterpreter is not None:
             self.pyuic_interpreter = opts.pyuicinterpreter
-
-        if opts.qmakespec is not None:
-            self.qmake_spec = opts.qmakespec
 
         if opts.qsciapidir is not None:
             self.qsci_api_dir = opts.qsciapidir
@@ -676,6 +694,10 @@ def create_optparser(target_config):
             default=False, action='store_true',
             help="disable the building of the Python plugin for Qt Designer "
                     "[default: enabled]")
+    g.add_option("--no-qml-plugin", dest='noqmlplugin', default=False,
+            action='store_true',
+            help="disable the building of the Python plugin for qmlscene "
+                    "[default: enabled]")
     g.add_option("--assume-shared", dest='assumeshared', default=False,
             action='store_true',
             help="assume that the Qt libraries have been built as shared "
@@ -740,11 +762,16 @@ def create_optparser(target_config):
             metavar="DIR",
             help="install the PyQt5 Python package in DIR [default: "
                     "%s]" % target_config.module_dir)
-    g.add_option("--designer-plugindir", dest='plugindir', type='string',
-            default=None, action='callback', callback=store_abspath,
-            metavar="DIR",
+    g.add_option("--designer-plugindir", dest='designerplugindir',
+            type='string', default=None, action='callback',
+            callback=store_abspath, metavar="DIR",
             help="install the Python plugin for Qt Designer in DIR "
                     "[default: QT_INSTALL_PLUGINS/designer]")
+    g.add_option("--qml-plugindir", dest='qmlplugindir', type='string',
+            default=None, action='callback', callback=store_abspath,
+            metavar="DIR",
+            help="install the Python plugin for qmlscene in DIR "
+                    "[default: QT_INSTALL_PLUGINS/PyQt5]")
     g.add_option("--no-sip-files", action="store_false", default=True,
             dest="install_sipfiles", help="disable the installation of the "
             ".sip files [default: enabled]")
@@ -809,12 +836,18 @@ def check_modules(target_config, verbose):
             'new QHelpEngine("foo")')
     check_module(target_config, verbose, 'QtMultimedia', 'QAudioDeviceInfo',
             'new QAudioDeviceInfo()')
+    check_module(target_config, verbose, 'QtMultimediaWidgets', 'QVideoWidget',
+            'new QVideoWidget()')
     check_module(target_config, verbose, 'QtNetwork', 'qhostaddress.h',
             'new QHostAddress()')
     check_module(target_config, verbose, 'QtOpenGL', 'qgl.h',
             'new QGLWidget()')
     check_module(target_config, verbose, 'QtPrintSupport', 'qprinter.h',
             'new QPrinter()')
+    check_module(target_config, verbose, 'QtQml', 'qjsengine.h',
+            'new QJSEngine()')
+    check_module(target_config, verbose, 'QtQuick', 'qquickwindow.h',
+            'new QQuickWindow()')
     check_module(target_config, verbose, 'QtSql', 'qsqldatabase.h',
             'new QSqlDatabase()')
     check_module(target_config, verbose, 'QtSvg', 'qsvgwidget.h',
@@ -1007,8 +1040,17 @@ SUBDIRS = %s
 
     # Generate the Qt Designer plugin.
     if not target_config.no_designer_plugin and 'QtDesigner' in target_config.modules:
-        if generate_designer_plugin_makefile(target_config, verbose):
+        if generate_plugin_makefile(target_config, verbose, 'designer', target_config.designer_plugin_dir, "Qt Designer"):
             subdirs.append('designer')
+
+    # Generate the qmlscene plugin.
+    if not target_config.no_qml_plugin and 'QtQml' in target_config.modules:
+        if generate_plugin_makefile(target_config, verbose, 'qmlscene', target_config.qml_plugin_dir, "qmlscene"):
+            subdirs.append('qmlscene')
+
+            rewrite_qmldir(target_config, 'Charts',
+                    source_path('examples', 'quick', 'tutorials', 'extending',
+                            'chapter6-plugins'))
 
     # Generate the QScintilla API file.
     if target_config.qsci_api:
@@ -1082,14 +1124,10 @@ INSTALLS += qscintilla_api
 
     out_f.close()
 
-    # Generate the top-level makefile.
-    inform("Generating the top-level Makefile...")
-    run_qmake(target_config, verbose, toplevel_pro)
-
-    # Make the pyuic5 wrapper executable on platforms that support it.  If we
-    # did this before generating the top-level makefile qmake would try and
-    # strip it.  It doesn't actually matter if it does - but it's better to
-    # avoid confusing the user.
+    # Make the pyuic5 wrapper executable on platforms that support it.  This
+    # means that qmake will try and strip it after installing it resulting in
+    # an (ignored) error.  However if we did it after running qmake then (on
+    # Linux) the execute bits would be stripped on installation.
     if target_config.py_platform != 'win32':
         inform("Making the %s wrapper executable..." % pyuic_wrapper)
 
@@ -1098,11 +1136,19 @@ INSTALLS += qscintilla_api
         mode |= (stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
         os.chmod(pyuic_wrapper, mode)
 
+    # Generate the top-level makefile.
+    inform("Generating the top-level Makefile...")
+    run_qmake(target_config, verbose, toplevel_pro)
 
-def generate_designer_plugin_makefile(target_config, verbose):
-    """ Generate the makefile for the Qt Designer plugin.  target_config is the
-    target configuration.  verbose is set if the output is to be displayed.
-    Returns True if the makefile could be generated.
+
+def generate_plugin_makefile(target_config, verbose, plugin_dir, install_dir, plugin_name):
+    """ Generate the makefile for a plugin that embeds the Python interpreter.
+    target_config is the target configuration.  verbose is set if the output is
+    to be displayed.  plugin_dir is the name of the directory containing the
+    plugin implementation.  install_dir is the name of the directory that the
+    plugin will be installed in.  plugin_name is a descriptive name of the
+    plugin to be used in user messages.  Returns True if the makefile could be
+    generated.
     """
 
     if sys.platform == 'win32':
@@ -1128,7 +1174,7 @@ def generate_designer_plugin_makefile(target_config, verbose):
             abi = getattr(sys, 'abiflags', '')
 
         if not dynamic_pylib:
-            inform("The Qt Designer plugin was disabled because the Python library is static.")
+            inform("The %s plugin was disabled because the Python library is static." % plugin_name)
             return False
 
         if glob.glob('%s/lib/libpython%d.%d*' % (ducfg['exec_prefix'], py_major, py_minor)):
@@ -1136,7 +1182,7 @@ def generate_designer_plugin_makefile(target_config, verbose):
         elif glob.glob('%s/libpython%d.%d*' % (ducfg['LIBDIR'], py_major, py_minor)):
             lib_dir_flag = qmake_quote('-L%s' % ducfg['LIBDIR'])
         else:
-            inform("The Qt Designer plugin was disabled because the Python library couldn't be found.")
+            inform("The %s plugin was disabled because the Python library couldn't be found." % plugin_name)
             return False
 
         link = '%s -lpython%d.%d%s' % (lib_dir_flag, py_major, py_minor, abi)
@@ -1144,37 +1190,36 @@ def generate_designer_plugin_makefile(target_config, verbose):
         pysh_lib = ducfg.get('LDLIBRARY', '')
 
     # Create the qmake project file.
-    inform("Generating the Qt Designer plugin .pro file...")
+    inform("Generating the %s plugin .pro file..." % plugin_name)
 
-    designer_dir = 'designer'
-    sp_designer_dir = source_path(designer_dir)
+    sp_plugin_dir = source_path(plugin_dir)
 
-    fin = open(os.path.join(sp_designer_dir, 'python.pro-in'))
+    fin = open(os.path.join(sp_plugin_dir, 'python.pro-in'))
     prj = fin.read()
     fin.close()
 
     prj = prj.replace('@PYINCDIR@', quote(target_config.py_inc_dir))
+    prj = prj.replace('@SIPINCDIR@', quote(target_config.sip_inc_dir))
     prj = prj.replace('@PYLINK@', link)
     prj = prj.replace('@PYSHLIB@', pysh_lib)
-    prj = prj.replace('@QTPLUGINDIR@',
-            quote(target_config.designer_plugin_dir))
+    prj = prj.replace('@QTPLUGINDIR@', quote(install_dir))
 
-    pro_name = os.path.join(designer_dir, 'python.pro')
+    pro_name = os.path.join(plugin_dir, 'python.pro')
 
-    mk_dir(designer_dir)
+    mk_dir(plugin_dir)
     fout = open(pro_name, 'w')
     fout.write(prj)
 
-    if sp_designer_dir != designer_dir:
+    if sp_plugin_dir != plugin_dir:
         fout.write('''
 INCLUDEPATH += %s
 VPATH = %s
-''' % (qmake_quote(sp_designer_dir), qmake_quote(sp_designer_dir)))
+''' % (qmake_quote(sp_plugin_dir), qmake_quote(sp_plugin_dir)))
 
     fout.close()
 
     # Create the makefile.
-    inform("Generating the Qt Designer plugin Makefile...")
+    inform("Generating the %s plugin Makefile..." % plugin_name)
 
     run_qmake(target_config, verbose, pro_name)
 
@@ -1267,6 +1312,21 @@ def generate_pyuic5_wrapper(target_config):
     return wrapper
 
 
+def rewrite_qmldir(target_config, module, module_dir):
+    """ Re-write a qmldir file for a module that used the qmlscene plugin.
+    target_config is the target configuration.  module is the name of the QML
+    module.  module_dir is the name of the directory containing the QML module.
+    """
+
+    qmldir_fn = os.path.join(module_dir, module, 'qmldir')
+
+    inform("Re-writing %s..." % qmldir_fn)
+
+    qmldir = open(qmldir_fn, 'w')
+    qmldir.write('module %s\nplugin pyqt5qmlplugin %s\n' % (module, target_config.qml_plugin_dir))
+    qmldir.close()
+
+
 def quote(path):
     """ Return a path with quotes added if it contains spaces.  path is the
     path.
@@ -1326,6 +1386,12 @@ def inform_user(target_config, sip_version):
     else:
         inform("The Designer plugin will be installed in %s." %
                 target_config.designer_plugin_dir)
+
+    if target_config.no_qml_plugin:
+        inform("The qmlscene plugin will not be installed.")
+    else:
+        inform("The qmlscene plugin will be installed in %s." %
+                target_config.qml_plugin_dir)
 
     if target_config.qsci_api:
         inform(
@@ -1511,8 +1577,6 @@ int main(int, char **)
         out << "typedef unsigned GLuint;\\n";
     else
         out << "typedef unsigned long GLuint;\\n";
-
-    // The rest are only needed by the QtOpenGL module.
 
     if (sizeof (int) == sizeof (GLint))
         out << "typedef int GLint;\\n";
@@ -2225,10 +2289,6 @@ Type 'no' to decline the terms of the license.
 def check_qt(target_config):
     """ Check the Qt installation.  target_config is the target configuration.
     """
-
-    # Check the Qt version number.
-    if target_config.qt_version < 0x050000:
-        error("PyQt5 requires Qt v5.0 or later.")
 
     # Starting with v4.7, Qt (when built with MinGW) assumes that stack frames
     # are 16 byte aligned because it uses SSE.  However the Python Windows

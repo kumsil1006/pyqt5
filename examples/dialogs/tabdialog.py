@@ -201,4 +201,5 @@ if __name__ == '__main__':
         fileName = "."
 
     tabdialog = TabDialog(fileName)
-    sys.exit(tabdialog.exec_())
+    tabdialog.show()
+    sys.exit(app.exec_())

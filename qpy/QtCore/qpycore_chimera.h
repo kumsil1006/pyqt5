@@ -59,14 +59,14 @@ public:
     static FromQVariantConvertors registeredFromQVariantConvertors;
 
     // Register a function for converting a Python object to a QVariant.
-    typedef bool (*ToQVariantFn)(PyObject *, QVariant *, bool *);
-    typedef QList<ToQVariantFn> ToQVariantConvertors;
-    static void registerToQVariant(ToQVariantFn);
+    typedef bool (*ToQVariantConvertorFn)(PyObject *, QVariant &, bool *);
+    typedef QList<ToQVariantConvertorFn> ToQVariantConvertors;
+    static ToQVariantConvertors registeredToQVariantConvertors;
 
     // Register a function for converting a Python object to QVariant data.
-    typedef bool (*ToQVariantDataFn)(PyObject *, void *, int, bool *);
-    typedef QList<ToQVariantDataFn> ToQVariantDataConvertors;
-    static void registerToQVariantData(ToQVariantDataFn);
+    typedef bool (*ToQVariantDataConvertorFn)(PyObject *, void *, int, bool *);
+    typedef QList<ToQVariantDataConvertorFn> ToQVariantDataConvertors;
+    static ToQVariantDataConvertors registeredToQVariantDataConvertors;
 
     class Signature
     {
@@ -86,6 +86,9 @@ public:
 
         // The signature as declared by the user for use in exceptions.
         QByteArray py_signature;
+
+        // The revision of a slot.  Putting this here is an awful hack.
+        int revision;
 
         // Return the parsed signature wrapped in a Python object.  Ownership
         // of the signature is passed to the Python object.  Return 0 if there
@@ -204,9 +207,8 @@ public:
     // Convert a QVariant to a Python object based on the type of the object.
     static PyObject *toAnyPyObject(const QVariant &var);
 
-    // Returns the Qt meta-type id.  It will be QMetaType::Void (Qt4) or
-    // QMetaType::UnknownType (Qt5) if the type isn't known to Qt's meta-type
-    // system.
+    // Returns the Qt meta-type id.  It will be QMetaType::UnknownType if the
+    // type isn't known to Qt's meta-type system.
     int metatype() const {return _metatype;}
 
     // Returns a borrowed reference to the Python type object that was used to
@@ -255,12 +257,6 @@ private:
 
     // The cache of previously parsed argument type lists.
     static QHash<QByteArray, QList<const Chimera *> > _previously_parsed;
-
-    // The registered PyObject to QVariant convertors.
-    static ToQVariantConvertors _registered_QVariant_convertors;
-
-    // The registered PyObject to QVariant data convertors.
-    static ToQVariantDataConvertors _registered_QVariant_data_convertors;
 
     Chimera();
 

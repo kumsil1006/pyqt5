@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Introduction &mdash; PyQt 5.0 Reference Guide</title>
+    <title>Introduction &mdash; PyQt 5.0.1 Reference Guide</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '5.0',
+        VERSION:     '5.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/logo_tn.ico"/>
-    <link rel="top" title="PyQt 5.0 Reference Guide" href="index.html" />
+    <link rel="top" title="PyQt 5.0.1 Reference Guide" href="index.html" />
     <link rel="next" title="Installing PyQt5" href="installation.html" />
     <link rel="prev" title="PyQt5 Reference Guide" href="index.html" /> 
   </head>
@@ -46,7 +46,7 @@
         <li class="right" >
           <a href="index.html" title="PyQt5 Reference Guide"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -57,7 +57,7 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>This is the reference guide for PyQt5 5.0.  PyQt5 is a set of
+<p>This is the reference guide for PyQt5 5.0.1.  PyQt5 is a set of
 <a class="reference external" href="http://www.python.org">Python</a> bindings for v5 of the Qt application
 framework from <a class="reference external" href="http://qt.digia.com">Digia</a>.</p>
 <p>Qt is a set of C++ libraries and development tools that includes platform
@@ -120,6 +120,10 @@ documentation.</li>
 <li><a class="reference internal" href="#module-PyQt5.QtMultimedia" title="PyQt5.QtMultimedia"><tt class="xref py py-mod docutils literal"><span class="pre">QtMultimedia</span></tt></a> contains classes to handle multimedia content and
 APIs to access camera and radio functionality.</li>
 </ul>
+<span class="target" id="module-PyQt5.QtMultimediaWidgets"></span><ul class="simple">
+<li><a class="reference internal" href="#module-PyQt5.QtMultimediaWidgets" title="PyQt5.QtMultimediaWidgets"><tt class="xref py py-mod docutils literal"><span class="pre">QtMultimediaWidgets</span></tt></a> contains classes to handle multimedia
+content in <a class="reference internal" href="#module-PyQt5.QtWidgets" title="PyQt5.QtWidgets"><tt class="xref py py-mod docutils literal"><span class="pre">QtWidgets</span></tt></a> based applications.</li>
+</ul>
 <span class="target" id="module-PyQt5.QtNetwork"></span><ul class="simple">
 <li><a class="reference internal" href="#module-PyQt5.QtNetwork" title="PyQt5.QtNetwork"><tt class="xref py py-mod docutils literal"><span class="pre">QtNetwork</span></tt></a> contains classes for writing UDP and TCP clients and
 servers.  It includes classes that implement HTTP clients and support DNS
@@ -133,6 +137,16 @@ rendering 3D graphics in <a class="reference internal" href="#module-PyQt5.QtWid
 <li><a class="reference internal" href="#module-PyQt5.QtPrintSupport" title="PyQt5.QtPrintSupport"><tt class="xref py py-mod docutils literal"><span class="pre">QtPrintSupport</span></tt></a> contains classes to allow applications to print
 to locally attached and remote printers.  It also enables the generation of
 PostScript and PDF files.</li>
+</ul>
+<span class="target" id="module-PyQt5.QtQml"></span><ul class="simple">
+<li><a class="reference internal" href="#module-PyQt5.QtQml" title="PyQt5.QtQml"><tt class="xref py py-mod docutils literal"><span class="pre">QtQml</span></tt></a> contains classes to allow applications to integrate
+support for QML and JavaScript.  Python objects can be exported to QML or be
+created from QML in the same way that Qt allows the same with C++ instances.
+See <a class="reference internal" href="qml.html#ref-integrating-qml"><em>Integrating Python and QML</em></a> for a fuller description of how to do this.</li>
+</ul>
+<span class="target" id="module-PyQt5.QtQuick"></span><ul class="simple">
+<li><a class="reference internal" href="#module-PyQt5.QtQuick" title="PyQt5.QtQuick"><tt class="xref py py-mod docutils literal"><span class="pre">QtQuick</span></tt></a> contains classes that provide the basic elements
+necessary for creating user interfaces with QML.</li>
 </ul>
 <span class="target" id="module-PyQt5.QtSql"></span><ul class="simple">
 <li><a class="reference internal" href="#module-PyQt5.QtSql" title="PyQt5.QtSql"><tt class="xref py py-mod docutils literal"><span class="pre">QtSql</span></tt></a> contains classes that integrate with SQL databases.  It
@@ -184,6 +198,9 @@ Qt Designer that describe the whole or part of a graphical user interface.
 It includes classes that load a <tt class="docutils literal"><span class="pre">.ui</span></tt> file and render it directly, and
 classes that generate Python code from a <tt class="docutils literal"><span class="pre">.ui</span></tt> file for later execution.</li>
 </ul>
+<p>PyQt5 contains plugins that enable Qt Designer and <strong class="program">qmlscene</strong> to be
+extended using Python code.  See <a class="reference internal" href="designer.html#ref-designer-plugins"><em>Writing Qt Designer Plugins</em></a> and
+<a class="reference internal" href="qml.html#ref-integrating-qml"><em>Integrating Python and QML</em></a> respectively for the details.</p>
 <p>PyQt5 also contains a number of utility programs.</p>
 <ul class="simple">
 <li><strong class="program">pyuic5</strong> corresponds to the Qt <strong class="program">uic</strong> utility.  It converts
@@ -197,13 +214,13 @@ updates <tt class="docutils literal"><span class="pre">.ts</span></tt> translati
 manage the translation of those strings.</li>
 </ul>
 <p>The <a class="reference external" href="http://www.freedesktop.org/wiki/Software/DBusBindings">DBus</a> support
-module is installed as <tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.qt</span></tt>.  This module provides support
-for the Qt event loop in the same way that the <tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.glib</span></tt>
-included with the standard <tt class="docutils literal"><span class="pre">dbus-python</span></tt> bindings package provides support
-for the GLib event loop.  The API is described in <a class="reference internal" href="dbus.html#ref-dbus"><em>DBus Support</em></a>.  It is only
-available if the <tt class="docutils literal"><span class="pre">dbus-python</span></tt> v0.80 (or later) bindings package is
-installed.  The <a class="reference internal" href="#module-PyQt5.QtDBus" title="PyQt5.QtDBus (UNIX)"><tt class="xref py py-mod docutils literal"><span class="pre">QtDBus</span></tt></a> module provides a more Qt-like interface
-to DBus.</p>
+module is installed as <tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.pyqt5</span></tt>.  This module provides
+support for the Qt event loop in the same way that the
+<tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.glib</span></tt> included with the standard <tt class="docutils literal"><span class="pre">dbus-python</span></tt> bindings
+package provides support for the GLib event loop.  The API is described in
+<a class="reference internal" href="dbus.html#ref-dbus"><em>DBus Support</em></a>.  It is only available if the <tt class="docutils literal"><span class="pre">dbus-python</span></tt> v0.80 (or later)
+bindings package is installed.  The <a class="reference internal" href="#module-PyQt5.QtDBus" title="PyQt5.QtDBus (UNIX)"><tt class="xref py py-mod docutils literal"><span class="pre">QtDBus</span></tt></a> module provides a more
+Qt-like interface to DBus.</p>
 <p>When PyQt5 is configured a file called <tt class="file docutils literal"><span class="pre">PyQt5.api</span></tt> is generated.  This
 can be used by the
 <a class="reference external" href="http://www.riverbankcomputing.com/software/qscintilla/">QScintilla</a>
@@ -311,7 +328,7 @@ version of PyQt5 no matter what version of Qt v5 you are using.</p>
         <li class="right" >
           <a href="index.html" title="PyQt5 Reference Guide"
              >previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

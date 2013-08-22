@@ -290,7 +290,7 @@ class MandelbrotWidget(QWidget):
             super(MandelbrotWidget, self).keyPressEvent(event)
 
     def wheelEvent(self, event):
-        numDegrees = event.delta() / 8
+        numDegrees = event.angleDelta().y() / 8
         numSteps = numDegrees / 15.0
         self.zoom(pow(ZoomInFactor, numSteps))
 

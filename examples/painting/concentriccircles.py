@@ -113,17 +113,15 @@ class Window(QWidget):
 
         timer = QTimer(self)
 
-        self.circleWidgets = []
         for i in range(2):
-            self.circleWidgets.append([None]*2)
             for j in range(2):
-                self.circleWidgets[i][j] = CircleWidget()
-                self.circleWidgets[i][j].setAntialiased(j != 0)
-                self.circleWidgets[i][j].setFloatBased(i != 0)
+                w = CircleWidget()
+                w.setAntialiased(j != 0)
+                w.setFloatBased(i != 0)
 
-                timer.timeout.connect(self.circleWidgets[i][j].nextAnimationFrame)
+                timer.timeout.connect(w.nextAnimationFrame)
 
-                layout.addWidget(self.circleWidgets[i][j], i + 1, j + 1)
+                layout.addWidget(w, i + 1, j + 1)
 
         timer.start(100)
         self.setLayout(layout)

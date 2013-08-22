@@ -72,9 +72,9 @@ PyQtSlotProxy::PyQtSlotProxy(PyObject *slot, QObject *q_tx,
     // Detect when any transmitter is destroyed.  (Note that we used to do this
     // by making the proxy a child of the transmitter.  This doesn't work as
     // expected because QWidget destroys its children before emitting the
-    // destroyed signal.)  We use a queued connection in case/ the proxy is
-    // also connected to the same signal and we want to make sure it has a
-    // chance to invoke the slot before being destroyed.
+    // destroyed signal.)  We use a queued connection in case the proxy is also
+    // connected to the same signal and we want to make sure it has a chance to
+    // invoke the slot before being destroyed.
     if (transmitter)
     {
         // Add this one to the global hash.
@@ -347,4 +347,11 @@ int qpycore_visitSlotProxies(const QObject *transmitter, visitproc visit,
         void *arg)
 {
     return PyQtSlotProxy::visitSlotProxies(transmitter, visit, arg);
+}
+
+
+// Get the last sender.
+QObject *PyQtSlotProxy::lastSender()
+{
+    return last_sender;
 }

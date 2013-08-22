@@ -33,7 +33,7 @@
 // See if we can find an attribute in the Qt meta-type system.  This is
 // primarily to support access to JavaScript (e.g. QDeclarativeItem) so we
 // don't support overloads.
-PyObject *qpycore_qobject_getattr(QObject *qobj, PyObject *py_qobj,
+PyObject *qpycore_qobject_getattr(const QObject *qobj, PyObject *py_qobj,
         const char *name)
 {
     const QMetaObject *mo = qobj->metaObject();
@@ -113,7 +113,7 @@ PyObject *qpycore_qobject_getattr(QObject *qobj, PyObject *py_qobj,
         }
 
         value = qpycore_pyqtBoundSignal_New((qpycore_pyqtSignal *)sig_obj,
-                py_qobj, qobj);
+                py_qobj, const_cast<QObject *>(qobj));
     }
     else
     {
@@ -121,7 +121,8 @@ PyObject *qpycore_qobject_getattr(QObject *qobj, PyObject *py_qobj,
         py_name.append('.');
         py_name.append(name);
 
-        value = qpycore_pyqtMethodProxy_New(qobj, method_index, py_name);
+        value = qpycore_pyqtMethodProxy_New(const_cast<QObject *>(qobj),
+                method_index, py_name);
     }
 
     return value;

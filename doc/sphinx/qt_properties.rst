@@ -31,7 +31,7 @@ function.  It is used in the same way as the standard Python ``property()``
 function.  In fact, Qt properties defined in this way also behave as Python
 properties.
 
-.. function:: PyQt5.QtCore.pyqtProperty(type[, fget=None[, fset=None[, freset=None[, fdel=None[, doc=None[, designable=True[, scriptable=True[, stored=True[, user=False[, constant=False[, final=False[, notify=None]]]]]]]]]]]])
+.. function:: PyQt5.QtCore.pyqtProperty(type[, fget=None[, fset=None[, freset=None[, fdel=None[, doc=None[, designable=True[, scriptable=True[, stored=True[, user=False[, constant=False[, final=False[, notify=None[, revision=0]]]]]]]]]]]]])
 
     Create a property that behaves as both a Python property and a Qt property.
 
@@ -64,6 +64,8 @@ properties.
         optionally sets the Qt ``FINAL`` flag.  It is ignored by Python
     :param notify:
         the optional unbound notify signal.  It is ignored by Python
+    :param revision:
+        the revision exported to QML.  It is ignored by Python
     :rtype:
         the property object.
       

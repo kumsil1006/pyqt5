@@ -97,7 +97,7 @@ class StarRating(object):
         if editMode == StarRating.Editable:
             painter.setBrush(palette.highlight())
         else:
-            painter.setBrush(palette.foreground())
+            painter.setBrush(palette.windowText())
 
         yOffset = (rect.height() - self.PaintingScaleFactor) / 2
         painter.translate(rect.x(), rect.y() + yOffset)

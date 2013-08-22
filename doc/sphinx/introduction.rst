@@ -1,7 +1,7 @@
 Introduction
 ============
 
-This is the reference guide for PyQt5 5.0.  PyQt5 is a set of
+This is the reference guide for PyQt5 5.0.1.  PyQt5 is a set of
 `Python <http://www.python.org>`__ bindings for v5 of the Qt application
 framework from `Digia <http://qt.digia.com>`__.
 
@@ -91,6 +91,11 @@ number of Python extension modules.  These are all installed in the
 - :mod:`~PyQt5.QtMultimedia` contains classes to handle multimedia content and
   APIs to access camera and radio functionality.
 
+.. module:: PyQt5.QtMultimediaWidgets
+
+- :mod:`~PyQt5.QtMultimediaWidgets` contains classes to handle multimedia
+  content in :mod:`~PyQt5.QtWidgets` based applications.
+
 .. module:: PyQt5.QtNetwork
 
 - :mod:`~PyQt5.QtNetwork` contains classes for writing UDP and TCP clients and
@@ -107,6 +112,18 @@ number of Python extension modules.  These are all installed in the
 - :mod:`~PyQt5.QtPrintSupport` contains classes to allow applications to print
   to locally attached and remote printers.  It also enables the generation of
   PostScript and PDF files.
+
+.. module:: PyQt5.QtQml
+
+- :mod:`~PyQt5.QtQml` contains classes to allow applications to integrate
+  support for QML and JavaScript.  Python objects can be exported to QML or be
+  created from QML in the same way that Qt allows the same with C++ instances.
+  See :ref:`ref-integrating-qml` for a fuller description of how to do this.
+
+.. module:: PyQt5.QtQuick
+
+- :mod:`~PyQt5.QtQuick` contains classes that provide the basic elements
+  necessary for creating user interfaces with QML.
 
 .. module:: PyQt5.QtSql
 
@@ -167,6 +184,10 @@ number of Python extension modules.  These are all installed in the
   It includes classes that load a ``.ui`` file and render it directly, and
   classes that generate Python code from a ``.ui`` file for later execution.
 
+PyQt5 contains plugins that enable Qt Designer and :program:`qmlscene` to be
+extended using Python code.  See :ref:`ref-designer-plugins` and
+:ref:`ref-integrating-qml` respectively for the details.
+
 PyQt5 also contains a number of utility programs.
 
 - :program:`pyuic5` corresponds to the Qt :program:`uic` utility.  It converts
@@ -182,13 +203,13 @@ PyQt5 also contains a number of utility programs.
   manage the translation of those strings.
 
 The `DBus <http://www.freedesktop.org/wiki/Software/DBusBindings>`__ support
-module is installed as :mod:`dbus.mainloop.qt`.  This module provides support
-for the Qt event loop in the same way that the :mod:`dbus.mainloop.glib`
-included with the standard ``dbus-python`` bindings package provides support
-for the GLib event loop.  The API is described in :ref:`ref-dbus`.  It is only
-available if the ``dbus-python`` v0.80 (or later) bindings package is
-installed.  The :mod:`~PyQt5.QtDBus` module provides a more Qt-like interface
-to DBus.
+module is installed as :mod:`dbus.mainloop.pyqt5`.  This module provides
+support for the Qt event loop in the same way that the
+:mod:`dbus.mainloop.glib` included with the standard ``dbus-python`` bindings
+package provides support for the GLib event loop.  The API is described in
+:ref:`ref-dbus`.  It is only available if the ``dbus-python`` v0.80 (or later)
+bindings package is installed.  The :mod:`~PyQt5.QtDBus` module provides a more
+Qt-like interface to DBus.
 
 When PyQt5 is configured a file called :file:`PyQt5.api` is generated.  This
 can be used by the

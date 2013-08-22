@@ -36,7 +36,8 @@ PyObject *qpycore_pyqtslot(PyObject *args, PyObject *kwds)
 {
     const char *name_str = 0;
     PyObject *res_obj = 0;
-    static const char *kwlist[] = {"name", "result", 0};
+    int revision = 0;
+    static const char *kwlist[] = {"name", "result", "revision", 0};
 
     static PyObject *no_args = 0;
 
@@ -48,8 +49,8 @@ PyObject *qpycore_pyqtslot(PyObject *args, PyObject *kwds)
             return 0;
     }
 
-    if (!PyArg_ParseTupleAndKeywords(no_args, kwds, "|sO:pyqtSlot",
-            const_cast<char **>(kwlist), &name_str, &res_obj))
+    if (!PyArg_ParseTupleAndKeywords(no_args, kwds, "|sOi:pyqtSlot",
+            const_cast<char **>(kwlist), &name_str, &res_obj, &revision))
         return 0;
 
     Chimera::Signature *parsed_sig = Chimera::parse(args, name_str,
@@ -57,6 +58,10 @@ PyObject *qpycore_pyqtslot(PyObject *args, PyObject *kwds)
 
     if (!parsed_sig)
         return 0;
+
+    // Sticking the revision here is an awful hack, but it saves creating
+    // another data structure wrapped in a capsule.
+    parsed_sig->revision = revision;
 
     // Parse any result type.
     if (res_obj)

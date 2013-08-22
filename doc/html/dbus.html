@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>DBus Support &mdash; PyQt 5.0 Reference Guide</title>
+    <title>DBus Support &mdash; PyQt 5.0.1 Reference Guide</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '5.0',
+        VERSION:     '5.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/logo_tn.ico"/>
-    <link rel="top" title="PyQt 5.0 Reference Guide" href="index.html" />
+    <link rel="top" title="PyQt 5.0.1 Reference Guide" href="index.html" />
     <link rel="next" title="Deploying Commercial PyQt5 Applications" href="deploy_commercial.html" />
     <link rel="prev" title="Internationalisation of PyQt5 Applications" href="i18n.html" /> 
   </head>
@@ -46,7 +46,7 @@
         <li class="right" >
           <a href="i18n.html" title="Internationalisation of PyQt5 Applications"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -59,7 +59,7 @@
 <span id="ref-dbus"></span><h1>DBus Support<a class="headerlink" href="#dbus-support" title="Permalink to this headline">¶</a></h1>
 <p>PyQt5 provides two different modules that implement support for DBus.  The
 <a class="reference internal" href="introduction.html#module-PyQt5.QtDBus" title="PyQt5.QtDBus (UNIX)"><tt class="xref py py-mod docutils literal"><span class="pre">QtDBus</span></tt></a> module provides wrappers for the standard Qt DBus classes.
-The <tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.qt</span></tt> module add support for the Qt event loop to the
+The <tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.pyqt5</span></tt> module add support for the Qt event loop to the
 standard <tt class="docutils literal"><span class="pre">dbus-python</span></tt> Python module.</p>
 <div class="section" id="qtdbus">
 <h2><a class="reference internal" href="introduction.html#module-PyQt5.QtDBus" title="PyQt5.QtDBus (UNIX)"><tt class="xref py py-mod docutils literal"><span class="pre">QtDBus</span></tt></a><a class="headerlink" href="#qtdbus" title="Permalink to this headline">¶</a></h2>
@@ -110,13 +110,13 @@ public slots:
 <p>Note that this technique can be used for arguments of any type, it is only
 require if DBus structures are involved.</p>
 </div>
-<div class="section" id="dbus-mainloop-qt">
-<h2><tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.qt</span></tt><a class="headerlink" href="#dbus-mainloop-qt" title="Permalink to this headline">¶</a></h2>
-<p>The <tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.qt</span></tt> module provides support for the Qt event loop to
+<div class="section" id="dbus-mainloop-pyqt5">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.pyqt5</span></tt><a class="headerlink" href="#dbus-mainloop-pyqt5" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.pyqt5</span></tt> module provides support for the Qt event loop to
 <tt class="docutils literal"><span class="pre">dbus-python</span></tt>.  The module&#8217;s API is almost identical to that of the
 <tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.glib</span></tt> modules that provides support for the GLib event
 loop.</p>
-<p>The <tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.qt</span></tt> module contains the following function.</p>
+<p>The <tt class="xref py py-mod docutils literal"><span class="pre">dbus.mainloop.pyqt5</span></tt> module contains the following function.</p>
 <dl class="function">
 <dt id="DBusQtMainLoop">
 <tt class="descname">DBusQtMainLoop</tt><big>(</big><em>set_as_default=False</em><big>)</big><a class="headerlink" href="#DBusQtMainLoop" title="Permalink to this definition">¶</a></dt>
@@ -136,7 +136,7 @@ keyword argument, and not as a positional argument.</td>
 
 <p>The following code fragment is all that is normally needed to set up the
 standard <tt class="docutils literal"><span class="pre">dbus-python</span></tt> language bindings package to be used with PyQt5:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">dbus.mainloop.qt</span> <span class="kn">import</span> <span class="n">DBusQtMainLoop</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">dbus.mainloop.pyqt5</span> <span class="kn">import</span> <span class="n">DBusQtMainLoop</span>
 
 <span class="n">DBusQtMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
@@ -157,7 +157,7 @@ standard <tt class="docutils literal"><span class="pre">dbus-python</span></tt> 
   <ul>
 <li><a class="reference internal" href="#">DBus Support</a><ul>
 <li><a class="reference internal" href="#qtdbus"><tt class="docutils literal"><span class="pre">QtDBus</span></tt></a></li>
-<li><a class="reference internal" href="#dbus-mainloop-qt"><tt class="docutils literal"><span class="pre">dbus.mainloop.qt</span></tt></a></li>
+<li><a class="reference internal" href="#dbus-mainloop-pyqt5"><tt class="docutils literal"><span class="pre">dbus.mainloop.pyqt5</span></tt></a></li>
 </ul>
 </li>
 </ul>
@@ -200,7 +200,7 @@ standard <tt class="docutils literal"><span class="pre">dbus-python</span></tt> 
         <li class="right" >
           <a href="i18n.html" title="Internationalisation of PyQt5 Applications"
              >previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

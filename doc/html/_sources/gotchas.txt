@@ -118,7 +118,9 @@ Multiple Inheritance
 --------------------
 
 It is not possible to define a new Python class that sub-classes from more than
-one Qt class.
+one Qt class.  The exception is classes specifically intended to act as mixin
+classes such as those (like :class:`~PyQt5.QtQml.QQmlParserStatus`) that
+implement Qt interfaces.
 
 
 Access to Protected Member Functions

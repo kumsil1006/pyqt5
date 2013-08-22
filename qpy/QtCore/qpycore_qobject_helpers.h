@@ -26,22 +26,15 @@
 
 #include <QMetaObject>
 
-#include "qpycore_namespace.h"
 #include "qpycore_sip.h"
-
-
-QT_BEGIN_NAMESPACE
-class QObject;
-QT_END_NAMESPACE
 
 
 const QMetaObject *qpycore_qobject_metaobject(sipSimpleWrapper *pySelf,
         sipTypeDef *base);
 int qpycore_qobject_qt_metacall(sipSimpleWrapper *pySelf, sipTypeDef *base,
         QMetaObject::Call _c, int _id, void **_a);
-int qpycore_qobject_qt_metacast(sipSimpleWrapper *pySelf, sipTypeDef *base,
-        const char *_clname);
-int qpycore_qobject_kw_handler(PyObject *obj, QObject *qobj, PyObject *kwds);
+bool qpycore_qobject_qt_metacast(sipSimpleWrapper *pySelf,
+        const sipTypeDef *base, const char *_clname, void **);
 
 
 #endif

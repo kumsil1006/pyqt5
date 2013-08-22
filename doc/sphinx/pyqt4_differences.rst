@@ -27,7 +27,7 @@ PyQt4 supports a number of different API versions (``QString``,
 :class:`~PyQt5.QtCore.QVariant` etc.).  With the exception of
 :class:`~PyQt5.QtCore.QVariant`, PyQt5 only implements v2 of those APIs for all
 versions of Python.  The changed support for :class:`~PyQt5.QtCore.QVariant`,
-including the removal of ``QPyNullVariant``) is described in
+including the removal of ``QPyNullVariant``, is described in
 :ref:`ref-qvariant`.
 
 
@@ -55,18 +55,20 @@ In addition the following methods have differences:
   all connections to the :class:`~PyQt5.QtCore.QObject` instance.
 
 
-``QtDeclarative`` Module
-------------------------
+``QtDeclarative``, ``QtScript`` and ``QtScriptTools`` Modules
+-------------------------------------------------------------
 
-PyQt4's ``QtDeclarative`` module is not supported.  A future release of PyQt5
-will implement a ``QtQuick`` module.
+PyQt4's ``QtDeclarative``, ``QtScript`` and ``QtScriptTools`` modules are not
+supported.  These have been replaced by PyQt5's :mod:`~PyQt5.QtQml` and
+:mod:`~PyQt5.QtQuick` modules.  Unlike PyQt4, PyQt5 supports the creation of
+Python objects from QML.
 
 
 ``QtGui`` Module
 ----------------
 
-PyQt4's ``QtGui`` module has been split into PyQt5's :mod:`QtGui`,
-:mod:`QtPrintSupport` and :mod:`QtWidgets` modules.
+PyQt4's ``QtGui`` module has been split into PyQt5's :mod:`~PyQt5.QtGui`,
+:mod:`~PyQt5.QtPrintSupport` and :mod:`~PyQt5.QtWidgets` modules.
 
 
 ``QtOpenGL`` Module
@@ -77,18 +79,11 @@ Only the :class:`~PyQt5.QtOpenGL.QGLContext`,
 classes are supported by PyQt5.
 
 
-``QtScript`` and ``QtScriptTools`` Modules
-------------------------------------------
-
-PyQt4's ``QtScript`` and ``QtScriptTools`` modules are not supported.  A future
-release of PyQt5 will implement a ``QtQml`` module.
-
-
 ``QtWebKit`` Module
 -------------------
 
-PyQt4's ``QtWebKit`` module has been split into PyQt5's :mod:`QtWebKit` and
-:mod:`QtWebKitWidgets` modules.
+PyQt4's ``QtWebKit`` module has been split into PyQt5's :mod:`~PyQt5.QtWebKit`
+and :mod:`~PyQt5.QtWebKitWidgets` modules.
 
 
 ``QtXml`` Module
@@ -108,6 +103,14 @@ PyQt4's ``pyqtconfig`` module is not supported.  The section
 third-party packages (e.g.
 `QScintilla <http://www.riverbankcomputing.com/software/qscintilla/>`__) that
 want to build on top of PyQt5.
+
+
+``dbus.mainloop.qt`` Module
+---------------------------
+
+PyQt4's ``dbus.mainloop.qt`` module is called :mod:`dbus.mainloop.pyqt5` in
+PyQt5.  This allows them to be installed side by side.  Their functionality is
+identical.
 
 
 ``QDataStream``
@@ -149,6 +152,17 @@ existing PyQt4 application then consider first updating it to use
 :class:`~PyQt5.QtGui.QTransform` instead.
 
 
+``QPyTextObject``
+-----------------
+
+PyQt4 implements the ``QPyTextObject`` as a workaround for the inability to
+define a Python class that is sub-classed from more than one Qt class.  PyQt5
+does support the ability to define a Python class that is sub-classed from more
+than one Qt class so long as all but one of the Qt classes are interfaces, i.e.
+they have been declared in C++ as such using ``Q_DECLARE_INTERFACE``.
+Therefore ``QPyTextObject`` is not implemented in PyQt5.
+
+
 ``QSet``
 --------
 
@@ -168,6 +182,57 @@ v3.  In PyQt5 ``QSet`` is always implemented as a set.
 :program:`pyrcc5` does not support the ``-py2`` and ``-py3`` flags of
 ``pyrcc4``.  The output of :program:`pyrcc5` is compatible with all versions of
 Python starting with Python v2.6.
+
+
+Cooperative Multi-inheritance
+-----------------------------
+
+Unlike PyQt4, PyQt5 classes implement cooperative multi-inheritance.  In other
+words PyQt5 classes always do the equivalent of the following Python v3 code
+in their ``__init__`` methods (where ``kwds`` is a dictionary of unused keyword
+arguments)::
+
+    super().__init__(**kwds)
+
+This means that those unused keyword arguments are passed to the ``__init__``
+methods of any mixin classes.  Those mixin classes must cooperate, i.e. they
+must make a similar call if they have their own ``__init__`` implementations.
+
+When using multiple inheritance in PyQt4 it is common to call the ``__init__``
+methods of the super-classes explicitly, for example::
+
+    class MyQObject(QObject, MyMixin):
+        def __init__(self, parent, mixin_arg):
+            QObject.__init__(self, parent)
+            MyMixin.__init__(self, mixin_arg)
+
+            # Other initialisation...
+
+In PyQt5 the above would cause ``MyMixin.__init__`` to be called twice.
+Instead it should be implemented as follows::
+
+    class MyQObject(QObject, MyMixin):
+        def __init__(self, **kwds):
+            super().__init__(**kwds)
+
+            # Other initialisation...
+
+Note that if there is no other initialisation to do then the ``__init__``
+method isn't actually needed.
+
+The mixin class should be implemented as follows::
+
+    class MyMixin:
+        def __init__(self, mixin_arg, **kwds):
+            super().__init__(**kwds)
+
+            # Other initialisation...
+
+If a class only inherits from a single class then it can still call the
+super-class's ``__init__`` method explicitly (although it is recommended to use
+``super()``).
+
+See :ref:`ref-cooperative-multiinheritance`.
 
 
 Releasing the GIL

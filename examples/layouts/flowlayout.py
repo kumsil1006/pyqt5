@@ -67,7 +67,7 @@ class FlowLayout(QLayout):
         super(FlowLayout, self).__init__(parent)
 
         if parent is not None:
-            self.setMargin(margin)
+            self.setContentsMargins(margin, margin, margin, margin)
 
         self.setSpacing(spacing)
 
@@ -119,7 +119,9 @@ class FlowLayout(QLayout):
         for item in self.itemList:
             size = size.expandedTo(item.minimumSize())
 
-        size += QSize(2 * self.margin(), 2 * self.margin())
+        margin, _, _, _ = self.getContentsMargins()
+
+        size += QSize(2 * margin, 2 * margin)
         return size
 
     def doLayout(self, rect, testOnly):

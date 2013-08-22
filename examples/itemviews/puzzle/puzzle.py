@@ -168,7 +168,7 @@ class PuzzleWidget(QWidget):
         drag.setHotSpot(event.pos() - square.topLeft())
         drag.setPixmap(pixmap)
 
-        if drag.start(Qt.MoveAction) != Qt.MoveAction:
+        if drag.exec_(Qt.MoveAction) != Qt.MoveAction:
             self.pieceLocations.insert(found, location)
             self.piecePixmaps.insert(found, pixmap)
             self.pieceRects.insert(found, square)

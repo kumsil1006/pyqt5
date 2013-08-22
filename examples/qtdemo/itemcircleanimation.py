@@ -367,7 +367,7 @@ class ItemCircleAnimation(DemoItem):
         self.mouseMoveLastPosition = newPosition
 
     def wheelEvent(self, event):
-        if event.delta() > 0:
+        if event.angleDelta().y() > 0:
             self.effect.moveSpeed -= 0.20
         else:
             self.effect.moveSpeed += 0.20

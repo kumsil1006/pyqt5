@@ -27,6 +27,7 @@
 
 
 #include <QByteArray>
+#include <QList>
 #include <QMetaObject>
 
 QT_BEGIN_NAMESPACE
@@ -66,6 +67,8 @@ public:
     QMetaMethodBuilder() : _mobj(0), _index(0) {}
 
     void setReturnType(const QByteArray &type);
+    void setParameterNames(const QList<QByteArray> &parameter_names);
+    void setRevision(int revision);
 
 private:
     const QMetaObjectBuilder *_mobj;
@@ -89,6 +92,7 @@ public:
     void setEnumOrFlag(bool value);
     void setConstant(bool value);
     void setFinal(bool value);
+    void setRevision(int revision);
 
 private:
     const QMetaObjectBuilder *_mobj;

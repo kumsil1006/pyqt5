@@ -20,10 +20,8 @@
 
 #include <Python.h>
 
-#if 0
-#include "qpycore_chimera.h"
-#endif
 #include "qpycore_public_api.h"
+#include "qpycore_pyqtslotproxy.h"
 #include "qpycore_qobject_helpers.h"
 #include "qpycore_sip.h"
 #include "qpycore_types.h"
@@ -42,20 +40,14 @@ void qpycore_init()
     if (sipRegisterPyType((PyTypeObject *)&qpycore_pyqtWrapperType_Type) < 0)
         Py_FatalError("PyQt5.QtCore: Failed to register pyqtWrapperType type");
 
-    // Export the private helpers.
+    // Export the private helpers, ie. those that should not be used by
+    // external handwritten code.
     sipExportSymbol("qtcore_qt_metaobject",
             (void *)qpycore_qobject_metaobject);
     sipExportSymbol("qtcore_qt_metacall", (void *)qpycore_qobject_qt_metacall);
     sipExportSymbol("qtcore_qt_metacast", (void *)qpycore_qobject_qt_metacast);
-
-    sipExportSymbol("pyqt_kw_handler", (void *)qpycore_pyqtconfigure);
-
-#if 0
-    sipExportSymbol("qpycore_register_to_qvariant",
-            (void *)Chimera::registerToQVariant);
-    sipExportSymbol("qpycore_register_to_qvariant_data",
-            (void *)Chimera::registerToQVariantData);
-#endif
+    sipExportSymbol("qtcore_qobject_sender",
+            (void *)PyQtSlotProxy::lastSender);
 
     // Export the public API.
     sipExportSymbol("pyqt5_from_argv_list", (void *)pyqt5_from_argv_list);
@@ -67,10 +59,14 @@ void qpycore_init()
             (void *)pyqt5_get_pyqtsignal_parts);
     sipExportSymbol("pyqt5_get_pyqtslot_parts",
             (void *)pyqt5_get_pyqtslot_parts);
+    sipExportSymbol("pyqt5_get_qmetaobject", (void *)pyqt5_get_qmetaobject);
     sipExportSymbol("pyqt5_get_signal_signature",
             (void *)pyqt5_get_signal_signature);
-    sipExportSymbol("pyqt5_qobject_sender", (void *)pyqt5_qobject_sender);
     sipExportSymbol("pyqt5_register_from_qvariant_convertor",
             (void *)pyqt5_register_from_qvariant_convertor);
+    sipExportSymbol("pyqt5_register_to_qvariant_convertor",
+            (void *)pyqt5_register_to_qvariant_convertor);
+    sipExportSymbol("pyqt5_register_to_qvariant_data_convertor",
+            (void *)pyqt5_register_to_qvariant_data_convertor);
     sipExportSymbol("pyqt5_update_argv_list", (void *)pyqt5_update_argv_list);
 }

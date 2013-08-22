@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Wed May 15 13:03:55 2013
-#      by: PyQt5 UI code generator 5.0-snapshot-3507ed3a4178
+# Created: Fri Jul 26 06:49:55 2013
+#      by: PyQt5 UI code generator 5.0.1-snapshot-2a99e59669ee
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.vboxlayout = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.vboxlayout.setMargin(9)
+        self.vboxlayout.setContentsMargins(9, 9, 9, 9)
         self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
         self.mainFrame = QtWidgets.QFrame(self.centralwidget)
@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
         self.mainFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.mainFrame.setObjectName("mainFrame")
         self.gridlayout = QtWidgets.QGridLayout(self.mainFrame)
-        self.gridlayout.setMargin(9)
+        self.gridlayout.setContentsMargins(9, 9, 9, 9)
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
         self.agreeCheckBox = QtWidgets.QCheckBox(self.mainFrame)

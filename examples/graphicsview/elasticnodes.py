@@ -371,7 +371,7 @@ class GraphWidget(QGraphicsView):
             self.timerId = 0
 
     def wheelEvent(self, event):
-        self.scaleView(math.pow(2.0, -event.delta() / 240.0))
+        self.scaleView(math.pow(2.0, -event.angleDelta().y() / 240.0))
 
     def drawBackground(self, painter, rect):
         # Shadow.

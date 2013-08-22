@@ -172,12 +172,12 @@ static int create_dynamic_metaobject(pyqtWrapperType *pyqt_wt)
     // Get the name of the type.  Dynamic types have simple names.
     builder.setClassName(pytype->tp_name);
 
-    // Go through the class dictionary getting all PyQt properties, slots,
-    // signals or a (deprecated) sequence of signals.
+    // Go through the class dictionary getting all PyQt properties, slots and
+    // signals.
 
     typedef QPair<PyObject *, PyObject *> prop_data;
     QMap<uint, prop_data> pprops;
-    QList<QByteArray> psigs;
+    QList<const qpycore_pyqtSignal *> psigs;
     SIP_SSIZE_T pos = 0;
     PyObject *key, *value;
 
@@ -253,8 +253,7 @@ static int create_dynamic_metaobject(pyqtWrapperType *pyqt_wt)
                 // Add all the overloads.
                 do
                 {
-                    psigs.append(ps->signature->signature);
-
+                    psigs.append(ps);
                     ps = ps->next;
                 }
                 while (ps);
@@ -287,9 +286,15 @@ static int create_dynamic_metaobject(pyqtWrapperType *pyqt_wt)
     // Add the signals to the meta-object.
     for (int g = 0; g < qo->nr_signals; ++g)
     {
-        const QByteArray &norm = psigs.at(g);
+        const qpycore_pyqtSignal *ps = psigs.at(g);
 
-        builder.addSignal(norm.mid(1));
+        QMetaMethodBuilder signal_builder = builder.addSignal(
+                ps->signature->signature.mid(1));
+
+        if (ps->parameter_names)
+            signal_builder.setParameterNames(*ps->parameter_names);
+
+        signal_builder.setRevision(ps->revision);
     }
 
     // Add the slots to the meta-object.
@@ -305,6 +310,8 @@ static int create_dynamic_metaobject(pyqtWrapperType *pyqt_wt)
         {
             slot_builder.setReturnType(slot_signature->result->name());
         }
+
+        slot_builder.setRevision(slot_signature->revision);
     }
 
     // Add the properties to the meta-object.
@@ -354,9 +361,24 @@ static int create_dynamic_metaobject(pyqtWrapperType *pyqt_wt)
         QByteArray prop_type;
 
         if (pp->pyqtprop_parsed_type->metatype() == QMetaType::QObjectStar)
-            prop_type = "QObject*";
+        {
+            // However, if the type is a Python sub-class of QObject then we
+            // use the name of the Python type.  This anticipates that the type
+            // is one that will be proxied by QML at some point.
+            if (pp->pyqtprop_parsed_type->typeDef() == sipType_QObject)
+            {
+                prop_type = ((PyTypeObject *)pp->pyqtprop_parsed_type->py_type())->tp_name;
+                prop_type.append('*');
+            }
+            else
+            {
+                prop_type = "QObject*";
+            }
+        }
         else
+        {
             prop_type = pp->pyqtprop_parsed_type->name();
+        }
 
         QMetaPropertyBuilder prop_builder = builder.addProperty(prop_name,
                 prop_type, notifier_id);
@@ -423,6 +445,8 @@ static int create_dynamic_metaobject(pyqtWrapperType *pyqt_wt)
         prop_builder.setUser(pp->pyqtprop_flags & 0x00100000);
         prop_builder.setConstant(pp->pyqtprop_flags & 0x00000400);
         prop_builder.setFinal(pp->pyqtprop_flags & 0x00000800);
+
+        prop_builder.setRevision(pp->pyqtprop_revision);
 
         // Save the property data for qt_metacall().  (We already have a
         // reference.)

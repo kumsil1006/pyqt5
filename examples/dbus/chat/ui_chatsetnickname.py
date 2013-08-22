@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'chatsetnickname.ui'
 #
-# Created: Fri May  3 08:41:23 2013
-#      by: PyQt5 UI code generator snapshot-5.0-e46cc7cf20da
+# Created: Fri Jul 26 06:48:20 2013
+#      by: PyQt5 UI code generator 5.0.1-snapshot-2a99e59669ee
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -19,11 +19,11 @@ class Ui_NicknameDialog(object):
         sizePolicy.setHeightForWidth(NicknameDialog.sizePolicy().hasHeightForWidth())
         NicknameDialog.setSizePolicy(sizePolicy)
         self.vboxlayout = QtWidgets.QVBoxLayout(NicknameDialog)
-        self.vboxlayout.setMargin(9)
+        self.vboxlayout.setContentsMargins(9, 9, 9, 9)
         self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
         self.vboxlayout1 = QtWidgets.QVBoxLayout()
-        self.vboxlayout1.setMargin(0)
+        self.vboxlayout1.setContentsMargins(0, 0, 0, 0)
         self.vboxlayout1.setSpacing(6)
         self.vboxlayout1.setObjectName("vboxlayout1")
         self.label = QtWidgets.QLabel(NicknameDialog)
@@ -39,7 +39,7 @@ class Ui_NicknameDialog(object):
         self.vboxlayout1.addWidget(self.nickname)
         self.vboxlayout.addLayout(self.vboxlayout1)
         self.hboxlayout = QtWidgets.QHBoxLayout()
-        self.hboxlayout.setMargin(0)
+        self.hboxlayout.setContentsMargins(0, 0, 0, 0)
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
         spacerItem = QtWidgets.QSpacerItem(131, 31, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)

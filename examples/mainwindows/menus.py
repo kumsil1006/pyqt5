@@ -68,7 +68,7 @@ class MainWindow(QMainWindow):
         bottomFiller.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         vbox = QVBoxLayout()
-        vbox.setMargin(5)
+        vbox.setContentsMargins(5, 5, 5, 5)
         vbox.addWidget(topFiller)
         vbox.addWidget(self.infoLabel)
         vbox.addWidget(bottomFiller)

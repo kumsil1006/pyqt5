@@ -22,5 +22,9 @@ CONFIG      += static warn_on
 TARGET      = qpygui
 TEMPLATE    = lib
 
+SOURCES   = \
+            qpyopengl_attribute_array.cpp \
+            qpyopengl_uniform_value_array.cpp
+
 HEADERS   = \
-            qpytextobject.h
+            qpyopengl_api.h

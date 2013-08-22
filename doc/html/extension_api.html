@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>The PyQt5 Extension API &mdash; PyQt 5.0 Reference Guide</title>
+    <title>The PyQt5 Extension API &mdash; PyQt 5.0.1 Reference Guide</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '5.0',
+        VERSION:     '5.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/logo_tn.ico"/>
-    <link rel="top" title="PyQt 5.0 Reference Guide" href="index.html" />
+    <link rel="top" title="PyQt 5.0.1 Reference Guide" href="index.html" />
     <link rel="prev" title="Deploying Commercial PyQt5 Applications" href="deploy_commercial.html" /> 
   </head>
   <body>
@@ -42,7 +42,7 @@
         <li class="right" >
           <a href="deploy_commercial.html" title="Deploying Commercial PyQt5 Applications"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -158,6 +158,24 @@ exception will have been raised.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="pyqt5_get_qmetaobject__PyTypeObjectP">
+const QMetaObject* <tt class="descname">pyqt5_get_qmetaobject</tt><big>(</big>PyTypeObject* <em>type</em><big>)</big><a class="headerlink" href="#pyqt5_get_qmetaobject__PyTypeObjectP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the QMetaObject instance for a Python type.  The Python type must be a
+sub-type of <a class="reference internal" href="api/qobject.html#PyQt5.QtCore.QObject" title="PyQt5.QtCore.QObject"><tt class="xref py py-class docutils literal"><span class="pre">QObject</span></tt></a>&#8216;s Python type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Parameters type:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">is the Python type object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the <a class="reference internal" href="api/qmetaobject.html#PyQt5.QtCore.QMetaObject" title="PyQt5.QtCore.QMetaObject"><tt class="xref py py-class docutils literal"><span class="pre">QMetaObject</span></tt></a>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="pyqt5_get_pyqtsignal_parts__PyObjectP.QObjectPP.QByteArrayR">
 sipErrorState <tt class="descname">pyqt5_get_pyqtsignal_parts</tt><big>(</big>PyObject* <em>signal</em>, QObject** <em>transmitter</em>, QByteArray&amp; <em>signal_signature</em><big>)</big><a class="headerlink" href="#pyqt5_get_pyqtsignal_parts__PyObjectP.QObjectPP.QByteArrayR" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the transmitter object and signal signature from a bound signal.</p>
@@ -229,22 +247,6 @@ exception will have been raised.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="pyqt5_qobject_sender">
-QObject* <tt class="descname">pyqt5_qobject_sender</tt><big>(</big><big>)</big><a class="headerlink" href="#pyqt5_qobject_sender" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the sender of a signal to the current slot proxy.  This is only
-intended to be used by the <tt class="xref py py-meth docutils literal"><span class="pre">sender()</span></tt>
-<tt class="docutils literal"><span class="pre">%MethodCode</span></tt>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the <a class="reference internal" href="api/qobject.html#PyQt5.QtCore.QObject" title="PyQt5.QtCore.QObject"><tt class="xref py py-class docutils literal"><span class="pre">QObject</span></tt></a> sender.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="function">
 <dt>
 <tt class="descname">void pyqt5_register_from_qvariant_convertor(bool (*convertor)(const QVariant &amp;, PyObject **))</tt></dt>
 <dd><p>Register a convertor function that converts a
@@ -260,6 +262,51 @@ The second argument is updated with a reference to the result of the
 conversion and it will be <tt class="docutils literal"><span class="pre">0</span></tt>, and a Python exception raised, if
 there was an error.  The convertor will return <tt class="docutils literal"><span class="pre">true</span></tt> if the value
 was handled so that no other convertor will be tried.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">void pyqt5_register_to_qvariant_convertor(bool (*convertor)(PyObject *, QVariant &amp;, bool *))</tt></dt>
+<dd><p>Register a convertor function that converts a Python object to a
+<a class="reference internal" href="api/qvariant.html#PyQt5.QtCore.QVariant" title="PyQt5.QtCore.QVariant"><tt class="xref py py-class docutils literal"><span class="pre">QVariant</span></tt></a> value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Parameters convertor:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">is the convertor function.  This takes three arguments.  The first
+argument is the Python object to be converted. The second argument is a
+pointer to <a class="reference internal" href="api/qvariant.html#PyQt5.QtCore.QVariant" title="PyQt5.QtCore.QVariant"><tt class="xref py py-class docutils literal"><span class="pre">QVariant</span></tt></a> value that is updated with
+the result of the conversion.  The third argument is updated with an
+error flag which will be <tt class="docutils literal"><span class="pre">false</span></tt>, and a Python exception raised, if
+there was an error.  The convertor will return <tt class="docutils literal"><span class="pre">true</span></tt> if the value
+was handled so that no other convertor will be tried.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">void pyqt5_register_to_qvariant_data_convertor(bool (*convertor)(PyObject *, void *, int, bool *))</tt></dt>
+<dd><p>Register a convertor function that converts a Python object to the
+pre-allocated data of a <a class="reference internal" href="api/qvariant.html#PyQt5.QtCore.QVariant" title="PyQt5.QtCore.QVariant"><tt class="xref py py-class docutils literal"><span class="pre">QVariant</span></tt></a> value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Parameters convertor:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">is the convertor function.  This takes four arguments.  The first
+argument is the Python object to be converted. The second argument is a
+pointer to the pre-allocated data of a <a class="reference internal" href="api/qvariant.html#PyQt5.QtCore.QVariant" title="PyQt5.QtCore.QVariant"><tt class="xref py py-class docutils literal"><span class="pre">QVariant</span></tt></a>
+value that is updated with the result of the conversion.  The third
+argument is the meta-type of the value.  The fourth argument is updated
+with an error flag which will be <tt class="docutils literal"><span class="pre">false</span></tt>, and a Python exception
+raised, if there was an error.  The convertor will return <tt class="docutils literal"><span class="pre">true</span></tt> if
+the value was handled so that no other convertor will be tried.</td>
 </tr>
 </tbody>
 </table>
@@ -341,7 +388,7 @@ after calling constructors of classes such as
         <li class="right" >
           <a href="deploy_commercial.html" title="Deploying Commercial PyQt5 Applications"
              >previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

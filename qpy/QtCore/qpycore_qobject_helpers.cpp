@@ -124,27 +124,7 @@ static int qt_metacall_worker(sipSimpleWrapper *pySelf, PyTypeObject *pytype,
 
                 if (py)
                 {
-                    // Get the underlying QVariant.  As of Qt v4.7.0,
-                    // QtDeclarative doesn't pass a QVariant and this value is
-                    // 0.
-                    QVariant *var = reinterpret_cast<QVariant *>(_a[1]);
-
-                    if (var)
-                    {
-                        ok = prop->pyqtprop_parsed_type->fromPyObject(py, var);
-
-                        // Make sure that _a[0] still points to the QVariant
-                        // data (whose address we may have just changed) so
-                        // that QMetaProperty::read() doesn't try to create a 
-                        // new QVariant.
-                        if (ok)
-                            _a[0] = var->data();
-                    }
-                    else
-                    {
-                        ok = prop->pyqtprop_parsed_type->fromPyObject(py, _a[0]);
-                    }
-
+                    ok = prop->pyqtprop_parsed_type->fromPyObject(py, _a[0]);
                     Py_DECREF(py);
                 }
                 else
@@ -164,16 +144,6 @@ static int qt_metacall_worker(sipSimpleWrapper *pySelf, PyTypeObject *pytype,
 
             if (prop->pyqtprop_set)
             {
-                // _a is an array whose length and contents vary according to
-                // the version of Qt.  Prior to v4.6 _a[1] was the address of
-                // the QVariant containing the property value and _a[0] was the
-                // address of the actual data in the QVariant.  We used to
-                // convert the QVariant at _a[1], rather than the data at
-                // _a[0], which gave us a little bit more type checking.  In Qt
-                // v4.6 the QPropertyAnimation class contains an optimised path
-                // that bypasses QMetaProperty and only sets _a[0], so now
-                // that is all we can rely on.  
-
                 PyObject *py = prop->pyqtprop_parsed_type->toPyObject(_a[0]);
 
                 if (py)
@@ -189,7 +159,9 @@ static int qt_metacall_worker(sipSimpleWrapper *pySelf, PyTypeObject *pytype,
                     Py_DECREF(py);
                 }
                 else
+                {
                     ok = false;
+                }
             }
         }
 
@@ -238,32 +210,48 @@ static int qt_metacall_worker(sipSimpleWrapper *pySelf, PyTypeObject *pytype,
 
 
 // This is the helper for all implementations of QObject::qt_metacast().
-int qpycore_qobject_qt_metacast(sipSimpleWrapper *pySelf, sipTypeDef *base,
-        const char *_clname)
+bool qpycore_qobject_qt_metacast(sipSimpleWrapper *pySelf,
+        const sipTypeDef *base, const char *_clname, void **sipCpp)
 {
+    *sipCpp = 0;
+
     if (!_clname)
-        return 0;
+        return true;
 
     // Check if the Python object has gone.
     if (!pySelf)
-        return 0;
+        return true;
 
-    int is_py_class = 0;
+    bool is_py_class = false;
 
     SIP_BLOCK_THREADS
 
     PyObject *mro = Py_TYPE(pySelf)->tp_mro;
 
-    for (int i = 0; i < PyTuple_GET_SIZE(mro); ++i)
+    for (SIP_SSIZE_T i = 0; i < PyTuple_GET_SIZE(mro); ++i)
     {
         PyTypeObject *pytype = (PyTypeObject *)PyTuple_GET_ITEM(mro, i);
 
-        if (pytype == sipTypeAsPyTypeObject(base))
-            break;
+        if (!PyObject_IsInstance((PyObject *)pytype, (PyObject *)&qpycore_pyqtWrapperType_Type))
+            continue;
+
+        const sipTypeDef *td = ((sipWrapperType *)pytype)->type;
 
         if (qstrcmp(pytype->tp_name, _clname) == 0)
         {
-            is_py_class = 1;
+            if (td == base)
+                *sipCpp = sipGetAddress(pySelf);
+            else
+                *sipCpp = sipGetMixinAddress(pySelf, td);
+
+            is_py_class = true;
+            break;
+        }
+
+        if (((pyqt4ClassTypeDef *)td)->qt_interface && qstrcmp(((pyqt4ClassTypeDef *)td)->qt_interface, _clname) == 0)
+        {
+            *sipCpp = sipGetMixinAddress(pySelf, td);
+            is_py_class = true;
             break;
         }
     }

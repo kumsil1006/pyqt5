@@ -19,7 +19,7 @@
 
 
 # These will change with different releases.
-!define PYQT_VERSION        "5.0"
+!define PYQT_VERSION        "5.0.1"
 !define PYQT_INSTALLER      ""
 #!define PYQT_INSTALLER      "-2"
 !define PYQT_LICENSE        "GPL"
@@ -27,7 +27,7 @@
 !define PYQT_PYTHON_MAJOR   "3"
 !define PYQT_PYTHON_MINOR   "3"
 !define PYQT_ARCH           "x64"
-!define PYQT_QT_VERS        "5.0.2"
+!define PYQT_QT_VERS        "5.1.0"
 !define PYQT_QT_DOC_VERS    "5.0"
 
 # These are all derived from the above.
@@ -196,9 +196,12 @@ Section "Extension modules" SecModules
     File .\build\QtGui\QtGui.pyd
     File .\build\QtHelp\QtHelp.pyd
     File .\build\QtMultimedia\QtMultimedia.pyd
+    File .\build\QtMultimediaWidgets\QtMultimediaWidgets.pyd
     File .\build\QtNetwork\QtNetwork.pyd
     File .\build\QtOpenGL\QtOpenGL.pyd
     File .\build\QtPrintSupport\QtPrintSupport.pyd
+    File .\build\QtQml\QtQml.pyd
+    File .\build\QtQuick\QtQuick.pyd
     File .\build\QtSql\QtSql.pyd
     File .\build\QtSvg\QtSvg.pyd
     File .\build\QtTest\QtTest.pyd
@@ -230,7 +233,11 @@ Section "Qt runtime" SecQt
 
     SetOverwrite on
 
+    SetOutPath $INSTDIR\Lib\site-packages\PyQt5\plugins\PyQt5
+    File .\build\qmlscene\release\pyqt5qmlplugin.dll
+
     SetOutPath $INSTDIR\Lib\site-packages\PyQt5
+    File "${QT_SRC_DIR}\bin\qmlscene.exe"
     File "${QT_SRC_DIR}\bin\Qt5CLucene.dll"
     File "${QT_SRC_DIR}\bin\Qt5Core.dll"
     File "${QT_SRC_DIR}\bin\Qt5Designer.dll"
@@ -238,12 +245,14 @@ Section "Qt runtime" SecQt
     File "${QT_SRC_DIR}\bin\Qt5Gui.dll"
     File "${QT_SRC_DIR}\bin\Qt5Help.dll"
     File "${QT_SRC_DIR}\bin\Qt5Multimedia.dll"
+    File "${QT_SRC_DIR}\bin\Qt5MultimediaQuick_p.dll"
     File "${QT_SRC_DIR}\bin\Qt5MultimediaWidgets.dll"
     File "${QT_SRC_DIR}\bin\Qt5Network.dll"
     File "${QT_SRC_DIR}\bin\Qt5OpenGL.dll"
     File "${QT_SRC_DIR}\bin\Qt5PrintSupport.dll"
     File "${QT_SRC_DIR}\bin\Qt5Qml.dll"
     File "${QT_SRC_DIR}\bin\Qt5Quick.dll"
+    File "${QT_SRC_DIR}\bin\Qt5QuickParticles.dll"
     File "${QT_SRC_DIR}\bin\Qt5Sql.dll"
     File "${QT_SRC_DIR}\bin\Qt5Svg.dll"
     File "${QT_SRC_DIR}\bin\Qt5Test.dll"
@@ -267,25 +276,8 @@ Section "Qt runtime" SecQt
 
     File "${MYSQL_SRC_DIR}\lib\libmysql.dll"
 
-    SetOutPath $INSTDIR\Lib\site-packages\PyQt5\imports\Qt\labs\folderlistmodel
-    File "${QT_SRC_DIR}\imports\Qt\labs\folderlistmodel\qmldir"
-    File "${QT_SRC_DIR}\imports\Qt\labs\folderlistmodel\qmlfolderlistmodelplugin.dll"
-
-    SetOutPath $INSTDIR\Lib\site-packages\PyQt5\imports\Qt\labs\gestures
-    File "${QT_SRC_DIR}\imports\Qt\labs\gestures\qmldir"
-    File "${QT_SRC_DIR}\imports\Qt\labs\gestures\qmlgesturesplugin.dll"
-
-    SetOutPath $INSTDIR\Lib\site-packages\PyQt5\imports\Qt\labs\particles
-    File "${QT_SRC_DIR}\imports\Qt\labs\particles\qmldir"
-    File "${QT_SRC_DIR}\imports\Qt\labs\particles\qmlparticlesplugin.dll"
-
-    SetOutPath $INSTDIR\Lib\site-packages\PyQt5\imports\Qt\labs\shaders
-    File "${QT_SRC_DIR}\imports\Qt\labs\shaders\qmldir"
-    File "${QT_SRC_DIR}\imports\Qt\labs\shaders\qmlshadersplugin.dll"
-
-    SetOutPath $INSTDIR\Lib\site-packages\PyQt5\imports\QtWebKit
-    File "${QT_SRC_DIR}\imports\QtWebKit\qmldir"
-    File "${QT_SRC_DIR}\imports\QtWebKit\qmlwebkitplugin.dll"
+    SetOutPath $INSTDIR\Lib\site-packages\PyQt5
+    File /r "${QT_SRC_DIR}\qml"
 
     SetOutPath $INSTDIR\Lib\site-packages\PyQt5\plugins\accessible
     File "${QT_SRC_DIR}\plugins\accessible\qtaccessiblequick.dll"
@@ -308,9 +300,18 @@ Section "Qt runtime" SecQt
     File "${QT_SRC_DIR}\plugins\imageformats\qtiff.dll"
     File "${QT_SRC_DIR}\plugins\imageformats\qwbmp.dll"
 
+    SetOutPath $INSTDIR\Lib\site-packages\PyQt5\plugins\mediaservice
+    File "${QT_SRC_DIR}\plugins\mediaservice\dsengine.dll"
+    File "${QT_SRC_DIR}\plugins\mediaservice\qtmedia_audioengine.dll"
+    File "${QT_SRC_DIR}\plugins\mediaservice\wmfengine.dll"
+
     SetOutPath $INSTDIR\Lib\site-packages\PyQt5\plugins\platforms
     File "${QT_SRC_DIR}\plugins\platforms\qminimal.dll"
+    File "${QT_SRC_DIR}\plugins\platforms\qoffscreen.dll"
     File "${QT_SRC_DIR}\plugins\platforms\qwindows.dll"
+
+    SetOutPath $INSTDIR\Lib\site-packages\PyQt5\plugins\playlistformats
+    File "${QT_SRC_DIR}\plugins\playlistformats\qtmultimedia_m3u.dll"
 
     SetOutPath $INSTDIR\Lib\site-packages\PyQt5\plugins\printsupport
     File "${QT_SRC_DIR}\plugins\printsupport\windowsprintersupport.dll"
@@ -417,6 +418,17 @@ Section "Examples" SecExamples
     File /r .\examples
 
     Rename $INSTDIR\Lib\site-packages\PyQt5\examples\qtdemo\qtdemo.py $INSTDIR\Lib\site-packages\PyQt5\examples\qtdemo\qtdemo.pyw
+
+    # Tell the QtQuick plugins example to find the plugin.
+    Push $INSTDIR
+    Push "\"
+    Call StrSlash
+    Pop $R0
+
+    FileOpen $0 $INSTDIR\Lib\site-packages\PyQt5\examples\quick\tutorials\extending\chapter6-plugins\Charts\qmldir w
+    FileWrite $0 "module Charts$\r$\n" 
+    FileWrite $0 "plugin pyqt5qmlplugin $R0/Lib/site-packages/PyQt5/plugins/PyQt5$\r$\n"
+    FileClose $0
 SectionEnd
 
 Section "Start Menu shortcuts" SecShortcuts

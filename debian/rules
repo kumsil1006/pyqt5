@@ -125,6 +125,7 @@ d3_qt5_dbg = debian/python3-pyqt5-dbg
 install-arch-3.%:
 	$(MAKE) -C build-3.$* install INSTALL_ROOT=$(CURDIR)/debian/tmp DESTDIR=$(CURDIR)/debian/tmp
 	$(MAKE) -C dbg-build-3.$* install INSTALL_ROOT=$(CURDIR)/$(d3_qt5_dbg) DESTDIR=$(CURDIR)/$(d3_qt5_dbg)
+	rm -rf $(CURDIR)/debian/tmp/usr/share/sip
 
 	mkdir -p $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
 	mv $(CURDIR)/debian/tmp$(call py3_dbusmoddir,3.$*)/pyqt5.so \
@@ -136,22 +137,24 @@ install-arch-3.%:
 
 	# Don't initiate the uic/widget-plugins
 	touch $(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/PyQt5/uic/widget-plugins/.noinit
-	for module in opengl sql webkit xmlpatterns svg multimedia; do \
+	for module in opengl sql webkit xmlpatterns svg multimedia quick; do \
 		mkdir -p debian/python3-pyqt5.qt$$module-dbg/usr/lib/python3.$*/dist-packages/PyQt5; \
 	done
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtOpenGL.so \
 		debian/python3-pyqt5.qtopengl-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtSql.so \
 		debian/python3-pyqt5.qtsql-dbg/usr/lib/python3.$*/dist-packages/PyQt5
-	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtWebKit.so \
-	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtWebKitWidgets.so \
+	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtWebKit*.so \
 		debian/python3-pyqt5.qtwebkit-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtXmlPatterns.so \
 		debian/python3-pyqt5.qtxmlpatterns-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtSvg.so \
 		debian/python3-pyqt5.qtsvg-dbg/usr/lib/python3.$*/dist-packages/PyQt5
-	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtMultimedia.so \
+	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtMultimedia*.so \
 		debian/python3-pyqt5.qtmultimedia-dbg/usr/lib/python3.$*/dist-packages/PyQt5
+	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQml.so \
+	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQuick.so \
+		debian/python3-pyqt5.qtquick-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 
 clean:
 	dh_testdir
@@ -182,7 +185,7 @@ ifeq (,$(findstring -i, $(DH_OPTIONS)))
 	for p in python3-pyqt5 python3-pyqt5.qtopengl python3-pyqt5.qtsql \
 	  python3-pyqt5.qtwebkit python3-pyqt5.qtmultimedia \
 	  python3-pyqt5.qtsvg python3-pyqt5.qtxmlpatterns \
-	  python3-dbus.mainloop.pyqt5; do \
+	  python3-pyqt5.qtquick python3-dbus.mainloop.pyqt5; do \
 		DH_OPTIONS= dh_strip -p$$p --dbg-package=$$p-dbg; \
 		rm -rf debian/$$p-dbg/usr/share/doc/$$p-dbg; \
 		mkdir -p debian/$$p-dbg/usr/share/doc; \

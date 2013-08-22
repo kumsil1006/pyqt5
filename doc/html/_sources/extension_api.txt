@@ -94,6 +94,16 @@ The functions exported by PyQt5 are as follows:
         the error state.  If this is :c:data:`sipErrorFail` then a Python
         exception will have been raised.
 
+.. cpp:function:: const QMetaObject *pyqt5_get_qmetaobject(PyTypeObject *type)
+
+    Get the QMetaObject instance for a Python type.  The Python type must be a
+    sub-type of :class:`~PyQt5.QtCore.QObject`'s Python type.
+
+    :param type:
+        is the Python type object.
+    :return:
+        the :class:`~PyQt5.QtCore.QMetaObject`.
+
 .. cpp:function:: sipErrorState pyqt5_get_pyqtsignal_parts(PyObject *signal, QObject **transmitter, QByteArray &signal_signature)
 
     Get the transmitter object and signal signature from a bound signal.
@@ -141,16 +151,6 @@ The functions exported by PyQt5 are as follows:
         exception will have been raised.
 
 
-.. cpp:function:: QObject *pyqt5_qobject_sender()
-
-    Get the sender of a signal to the current slot proxy.  This is only
-    intended to be used by the :meth:`~PyQt5.QtCore.QObject.sender`
-    ``%MethodCode``.
-
-    :return:
-        the :class:`~PyQt5.QtCore.QObject` sender.
-
-
 .. cpp:function:: void pyqt5_register_from_qvariant_convertor(bool (*convertor)(const QVariant &, PyObject **))
 
     Register a convertor function that converts a
@@ -163,6 +163,37 @@ The functions exported by PyQt5 are as follows:
         conversion and it will be ``0``, and a Python exception raised, if
         there was an error.  The convertor will return ``true`` if the value
         was handled so that no other convertor will be tried.
+
+
+.. cpp:function:: void pyqt5_register_to_qvariant_convertor(bool (*convertor)(PyObject *, QVariant &, bool *))
+
+    Register a convertor function that converts a Python object to a
+    :class:`~PyQt5.QtCore.QVariant` value.
+
+    :param convertor:
+        is the convertor function.  This takes three arguments.  The first
+        argument is the Python object to be converted. The second argument is a
+        pointer to :class:`~PyQt5.QtCore.QVariant` value that is updated with
+        the result of the conversion.  The third argument is updated with an
+        error flag which will be ``false``, and a Python exception raised, if
+        there was an error.  The convertor will return ``true`` if the value
+        was handled so that no other convertor will be tried.
+
+
+.. cpp:function:: void pyqt5_register_to_qvariant_data_convertor(bool (*convertor)(PyObject *, void *, int, bool *))
+
+    Register a convertor function that converts a Python object to the
+    pre-allocated data of a :class:`~PyQt5.QtCore.QVariant` value.
+
+    :param convertor:
+        is the convertor function.  This takes four arguments.  The first
+        argument is the Python object to be converted. The second argument is a
+        pointer to the pre-allocated data of a :class:`~PyQt5.QtCore.QVariant`
+        value that is updated with the result of the conversion.  The third
+        argument is the meta-type of the value.  The fourth argument is updated
+        with an error flag which will be ``false``, and a Python exception
+        raised, if there was an error.  The convertor will return ``true`` if
+        the value was handled so that no other convertor will be tried.
 
 
 .. cpp:function:: void pyqt5_update_argv_list(PyObject *argv_list, int argc, char **argv)

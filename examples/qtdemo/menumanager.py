@@ -74,7 +74,6 @@ class MenuManager(QObject):
 
         self.info = {}
         self.window = None
-        self.qmlRoot = None
 
         self.ticker = None
         self.tickerInAnim = None
@@ -110,7 +109,7 @@ class MenuManager(QObject):
         if userCode == MenuManager.LAUNCH:
             self.launchExample(self.currentInfo)
         elif userCode == MenuManager.LAUNCH_QML:
-            pass
+            self.launchQml(self.currentInfo)
         elif userCode == MenuManager.DOCUMENTATION:
             self.showDocInAssistant(self.currentInfo)
         elif userCode == MenuManager.QUIT:
@@ -127,9 +126,6 @@ class MenuManager(QObject):
             self.score.queueMovie(self.currentInfo + ' -buttons -out',
                     Score.NEW_ANIMATION_ONLY)
             self.score.queueMovie('back -out', Score.ONLY_IF_VISIBLE)
-
-            if self.qmlRoot is not None:
-                self.qmlRoot.setProperty('show', False)
 
             # Book-keeping.
             self.currentMenuCode = MenuManager.ROOT
@@ -158,9 +154,6 @@ class MenuManager(QObject):
                     Score.FROM_START, Score.LOCK_ITEMS)
             self.score.queueMovie(self.currentInfo + ' -out')
 
-            if self.qmlRoot is not None:
-                self.qmlRoot.setProperty('show', False)
-
             # Book-keeping.
             self.currentMenuCode = MenuManager.MENU1
             self.currentCategory = menuName
@@ -182,9 +175,6 @@ class MenuManager(QObject):
                     Score.NEW_ANIMATION_ONLY)
             self.score.queueMovie(self.currentInfo + ' -buttons -out',
                     Score.NEW_ANIMATION_ONLY)
-
-            if self.qmlRoot is not None:
-                self.qmlRoot.setProperty('show', False)
 
             # Book-keeping.
             self.currentMenuCode = MenuManager.MENU2
@@ -223,9 +213,6 @@ class MenuManager(QObject):
                         Score.NEW_ANIMATION_ONLY)
                 self.score.queueMovie(self.currentInfo + ' -buttons -out',
                         Score.NEW_ANIMATION_ONLY)
-
-                if self.qmlRoot is not None:
-                    self.qmlRoot.setProperty('show', False)
 
                 # Book-keeping.
                 self.currentMenuCode = MenuManager.MENU1
@@ -296,8 +283,7 @@ class MenuManager(QObject):
         executable = self.resolveExeFile(name)
 
         process = QProcess(self)
-        process.finished.connect(self.exampleFinished)
-        process.error.connect(self.exampleError)
+        process.error.connect(self.launchError)
 
         if sys.platform == 'win32':
             # Make sure it finds the DLLs on Windows.
@@ -315,10 +301,22 @@ class MenuManager(QObject):
         Colors.debug("Launching:", executable)
         process.start(sys.executable, [executable])
 
-    def exampleFinished(self):
-        pass
+    def launchQml(self, name):
+        import_path = self.resolveDataDir(name)
+        qml = self.resolveQmlFile(name)
 
-    def exampleError(self, error):
+        process = QProcess(self)
+        process.error.connect(self.launchError)
+
+        env = QProcessEnvironment.systemEnvironment()
+        env.insert('QML2_IMPORT_PATH', import_path)
+        process.setProcessEnvironment(env)
+
+        executable = QLibraryInfo.location(QLibraryInfo.BinariesPath) + '/qmlscene'
+        Colors.debug("Launching:", executable)
+        process.start(executable, [qml])
+
+    def launchError(self, error):
         if error != QProcess.Crashed:
             QMessageBox.critical(None, "Failed to launch the example",
                     "Could not launch the example. Ensure that it has been "
@@ -416,6 +414,19 @@ class MenuManager(QObject):
         Colors.debug("- WARNING: Could not resolve executable:", dir.path(),
                 fileName)
         return '__executable not found__'
+
+    def resolveQmlFile(self, name):
+        dir = self.resolveDir(name)
+
+        fileName = self.info[name]['filename'].split('/')[-1]
+
+        qmlFile = QFile(dir.path() + '/' + fileName + '.qml')
+        if qmlFile.exists():
+            return qmlFile.fileName()
+
+        Colors.debug("- WARNING: Could not resolve QML file:", dir.path(),
+                fileName)
+        return '__QML not found__'
 
     def resolveDocUrl(self, name):
         dirName = self.info[name]['dirname']

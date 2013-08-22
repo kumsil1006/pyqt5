@@ -25,7 +25,7 @@
 #include "qpycore_public_api.h"
 #include "qpycore_pyqtboundsignal.h"
 #include "qpycore_pyqtsignal.h"
-#include "qpycore_pyqtslotproxy.h"
+#include "qpycore_types.h"
 
 
 // Convert a Python argv list to a conventional C argc count and argv array.
@@ -181,18 +181,28 @@ sipErrorState pyqt5_get_signal_signature(PyObject *signal,
 }
 
 
-// Get the sender of a signal to the current slot proxy.
-QObject *pyqt5_qobject_sender()
-{
-    return PyQtSlotProxy::last_sender;
-}
-
-
 // Register a convertor function that converts a QVariant to a Python object.
 void pyqt5_register_from_qvariant_convertor(
         bool (*convertor)(const QVariant &, PyObject **))
 {
     Chimera::registeredFromQVariantConvertors.append(convertor);
+}
+
+
+// Register a convertor function that converts a Python object to a QVariant.
+void pyqt5_register_to_qvariant_convertor(
+        bool (*convertor)(PyObject *, QVariant &, bool *))
+{
+    Chimera::registeredToQVariantConvertors.append(convertor);
+}
+
+
+// Register a convertor function that converts a Python object to the
+// pre-allocated data of a QVariant with a specific meta-type.
+void pyqt5_register_to_qvariant_data_convertor(
+        bool (*convertor)(PyObject *, void *, int, bool *))
+{
+    Chimera::registeredToQVariantDataConvertors.append(convertor);
 }
 
 
@@ -208,4 +218,11 @@ void pyqt5_update_argv_list(PyObject *argv_list, int argc, char **argv)
         else
             PyList_SetSlice(argv_list, na, na + 1, 0);
     }
+}
+
+
+// Get the QMetaObject instance for a Python type.
+const QMetaObject *pyqt5_get_qmetaobject(PyTypeObject *type)
+{
+    return ((pyqtWrapperType *)type)->metaobject->mo;
 }

@@ -41,10 +41,10 @@ QHash<QByteArray, QList<const Chimera *> > Chimera::_previously_parsed;
 Chimera::FromQVariantConvertors Chimera::registeredFromQVariantConvertors;
 
 // The registered PyObject to QVariant convertors.
-Chimera::ToQVariantConvertors Chimera::_registered_QVariant_convertors;
+Chimera::ToQVariantConvertors Chimera::registeredToQVariantConvertors;
 
 // The registered PyObject to QVariant data convertors.
-Chimera::ToQVariantDataConvertors Chimera::_registered_QVariant_data_convertors;
+Chimera::ToQVariantDataConvertors Chimera::registeredToQVariantDataConvertors;
 
 const int UnknownType = QMetaType::UnknownType;
 
@@ -85,20 +85,6 @@ void Chimera::registerIntType(const char *name)
 
     if (!_registered_int_types.contains(name_ba))
         _registered_int_types.append(name_ba);
-}
-
-
-// Register a PyObject to QVariant convertor.
-void Chimera::registerToQVariant(ToQVariantFn fn)
-{
-    _registered_QVariant_convertors.append(fn);
-}
-
-
-// Register a PyObject to QVariant data convertor.
-void Chimera::registerToQVariantData(ToQVariantDataFn fn)
-{
-    _registered_QVariant_data_convertors.append(fn);
 }
 
 
@@ -740,11 +726,11 @@ bool Chimera::parse_cpp_type(const QByteArray &type)
 bool Chimera::fromPyObject(PyObject *py, void *cpp) const
 {
     // Let any registered convertors have a go first.
-    for (int i = 0; i < _registered_QVariant_data_convertors.count(); ++i)
+    for (int i = 0; i < registeredToQVariantDataConvertors.count(); ++i)
     {
         bool ok;
 
-        if (_registered_QVariant_data_convertors.at(i)(py, cpp, _metatype, &ok))
+        if (registeredToQVariantDataConvertors.at(i)(py, cpp, _metatype, &ok))
             return ok;
     }
 
@@ -945,7 +931,8 @@ sipAssignFunc Chimera::get_assign_helper() const
 }
 
 
-// Convert a Python object to a QVariant.
+// Convert a Python object to a QVariant.  Note: I think strict is now always
+// false.
 bool Chimera::fromPyObject(PyObject *py, QVariant *var, bool strict) const
 {
     // Deal with the simple case of wrapping the Python object rather than
@@ -962,11 +949,11 @@ bool Chimera::fromPyObject(PyObject *py, QVariant *var, bool strict) const
     }
 
     // Let any registered convertors have a go first.
-    for (int i = 0; i < _registered_QVariant_convertors.count(); ++i)
+    for (int i = 0; i < registeredToQVariantConvertors.count(); ++i)
     {
         bool ok;
 
-        if (_registered_QVariant_convertors.at(i)(py, var, &ok))
+        if (registeredToQVariantConvertors.at(i)(py, *var, &ok))
             return ok;
     }
 

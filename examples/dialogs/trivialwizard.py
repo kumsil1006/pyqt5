@@ -111,4 +111,4 @@ if __name__ == '__main__':
     wizard.setWindowTitle("Trivial Wizard")
     wizard.show()
 
-    sys.exit(wizard.exec_())
+    sys.exit(app.exec_())

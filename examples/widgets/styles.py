@@ -167,7 +167,7 @@ class WidgetGallery(QDialog):
         tableWidget = QTableWidget(10, 10)
 
         tab1hbox = QHBoxLayout()
-        tab1hbox.setMargin(5)
+        tab1hbox.setContentsMargins(5, 5, 5, 5)
         tab1hbox.addWidget(tableWidget)
         tab1.setLayout(tab1hbox)
 
@@ -182,7 +182,7 @@ class WidgetGallery(QDialog):
                               "How I wonder what you are!\n")
 
         tab2hbox = QHBoxLayout()
-        tab2hbox.setMargin(5)
+        tab2hbox.setContentsMargins(5, 5, 5, 5)
         tab2hbox.addWidget(textEdit)
         tab2.setLayout(tab2hbox)
 

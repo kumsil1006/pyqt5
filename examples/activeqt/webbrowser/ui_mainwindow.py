@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Thu May  2 15:37:25 2013
-#      by: PyQt5 UI code generator snapshot-5.0-e46cc7cf20da
+# Created: Fri Jul 26 06:46:58 2013
+#      by: PyQt5 UI code generator 5.0.1-snapshot-2a99e59669ee
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
         self.centralWidget = QtWidgets.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
         self.hboxlayout = QtWidgets.QHBoxLayout(self.centralWidget)
-        self.hboxlayout.setMargin(0)
+        self.hboxlayout.setContentsMargins(0, 0, 0, 0)
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
         self.Frame3 = QtWidgets.QFrame(self.centralWidget)
@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
         self.Frame3.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.Frame3.setObjectName("Frame3")
         self.vboxlayout = QtWidgets.QVBoxLayout(self.Frame3)
-        self.vboxlayout.setMargin(1)
+        self.vboxlayout.setContentsMargins(1, 1, 1, 1)
         self.vboxlayout.setSpacing(0)
         self.vboxlayout.setObjectName("vboxlayout")
         self.WebBrowser = QAxContainer.QAxWidget(self.Frame3)
