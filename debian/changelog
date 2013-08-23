@@ -1,4 +1,4 @@
-pyqt5 (5.0.1-1) UNRELEASED; urgency=low
+pyqt5 (5.0.1-1) experimental; urgency=low
 
   * New upstream release.
   * Bump python3-sip-dev build-dependency to 4.15.
