@@ -8,6 +8,7 @@ pyqt5 (5.0.1-1) UNRELEASED; urgency=low
   * Install QtMultimediaWidgets extension.
   * Make pyqt5-doc recommend python3-pyqt5, because of the examples.
   * Add a patch to support multiarch locations of libpython.
+  * Workaround useless warnings from dh_install --list-missing.
 
  -- Dmitry Shachnev <mitya57@gmail.com>  Thu, 22 Aug 2013 11:00:35 +0400
 

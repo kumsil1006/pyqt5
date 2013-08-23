@@ -125,6 +125,7 @@ d3_qt5_dbg = debian/python3-pyqt5-dbg
 install-arch-3.%:
 	$(MAKE) -C build-3.$* install INSTALL_ROOT=$(CURDIR)/debian/tmp DESTDIR=$(CURDIR)/debian/tmp
 	$(MAKE) -C dbg-build-3.$* install INSTALL_ROOT=$(CURDIR)/$(d3_qt5_dbg) DESTDIR=$(CURDIR)/$(d3_qt5_dbg)
+	rm -rf $(CURDIR)/debian/tmp/usr/share/sip
 
 	mkdir -p $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
 	mv $(CURDIR)/debian/tmp$(call py3_dbusmoddir,3.$*)/pyqt5.so \
@@ -194,6 +195,7 @@ endif
 	dh_python3 --no-dbg-cleaning -N pyqt5-dev-tools -N pyqt5-doc
 	rm -rf $(CURDIR)/debian/python3-pyqt5/usr/lib/python3/dist-packages/PyQt5/uic/port_v2
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/bin
+	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/share/sip
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/lib/python3/dist-packages/PyQt5/uic
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/lib/python3/dist-packages/dbus
 	rm -rf $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/webkit/googlechat
