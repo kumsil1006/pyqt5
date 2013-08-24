@@ -157,8 +157,9 @@ install-arch-3.%:
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQml.so \
 	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQuick.so \
 		debian/python3-pyqt5.qtquick-dbg/usr/lib/python3.$*/dist-packages/PyQt5
+	mkdir -p debian/python3-pyqt5.qtquick-dbg/usr/lib/$(DEB_BUILD_GNU_TYPE)/qt5/plugins/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/*/qt5/plugins/PyQt5/* \
-		 debian/python3-pyqt5.qtquick-dbg/usr/lib/$(DEB_BUILD_GNU_TYPE)/qt5/plugins/PyQt5/
+		debian/python3-pyqt5.qtquick-dbg/usr/lib/$(DEB_BUILD_GNU_TYPE)/qt5/plugins/PyQt5/
 
 clean:
 	dh_testdir

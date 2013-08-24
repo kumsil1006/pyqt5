@@ -261,6 +261,8 @@ Depends: python3-dbg,
          python3-pyqt5.qtquick (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
+Breaks: python3-pyqt5-dbg (<< 5.0.1-2~)
+Replaces: python3-pyqt5-dbg (<< 5.0.1-2~)
 Description: Python 3 bindings for QtQuick module (debug extension)
  The QtQuick module of PyQt5 provides a framework for developing applications
  and libraries with the QML language.
