@@ -12,3 +12,4 @@ usr/lib/python3*/*-packages/PyQt5/QtTest.so
 usr/lib/python3*/*-packages/PyQt5/QtWidgets.so
 usr/lib/python3*/*-packages/PyQt5/__init__.py
 usr/lib/python3*/*-packages/PyQt5/uic/*
+usr/lib/*/plugins/designer/*

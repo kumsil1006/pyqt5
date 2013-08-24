@@ -1,3 +1,9 @@
+pyqt5 (5.0.1-2) UNRELEASED; urgency=low
+
+  * Install designer plugin in python3-pyqt5
+
+ -- Scott Kitterman <scott@kitterman.com>  Fri, 23 Aug 2013 23:22:12 -0400
+
 pyqt5 (5.0.1-1) experimental; urgency=low
 
   * New upstream release.
