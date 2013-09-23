@@ -1,9 +1,18 @@
-pyqt5 (5.0.1-2) UNRELEASED; urgency=low
+pyqt5 (5.0.1+dfsg-1) UNRELEASED; urgency=low
 
+  [ Scott Kitterman ]
   * Install designer plugin in python3-pyqt5
   * Move debug version of libpyqt5qmlplugin.so from python3-pyqt5-dbg to
     python3-pyqt5.qtquick-dbg to match the regular file and avoid duplication
     (Closes: #720679)
+
+  [ Dmitry Shachnev ]
+  * Delete pycache directories in clean target.
+  * Regenerate resource files during build.
+  * Delete built docs and fancybrowser example from upstream tarball
+    as they contain non-free jquery version (and we can't build jquery
+    resource file when jquery is not in tarball) (closes: #722990).
+  * Update debian/watch to use dversionmangle.
 
  -- Scott Kitterman <scott@kitterman.com>  Fri, 23 Aug 2013 23:22:12 -0400
 
