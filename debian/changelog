@@ -13,6 +13,7 @@ pyqt5 (5.0.1+dfsg-1) UNRELEASED; urgency=low
     as they contain non-free jquery version (and we can't build jquery
     resource file when jquery is not in tarball) (closes: #722990).
   * Update debian/watch to use dversionmangle.
+  * Build QML plugin only for the default Python version.
 
  -- Scott Kitterman <scott@kitterman.com>  Fri, 23 Aug 2013 23:22:12 -0400
 
