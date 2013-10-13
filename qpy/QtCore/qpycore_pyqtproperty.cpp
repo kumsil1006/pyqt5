@@ -155,7 +155,7 @@ PyTypeObject qpycore_pyqtProperty_Type = {
     0,
     0,
     0,
-    0,
+    0
 };
 
 

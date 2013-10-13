@@ -5,4 +5,4 @@ QWebView
 
 .. class:: QWebView
 
-    `C++ documentation <http://qt-project.org/doc/qt-5.0/qtwebkit/qwebview.html>`_
+    `C++ documentation <http://qt-project.org/doc/qt-5.1/qtwebkit/qwebview.html>`_

@@ -5,4 +5,4 @@ QAbstractNativeEventFilter
 
 .. class:: QAbstractNativeEventFilter
 
-    `C++ documentation <http://qt-project.org/doc/qt-5.0/qtcore/qabstractnativeeventfilter.html>`_
+    `C++ documentation <http://qt-project.org/doc/qt-5.1/qtcore/qabstractnativeeventfilter.html>`_

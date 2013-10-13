@@ -81,8 +81,8 @@ The full set of command line options is:
 
     ``<FILE>`` contains the configuration of the PyQt5 build to be used instead
     of dynamically introspecting the system and is used when cross-compiling.
-    The format of ``<FILE>`` will be documented in a later version when
-    cross-compilation is fully supported.
+    The :file:`configurations` directory contains configuration files for a
+    number of target devices.
 
 .. cmdoption:: --confirm-license
 

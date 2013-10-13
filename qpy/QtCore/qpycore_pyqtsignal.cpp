@@ -499,13 +499,13 @@ qpycore_pyqtSignal *qpycore_pyqtSignal_New(const char *signature_str, bool *fata
         *fatal = true;
 
     QByteArray norm = QMetaObject::normalizedSignature(signature_str);
-    Chimera::Signature *signature = Chimera::parse(norm, "");
+    Chimera::Signature *signature = Chimera::parse(norm, "a signal argument");
 
     // At first glance the parse should never fail because the signature
     // originates from the .sip file.  However it might if it includes a type
     // that has been forward declared, but not yet defined.  The only example
-    // is the declaration of QWidget by QSignalMapper.  Therefore we quietly
-    // ignore any error.
+    // int PyQt is the declaration of QWidget by QSignalMapper.  Therefore we
+    // assume the error isn't fatal.
     if (!signature)
     {
         if (fatal)

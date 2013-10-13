@@ -1,7 +1,7 @@
 Introduction
 ============
 
-This is the reference guide for PyQt5 5.0.1.  PyQt5 is a set of
+This is the reference guide for PyQt5 5.1.  PyQt5 is a set of
 `Python <http://www.python.org>`__ bindings for v5 of the Qt application
 framework from `Digia <http://qt.digia.com>`__.
 
@@ -77,9 +77,10 @@ number of Python extension modules.  These are all installed in the
 .. module:: PyQt5.QtGui
 
 - :mod:`~PyQt5.QtGui` contains classes for windowing system integration, event
-  handling, OpenGL and OpenGL ES integration, 2D graphics, basic imaging, fonts
-  and text.  Application developers would normally use this with higher level
-  APIs such as those contained in the :mod:`~PyQt5.QtWidgets` module.
+  handling, 2D graphics, basic imaging, fonts and text.  It also containes a
+  complete set of OpenGL and OpenGL ES bindings (see :ref:`ref-opengl`).
+  Application developers would normally use this with higher level APIs such as
+  those contained in the :mod:`~PyQt5.QtWidgets` module.
 
 .. module:: PyQt5.QtHelp
 
@@ -124,6 +125,18 @@ number of Python extension modules.  These are all installed in the
 
 - :mod:`~PyQt5.QtQuick` contains classes that provide the basic elements
   necessary for creating user interfaces with QML.
+
+.. module:: PyQt5.QtSensors
+
+- :mod:`~PyQt5.QtSensors` contains classes that provide access to a system's
+  hardware sensors including accelerometers, altimeters, ambient light and
+  temperature sensors, gyroscopes and magnetometers.  Note that sensor gestures
+  are not currently supported.
+
+.. module:: PyQt5.QtSerialPort
+
+- :mod:`~PyQt5.QtSerialPort` contains classes that provide access to a system's
+  serial ports.
 
 .. module:: PyQt5.QtSql
 

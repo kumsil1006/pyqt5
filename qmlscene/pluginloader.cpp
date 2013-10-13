@@ -27,8 +27,8 @@
 
 #include <QCoreApplication>
 #include <QDir>
-#include <QLibrary>
 #include <QLibraryInfo>
+#include <QVector>
 #include <QQmlEngine>
 
 #include "pluginloader.h"
@@ -38,25 +38,18 @@
 PyQt5QmlPlugin::PyQt5QmlPlugin(QObject *parent) : QQmlExtensionPlugin(parent),
         py_plugin_obj(0), sip(0)
 {
-    // Make sure the interpreter is loaded and initialised.
+    // Make sure the interpreter is initialised.
     if (!Py_IsInitialized())
     {
-        QLibrary library(PYTHON_LIB);
+        Py_Initialize();
 
-        library.setLoadHints(QLibrary::ExportExternalSymbolsHint);
-
-        if (library.load())
-        {
-            Py_Initialize();
-
-            getSipAPI();
+        getSipAPI();
 
 #ifdef WITH_THREAD
-            // Make sure we don't have the GIL.
-            PyEval_InitThreads();
-            PyEval_SaveThread();
+        // Make sure we don't have the GIL.
+        PyEval_InitThreads();
+        PyEval_SaveThread();
 #endif
-        }
     }
 }
 

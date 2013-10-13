@@ -91,40 +91,74 @@ static FILE *yyInFile;
 // the string to read from and current position in the string (otherwise)
 static QString yyInStr;
 static int yyInPos;
-static int buf;
+// - 'rawbuf' is used to hold bytes before universal newline translation.
+// - 'buf' is its higher-level counterpart, where every end-of-line appears as
+//   a single '\n' character, regardless of the end-of-line style used in input
+//   files.
+static int buf, rawbuf;
 
 static int (*getChar)();
 static int (*peekChar)();
 
 static bool yyParsingUtf8;
 
+static int getTranslatedCharFromFile()
+{
+    int c;
+
+    if ( rawbuf < 0 )           // Empty raw buffer?
+        c = getc( yyInFile );
+    else {
+        c = rawbuf;
+        rawbuf = -1;            // Declare the raw buffer empty.
+    }
+
+    // Universal newline translation, similar to what Python does
+    if ( c == '\r' ) {
+        c = getc( yyInFile ); // Last byte of a \r\n sequence?
+        if ( c != '\n')
+            {
+                rawbuf = c; // No, put it in 'rawbuf' for later processing.
+                // Logical character that will be seen by higher-level functions
+                c = '\n';
+            }
+        // In all cases, c == '\n' here.
+    }
+
+    return c;
+}
+
 static int getCharFromFile()
 {
     int c;
 
-    if ( buf < 0 )
-        c = getc( yyInFile );
-    else {
+    if ( buf < 0 ) {            // Empty buffer?
+        c = getTranslatedCharFromFile();
+    } else {
         c = buf;
-        buf = -1;
+        buf = -1;               // Declare the buffer empty.
     }
-    if ( c == '\n' )
-        yyCurLineNo++;
+
+    if ( c == '\n' )            // This is after universal newline translation
+        yyCurLineNo++;          // (i.e., a "logical" newline character).
+
     return c;
 }
 
 static int peekCharFromFile()
 {
-    int c = getc( yyInFile );
-    buf = c;
-    return c;
+    // Read a character, possibly performing universal newline translation,
+    // and put it in 'buf' so that the next call to getCharFromFile() finds it
+    // already available.
+    buf = getCharFromFile();
+    return buf;
 }
 
 static void startTokenizer( const char *fileName, int (*getCharFunc)(),
                             int (*peekCharFunc)(), QTextCodec *codecForTr, QTextCodec *codecForSource )
 {
     yyInPos = 0;
-    buf = -1;
+    buf = rawbuf = -1;
     getChar = getCharFunc;
     peekChar = peekCharFunc;
 
@@ -312,18 +346,18 @@ static int getToken()
                             if ( yyCh == 'x' ) {
                                 QByteArray hex = "0";
 
-                            yyCh = getChar();
-                            while ( isxdigit(yyCh) ) {
-                                hex += (char) yyCh;
                                 yyCh = getChar();
-                            }
+                                while ( isxdigit(yyCh) ) {
+                                    hex += (char) yyCh;
+                                    yyCh = getChar();
+                                }
 #if defined(_MSC_VER) && _MSC_VER >= 1400
-                            sscanf_s( hex, "%x", &n );
+                                sscanf_s( hex, "%x", &n );
 #else
-                            sscanf( hex, "%x", &n );
+                                sscanf( hex, "%x", &n );
 #endif
-                            if ( yyStringLen < sizeof(yyString) - 1 )
-                                yyString[yyStringLen++] = (char) n;
+                                if ( yyStringLen < sizeof(yyString) - 1 )
+                                    yyString[yyStringLen++] = (char) n;
                             } else if ( yyCh >= '0' && yyCh < '8' ) {
                                 QByteArray oct = "";
                                 int n = 0;
@@ -340,6 +374,8 @@ static int getToken()
     #endif
                                 if ( yyStringLen < sizeof(yyString) - 1 )
                                     yyString[yyStringLen++] = (char) n;
+                            } else if ( yyCh == '\n' ) {
+                                yyCh = getChar();
                             } else {
                                 const char *p = strchr( tab, yyCh );
                                 if ( yyStringLen < sizeof(yyString) - 1 )

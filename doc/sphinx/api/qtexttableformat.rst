@@ -5,4 +5,4 @@ QTextTableFormat
 
 .. class:: QTextTableFormat
 
-    `C++ documentation <http://qt-project.org/doc/qt-5.0/qtgui/qtexttableformat.html>`_
+    `C++ documentation <http://qt-project.org/doc/qt-5.1/qtgui/qtexttableformat.html>`_

@@ -1,0 +1,8 @@
+Preparing DFSG free tarball:
+
+As of pyqt5-5.1 remove the following files (which are all minified javascript
+which do not have source provided) and reroll the tarball:
+
+examples/webkit/fancybrowser/jquery.min.js
+doc/html/_static/jquery.js
+doc/html/_static/underscore.js

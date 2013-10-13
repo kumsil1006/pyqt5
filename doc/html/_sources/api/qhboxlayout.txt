@@ -5,4 +5,4 @@ QHBoxLayout
 
 .. class:: QHBoxLayout
 
-    `C++ documentation <http://qt-project.org/doc/qt-5.0/qtwidgets/qhboxlayout.html>`_
+    `C++ documentation <http://qt-project.org/doc/qt-5.1/qtwidgets/qhboxlayout.html>`_
