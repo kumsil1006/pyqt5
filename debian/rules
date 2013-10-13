@@ -57,6 +57,8 @@ build-%/configure-stamp:
 	dh_testdir
 	mkdir -p build-$*
 	ln -s ../sip build-$*/sip
+	ln -s /usr/share/javascript/sphinxdoc/1.0/jquery.js \
+		examples/webkit/fancybrowser/jquery.min.js
 	cd build-$* && python$* ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-config --configdir) \
 			-d /usr/lib/python$*/dist-packages \

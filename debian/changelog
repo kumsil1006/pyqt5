@@ -1,21 +1,25 @@
-pyqt5 (5.0.1+dfsg-1) UNRELEASED; urgency=low
+pyqt5 (5.1+dfsg-1) unstable; urgency=low
 
   [ Scott Kitterman ]
+  * New upstream release
   * Install designer plugin in python3-pyqt5
   * Move debug version of libpyqt5qmlplugin.so from python3-pyqt5-dbg to
     python3-pyqt5.qtquick-dbg to match the regular file and avoid duplication
     (Closes: #720679)
+  * Remove debian/patches/libpython_multiarch.diff, equivalent change
+    incorporated upstream (and debian/patches directory since there are no
+    other patches)
+  * Add README.source to document how to make DFSG tarball
 
   [ Dmitry Shachnev ]
   * Delete pycache directories in clean target.
   * Regenerate resource files during build.
-  * Delete built docs and fancybrowser example from upstream tarball
-    as they contain non-free jquery version (and we can't build jquery
-    resource file when jquery is not in tarball) (closes: #722990).
+  * Repack tarball to remove minified javascript from docs and fancybrowser
+    example (Closes: #722990).
   * Update debian/watch to use dversionmangle.
   * Build QML plugin only for the default Python version.
 
- -- Scott Kitterman <scott@kitterman.com>  Fri, 23 Aug 2013 23:22:12 -0400
+ -- Scott Kitterman <scott@kitterman.com>  Sun, 13 Oct 2013 07:53:00 -0400
 
 pyqt5 (5.0.1-1) experimental; urgency=low
 
