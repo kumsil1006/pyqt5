@@ -97,7 +97,7 @@ install-indep: build-indep
 	dh_testroot
 	dh_prep -i
 	dh_installdirs -i
-	dh_install -i --list-missing
+	dh_install -i --fail-missing
 	dh_installexamples -i
 	# Use python3 shebangs and regenerate resource files
 	cd $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/; \
@@ -120,7 +120,7 @@ install-arch: build-arch
 		$(MAKE) -f debian/rules install-arch-$$p;\
 	done
 
-	dh_install -a --list-missing
+	dh_install -a --fail-missing
 
 	find debian/python*-dbg ! -type d \
 		! \( -name '*.so' -o -name '*config_*d*.py' \) | xargs rm -f
@@ -145,7 +145,7 @@ install-arch-3.%:
 	for module in opengl sql webkit xmlpatterns svg multimedia quick; do \
 		mkdir -p debian/python3-pyqt5.qt$$module-dbg/usr/lib/python3.$*/dist-packages/PyQt5; \
 	done
-	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtOpenGL.so \
+	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/*OpenGL*.so \
 		debian/python3-pyqt5.qtopengl-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtSql.so \
 		debian/python3-pyqt5.qtsql-dbg/usr/lib/python3.$*/dist-packages/PyQt5
