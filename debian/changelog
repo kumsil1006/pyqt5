@@ -1,3 +1,11 @@
+pyqt5 (5.1+dfsg-2) UNRELEASED; urgency=low
+
+  * Add debian/get-orig-source.sh and explain how to use it in
+    README.source; add jquery_rc.py to list of non-free files.
+  * Remove symlink to jquery in clean target.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Tue, 15 Oct 2013 17:59:27 +0400
+
 pyqt5 (5.1+dfsg-1) unstable; urgency=low
 
   [ Scott Kitterman ]

@@ -167,6 +167,7 @@ clean:
 	rm -rf $(PYTHON3S:%=build-%) $(PYTHON3S:%=dbg-build-%)
 	find . -type d -name __pycache__ | xargs rm -rf
 	cd sip; rm -rf Qt opengl_types.sip pyqt-gpl.sip5
+	rm -f examples/webkit/fancybrowser/jquery.min.js
 	dh_clean
 
 # Must not depend on anything. This is to be called by
