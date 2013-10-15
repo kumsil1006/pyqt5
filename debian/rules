@@ -98,7 +98,7 @@ install-indep: build-indep
 	dh_prep -i
 	dh_installdirs -i
 	dh_install -i --fail-missing
-	dh_installexamples -i
+	dh_installexamples -Xactiveqt -i
 	# Use python3 shebangs and regenerate resource files
 	cd $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/; \
 		find . -name '*.py' -exec sed -i 's/\/env python/\/python3/g' {} +; \

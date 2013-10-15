@@ -5,6 +5,7 @@ pyqt5 (5.1+dfsg-2) UNRELEASED; urgency=low
   * Remove symlink to jquery in clean target.
   * Install QOpenGLFunctions libraries in python3-pyqt5.qtopengl package.
   * Call dh_install with --fail-missing option.
+  * Do not install Windows-specific activeqt examples.
 
  -- Dmitry Shachnev <mitya57@gmail.com>  Tue, 15 Oct 2013 17:59:27 +0400
 
