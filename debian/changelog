@@ -1,11 +1,13 @@
-pyqt5 (5.1+dfsg-2) UNRELEASED; urgency=low
+pyqt5 (5.1.1+dfsg-1) UNRELEASED; urgency=low
 
+  * New upstream bugfix release.
   * Add debian/get-orig-source.sh and explain how to use it in
     README.source; add jquery_rc.py to list of non-free files.
   * Remove symlink to jquery in clean target.
   * Install QOpenGLFunctions libraries in python3-pyqt5.qtopengl package.
   * Call dh_install with --fail-missing option.
   * Do not install Windows-specific activeqt examples.
+  * Add new package for QtSerialPort module.
 
  -- Dmitry Shachnev <mitya57@gmail.com>  Tue, 15 Oct 2013 17:59:27 +0400
 
