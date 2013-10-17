@@ -26,7 +26,7 @@ else
 	LDFLAGS += $(shell dpkg-buildflags --get LDFLAGS)
 endif
 
-LDFLAGS += -Wl,-O1
+LDFLAGS += -Wl,-O1 -Wl,--as-needed
 
 ifeq ($(DEB_BUILD_ARCH),alpha)
 	LDFLAGS += -Wl,--no-relax
@@ -44,9 +44,9 @@ SHARED_CONFIGURE_OPTIONS=--confirm-license --verbose \
 	-q /usr/bin/qmake -c -j $(SPLIT) \
 	LIBDIR_QT=/usr/lib STRIP="" MOC=/usr/bin/moc \
 	LIBS_OPENGL="" LIBS_X11="" LIBS_THREAD="" \
-	CFLAGS="" CFLAGS_RELEASE="${CFLAGS} ${CPPFLAGS}" \
-	LFLAGS="" CXXFLAGS_RELEASE="${CXXFLAGS} ${CPPFLAGS}" \
-	LFLAGS_RELEASE="${LDFLAGS}"
+	QMAKE_CFLAGS+="${CFLAGS} ${CPPFLAGS}" \
+	QMAKE_CXXFLAGS+="${CXXFLAGS} ${CPPFLAGS}" \
+	QMAKE_LFLAGS+="${LDFLAGS}"
 
 
 .PRECIOUS: build-%/configure-stamp dbg-build-%/configure-stamp
@@ -57,8 +57,6 @@ build-%/configure-stamp:
 	dh_testdir
 	mkdir -p build-$*
 	ln -s ../sip build-$*/sip
-	ln -s /usr/share/javascript/sphinxdoc/1.0/jquery.js \
-		examples/webkit/fancybrowser/jquery.min.js
 	cd build-$* && python$* ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-config --configdir) \
 			-d /usr/lib/python$*/dist-packages \
@@ -74,7 +72,7 @@ dbg-build-%/configure-stamp:
 			-m $(shell python$*-dbg-config --configdir) \
 			-l /usr/include/python$*$(if $(filter 3.2, $*),dmu,dm) \
 			-d /usr/lib/python$*/dist-packages \
-			--no-designer-plugin --no-qml-plugin
+			--debug --no-designer-plugin --no-qml-plugin
 	touch $@
 
 
@@ -99,6 +97,7 @@ install-indep: build-indep
 	dh_installdirs -i
 	dh_install -i --fail-missing
 	dh_installexamples -Xactiveqt -i
+	dh_link -i
 	# Use python3 shebangs and regenerate resource files
 	cd $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/; \
 		find . -name '*.py' -exec sed -i 's/\/env python/\/python3/g' {} +; \
@@ -169,7 +168,7 @@ clean:
 	rm -rf $(PYTHON3S:%=build-%) $(PYTHON3S:%=dbg-build-%)
 	find . -type d -name __pycache__ | xargs rm -rf
 	cd sip; rm -rf Qt opengl_types.sip pyqt-gpl.sip5
-	rm -f examples/webkit/fancybrowser/jquery.min.js
+	rm -f examples/quick/tutorials/extending/chapter6-plugins/Charts/qmldir
 	dh_clean
 
 # Must not depend on anything. This is to be called by
@@ -186,7 +185,6 @@ ifeq (,$(findstring -a, $(DH_OPTIONS)))
 	$(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/html
 	dh_sphinxdoc
 endif
-	dh_link
 	dh_sip3
 ifeq (,$(findstring -i, $(DH_OPTIONS)))
 	DH_OPTIONS= dh_strip -ppyqt5-dev-tools
