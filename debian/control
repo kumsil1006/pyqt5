@@ -307,7 +307,7 @@ Package: pyqt5-doc
 Architecture: all
 Section: doc
 Suggests: qt5-doc
-Depends: ${sphinxdoc:Depends}, ${misc:Depends}
+Depends: libjs-jquery, ${sphinxdoc:Depends}, ${misc:Depends}
 Recommends: python3-pyqt5
 Description: Documentation and examples for PyQt5
  PyQt5 exposes the Qt5 GUI toolkit in Python.

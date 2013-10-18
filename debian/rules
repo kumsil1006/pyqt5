@@ -97,12 +97,13 @@ install-indep: build-indep
 	dh_installdirs -i
 	dh_install -i --fail-missing
 	dh_installexamples -Xactiveqt -i
-	dh_link -i
 	# Use python3 shebangs and regenerate resource files
 	cd $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/; \
+		cp /usr/share/javascript/jquery/jquery.min.js webkit/fancybrowser/; \
 		find . -name '*.py' -exec sed -i 's/\/env python/\/python3/g' {} +; \
 		find . -name '*.qrc' | sed 's/\.qrc//g' | xargs -I {} \
 		$(CURDIR)/build-$(DEFAULT_PYTHON)/pyrcc/pyrcc5 {}.qrc -o {}_rc.py
+	dh_link -i
 
 install-arch: build-arch
 	dh_testdir
