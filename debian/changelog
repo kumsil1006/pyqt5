@@ -9,10 +9,11 @@ pyqt5 (5.1.1+dfsg-1) UNRELEASED; urgency=low
   * Do not install Windows-specific activeqt examples.
   * Add new package for QtSerialPort module.
   * Make sure dpkg build flags are actually applied.
+  * Backport upstream patch to always apply passed qmake variables.
   * Pass --debug option to configure.py when doing debug builds.
   * Link with --as-needed.
 
- -- Dmitry Shachnev <mitya57@gmail.com>  Tue, 15 Oct 2013 17:59:27 +0400
+ -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 21 Oct 2013 19:28:02 +0400
 
 pyqt5 (5.1+dfsg-1) unstable; urgency=low
 
