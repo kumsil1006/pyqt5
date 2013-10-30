@@ -133,11 +133,11 @@ install-arch-3.%:
 	rm -rf $(CURDIR)/debian/tmp/usr/share/sip
 
 	mkdir -p $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
-	mv $(CURDIR)/debian/tmp$(call py3_dbusmoddir,3.$*)/pyqt5.so \
+	mv $(CURDIR)/debian/tmp$(py3_dbusmoddir)/pyqt5.so \
 	   $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
 
 	mkdir -p $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
-	mv $(CURDIR)/debian/python3-pyqt5-dbg$(call py3_dbusmoddir,3.$*)/pyqt5.so \
+	mv $(CURDIR)/debian/python3-pyqt5-dbg$(py3_dbusmoddir)/pyqt5.so \
 	   $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
 
 	# Don't initiate the uic/widget-plugins

@@ -12,6 +12,7 @@ pyqt5 (5.1.1+dfsg-1) UNRELEASED; urgency=low
   * Backport upstream patch to always apply passed qmake variables.
   * Pass --debug option to configure.py when doing debug builds.
   * Link with --as-needed.
+  * Simplify install code in debian/rules.
 
  -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 21 Oct 2013 19:28:02 +0400
 
