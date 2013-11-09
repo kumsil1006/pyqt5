@@ -1,4 +1,4 @@
-pyqt5 (5.1.1+dfsg-1) UNRELEASED; urgency=low
+pyqt5 (5.1.1+dfsg-1) unstable; urgency=low
 
   * New upstream bugfix release.
   * Add debian/get-orig-source.sh and explain how to use it in
