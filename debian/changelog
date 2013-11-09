@@ -7,14 +7,14 @@ pyqt5 (5.1.1+dfsg-1) UNRELEASED; urgency=low
   * Install QOpenGLFunctions libraries in python3-pyqt5.qtopengl package.
   * Call dh_install with --fail-missing option.
   * Do not install Windows-specific activeqt examples.
-  * Add new package for QtSerialPort module.
+  * Add new packages for QtSerialPort and QtSensors modules.
   * Make sure dpkg build flags are actually applied.
   * Backport upstream patch to always apply passed qmake variables.
   * Pass --debug option to configure.py when doing debug builds.
   * Link with --as-needed.
   * Simplify install code in debian/rules.
 
- -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 21 Oct 2013 19:28:02 +0400
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 09 Nov 2013 14:26:40 +0400
 
 pyqt5 (5.1+dfsg-1) unstable; urgency=low
 

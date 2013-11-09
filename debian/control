@@ -13,6 +13,7 @@ Build-Depends: dpkg-dev (>= 1.16.1~),
                libicu-dev,
                libpulse-dev,
                libqt5opengl5-dev,
+               libqt5sensors5-dev,
                libqt5serialport5-dev,
                libqt5svg5-dev,
                libqt5webkit5-dev,
@@ -292,6 +293,31 @@ Depends: python3-dbg,
 Description: Python 3 bindings for QtSerialPort module (debug extension)
  The QtSerialPort module of PyQt5 provides a set of APIs to use serial ports
  from PyQt applications.
+ .
+ This package contains the extension built for the Python 3 debug interpreter.
+
+Package: python3-pyqt5.qtsensors
+Architecture: any
+Depends: python3-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for QtSensors module
+ The QtSensors module of PyQt5 provides a set of APIs to access sensors
+ hardware from PyQt applications.
+
+Package: python3-pyqt5.qtsensors-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python3-dbg,
+         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.qtsensors (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for QtSensors module (debug extension)
+ The QtSensors module of PyQt5 provides a set of APIs to access sensors
+ hardware from PyQt applications.
  .
  This package contains the extension built for the Python 3 debug interpreter.
 
