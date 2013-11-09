@@ -26,7 +26,7 @@ else
 	LDFLAGS += $(shell dpkg-buildflags --get LDFLAGS)
 endif
 
-LDFLAGS += -Wl,-O1
+LDFLAGS += -Wl,-O1 -Wl,--as-needed
 
 ifeq ($(DEB_BUILD_ARCH),alpha)
 	LDFLAGS += -Wl,--no-relax
@@ -44,9 +44,9 @@ SHARED_CONFIGURE_OPTIONS=--confirm-license --verbose \
 	-q /usr/bin/qmake -c -j $(SPLIT) \
 	LIBDIR_QT=/usr/lib STRIP="" MOC=/usr/bin/moc \
 	LIBS_OPENGL="" LIBS_X11="" LIBS_THREAD="" \
-	CFLAGS="" CFLAGS_RELEASE="${CFLAGS} ${CPPFLAGS}" \
-	LFLAGS="" CXXFLAGS_RELEASE="${CXXFLAGS} ${CPPFLAGS}" \
-	LFLAGS_RELEASE="${LDFLAGS}"
+	QMAKE_CFLAGS+="${CFLAGS} ${CPPFLAGS}" \
+	QMAKE_CXXFLAGS+="${CXXFLAGS} ${CPPFLAGS}" \
+	QMAKE_LFLAGS+="${LDFLAGS}"
 
 
 .PRECIOUS: build-%/configure-stamp dbg-build-%/configure-stamp
@@ -57,8 +57,6 @@ build-%/configure-stamp:
 	dh_testdir
 	mkdir -p build-$*
 	ln -s ../sip build-$*/sip
-	ln -s /usr/share/javascript/sphinxdoc/1.0/jquery.js \
-		examples/webkit/fancybrowser/jquery.min.js
 	cd build-$* && python$* ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-config --configdir) \
 			-d /usr/lib/python$*/dist-packages \
@@ -74,7 +72,7 @@ dbg-build-%/configure-stamp:
 			-m $(shell python$*-dbg-config --configdir) \
 			-l /usr/include/python$*$(if $(filter 3.2, $*),dmu,dm) \
 			-d /usr/lib/python$*/dist-packages \
-			--no-designer-plugin --no-qml-plugin
+			--debug --no-designer-plugin --no-qml-plugin
 	touch $@
 
 
@@ -97,13 +95,15 @@ install-indep: build-indep
 	dh_testroot
 	dh_prep -i
 	dh_installdirs -i
-	dh_install -i --list-missing
-	dh_installexamples -i	
+	dh_install -i --fail-missing
+	dh_installexamples -Xactiveqt -i
 	# Use python3 shebangs and regenerate resource files
 	cd $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/; \
+		cp /usr/share/javascript/jquery/jquery.min.js webkit/fancybrowser/; \
 		find . -name '*.py' -exec sed -i 's/\/env python/\/python3/g' {} +; \
 		find . -name '*.qrc' | sed 's/\.qrc//g' | xargs -I {} \
 		$(CURDIR)/build-$(DEFAULT_PYTHON)/pyrcc/pyrcc5 {}.qrc -o {}_rc.py
+	dh_link -i
 
 install-arch: build-arch
 	dh_testdir
@@ -120,7 +120,7 @@ install-arch: build-arch
 		$(MAKE) -f debian/rules install-arch-$$p;\
 	done
 
-	dh_install -a --list-missing
+	dh_install -a --fail-missing
 
 	find debian/python*-dbg ! -type d \
 		! \( -name '*.so' -o -name '*config_*d*.py' \) | xargs rm -f
@@ -133,19 +133,19 @@ install-arch-3.%:
 	rm -rf $(CURDIR)/debian/tmp/usr/share/sip
 
 	mkdir -p $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
-	mv $(CURDIR)/debian/tmp$(call py3_dbusmoddir,3.$*)/pyqt5.so \
+	mv $(CURDIR)/debian/tmp$(py3_dbusmoddir)/pyqt5.so \
 	   $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
 
 	mkdir -p $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
-	mv $(CURDIR)/debian/python3-pyqt5-dbg$(call py3_dbusmoddir,3.$*)/pyqt5.so \
+	mv $(CURDIR)/debian/python3-pyqt5-dbg$(py3_dbusmoddir)/pyqt5.so \
 	   $(CURDIR)/debian/python3-dbus.mainloop.pyqt5-dbg/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
 
 	# Don't initiate the uic/widget-plugins
 	touch $(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/PyQt5/uic/widget-plugins/.noinit
-	for module in opengl sql webkit xmlpatterns svg multimedia quick; do \
+	for module in opengl sql webkit xmlpatterns svg multimedia quick serialport sensors; do \
 		mkdir -p debian/python3-pyqt5.qt$$module-dbg/usr/lib/python3.$*/dist-packages/PyQt5; \
 	done
-	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtOpenGL.so \
+	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/*OpenGL*.so \
 		debian/python3-pyqt5.qtopengl-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtSql.so \
 		debian/python3-pyqt5.qtsql-dbg/usr/lib/python3.$*/dist-packages/PyQt5
@@ -160,6 +160,10 @@ install-arch-3.%:
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQml.so \
 	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQuick.so \
 		debian/python3-pyqt5.qtquick-dbg/usr/lib/python3.$*/dist-packages/PyQt5
+	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtSerialPort.so \
+		debian/python3-pyqt5.qtserialport-dbg/usr/lib/python3.$*/dist-packages/PyQt5
+	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtSensors.so \
+		debian/python3-pyqt5.qtsensors-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 
 clean:
 	dh_testdir
@@ -167,6 +171,7 @@ clean:
 	rm -rf $(PYTHON3S:%=build-%) $(PYTHON3S:%=dbg-build-%)
 	find . -type d -name __pycache__ | xargs rm -rf
 	cd sip; rm -rf Qt opengl_types.sip pyqt-gpl.sip5
+	rm -f examples/quick/tutorials/extending/chapter6-plugins/Charts/qmldir
 	dh_clean
 
 # Must not depend on anything. This is to be called by
@@ -183,7 +188,6 @@ ifeq (,$(findstring -a, $(DH_OPTIONS)))
 	$(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/html
 	dh_sphinxdoc
 endif
-	dh_link
 	dh_sip3
 ifeq (,$(findstring -i, $(DH_OPTIONS)))
 	DH_OPTIONS= dh_strip -ppyqt5-dev-tools
@@ -191,7 +195,8 @@ ifeq (,$(findstring -i, $(DH_OPTIONS)))
 	for p in python3-pyqt5 python3-pyqt5.qtopengl python3-pyqt5.qtsql \
 	  python3-pyqt5.qtwebkit python3-pyqt5.qtmultimedia \
 	  python3-pyqt5.qtsvg python3-pyqt5.qtxmlpatterns \
-	  python3-pyqt5.qtquick python3-dbus.mainloop.pyqt5; do \
+	  python3-pyqt5.qtquick python3-pyqt5.qtserialport \
+	  python3-pyqt5.qtsensors python3-dbus.mainloop.pyqt5; do \
 		DH_OPTIONS= dh_strip -p$$p --dbg-package=$$p-dbg; \
 		rm -rf debian/$$p-dbg/usr/share/doc/$$p-dbg; \
 		mkdir -p debian/$$p-dbg/usr/share/doc; \

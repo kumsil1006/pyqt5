@@ -37,6 +37,7 @@ static void list_append(QQmlListProperty<QObject> *p, QObject *el);
 static QObject *list_at(QQmlListProperty<QObject> *p, int idx);
 static void list_clear(QQmlListProperty<QObject> *p);
 static int list_count(QQmlListProperty<QObject> *p);
+static void bad_result(PyObject *py_res, const char *context);
 
 
 // The type's doc-string.
@@ -220,9 +221,7 @@ static void list_append(QQmlListProperty<QObject> *p, QObject *el)
                 if (py_res == Py_None)
                     ok = true;
                 else
-                    PyErr_Format(PyExc_TypeError,
-                            "unexpected result from append function: %S",
-                            py_res);
+                    bad_result(py_res, "append");
 
                 Py_DECREF(py_res);
             }
@@ -265,8 +264,7 @@ static int list_count(QQmlListProperty<QObject> *p)
 
             if (PyErr_Occurred())
             {
-                PyErr_Format(PyExc_TypeError,
-                        "unexpected result from count function: %S", py_res);
+                bad_result(py_res, "count");
 
                 res = -1;
             }
@@ -320,8 +318,7 @@ static QObject *list_at(QQmlListProperty<QObject> *p, int idx)
                     sipType_QObject, 0, SIP_NO_CONVERTORS, 0, &iserr));
 
             if (iserr)
-                PyErr_Format(PyExc_TypeError,
-                        "unexpected result from at function: %S", py_res);
+                bad_result(py_res, "at");
 
             Py_DECREF(py_res);
         }
@@ -360,8 +357,7 @@ static void list_clear(QQmlListProperty<QObject> *p)
             if (py_res == Py_None)
                 ok = true;
             else
-                PyErr_Format(PyExc_TypeError,
-                        "unexpected result from clear function: %S", py_res);
+                bad_result(py_res, "clear");
 
             Py_DECREF(py_res);
         }
@@ -371,4 +367,24 @@ static void list_clear(QQmlListProperty<QObject> *p)
         PyErr_Print();
 
     SIP_UNBLOCK_THREADS
+}
+
+
+// Raise an exception for an unexpected result.
+static void bad_result(PyObject *py_res, const char *context)
+{
+#if PY_MAJOR_VERSION >= 3
+    PyErr_Format(PyExc_TypeError, "unexpected result from %s function: %S",
+            context, py_res);
+#else
+    PyObject *py_res_s = PyObject_Str(py_res);
+
+    if (py_res_s != NULL)
+    {
+        PyErr_Format(PyExc_TypeError, "unexpected result from %s function: %s",
+                context, PyString_AsString(py_res_s));
+
+        Py_DECREF(py_res_s);
+    }
+#endif
 }

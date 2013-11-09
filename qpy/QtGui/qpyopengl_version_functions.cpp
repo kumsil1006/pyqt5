@@ -20,6 +20,10 @@
 
 #include <Python.h>
 
+#include <QtGlobal>
+
+#if QT_VERSION >= 0x050100
+
 #include <QList>
 
 #include "sipAPIQtGui.h"
@@ -144,3 +148,5 @@ PyObject *qpyopengl_version_functions(const QOpenGLContext *context,
     return sipConvertFromNewType(funcs, sipTypeFromPyTypeObject(funcs_type),
             py_context);
 }
+
+#endif

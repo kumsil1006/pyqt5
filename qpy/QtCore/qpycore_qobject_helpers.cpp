@@ -226,6 +226,7 @@ bool qpycore_qobject_qt_metacast(sipSimpleWrapper *pySelf,
 
     SIP_BLOCK_THREADS
 
+    PyTypeObject *base_pytype = sipTypeAsPyTypeObject(base);
     PyObject *mro = Py_TYPE(pySelf)->tp_mro;
 
     for (SIP_SSIZE_T i = 0; i < PyTuple_GET_SIZE(mro); ++i)
@@ -239,7 +240,10 @@ bool qpycore_qobject_qt_metacast(sipSimpleWrapper *pySelf,
 
         if (qstrcmp(pytype->tp_name, _clname) == 0)
         {
-            if (td == base)
+            // The generated type definitions represent the C++ (rather than
+            // Python) hierachy.  If the C++ hierachy doesn't match then the
+            // super-type must be provided by a mixin.
+            if (PyType_IsSubtype(base_pytype, pytype))
                 *sipCpp = sipGetAddress(pySelf);
             else
                 *sipCpp = sipGetMixinAddress(pySelf, td);

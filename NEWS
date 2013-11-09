@@ -1,3 +1,6 @@
+v5.1.1 16th October 2013
+  - This is a bug fix release.
+
 v5.1 2nd October 2013
   - Added full support for Qt v5.1.
   - Added the QtSensors module.

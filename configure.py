@@ -32,7 +32,7 @@ except ImportError:
 
 
 # Initialise the constants.
-PYQT_VERSION_STR = "5.1"
+PYQT_VERSION_STR = "5.1.1"
 
 SIP_MIN_VERSION = '4.15'
 
@@ -483,7 +483,9 @@ int main(int argc, char **argv)
 }
 ''' % out_file
 
-        cmd = compile_qt_program(self, verbose, 'qtdetail', source, 'QtCore')
+        cmd = compile_qt_program(self, verbose, 'qtdetail', source, 'QtCore',
+                debug=debug)
+
         if cmd is None:
             error("Failed to determine the detail of your Qt installation. Try again using the --verbose flag to see more detail about the problem.")
 
@@ -1308,6 +1310,8 @@ def generate_plugin_makefile(target_config, verbose, plugin_dir, install_dir, pl
     prj = fin.read()
     fin.close()
 
+    prj = prj.replace('@QTCONFIG@',
+            'debug' if target_config.debug else 'release')
     prj = prj.replace('@PYINCDIR@', quote(target_config.py_inc_dir))
     prj = prj.replace('@SIPINCDIR@', quote(target_config.sip_inc_dir))
     prj = prj.replace('@PYLINK@',
@@ -1821,13 +1825,15 @@ int main(int, char **)
         target_config.pyqt_modules.append(mname)
 
 
-def compile_qt_program(target_config, verbose, name, source, mname):
+def compile_qt_program(target_config, verbose, name, source, mname, debug=None):
     """ Compile the source of a Qt program and return the name of the
     executable or None if it couldn't be created.  target_config is the target
     configuration.  verbose is set if the output is to be displayed.  name is
     the root name of the program from which all program-specific file names
     will be derived.  source is the C++ source of the program.  mname is the
-    name of the Qt module that the program uses.
+    name of the Qt module that the program uses.  debug is set if debug, rather
+    than release, mode is to be used.  If it is None then the mode is taken
+    from the target configuration.
     """
 
     metadata = MODULE_METADATA[mname]
@@ -1839,7 +1845,7 @@ def compile_qt_program(target_config, verbose, name, source, mname):
 
     # Create the .pro file.
     pro_lines = []
-    pro_add_qt_dependencies(target_config, metadata, pro_lines)
+    pro_add_qt_dependencies(target_config, metadata, pro_lines, debug)
     pro_lines.append('TARGET = %s' % name)
     pro_lines.append('SOURCES = %s' % name_source)
 
@@ -1858,11 +1864,16 @@ def compile_qt_program(target_config, verbose, name, source, mname):
     return run_make(target_config, verbose, name, name_makefile)
 
 
-def pro_add_qt_dependencies(target_config, metadata, pro_lines):
+def pro_add_qt_dependencies(target_config, metadata, pro_lines, debug=None):
     """ Add the Qt dependencies of a module to a .pro file.  target_config is
     the target configuration.  metadata is the module's meta-data.  pro_lines
-    is the list of lines making up the .pro file that is updated.
+    is the list of lines making up the .pro file that is updated.  debug is set
+    if debug, rather than release, mode is to be used.  If it is None then the
+    mode is taken from the target configuration.
     """
+
+    if debug is None:
+        debug = target_config.debug
 
     add = []
     remove = []
@@ -1879,7 +1890,7 @@ def pro_add_qt_dependencies(target_config, metadata, pro_lines):
         pro_lines.append('QT += %s' % ' '.join(add))
 
     pro_lines.append(
-            'CONFIG += %s' % ('debug' if target_config.debug else 'release'))
+            'CONFIG += %s' % ('debug' if debug else 'release'))
 
     pro_lines.extend(target_config.qmake_variables)
 
@@ -2037,7 +2048,7 @@ def generate_sip_module_code(target_config, verbose, no_timestamp, parts, tracin
     # Generate the makefile.
     includepath = libs = ''
     if target_config.vend_enabled:
-        m = '_qt' if target_config.consolidated else 'QtCore'
+        m = '_qt' if target_config.consolidate else 'QtCore'
 
         if mname == m:
             includepath = target_config.vend_inc_dir

@@ -1,3 +1,21 @@
+pyqt5 (5.1.1+dfsg-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+  * Add debian/get-orig-source.sh and explain how to use it in
+    README.source; add jquery_rc.py to list of non-free files.
+  * Use dh_link for linking jquery.js in examples.
+  * Install QOpenGLFunctions libraries in python3-pyqt5.qtopengl package.
+  * Call dh_install with --fail-missing option.
+  * Do not install Windows-specific activeqt examples.
+  * Add new packages for QtSerialPort and QtSensors modules.
+  * Make sure dpkg build flags are actually applied.
+  * Backport upstream patch to always apply passed qmake variables.
+  * Pass --debug option to configure.py when doing debug builds.
+  * Link with --as-needed.
+  * Simplify install code in debian/rules.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 09 Nov 2013 14:26:40 +0400
+
 pyqt5 (5.1+dfsg-1) unstable; urgency=low
 
   [ Scott Kitterman ]

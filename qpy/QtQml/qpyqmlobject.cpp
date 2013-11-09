@@ -23,6 +23,9 @@
 #include "sipAPIQtQml.h"
 
 
+// Forward declarations.
+static void bad_result(PyObject *res, const char *context);
+
 // The list of registered Python types.
 QList<PyTypeObject *> QPyQmlObjectProxy::pyqt_types;
 
@@ -105,7 +108,7 @@ int QPyQmlObjectProxy::qt_metacall(QMetaObject::Call call, int idx, void **args)
         return idx;
 
     // If the sender is the proxied object then it has emitted a signal.
-    if (sender() == proxied)
+    if (call == QMetaObject::InvokeMetaMethod && sender() == proxied)
     {
         const QMetaObject *proxied_mo = proxied->metaObject();
 
@@ -222,8 +225,9 @@ void QPyQmlObjectProxy::pyClassBegin()
             if (res == Py_None)
                 ok = true;
             else
-                PyErr_Format(PyExc_TypeError,
-                        "unexpected result from classBegin(): %S", res);
+                bad_result(res, "classBegin()");
+
+            Py_DECREF(res);
         }
     }
 
@@ -263,8 +267,9 @@ void QPyQmlObjectProxy::pyComponentComplete()
             if (res == Py_None)
                 ok = true;
             else
-                PyErr_Format(PyExc_TypeError,
-                        "unexpected result from componentComplete(): %S", res);
+                bad_result(res, "componentComplete()");
+
+            Py_DECREF(res);
         }
     }
 
@@ -317,8 +322,9 @@ void QPyQmlObjectProxy::pySetTarget(const QQmlProperty &target)
                 if (res == Py_None)
                     ok = true;
                 else
-                    PyErr_Format(PyExc_TypeError,
-                            "unexpected result from setTarget(): %S", res);
+                    bad_result(res, "setTarget()");
+
+                Py_DECREF(res);
             }
         }
     }
@@ -327,6 +333,26 @@ void QPyQmlObjectProxy::pySetTarget(const QQmlProperty &target)
         PyErr_Print();
 
     SIP_UNBLOCK_THREADS
+}
+
+
+// Raise an exception for an unexpected result.
+static void bad_result(PyObject *res, const char *context)
+{
+#if PY_MAJOR_VERSION >= 3
+    PyErr_Format(PyExc_TypeError, "unexpected result from %s: %S", context,
+            res);
+#else
+    PyObject *res_s = PyObject_Str(res);
+
+    if (res_s != NULL)
+    {
+        PyErr_Format(PyExc_TypeError, "unexpected result from %s: %s", context,
+                PyString_AsString(res_s));
+
+        Py_DECREF(res_s);
+    }
+#endif
 }
 
 

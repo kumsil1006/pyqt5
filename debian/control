@@ -6,30 +6,32 @@ Uploaders: Dmitry Shachnev <mitya57@gmail.com>,
            Scott Kitterman <scott@kitterman.com>
 Build-Depends: dpkg-dev (>= 1.16.1~),
                debhelper (>= 9),
-               libicu-dev,
                libdbus-1-dev (>= 1.0.2),
-               libpulse-dev,
-               libqt5opengl5-dev,
-               libqt5webkit5-dev,
                libglib2.0-dev,
-               libxml2-dev,
                libgstreamer0.10-dev,
                libgstreamer-plugins-base0.10-dev,
-               libsqlite3-dev,
-               libxslt1-dev,        
-               qtmultimedia5-dev,
-               qtdeclarative5-dev,
-               qttools5-dev,
+               libicu-dev,
+               libpulse-dev,
+               libqt5opengl5-dev,
+               libqt5sensors5-dev,
+               libqt5serialport5-dev,
                libqt5svg5-dev,
+               libqt5webkit5-dev,
                libqt5xmlpatterns5-dev,
-               python-dbus-dev,
+               libsqlite3-dev,
+               libxml2-dev,
+               libxslt1-dev,
                python3-all-dbg,
                python3-all-dev (>= 3.2.3-6~),
                python3-dbus,
                python3-dbus-dbg,
                python3-sip-dbg,
                python3-sip-dev (>= 4.15),
-               python3-sphinx
+               python3-sphinx,
+               python-dbus-dev,
+               qtdeclarative5-dev,
+               qtmultimedia5-dev,
+               qttools5-dev
 X-Python3-Version: >= 3.2
 Standards-Version: 3.9.4
 Homepage: http://www.riverbankcomputing.co.uk/software/pyqt/
@@ -269,6 +271,56 @@ Description: Python 3 bindings for QtQuick module (debug extension)
  .
  This package contains the extensions built for the Python 3 debug interpreter.
 
+Package: python3-pyqt5.qtserialport
+Architecture: any
+Depends: python3-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for QtSerialPort module
+ The QtSerialPort module of PyQt5 provides a set of APIs to use serial ports
+ from PyQt applications.
+
+Package: python3-pyqt5.qtserialport-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python3-dbg,
+         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.qtserialport (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for QtSerialPort module (debug extension)
+ The QtSerialPort module of PyQt5 provides a set of APIs to use serial ports
+ from PyQt applications.
+ .
+ This package contains the extension built for the Python 3 debug interpreter.
+
+Package: python3-pyqt5.qtsensors
+Architecture: any
+Depends: python3-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for QtSensors module
+ The QtSensors module of PyQt5 provides a set of APIs to access sensors
+ hardware from PyQt applications.
+
+Package: python3-pyqt5.qtsensors-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python3-dbg,
+         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.qtsensors (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for QtSensors module (debug extension)
+ The QtSensors module of PyQt5 provides a set of APIs to access sensors
+ hardware from PyQt applications.
+ .
+ This package contains the extension built for the Python 3 debug interpreter.
+
 Package: pyqt5-dev
 Architecture: all
 Depends: python3-sip-dev, ${misc:Depends}, ${python3:Depends}
@@ -281,7 +333,7 @@ Package: pyqt5-doc
 Architecture: all
 Section: doc
 Suggests: qt5-doc
-Depends: ${sphinxdoc:Depends}, ${misc:Depends}
+Depends: libjs-jquery, ${sphinxdoc:Depends}, ${misc:Depends}
 Recommends: python3-pyqt5
 Description: Documentation and examples for PyQt5
  PyQt5 exposes the Qt5 GUI toolkit in Python.
