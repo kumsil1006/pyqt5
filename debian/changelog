@@ -1,3 +1,10 @@
+pyqt5 (5.1.1+dfsg-2) unstable; urgency=low
+
+  * Add pyqt5.qtopengl-dbg Breaks/Conflicts to fix file overwrite error
+    (Closes: #729737)
+
+ -- Scott Kitterman <scott@kitterman.com>  Sat, 16 Nov 2013 16:42:07 -0500
+
 pyqt5 (5.1.1+dfsg-1) unstable; urgency=low
 
   * New upstream bugfix release.
