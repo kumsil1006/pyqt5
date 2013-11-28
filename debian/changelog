@@ -1,3 +1,9 @@
+pyqt5 (5.1.1+dfsg-3) UNRELEASED; urgency=low
+
+  * Backport upstream patch (gluint64.sip) to disable GLuint64 on GL ES.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Thu, 28 Nov 2013 19:33:21 +0400
+
 pyqt5 (5.1.1+dfsg-2) unstable; urgency=low
 
   * Add pyqt5.qtopengl-dbg Breaks/Conflicts to fix file overwrite error
