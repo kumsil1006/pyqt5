@@ -21,8 +21,8 @@ rm pyqt5_*.orig.tar.gz
 
 mv PyQt-gpl-* "pyqt5-${dfsg_version}.orig"
 
-# jquery.min.js
-rm -rf "pyqt5-${dfsg_version}.orig/doc/html/"
+# minimized jquery and underscore
+rm -rf "pyqt5-${dfsg_version}.orig/doc/html/_static"
 rm -f "pyqt5-${dfsg_version}.orig/examples/webkit/fancybrowser/jquery.min.js"
 rm -f "pyqt5-${dfsg_version}.orig/examples/webkit/fancybrowser/jquery_rc.py"
 
