@@ -103,6 +103,16 @@ install-indep: build-indep
 		find . -name '*.py' -exec sed -i 's/\/env python/\/python3/g' {} +; \
 		find . -name '*.qrc' | sed 's/\.qrc//g' | xargs -I {} \
 		$(CURDIR)/build-$(DEFAULT_PYTHON)/pyrcc/pyrcc5 {}.qrc -o {}_rc.py
+	# Symlink duplicate files in examples. Based on Andrew Starr-Bochicchio's
+	# code in ubuntu-packaging-guide.
+	cd $(CURDIR)/debian/pyqt5-doc && \
+	fdupes -r1nq usr/share/doc/pyqt5-doc/examples | while read s; do \
+		set -- $$(echo $$s | tr ' ' '\n' | sort); \
+		f=$$1; shift; for d; do \
+			echo "symlinking identical file $$d to $$f"; \
+			rm $$d; ln -s /$$f $$d; \
+		done; \
+	done
 	dh_link -i
 
 install-arch: build-arch
