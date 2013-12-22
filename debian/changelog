@@ -1,5 +1,6 @@
-pyqt5 (5.1.1+dfsg-3) UNRELEASED; urgency=low
+pyqt5 (5.1.1+dfsg-3) experimental; urgency=low
 
+  * Upload to experimental to build against Qt 5.2.
   * Backport upstream patch (gluint64.sip) to disable GLuint64 on GL ES.
   * Symlink duplicate files in examples using fdupes.
   * Add an autopkgtest to make sure all packages are co-installable
@@ -7,7 +8,7 @@ pyqt5 (5.1.1+dfsg-3) UNRELEASED; urgency=low
   * Temporary build-depend on libudev-dev on Linux to workaround qmake
     bug that adds -ludev when building QtSerialPort test code.
 
- -- Dmitry Shachnev <mitya57@gmail.com>  Thu, 28 Nov 2013 19:33:21 +0400
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sun, 22 Dec 2013 11:13:52 +0400
 
 pyqt5 (5.1.1+dfsg-2) unstable; urgency=low
 
