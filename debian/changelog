@@ -1,5 +1,7 @@
-pyqt5 (5.1.1+dfsg-4) UNRELEASED; urgency=medium
+pyqt5 (5.2+dfsg-1) UNRELEASED; urgency=medium
 
+  * New upstream release.
+  * Bump required sip version to 4.15.4.
   * Bump Standards-Version to 3.9.5, no changes needed.
   * Add XS-Testsuite header for autopkgtest.
 
