@@ -1,6 +1,7 @@
 pyqt5 (5.2+dfsg-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Drop all patches, applied upstream.
   * Bump required sip version to 4.15.4.
   * Bump Standards-Version to 3.9.5, no changes needed.
   * Add XS-Testsuite header for autopkgtest.
