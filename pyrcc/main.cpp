@@ -160,11 +160,12 @@ int main(int argc, char *argv[])
                 errorMsg = QString(QLatin1String("Unknown option: '%1'")).arg(argv[i]);
             }
         } else {
-            if(!QFile::exists(argv[i])) {
+            QString fname = QString::fromLocal8Bit(argv[i]);
+            if(!QFile::exists(fname)) {
                 qWarning("%s: File does not exist '%s'", argv[0], argv[i]);
                 return 1;
             }
-            files.append(argv[i]);
+            files.append(fname);
         }
     }
 

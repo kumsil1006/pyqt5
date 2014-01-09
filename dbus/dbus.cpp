@@ -1,7 +1,7 @@
 // This is the SIP interface definition for the Qt support for the standard
 // Python DBus bindings.
 //
-// Copyright (c) 2013 Riverbank Computing Limited
+// Copyright (c) 2014 Riverbank Computing Limited
 //
 // Licensed under the Academic Free License version 2.1
 //

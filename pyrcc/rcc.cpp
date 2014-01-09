@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (c) 2013 Riverbank Computing Limited. All rights reserved.
+** Copyright (c) 2014 Riverbank Computing Limited. All rights reserved.
 ** Copyright (C) 1992-2005 Trolltech AS. All rights reserved.
 **
 ** This file is part of the tools applications of the Qt Toolkit.

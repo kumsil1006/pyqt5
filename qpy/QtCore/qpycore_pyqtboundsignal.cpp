@@ -1,6 +1,6 @@
 // This contains the implementation of the pyqtBoundSignal type.
 //
-// Copyright (c) 2013 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2014 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -565,7 +565,30 @@ static PyObject *pyqtBoundSignal_emit(PyObject *self, PyObject *args)
 
     if (!bs->bound_qobject->signalsBlocked())
     {
-        Chimera::Signature *signature = bs->unbound_signal->signature;
+        Q_ASSERT(PyTuple_Check(args));
+
+        // Even though we are bound to a specific signal, skip overloads that
+        // will fail because they require more arguments than we have.  This
+        // accomodates the case where a signal has default arguments (so the
+        // full signature is the first one) but we want to supply fewer
+        // arguments without having to explicitly specify the correct bound
+        // signal.
+        SIP_SSIZE_T nr_args = PyTuple_GET_SIZE(args);
+        qpycore_pyqtSignal *ubs = bs->unbound_signal;
+
+        while (ubs->signature->parsed_arguments.size() > nr_args)
+        {
+            ubs = ubs->next;
+
+            if (!ubs)
+            {
+                // Revert back to the original unbound signal.
+                ubs = bs->unbound_signal;
+                break;
+            }
+        }
+
+        Chimera::Signature *signature = ubs->signature;
         int mo_index = bs->bound_qobject->metaObject()->indexOfSignal(signature->signature.constData() + 1);
 
         if (mo_index < 0)

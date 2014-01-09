@@ -1,3 +1,17 @@
+v5.2 8th January 2014
+  - Added full support for Qt v5.2.
+  - Added the QtBluetooth module.
+  - Added the QtPositioning module.
+  - Added the QtMacExtras module.
+  - Added the QtWinExtras module.
+  - Added the QtX11Extras module.
+  - Improved the conversion of Python objects to Qt collection types (e.g.
+    QList, QSet).  Iterators (rather than just sequences) are accepted and
+    failed conversions now raise much more informative exceptions.
+  - QtCore.Q_ENUMS() and QtCore.Q_FLAGS() now populate the meta-object.
+  - The QML debugger is automatically enabled when --debug is passed to
+    configure.py.
+
 v5.1.1 16th October 2013
   - This is a bug fix release.
 

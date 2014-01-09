@@ -1,6 +1,6 @@
 // This contains the meta-type used by PyQt.
 //
-// Copyright (c) 2013 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2014 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -52,6 +52,7 @@
 
 #include "qpycore_chimera.h"
 #include "qpycore_classinfo.h"
+#include "qpycore_enums_flags.h"
 #include "qpycore_misc.h"
 #include "qpycore_pyqtproperty.h"
 #include "qpycore_pyqtsignal.h"
@@ -166,6 +167,9 @@ static int create_dynamic_metaobject(pyqtWrapperType *pyqt_wt)
     // Get any class info.
     QList<ClassInfo> class_info_list = qpycore_get_class_info_list();
 
+    // Get any enums/flags.
+    QList<EnumsFlags> enums_flags_list = qpycore_get_enums_flags_list();
+
     // Get the super-type's meta-object.
     builder.setSuperClass(get_qmetaobject((pyqtWrapperType *)pytype->tp_base));
 
@@ -273,13 +277,31 @@ static int create_dynamic_metaobject(pyqtWrapperType *pyqt_wt)
     // decorate __init__).
 
     // Set up any class information.
-    if (class_info_list.count() > 0)
+    for (int i = 0; i < class_info_list.count(); ++i)
     {
-        for (int i = 0; i < class_info_list.count(); ++i)
-        {
-            const ClassInfo &ci = class_info_list.at(i);
+        const ClassInfo &ci = class_info_list.at(i);
 
-            builder.addClassInfo(ci.first, ci.second);
+        builder.addClassInfo(ci.first, ci.second);
+    }
+
+    // Set up any enums/flags.
+    for (int i = 0; i < enums_flags_list.count(); ++i)
+    {
+        const EnumsFlags &ef = enums_flags_list.at(i);
+
+        QByteArray scoped_name(pytype->tp_name);
+        scoped_name.append("::");
+        scoped_name.append(ef.name);
+        QMetaEnumBuilder enum_builder = builder.addEnumerator(scoped_name);
+
+        enum_builder.setIsFlag(ef.isFlag);
+
+        QHash<QByteArray, int>::const_iterator it = ef.keys.constBegin();
+
+        while (it != ef.keys.constEnd())
+        {
+            enum_builder.addKey(it.key(), it.value());
+            ++it;
         }
     }
 
