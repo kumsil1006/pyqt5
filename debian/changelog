@@ -1,5 +1,6 @@
-pyqt5 (5.2+dfsg-1) UNRELEASED; urgency=medium
+pyqt5 (5.2+dfsg-1) unstable; urgency=low
 
+  * Upload to unstable.
   * New upstream release.
   * Drop all patches, applied upstream.
   * Backport a patch (qpair_old_qt.diff) to fix building against
@@ -8,7 +9,7 @@ pyqt5 (5.2+dfsg-1) UNRELEASED; urgency=medium
   * Bump Standards-Version to 3.9.5, no changes needed.
   * Add XS-Testsuite header for autopkgtest.
 
- -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 23 Dec 2013 14:19:47 +0400
+ -- Dmitry Shachnev <mitya57@gmail.com>  Thu, 09 Jan 2014 11:48:59 +0400
 
 pyqt5 (5.1.1+dfsg-3) experimental; urgency=low
 
