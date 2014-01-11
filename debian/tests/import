@@ -21,6 +21,7 @@ from PyQt5.QtWebKit import QWebSettings
 from PyQt5.QtWebKitWidgets import QWebView
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtXmlPatterns import QXmlSchema
+from PyQt5.QtX11Extras import QX11Info
 from dbus.mainloop.pyqt5 import DBusQtMainLoop
 EOF
 
