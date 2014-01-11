@@ -4,6 +4,7 @@ pyqt5 (5.2+dfsg-2) UNRELEASED; urgency=low
     - Make import autopkgtest depend on python3-all.
     - Don’t set -x in import autopkgtest.
     - Test QtDBus module as well.
+  * Add new package for QtX11Extras module.
 
  -- Dmitry Shachnev <mitya57@gmail.com>  Fri, 10 Jan 2014 21:36:59 +0400
 
