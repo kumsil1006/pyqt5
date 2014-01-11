@@ -98,15 +98,15 @@ install-indep: build-indep
 	dh_install -i --fail-missing
 	dh_installexamples -Xactiveqt -i
 	# Use python3 shebangs and regenerate resource files
-	cd $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/; \
+	cd $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/; \
 		cp /usr/share/javascript/jquery/jquery.min.js webkit/fancybrowser/; \
 		find . -name '*.py' -exec sed -i 's/\/env python/\/python3/g' {} +; \
 		find . -name '*.qrc' | sed 's/\.qrc//g' | xargs -I {} \
 		$(CURDIR)/build-$(DEFAULT_PYTHON)/pyrcc/pyrcc5 {}.qrc -o {}_rc.py
 	# Symlink duplicate files in examples. Based on Andrew Starr-Bochicchio's
 	# code in ubuntu-packaging-guide.
-	cd $(CURDIR)/debian/pyqt5-doc && \
-	fdupes -r1nq usr/share/doc/pyqt5-doc/examples | while read s; do \
+	cd $(CURDIR)/debian/pyqt5-examples && \
+	fdupes -r1nq usr/share/doc/pyqt5-examples/examples | while read s; do \
 		set -- $$(echo $$s | tr ' ' '\n' | sort); \
 		f=$$1; shift; for d; do \
 			echo "symlinking identical file $$d to $$f"; \
@@ -216,15 +216,15 @@ ifeq (,$(findstring -i, $(DH_OPTIONS)))
 		ln -s $$p debian/$$p-dbg/usr/share/doc/$$p-dbg; \
 	done
 endif
-	dh_python3 --no-dbg-cleaning -N pyqt5-dev-tools -N pyqt5-doc
+	dh_python3 --no-dbg-cleaning -N pyqt5-dev-tools -N pyqt5-examples
 	rm -rf $(CURDIR)/debian/python3-pyqt5/usr/lib/python3/dist-packages/PyQt5/uic/port_v2
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/bin
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/share/sip
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/lib/python3/dist-packages/PyQt5/uic
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/lib/python3/dist-packages/dbus
-	rm -rf $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/webkit/googlechat
-	rm -rf $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/designer/plugins/python/__pycache__
-	rm -rf $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/examples/designer/plugins/widgets/__pycache__
+	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/webkit/googlechat
+	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/designer/plugins/python/__pycache__
+	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/designer/plugins/widgets/__pycache__
 	dh_fixperms
 	dh_compress -Xexamples
 	dh_installdeb

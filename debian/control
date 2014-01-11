@@ -363,14 +363,21 @@ Description: Development files for PyQt5
 Package: pyqt5-doc
 Architecture: all
 Section: doc
-Suggests: qt5-doc
-Depends: libjs-jquery, ${sphinxdoc:Depends}, ${misc:Depends}
-Recommends: python3-pyqt5
-Description: Documentation and examples for PyQt5
+Depends: ${sphinxdoc:Depends}, ${misc:Depends}
+Suggests: pyqt5-examples
+Description: Documentation for PyQt5
  PyQt5 exposes the Qt5 GUI toolkit in Python.
  .
- This package contains Python-specific documentation for PyQt5 and
- the Qt example programs ported to Python.
+ This package contains Python-specific documentation for PyQt5.
+
+Package: pyqt5-examples
+Architecture: all
+Suggests: qt5-doc
+Depends: python3-pyqt5, libjs-jquery, ${misc:Depends}
+Description: Examples and demos for PyQt5
+ PyQt5 exposes the Qt5 GUI toolkit in Python.
+ .
+ This package the Qt example programs and demos ported to Python.
 
 Package: pyqt5-dev-tools
 Depends: python3,
