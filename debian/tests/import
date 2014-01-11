@@ -6,6 +6,7 @@ cd $ADTTMP
 
 cat <<EOF >test_import.py
 from PyQt5.QtCore import QFile
+from PyQt5.QtDBus import QDBusConnection
 from PyQt5.QtGui import QColor
 from PyQt5.QtMultimedia import QAudio
 from PyQt5.QtMultimediaWidgets import QGraphicsVideoItem
