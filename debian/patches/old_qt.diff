@@ -1,0 +1,65 @@
+Description: fix building against Qt versions older than 5.2
+Origin: upstream, changesets 5c798e751276 and 7d0f384170fd
+Last-Update: 2014-01-19
+
+--- a/configure.py
++++ b/configure.py
+@@ -1044,7 +1044,7 @@
+     check_module(target_config, verbose, 'QtSerialPort', 'qserialport.h',
+             'new QSerialPort()')
+     check_module(target_config, verbose, 'QtX11Extras', 'QX11Info',
+-            'QX11Info::isPlatformX11()')
++            'QX11Info::display()')
+ 
+ 
+ def check_5_2_modules(target_config, verbose):
+--- a/sip/QtGui/qpygui_qpair.sip
++++ b/sip/QtGui/qpygui_qpair.sip
+@@ -19,6 +19,8 @@
+ // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ 
+ 
++%If (Qt_5_2_0 -)
++
+ %MappedType QPair<QOpenGLTexture::Filter, QOpenGLTexture::Filter>
+         /DocType="tuple-of-QOpenGLTexture.Filter-QOpenGLTexture.Filter"/
+ {
+@@ -110,6 +112,10 @@
+ %End
+ };
+ 
++%End
++
++
++%If (Qt_5_2_0 -)
+ 
+ %MappedType QPair<float, float> /DocType="tuple-of-float-float"/
+ {
+@@ -202,3 +208,5 @@
+     return sipGetState(sipTransferObj);
+ %End
+ };
++
++%End
+--- a/sip/QtX11Extras/qx11info_x11.sip
++++ b/sip/QtX11Extras/qx11info_x11.sip
+@@ -31,7 +31,9 @@
+ %End
+ 
+ public:
++%If (Qt_5_2_0 -)
+     static bool isPlatformX11();
++%End
+ 
+     static int appDpiX(int screen = -1);
+     static int appDpiY(int screen = -1);
+@@ -45,7 +47,9 @@
+     static void setAppTime(unsigned long time);
+     static void setAppUserTime(unsigned long time);
+ 
++%If (Qt_5_2_0 -)
+     static unsigned long getTimestamp();
++%End
+ 
+     static Display *display();
+     static xcb_connection_t *connection();
