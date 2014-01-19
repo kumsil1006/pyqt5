@@ -3,7 +3,7 @@ Fri,  2 Dec 2005 11:43:16 +0100.
 
 It was downloaded from http://www.riverbankcomputing.co.uk
 
-Copyright (c) 2007-2013 Riverbank Computing Limited
+Copyright (c) 2007-2014 Riverbank Computing Limited
 
 License:
 
@@ -25,7 +25,7 @@ PyQt5 is released under the terms of the GNU General Public License v3.
 
 The files in pyuic/ are:
 (c) 2005 Torsten Marek (shlomme@gmx.net),
-(c) 2013 Riverbank Computing Limited,
+(c) 2014 Riverbank Computing Limited,
 and double-licensted under the GPL v3 and the BSD license.
 
 Copyright (c) The Regents of the University of California.
@@ -116,9 +116,9 @@ Public license v2 or later:
   GNU General Public License for more details.
 
 
-The files dbus/dbus.cpp and dbus/dbus.h are:
+The files dbus/dbus.cpp and dbus/helper.h are:
 
-// Copyright (c) 2012 Riverbank Computing Limited
+// Copyright (c) 2014 Riverbank Computing Limited
 //
 // Licensed under the Academic Free License version 2.1
 //
