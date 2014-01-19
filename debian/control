@@ -337,7 +337,7 @@ Description: Python 3 bindings for QtX11Extras module
  The QtX11Extras module of PyQt5 provides an API to access X11-specific
  information and classes.
 
-Package: python3-pyqt5.qtx11exras-dbg
+Package: python3-pyqt5.qtx11extras-dbg
 Priority: extra
 Section: debug
 Architecture: any
