@@ -1,5 +1,6 @@
-pyqt5 (5.2+dfsg-2) UNRELEASED; urgency=low
+pyqt5 (5.2+dfsg-2) unstable; urgency=low
 
+  [ Dmitry Shachnev ]
   * Add new package for QtX11Extras module.
   * Autopkgtest improvements:
     - Make import autopkgtest depend on python3-all.
@@ -8,6 +9,9 @@ pyqt5 (5.2+dfsg-2) UNRELEASED; urgency=low
   * Split examples into their own package, pyqt5-examples.
   * Rename qpair_old_qt.diff to old_qt.diff, and include a fix for
     QtX11Extras module.
+
+  [ Scott Kitterman ]
+  * Update debian/copyright for 2014 references
 
  -- Dmitry Shachnev <mitya57@gmail.com>  Sun, 19 Jan 2014 12:05:05 +0400
 
