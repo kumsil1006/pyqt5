@@ -224,7 +224,7 @@ endif
 	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/designer/plugins/python/__pycache__
 	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/designer/plugins/widgets/__pycache__
 	dh_fixperms
-	dh_compress -Xexamples
+	dh_compress -X/examples
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol

@@ -3,6 +3,8 @@ pyqt5 (5.2+dfsg-3) UNRELEASED; urgency=medium
   * No longer create sip symlinks in build directories, that does not
     have any effect.
   * debian/patches/fix_qreal_check.diff: Fix qreal check for Qt 5.2.
+  * Adjust dh_compress call to make exclude list not match the whole
+    pyqt5-examples package.
 
  -- Dmitry Shachnev <mitya57@gmail.com>  Fri, 31 Jan 2014 20:03:53 +0400
 
