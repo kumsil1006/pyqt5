@@ -1,3 +1,10 @@
+pyqt5 (5.2+dfsg-3) UNRELEASED; urgency=medium
+
+  * No longer create sip symlinks in build directories, that does not
+    have any effect.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Fri, 31 Jan 2014 20:03:53 +0400
+
 pyqt5 (5.2+dfsg-2) unstable; urgency=low
 
   [ Dmitry Shachnev ]

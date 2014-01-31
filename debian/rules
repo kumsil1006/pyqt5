@@ -56,7 +56,6 @@ configure: $(PYTHON3S:%=build-%/configure-stamp) $(PYTHON3S:%=dbg-build-%/config
 build-%/configure-stamp:
 	dh_testdir
 	mkdir -p build-$*
-	ln -s ../sip build-$*/sip
 	cd build-$* && python$* ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-config --configdir) \
 			-d /usr/lib/python$*/dist-packages \
@@ -67,7 +66,6 @@ build-%/configure-stamp:
 dbg-build-%/configure-stamp:
 	dh_testdir
 	mkdir -p dbg-build-$*
-	ln -s ../sip dbg-build-$*/sip
 	cd dbg-build-$* && python$*-dbg ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-dbg-config --configdir) \
 			-l /usr/include/python$*$(if $(filter 3.2, $*),dmu,dm) \
