@@ -1,3 +1,19 @@
+pyqt5 (5.2+dfsg-3) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * Medium urgency for auto-qtbase-opensource-src transition
+  * No longer create sip symlinks in build directories, that does not
+    have any effect.
+  * debian/patches/fix_qreal_check.diff: Fix qreal check for Qt 5.2.
+  * Adjust dh_compress call to make exclude list not match the whole
+    pyqt5-examples package.
+
+  [ Scott Kitterman ]
+  * Update QMAKESPEC definition in debian/rules for new location (Thanks to
+    Lisandro Damián Nicanor Pérez Meyer for the fix)
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Fri, 31 Jan 2014 20:03:53 +0400
+
 pyqt5 (5.2+dfsg-2) unstable; urgency=low
 
   [ Dmitry Shachnev ]

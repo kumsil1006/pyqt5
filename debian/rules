@@ -10,7 +10,7 @@ debian_version = $(word 2,$(shell dpkg-parsechangelog | grep ^Version:))
 upstream_dfsg_version = $(firstword $(subst -, ,$(debian_version)))
 upstream_version = $(subst ~,,$(firstword $(subst +, ,$(debian_version))))
 
-export QMAKESPEC=/usr/share/qt5/mkspecs/linux-g++
+export QMAKESPEC=/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/mkspecs/linux-g++
 
 CFLAGS=
 CPPFLAGS=
@@ -56,7 +56,6 @@ configure: $(PYTHON3S:%=build-%/configure-stamp) $(PYTHON3S:%=dbg-build-%/config
 build-%/configure-stamp:
 	dh_testdir
 	mkdir -p build-$*
-	ln -s ../sip build-$*/sip
 	cd build-$* && python$* ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-config --configdir) \
 			-d /usr/lib/python$*/dist-packages \
@@ -67,7 +66,6 @@ build-%/configure-stamp:
 dbg-build-%/configure-stamp:
 	dh_testdir
 	mkdir -p dbg-build-$*
-	ln -s ../sip dbg-build-$*/sip
 	cd dbg-build-$* && python$*-dbg ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-dbg-config --configdir) \
 			-l /usr/include/python$*$(if $(filter 3.2, $*),dmu,dm) \
@@ -226,7 +224,7 @@ endif
 	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/designer/plugins/python/__pycache__
 	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/designer/plugins/widgets/__pycache__
 	dh_fixperms
-	dh_compress -Xexamples
+	dh_compress -X/examples
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
