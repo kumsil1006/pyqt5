@@ -10,7 +10,7 @@ debian_version = $(word 2,$(shell dpkg-parsechangelog | grep ^Version:))
 upstream_dfsg_version = $(firstword $(subst -, ,$(debian_version)))
 upstream_version = $(subst ~,,$(firstword $(subst +, ,$(debian_version))))
 
-export QMAKESPEC=/usr/share/qt5/mkspecs/linux-g++
+export QMAKESPEC=/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/mkspecs/linux-g++
 
 CFLAGS=
 CPPFLAGS=
