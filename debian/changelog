@@ -1,3 +1,10 @@
+pyqt5 (5.2+dfsg-4) UNRELEASED; urgency=low
+
+  * Build-depend on libqt5x11extras5-dev instead of libqt5x11extras-dev,
+    which is now a transitional package.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 10 Feb 2014 09:24:20 +0400
+
 pyqt5 (5.2+dfsg-3) unstable; urgency=medium
 
   [ Dmitry Shachnev ]
