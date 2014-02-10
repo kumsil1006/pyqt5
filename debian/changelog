@@ -1,3 +1,15 @@
+pyqt5 (5.2+dfsg-4) unstable; urgency=medium
+
+  * Build-depend on libqt5x11extras5-dev instead of libqt5x11extras-dev,
+    which is now a transitional package.
+  * Drop QMAKESPEC export, seems to be not needed anymore.
+  * Drop hack for alpha, it is no longer supported and qtwebkit is
+    not built there anyway.
+  * Backport upstream patch to fix licensing for dbus module.
+  * Update debian/copyright to use the machine-readable DEP-5 format.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 10 Feb 2014 09:24:20 +0400
+
 pyqt5 (5.2+dfsg-3) unstable; urgency=medium
 
   [ Dmitry Shachnev ]
