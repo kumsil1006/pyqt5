@@ -2,6 +2,9 @@ pyqt5 (5.2+dfsg-4) UNRELEASED; urgency=low
 
   * Build-depend on libqt5x11extras5-dev instead of libqt5x11extras-dev,
     which is now a transitional package.
+  * Drop QMAKESPEC export, seems to be not needed anymore.
+  * Drop hack for alpha, it is no longer supported and qtwebkit is
+    not built there anyway.
 
  -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 10 Feb 2014 09:24:20 +0400
 
