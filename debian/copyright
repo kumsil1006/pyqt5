@@ -10,7 +10,8 @@ Copyright: 2014, Riverbank Computing Limited
 License: Expat
 
 Files: examples/*
-Copyright: 2010,      Nokia Corporation and/or its subsidiary(-ies)
+Copyright: 2010-2011, Nokia Corporation and/or its subsidiary(-ies)
+           2012-2013, Digia Plc and/or its subsidiary(-ies)
            2013-2014, Riverbank Computing Limited
 License: BSD-3-clause
 
@@ -18,6 +19,11 @@ Files: examples/designer/plugins/python/*
        examples/designer/plugins/widgets/*
 Copyright: 2006,      David Boddie <david@boddie.org.uk>
            2005-2006, Trolltech ASA
+License: GPL-2+
+
+Files: pylupdate/*
+Copyright: 1992-2006, Trolltech ASA
+           2002-2007, Detlev Offenbach <detlev@die-offenbachs.de>
 License: GPL-2+
 
 Files: pyuic/*
