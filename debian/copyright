@@ -25,12 +25,12 @@ License: GPL-2+
 Files: pylupdate/*
 Copyright: 2002-2007, Detlev Offenbach <detlev@die-offenbachs.de>
            2013,      Digia Plc and/or its subsidiary(-ies)
-License: GPL-2+
+License: LGPL-2.1 or GPL-3
 
 Files: pyrcc/*
 Copyright: 2013, Digia Plc and/or its subsidiary(-ies)
            2014, Riverbank Computing Limited
-License: LGPL-2.1
+License: LGPL-2.1 or GPL-3
 
 Files: pyuic/*
 Copyright: 2005, Thorsten Marek <shlomme@gmx.net>
