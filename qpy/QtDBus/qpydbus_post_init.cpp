@@ -20,9 +20,10 @@
 
 #include <Python.h>
 
-#include "sipAPIQtDBus.h"
-
+#include "qpydbus_api.h"
 #include "qpydbus_chimera_helpers.h"
+
+#include "sipAPIQtDBus.h"
 
 
 // Perform any required initialisation.

@@ -22,6 +22,8 @@
 #include "qpyquickitem.h"
 #include "qpyquickpainteditem.h"
 
+#include "sipAPIQtQuick.h"
+
 
 sipErrorState qpyquick_register_type(PyTypeObject *py_type,
         const QMetaObject *mo, const QByteArray &ptr_name,

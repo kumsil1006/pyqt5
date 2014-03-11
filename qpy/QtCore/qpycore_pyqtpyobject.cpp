@@ -20,8 +20,10 @@
 
 #include <Python.h>
 
+#include "qpycore_api.h"
 #include "qpycore_pyqtpyobject.h"
-#include "qpycore_sip.h"
+
+#include "sipAPIQtCore.h"
 
 
 // The Qt metatype id.

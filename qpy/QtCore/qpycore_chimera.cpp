@@ -27,8 +27,9 @@
 #include "qpycore_chimera.h"
 #include "qpycore_misc.h"
 #include "qpycore_pyqtpyobject.h"
-#include "qpycore_sip.h"
 #include "qpycore_types.h"
+
+#include "sipAPIQtCore.h"
 
 
 // The registered int types.
@@ -498,8 +499,8 @@ bool Chimera::parse_py_type(PyTypeObject *type_obj)
 // Set the internal flag flag.
 void Chimera::set_flag()
 {
-    if (qpycore_is_pyqt4_class(_type))
-        _is_flag = ((pyqt4ClassTypeDef *)_type)->qt4_flags & 0x01;
+    if (qpycore_is_pyqt_class(_type))
+        _is_flag = ((pyqt5ClassTypeDef *)_type)->flags & 0x01;
 }
 
 

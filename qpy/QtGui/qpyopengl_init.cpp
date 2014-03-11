@@ -22,6 +22,8 @@
 
 #include "sipAPIQtGui.h"
 
+#if defined(SIP_FEATURE_PyQt_OpenGL)
+
 #include "qpyopengl_api.h"
 #include "qpyopengl_data_cache.h"
 
@@ -48,3 +50,6 @@ void qpyopengl_init()
             (void *)qpyopengl_from_GLdouble);
 #endif
 }
+
+
+#endif

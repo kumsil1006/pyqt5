@@ -92,6 +92,9 @@ PyTypeObject qpycore_pyqtMethodProxy_Type = {
     0,                      /* tp_weaklist */
     0,                      /* tp_del */
     0,                      /* tp_version_tag */
+#if PY_VERSION_HEX >= 0x03040000
+    0,                      /* tp_finalize */
+#endif
 };
 
 

@@ -19,7 +19,10 @@
 
 
 #include <Python.h>
-#include <sip.h>
+
+#include "qpycore_api.h"
+
+#include "sipAPIQtCore.h"
 
 
 // Return the current Python context.  This should be called with the GIL.

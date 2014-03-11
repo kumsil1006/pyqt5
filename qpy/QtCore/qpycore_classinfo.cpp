@@ -23,6 +23,7 @@
 
 #include <QMultiHash>
 
+#include "qpycore_api.h"
 #include "qpycore_classinfo.h"
 
 

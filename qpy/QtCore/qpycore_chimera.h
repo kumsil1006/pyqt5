@@ -30,7 +30,7 @@
 #include <QMetaProperty>
 #include <QVariant>
 
-#include "qpycore_sip.h"
+#include "sipAPIQtCore.h"
 
 
 // This describes a type that can be understood by Python and C++ (specifically

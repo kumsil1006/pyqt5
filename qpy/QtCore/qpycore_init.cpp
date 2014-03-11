@@ -20,11 +20,13 @@
 
 #include <Python.h>
 
+#include "qpycore_api.h"
 #include "qpycore_public_api.h"
 #include "qpycore_pyqtslotproxy.h"
 #include "qpycore_qobject_helpers.h"
-#include "qpycore_sip.h"
 #include "qpycore_types.h"
+
+#include "sipAPIQtCore.h"
 
 
 // Perform any required initialisation.

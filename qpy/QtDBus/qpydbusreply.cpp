@@ -23,9 +23,9 @@
 #include <QDBusMessage>
 #include <QDBusPendingCall>
 
-#include "sipAPIQtDBus.h"
-
 #include "qpydbusreply.h"
+
+#include "sipAPIQtDBus.h"
 
 
 // Extract a reply from a message.  The GIL should be held.

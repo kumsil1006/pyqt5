@@ -23,6 +23,7 @@
 
 
 #include <Python.h>
+#include <sip.h>
 
 #include <QByteArray>
 #include <QList>
@@ -52,8 +53,11 @@ typedef struct _qpycore_pyqtSignal {
     // The revision.
     int revision;
 
-    // The parsed signature.
-    Chimera::Signature *signature;
+    // The parsed signature, not set if there is an emitter.
+    Chimera::Signature *parsed_signature;
+
+    // An optional emitter.
+    pyqt5EmitFunc emitter;
 
     // The non-signal overloads (if any).  This is only set for the default.
     PyMethodDef *non_signals;
@@ -67,7 +71,7 @@ int qpycore_get_lazy_attr(const sipTypeDef *td, PyObject *dict);
 }
 
 
-qpycore_pyqtSignal *qpycore_pyqtSignal_New(const char *signature_str,
+qpycore_pyqtSignal *qpycore_pyqtSignal_New(const char *signature,
         bool *fatal = 0);
 qpycore_pyqtSignal *qpycore_find_signal(qpycore_pyqtSignal *ps,
         PyObject *subscript, const char *context);

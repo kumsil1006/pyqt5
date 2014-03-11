@@ -1,3 +1,12 @@
+v5.2.1 14th March 2014
+  - Added full support for Qt v5.2.1.
+  - Properties, signals and slots can now be defined in mixins (i.e.
+    non-QObject classes).
+  - Added support for creating QSGGeometry.AttributeSet instances.
+  - A fundamental value may now be given whenever a QJSValue is expected.
+  - Building PyQt5 as static libraries now works.
+  - Added support for building without OpenGL.
+
 v5.2 8th January 2014
   - Added full support for Qt v5.2.
   - Added the QtBluetooth module.

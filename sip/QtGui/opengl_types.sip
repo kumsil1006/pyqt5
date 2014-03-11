@@ -18,6 +18,8 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
+%If (PyQt_OpenGL)
+
 typedef char GLchar;
 typedef qint8 GLbyte;
 typedef quint8 GLubyte;
@@ -37,3 +39,5 @@ typedef float GLclampf;
 typedef double GLdouble;
 typedef long GLintptr;
 typedef long GLsizeiptr;
+
+%End

@@ -31,7 +31,6 @@
 
 #include "qpycore_namespace.h"
 #include "qpycore_chimera.h"
-#include "qpycore_sip.h"
 
 
 QT_BEGIN_NAMESPACE

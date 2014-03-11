@@ -24,7 +24,8 @@
 #include <QVariant>
 
 #include "qpycore_chimera.h"
-#include "qpycore_sip.h"
+
+#include "sipAPIQtCore.h"
 
 
 // Forward declarations.

@@ -20,12 +20,15 @@
 
 #include <Python.h>
 
+#include "qpycore_api.h"
 #include "qpycore_misc.h"
 #include "qpycore_types.h"
 
+#include "sipAPIQtCore.h"
+
 
 // Return true if the given type (which must be a class) was wrapped for PyQt5.
-bool qpycore_is_pyqt4_class(const sipTypeDef *td)
+bool qpycore_is_pyqt_class(const sipTypeDef *td)
 {
     return PyType_IsSubtype(Py_TYPE(sipTypeAsPyTypeObject(td)),
             &qpycore_pyqtWrapperType_Type);

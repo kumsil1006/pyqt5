@@ -25,11 +25,13 @@
 #include <QMutex>
 #include <QObject>
 
+#include "qpycore_api.h"
 #include "qpycore_chimera.h"
 #include "qpycore_qmetaobjectbuilder.h"
 #include "qpycore_pyqtslot.h"
 #include "qpycore_pyqtslotproxy.h"
-#include "qpycore_sip.h"
+
+#include "sipAPIQtCore.h"
 
 
 // Proxy flags.

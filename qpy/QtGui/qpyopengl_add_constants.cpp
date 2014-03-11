@@ -23,6 +23,10 @@
 
 #include <Python.h>
 
+#include "sipAPIQtGui.h"
+
+#if defined(SIP_FEATURE_PyQt_OpenGL)
+
 
 struct OpenGLEnum_i
 {
@@ -30,7 +34,7 @@ struct OpenGLEnum_i
     int value;
 };
 
-static struct OpenGLEnum_i openGLEnums_i[] = {
+static OpenGLEnum_i openGLEnums_i[] = {
     {"GL_CURRENT_BIT", 0x00000001},
     {"GL_POINT_BIT", 0x00000002},
     {"GL_LINE_BIT", 0x00000004},
@@ -5047,7 +5051,7 @@ struct OpenGLEnum_u
     unsigned value;
 };
 
-static struct OpenGLEnum_u openGLEnums_u[] = {
+static OpenGLEnum_u openGLEnums_u[] = {
     {"GL_INVALID_INDEX", 0xFFFFFFFFu},
     {0, 0}
 };
@@ -5058,7 +5062,7 @@ struct OpenGLEnum_ull
     unsigned long long value;
 };
 
-static struct OpenGLEnum_ull openGLEnums_ull[] = {
+static OpenGLEnum_ull openGLEnums_ull[] = {
     {"GL_TIMEOUT_IGNORED", 0xFFFFFFFFFFFFFFFFull},
     {"GL_TIMEOUT_IGNORED_APPLE", 0xFFFFFFFFFFFFFFFFull},
     {0, 0}
@@ -5122,3 +5126,6 @@ int qpyopengl_add_constants(PyObject *obj)
 
     return 0;
 }
+
+
+#endif

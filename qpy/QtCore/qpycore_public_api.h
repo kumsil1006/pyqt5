@@ -19,7 +19,7 @@
 
 
 #ifndef _QPYCORE_PUBLIC_API_H
-#define _QPYCORE_APUBLIC_PI_H
+#define _QPYCORE_PUBLIC_API_H
 
 
 #include <Python.h>

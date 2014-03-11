@@ -34,8 +34,6 @@ class QByteArray;
 class QObject;
 QT_END_NAMESPACE
 
-class Chimera::Signature;
-
 
 extern "C" {
 

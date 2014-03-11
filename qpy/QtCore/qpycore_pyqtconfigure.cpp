@@ -25,9 +25,11 @@
 #include <QObject>
 #include <QVariant>
 
+#include "qpycore_api.h"
 #include "qpycore_chimera.h"
 #include "qpycore_pyqtboundsignal.h"
-#include "qpycore_sip.h"
+
+#include "sipAPIQtCore.h"
 
 
 // The result of handling a keyword argument.

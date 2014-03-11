@@ -22,6 +22,8 @@
 
 #include "sipAPIQtGui.h"
 
+#if defined(SIP_FEATURE_PyQt_OpenGL)
+
 #include "qpyopengl_data_cache.h"
 
 
@@ -81,7 +83,10 @@ PyTypeObject qpyopengl_dataCache_Type = {
     0,
     0,
     0,
-    0
+    0,
+#if PY_VERSION_HEX >= 0x03040000
+    0,
+#endif
 };
 
 
@@ -276,3 +281,6 @@ int Array::traverse(visitproc visit, void *arg)
 
     return obj ? visit(obj, arg) : 0;
 }
+
+
+#endif

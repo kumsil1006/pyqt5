@@ -18,10 +18,11 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-#include "sipAPIQtQuick.h"
-
+#include "qpyquick_api.h"
 #include "qpyquick_chimera_helpers.h"
 #include "qpyquick_register_type.h"
+
+#include "sipAPIQtQuick.h"
 
 
 // Perform any required initialisation.

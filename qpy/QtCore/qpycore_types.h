@@ -30,7 +30,8 @@
 
 #include "qpycore_chimera.h"
 #include "qpycore_pyqtproperty.h"
-#include "qpycore_sip.h"
+
+#include "sipAPIQtCore.h"
 
 
 class PyQtSlot;
