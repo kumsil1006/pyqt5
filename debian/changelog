@@ -1,5 +1,8 @@
 pyqt5 (5.2.1+dfsg-1) UNRELEASED; urgency=medium
 
+  * New upstream bugfix release.
+  * Drop all patches, applied upstream.
+  * Bump python3-sip-dev build-dependency to 4.15.5.
   * Update licensing information for pylupdate and pyrcc modules.
 
  -- Dmitry Shachnev <mitya57@gmail.com>  Tue, 11 Mar 2014 12:45:18 +0400
