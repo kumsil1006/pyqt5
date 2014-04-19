@@ -34,6 +34,7 @@ Build-Depends: dpkg-dev (>= 1.16.1~),
                python-dbus-dev,
                qtdeclarative5-dev,
                qtmultimedia5-dev,
+               qtpositioning5-dev,
                qttools5-dev
 X-Python3-Version: >= 3.2
 Standards-Version: 3.9.5
@@ -349,6 +350,31 @@ Depends: python3-dbg,
 Description: Python 3 bindings for QtX11Extras module (debug extension)
  The QtX11Extras module of PyQt5 provides an API to access X11-specific
  information and classes.
+ .
+ This package contains the extension built for the Python 3 debug interpreter.
+
+Package: python3-pyqt5.qtpositioning
+Architecture: any
+Depends: python3-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for QtPositioning module
+ The QtPositioning module of PyQt5 provides an API to access location and
+ positioning information.
+
+Package: python3-pyqt5.qtpositioning-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python3-dbg,
+         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.qtpositioning (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for QtPositioning module (debug extension)
+ The QtPositioning module of PyQt5 provides an API to access location and
+ positioning information.
  .
  This package contains the extension built for the Python 3 debug interpreter.
 

@@ -11,6 +11,7 @@ from PyQt5.QtGui import QColor
 from PyQt5.QtMultimedia import QAudio
 from PyQt5.QtMultimediaWidgets import QGraphicsVideoItem
 from PyQt5.QtNetwork import QLocalSocket
+from PyQt5.QtPositioning import QGeoCoordinate
 from PyQt5.QtQml import QQmlEngine
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtSensors import QSensor

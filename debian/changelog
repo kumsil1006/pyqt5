@@ -1,3 +1,9 @@
+pyqt5 (5.2.1+dfsg-2) experimental; urgency=medium
+
+  * Add new package for QtPositioning module.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 19 Apr 2014 23:25:04 +0400
+
 pyqt5 (5.2.1+dfsg-1) experimental; urgency=medium
 
   * New upstream bugfix release.
