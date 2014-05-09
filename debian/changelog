@@ -1,3 +1,14 @@
+pyqt5 (5.2.1+dfsg-3) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * Drop get-orig-source.sh in favour of Files-Excluded field in
+    debian/copyright.
+
+  [ Scott Kitterman ]
+  * Upload to unstable
+
+ -- Scott Kitterman <scott@kitterman.com>  Fri, 09 May 2014 09:38:52 -0400
+
 pyqt5 (5.2.1+dfsg-2) experimental; urgency=medium
 
   * Add new package for QtPositioning module.

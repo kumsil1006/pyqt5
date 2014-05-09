@@ -240,6 +240,6 @@ binary-arch: install-arch
 binary: binary-arch binary-indep
 
 get-orig-source:
-	sh $(CURDIR)/debian/get-orig-source.sh $(upstream_dfsg_version)
+	uscan --verbose --download-current-version
 
 .PHONY: build-indep build-arch build clean binary-indep binary-arch binary configure get-orig-source
