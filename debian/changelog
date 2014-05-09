@@ -1,9 +1,13 @@
-pyqt5 (5.2.1+dfsg-3) UNRELEASED; urgency=medium
+pyqt5 (5.2.1+dfsg-3) unstable; urgency=medium
 
+  [ Dmitry Shachnev ]
   * Drop get-orig-source.sh in favour of Files-Excluded field in
     debian/copyright.
 
- -- Dmitry Shachnev <mitya57@gmail.com>  Sun, 04 May 2014 13:07:37 +0400
+  [ Scott Kitterman ]
+  * Upload to unstable
+
+ -- Scott Kitterman <scott@kitterman.com>  Fri, 09 May 2014 09:38:52 -0400
 
 pyqt5 (5.2.1+dfsg-2) experimental; urgency=medium
 
