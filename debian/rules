@@ -55,7 +55,7 @@ build-%/configure-stamp:
 			-m $(shell python$*-config --configdir) \
 			-d /usr/lib/python$*/dist-packages \
 			--dbus /usr/include/dbus-1.0 \
-			$(if $(filter $(DEFAULT_PYTHON),$*),,--no-designer-plugin --no-qml-plugin)
+			$(if $(filter $(DEFAULT_PYTHON),$*),,--no-designer-plugin --no-qml-plugin --no-tools)
 	touch $@
 
 dbg-build-%/configure-stamp:
@@ -65,7 +65,7 @@ dbg-build-%/configure-stamp:
 			-m $(shell python$*-dbg-config --configdir) \
 			-l /usr/include/python$*$(if $(filter 3.2, $*),dmu,dm) \
 			-d /usr/lib/python$*/dist-packages \
-			--debug --no-designer-plugin --no-qml-plugin
+			--debug --no-designer-plugin --no-qml-plugin --no-tools
 	touch $@
 
 
