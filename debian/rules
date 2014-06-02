@@ -161,7 +161,7 @@ install-arch-3.%:
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtMultimedia*.so \
 		debian/python3-pyqt5.qtmultimedia-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQml.so \
-	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQuick.so \
+	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQuick*.so \
 		debian/python3-pyqt5.qtquick-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtSerialPort.so \
 		debian/python3-pyqt5.qtserialport-dbg/usr/lib/python3.$*/dist-packages/PyQt5

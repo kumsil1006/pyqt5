@@ -4,8 +4,9 @@ pyqt5 (5.3+dfsg-1) UNRELEASED; urgency=medium
   * Fix uscan warning about trailing / in Files-Excluded.
   * Use new --no-tools configure flag on non-default Python versions.
   * Bump required sip4 version to 4.16.
+  * Install QtQuickWidgets.so if it is available.
 
- -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 12 May 2014 17:49:35 +0400
+ -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 02 Jun 2014 15:16:52 +0400
 
 pyqt5 (5.2.1+dfsg-3) unstable; urgency=medium
 
