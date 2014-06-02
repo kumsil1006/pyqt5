@@ -55,7 +55,7 @@ build-%/configure-stamp:
 			-m $(shell python$*-config --configdir) \
 			-d /usr/lib/python$*/dist-packages \
 			--dbus /usr/include/dbus-1.0 \
-			$(if $(filter $(DEFAULT_PYTHON),$*),,--no-designer-plugin --no-qml-plugin)
+			$(if $(filter $(DEFAULT_PYTHON),$*),,--no-designer-plugin --no-qml-plugin --no-tools)
 	touch $@
 
 dbg-build-%/configure-stamp:
@@ -65,7 +65,7 @@ dbg-build-%/configure-stamp:
 			-m $(shell python$*-dbg-config --configdir) \
 			-l /usr/include/python$*$(if $(filter 3.2, $*),dmu,dm) \
 			-d /usr/lib/python$*/dist-packages \
-			--debug --no-designer-plugin --no-qml-plugin
+			--debug --no-designer-plugin --no-qml-plugin --no-tools
 	touch $@
 
 
@@ -161,7 +161,7 @@ install-arch-3.%:
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtMultimedia*.so \
 		debian/python3-pyqt5.qtmultimedia-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQml.so \
-	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQuick.so \
+	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtQuick*.so \
 		debian/python3-pyqt5.qtquick-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtSerialPort.so \
 		debian/python3-pyqt5.qtserialport-dbg/usr/lib/python3.$*/dist-packages/PyQt5

@@ -1,3 +1,12 @@
+pyqt5 (5.3+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fix uscan warning about trailing / in Files-Excluded.
+  * Use new --no-tools configure flag on non-default Python versions.
+  * Bump required sip4 version to 4.16.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 02 Jun 2014 09:24:01 +0400
+
 pyqt5 (5.2.1+dfsg-3) unstable; urgency=medium
 
   [ Dmitry Shachnev ]
