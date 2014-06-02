@@ -1,4 +1,4 @@
-pyqt5 (5.3+dfsg-1) UNRELEASED; urgency=medium
+pyqt5 (5.3+dfsg-1) experimental; urgency=medium
 
   * New upstream release.
   * Fix uscan warning about trailing / in Files-Excluded.
