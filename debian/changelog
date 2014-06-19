@@ -1,3 +1,10 @@
+pyqt5 (5.3+dfsg-3) unstable; urgency=medium
+
+  * Added debian/patches/fix_implicit_qtablewidget.patch to fixed a pyuic
+    regression in the handling of implicit QTableWidget dimensions
+
+ -- Scott Kitterman <scott@kitterman.com>  Thu, 19 Jun 2014 00:20:35 -0400
+
 pyqt5 (5.3+dfsg-2) unstable; urgency=medium
 
   * Bump Qt build-dependencies to 5.3, to make sure headers are in
