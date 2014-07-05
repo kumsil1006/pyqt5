@@ -1,6 +1,14 @@
+pyqt5 (5.3.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+    - Drop debian/patches/fix_implicit_qtablewidget.patch, which had been
+      cherry picked from upstream
+
+ -- Scott Kitterman <scott@kitterman.com>  Sat, 05 Jul 2014 00:05:42 -0400
+
 pyqt5 (5.3+dfsg-3) unstable; urgency=medium
 
-  * Added debian/patches/fix_implicit_qtablewidget.patch to fixed a pyuic
+  * Added debian/patches/fix_implicit_qtablewidget.patch to fix a pyuic
     regression in the handling of implicit QTableWidget dimensions
 
  -- Scott Kitterman <scott@kitterman.com>  Thu, 19 Jun 2014 00:20:35 -0400
