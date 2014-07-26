@@ -27,5 +27,8 @@ from dbus.mainloop.pyqt5 import DBusQtMainLoop
 EOF
 
 for py in $(py3versions -s); do
+  echo "testing $py"
   $py test_import.py
+  echo "testing $py-dbg"
+  $py-dbg test_import.py
 done

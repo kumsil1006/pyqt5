@@ -66,6 +66,7 @@ dbg-build-%/configure-stamp:
 			-l /usr/include/python$*$(if $(filter 3.2, $*),dmu,dm) \
 			-d /usr/lib/python$*/dist-packages \
 			--debug --no-designer-plugin --no-qml-plugin --no-tools
+	sed -i 's/-isystem/-I/' dbg-build-$*/*/Makefile
 	touch $@
 
 
