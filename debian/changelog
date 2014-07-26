@@ -1,3 +1,9 @@
+pyqt5 (5.3.1+dfsg-3) unstable; urgency=medium
+
+  * debian/tests/import: Redirect stderr to stdout for debug interpreter.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 26 Jul 2014 21:57:58 +0400
+
 pyqt5 (5.3.1+dfsg-2) unstable; urgency=medium
 
   * Workaround GCC bug #61918 by replacing -isystem with -I in Makefiles
