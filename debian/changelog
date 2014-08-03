@@ -1,3 +1,17 @@
+pyqt5 (5.3.1+dfsg-4) unstable; urgency=medium
+
+  * Add support for python in addition to python3 because the upcoming calibre
+    2.X series of releases will use PyQt5 with Python and not Python 3
+    - Add python build-depends to debian/control
+    - Add python-* equivalents of existing python3-* packages to debian/
+      control
+    - Update debian/rules to account for python as well as python3
+    - Set minimum python3 version to 3.3 since the revised debug configure
+      rule will not work for 3.2
+    - Replicate and update all python3-* .install files as python-*
+
+ -- Scott Kitterman <scott@kitterman.com>  Sun, 03 Aug 2014 18:48:21 -0400
+
 pyqt5 (5.3.1+dfsg-3) unstable; urgency=medium
 
   * debian/tests/import: Redirect stderr to stdout for debug interpreter.
