@@ -1,3 +1,11 @@
+pyqt5 (5.3.1+dfsg-5) UNRELEASED; urgency=medium
+
+  * Test Python 2 versions in autopkgtest.
+  * Set X-Python-Version to >= 2.7 as the current code in debian/rules
+    builds only for that version.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Tue, 05 Aug 2014 19:34:28 +0400
+
 pyqt5 (5.3.1+dfsg-4) unstable; urgency=medium
 
   * Add support for python in addition to python3 because the upcoming calibre
