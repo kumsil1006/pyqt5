@@ -4,6 +4,7 @@ pyqt5 (5.3.1+dfsg-5) UNRELEASED; urgency=medium
   * Test Python 2 versions in autopkgtest.
   * Set X-Python-Version to >= 2.7 as the current code in debian/rules
     builds only for that version.
+  * Remove all strip calls from generated Makefiles.
 
   [ Scott Kitterman ]
   * Set minimum python3-all-dev version to 3.3.2-5~ due to use of configdir in
