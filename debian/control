@@ -2,7 +2,7 @@ Source: pyqt5
 Section: python
 Priority: optional
 Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
-Uploaders: Dmitry Shachnev <mitya57@gmail.com>,
+Uploaders: Dmitry Shachnev <mitya57@debian.org>,
            Scott Kitterman <scott@kitterman.com>
 Build-Depends: dpkg-dev (>= 1.16.1~),
                debhelper (>= 9),
