@@ -1,3 +1,20 @@
+pyqt5 (5.3.2+dfsg-1) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * New upstream release.
+  * Test Python 2 versions in autopkgtest.
+  * Set X-Python-Version to >= 2.7 as the current code in debian/rules
+    builds only for that version.
+  * Remove all strip calls from generated Makefiles.
+  * Update my e-mail address.
+  * Update debian/copyright.
+
+  [ Scott Kitterman ]
+  * Set minimum python3-all-dev version to 3.3.2-5~ due to use of configdir in
+    debian/rules (LP: #1365814)
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 13 Sep 2014 14:13:57 +0400
+
 pyqt5 (5.3.1+dfsg-4) unstable; urgency=medium
 
   * Add support for python in addition to python3 because the upcoming calibre

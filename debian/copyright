@@ -37,14 +37,14 @@ Copyright: 2013, Digia Plc and/or its subsidiary(-ies)
 License: LGPL-2.1 or GPL-3
 
 Files: pyuic/*
-Copyright: 2005, Thorsten Marek <shlomme@gmx.net>
-           2014, Riverbank Computing Limited
+Copyright: 2005-2006, Thorsten Marek <shlomme@gmx.net>
+           2014,      Riverbank Computing Limited
 License: GPL-3 or BSD-3-clause
 
 Files: debian/*
 Copyright: 2006-2010, Thorsten Marek <shlomme@debian.org>
            2011-2014, Scott Kitterman <scott@kitterman.com>
-           2013-2014, Dmitry Shachnev <mitya57@gmail.com>
+           2013-2014, Dmitry Shachnev <mitya57@debian.org>
 License: GPL-2+
 
 License: GPL-2+
