@@ -8,6 +8,7 @@ Build-Depends: dpkg-dev (>= 1.16.1~),
                debhelper (>= 9),
                fdupes,
                libdbus-1-dev (>= 1.0.2),
+               libenginio1-dev,
                libglib2.0-dev,
                libgstreamer0.10-dev,
                libgstreamer-plugins-base0.10-dev,
@@ -105,6 +106,31 @@ Description: D-Bus Support for PyQt5 (debug extensions for Python 3)
  with the D-Bus main loop for Python 3.
  .
  This package contains the extensions built for the Python 3 debug interpreter.
+
+Package: python3-pyqt5.enginio
+Architecture: any
+Depends: python3-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for Enginio library
+ The Enginio module of PyQt provides Python 3 bindings for the
+ Qt Enginio cloud data storage library.
+
+Package: python3-pyqt5.enginio-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python3-dbg,
+         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.enginio (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for Enginio library (debug extension)
+ The Enginio module of PyQt provides Python 3 bindings for the
+ Qt Enginio cloud data storage library.
+ .
+ This package contains the extension built for the Python 3 debug interpreter.
 
 Package: python3-pyqt5.qtopengl
 Architecture: any
@@ -479,6 +505,31 @@ Description: D-Bus Support for PyQt5 (debug extensions for Python)
  with the D-Bus main loop for Python.
  .
  This package contains the extensions built for the Python debug interpreter.
+
+Package: python-pyqt5.enginio
+Architecture: any
+Depends: python-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python2:Depends},
+         ${shlibs:Depends}
+Description: Python 2 bindings for Enginio library
+ The Enginio module of PyQt provides Python 3 bindings for the
+ Qt Enginio cloud data storage library.
+
+Package: python-pyqt5.enginio-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python-dbg,
+         python-pyqt5-dbg (= ${binary:Version}),
+         python-pyqt5.enginio (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 2 bindings for Enginio library (debug extension)
+ The Enginio module of PyQt provides Python 3 bindings for the
+ Qt Enginio cloud data storage library.
+ .
+ This package contains the extension built for the Python debug interpreter.
 
 Package: python-pyqt5.qtopengl
 Architecture: any
