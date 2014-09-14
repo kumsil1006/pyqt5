@@ -1,4 +1,4 @@
-pyqt5 (5.3.1+dfsg-5) UNRELEASED; urgency=medium
+pyqt5 (5.3.2+dfsg-1) unstable; urgency=medium
 
   [ Dmitry Shachnev ]
   * New upstream release.
@@ -13,7 +13,7 @@ pyqt5 (5.3.1+dfsg-5) UNRELEASED; urgency=medium
   * Set minimum python3-all-dev version to 3.3.2-5~ due to use of configdir in
     debian/rules (LP: #1365814)
 
- -- Scott Kitterman <scott@kitterman.com>  Fri, 05 Sep 2014 00:08:09 -0400
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 13 Sep 2014 14:13:57 +0400
 
 pyqt5 (5.3.1+dfsg-4) unstable; urgency=medium
 
