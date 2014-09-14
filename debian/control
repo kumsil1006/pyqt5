@@ -536,7 +536,7 @@ Package: python-pyqt5.enginio
 Architecture: any
 Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
-         ${python2:Depends},
+         ${python:Depends},
          ${shlibs:Depends}
 Description: Python 2 bindings for Enginio library
  The Enginio module of PyQt provides Python 3 bindings for the
@@ -636,7 +636,7 @@ Package: python-pyqt5.qtwebsockets
 Architecture: any
 Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
-         ${python3:Depends},
+         ${python:Depends},
          ${shlibs:Depends}
 Description: Python bindings for Qt5's WebSockets module
  The WebSockets module of PyQt5 provides Python 3 bindings for the
