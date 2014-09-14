@@ -1,3 +1,11 @@
+pyqt5 (5.3.2+dfsg-2) unstable; urgency=medium
+
+  * Add new package for Enginio module.
+  * Add new package for QtWebSockets module.
+  * Fix Lintian warnings about too short and duplicate long descriptions.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 14 Sep 2014 14:40:11 +0400
+
 pyqt5 (5.3.2+dfsg-1) unstable; urgency=medium
 
   [ Dmitry Shachnev ]

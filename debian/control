@@ -8,6 +8,7 @@ Build-Depends: dpkg-dev (>= 1.16.1~),
                debhelper (>= 9),
                fdupes,
                libdbus-1-dev (>= 1.0.2),
+               libenginio1-dev,
                libglib2.0-dev,
                libgstreamer0.10-dev,
                libgstreamer-plugins-base0.10-dev,
@@ -18,6 +19,7 @@ Build-Depends: dpkg-dev (>= 1.16.1~),
                libqt5serialport5-dev (>= 5.3),
                libqt5svg5-dev (>= 5.3),
                libqt5webkit5-dev (>= 5.3),
+               libqt5websockets5-dev (>= 5.3),
                libqt5xmlpatterns5-dev (>= 5.3),
                libqt5x11extras5-dev (>= 5.3),
                libsqlite3-dev,
@@ -90,6 +92,8 @@ Depends: python3-dbus,
 Description: D-Bus Support for PyQt5 with Python 3
  The D-Bus module of PyQt5 provides integration of PyQt5 applications
  with the D-Bus main loop for Python 3.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-dbus.mainloop.pyqt5-dbg
 Architecture: any
@@ -106,6 +110,33 @@ Description: D-Bus Support for PyQt5 (debug extensions for Python 3)
  .
  This package contains the extensions built for the Python 3 debug interpreter.
 
+Package: python3-pyqt5.enginio
+Architecture: any
+Depends: python3-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for Enginio library
+ The Enginio module of PyQt provides Python 3 bindings for the
+ Qt Enginio cloud data storage library.
+ .
+ This package contains the Python 3 version of this module.
+
+Package: python3-pyqt5.enginio-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python3-dbg,
+         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.enginio (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for Enginio library (debug extension)
+ The Enginio module of PyQt provides Python 3 bindings for the
+ Qt Enginio cloud data storage library.
+ .
+ This package contains the extension built for the Python 3 debug interpreter.
+
 Package: python3-pyqt5.qtopengl
 Architecture: any
 Depends: python3-pyqt5 (= ${binary:Version}),
@@ -115,6 +146,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for Qt5's OpenGL module
  The OpenGL module of PyQt5 provides widgets and utility classes
  for OpenGL rendering in a PyQt5 application.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtopengl-dbg
 Priority: extra
@@ -142,6 +175,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for Qt5's SQL module
  The SQL module of PyQt5 provides widgets and utility classes for
  Python 3 SQL database access.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtsql-dbg
 Priority: extra
@@ -167,6 +202,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for Qt5's WebKit module
  The WebKit module of PyQt5 provides a Web browser engine that makes it easy
  to embed HTML content into your PyQt application.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtwebkit-dbg
 Priority: extra
@@ -183,6 +220,33 @@ Description: Python 3 bindings for Qt5's WebKit module (debug extensions)
  .
  This package contains the extensions built for the Python 3 debug interpreter.
 
+Package: python3-pyqt5.qtwebsockets
+Architecture: any
+Depends: python3-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for Qt5's WebSockets module
+ The WebSockets module of PyQt5 provides Python 3 bindings for the
+ WebSockets specification (both client and server).
+ .
+ This package contains the Python 3 version of this module.
+
+Package: python3-pyqt5.qtwebsockets-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python3-dbg,
+         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.qtwebsockets (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for Qt5's WebSockets module (debug extensions)
+ The WebSockets module of PyQt5 provides Python 3 bindings for the              
+ WebSockets specification (both client and server).
+ .
+ This package contains the extension built for the Python 3 debug interpreter.
+
 Package: python3-pyqt5.qtxmlpatterns
 Architecture: any
 Depends: python3-pyqt5 (= ${binary:Version}),
@@ -192,6 +256,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for Qt5's XmlPatterns module
  QtXmlPatterns is a XQuery and XPath engine for XML and custom data models.
  This package provides a PyQt binding for QtXmlPatterns.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtxmlpatterns-dbg
 Priority: extra
@@ -217,6 +283,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for Qt5's SVG module
  The SVG module of PyQt5 provides The QtSvg module provides classes for
  displaying the contents of SVG files.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtsvg-dbg
 Priority: extra
@@ -242,6 +310,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for Qt5's Multimedia module
  The Multimedia module of PyQt5 provides a set of APIs to play and record
  media, and manage a collection of media content.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtmultimedia-dbg
 Priority: extra
@@ -267,6 +337,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for QtQuick module
  The QtQuick module of PyQt5 provides a framework for developing applications
  and libraries with the QML language.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtquick-dbg
 Priority: extra
@@ -294,6 +366,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for QtSerialPort module
  The QtSerialPort module of PyQt5 provides a set of APIs to use serial ports
  from PyQt applications.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtserialport-dbg
 Priority: extra
@@ -319,6 +393,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for QtSensors module
  The QtSensors module of PyQt5 provides a set of APIs to access sensors
  hardware from PyQt applications.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtsensors-dbg
 Priority: extra
@@ -344,6 +420,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for QtX11Extras module
  The QtX11Extras module of PyQt5 provides an API to access X11-specific
  information and classes.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtx11extras-dbg
 Priority: extra
@@ -369,6 +447,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
 Description: Python 3 bindings for QtPositioning module
  The QtPositioning module of PyQt5 provides an API to access location and
  positioning information.
+ .
+ This package contains the Python 3 version of this module.
 
 Package: python3-pyqt5.qtpositioning-dbg
 Priority: extra
@@ -464,6 +544,8 @@ Depends: python-dbus,
 Description: D-Bus Support for PyQt5 with Python
  The D-Bus module of PyQt5 provides integration of PyQt5 applications
  with the D-Bus main loop for Python.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-dbus.mainloop.pyqt5-dbg
 Architecture: any
@@ -480,6 +562,33 @@ Description: D-Bus Support for PyQt5 (debug extensions for Python)
  .
  This package contains the extensions built for the Python debug interpreter.
 
+Package: python-pyqt5.enginio
+Architecture: any
+Depends: python-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python:Depends},
+         ${shlibs:Depends}
+Description: Python 2 bindings for Enginio library
+ The Enginio module of PyQt provides Python 3 bindings for the
+ Qt Enginio cloud data storage library.
+ .
+ This package contains the Python 2 version of this module.
+
+Package: python-pyqt5.enginio-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python-dbg,
+         python-pyqt5-dbg (= ${binary:Version}),
+         python-pyqt5.enginio (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 2 bindings for Enginio library (debug extension)
+ The Enginio module of PyQt provides Python 3 bindings for the
+ Qt Enginio cloud data storage library.
+ .
+ This package contains the extension built for the Python debug interpreter.
+
 Package: python-pyqt5.qtopengl
 Architecture: any
 Depends: python-pyqt5 (= ${binary:Version}),
@@ -489,6 +598,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for Qt5's OpenGL module
  The OpenGL module of PyQt5 provides widgets and utility classes
  for OpenGL rendering in a PyQt5 application.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtopengl-dbg
 Priority: extra
@@ -514,6 +625,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for Qt5's SQL module
  The SQL module of PyQt5 provides widgets and utility classes for
  Python SQL database access.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtsql-dbg
 Priority: extra
@@ -539,6 +652,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for Qt5's WebKit module
  The WebKit module of PyQt5 provides a Web browser engine that makes it easy
  to embed HTML content into your PyQt application.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtwebkit-dbg
 Priority: extra
@@ -555,6 +670,33 @@ Description: Python bindings for Qt5's WebKit module (debug extensions)
  .
  This package contains the extensions built for the Python debug interpreter.
 
+Package: python-pyqt5.qtwebsockets
+Architecture: any
+Depends: python-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt5's WebSockets module
+ The WebSockets module of PyQt5 provides Python 3 bindings for the
+ WebSockets specification (both client and server).
+ .
+ This package contains the Python 2 version of this module.
+
+Package: python-pyqt5.qtwebsockets-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python-dbg,
+         python-pyqt5-dbg (= ${binary:Version}),
+         python-pyqt5.qtwebsockets (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt5's WebSockets module (debug extension)
+ The WebSockets module of PyQt5 provides Python 2 bindings for the
+ WebSockets specification (both client and server).
+ .
+ This package contains the extension built for the Python debug interpreter.
+
 Package: python-pyqt5.qtxmlpatterns
 Architecture: any
 Depends: python-pyqt5 (= ${binary:Version}),
@@ -564,6 +706,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for Qt5's XmlPatterns module
  QtXmlPatterns is a XQuery and XPath engine for XML and custom data models.
  This package provides a PyQt binding for QtXmlPatterns.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtxmlpatterns-dbg
 Priority: extra
@@ -589,6 +733,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for Qt5's SVG module
  The SVG module of PyQt5 provides The QtSvg module provides classes for
  displaying the contents of SVG files.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtsvg-dbg
 Priority: extra
@@ -614,6 +760,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for Qt5's Multimedia module
  The Multimedia module of PyQt5 provides a set of APIs to play and record
  media, and manage a collection of media content.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtmultimedia-dbg
 Priority: extra
@@ -639,6 +787,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for QtQuick module
  The QtQuick module of PyQt5 provides a framework for developing applications
  and libraries with the QML language.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtquick-dbg
 Priority: extra
@@ -664,6 +814,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for QtSerialPort module
  The QtSerialPort module of PyQt5 provides a set of APIs to use serial ports
  from PyQt applications.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtserialport-dbg
 Priority: extra
@@ -689,6 +841,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for QtSensors module
  The QtSensors module of PyQt5 provides a set of APIs to access sensors
  hardware from PyQt applications.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtsensors-dbg
 Priority: extra
@@ -714,6 +868,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for QtX11Extras module
  The QtX11Extras module of PyQt5 provides an API to access X11-specific
  information and classes.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtx11extras-dbg
 Priority: extra
@@ -739,6 +895,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
 Description: Python bindings for QtPositioning module
  The QtPositioning module of PyQt5 provides an API to access location and
  positioning information.
+ .
+ This package contains the Python 2 version of this module.
 
 Package: python-pyqt5.qtpositioning-dbg
 Priority: extra
