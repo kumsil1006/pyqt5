@@ -19,6 +19,7 @@ Build-Depends: dpkg-dev (>= 1.16.1~),
                libqt5serialport5-dev (>= 5.3),
                libqt5svg5-dev (>= 5.3),
                libqt5webkit5-dev (>= 5.3),
+               libqt5websockets5-dev (>= 5.3),
                libqt5xmlpatterns5-dev (>= 5.3),
                libqt5x11extras5-dev (>= 5.3),
                libsqlite3-dev,
@@ -208,6 +209,31 @@ Description: Python 3 bindings for Qt5's WebKit module (debug extensions)
  to embed HTML content into your PyQt application.
  .
  This package contains the extensions built for the Python 3 debug interpreter.
+
+Package: python3-pyqt5.qtwebsockets
+Architecture: any
+Depends: python3-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for Qt5's WebSockets module
+ The WebSockets module of PyQt5 provides Python 3 bindings for the
+ WebSockets specification (both client and server).
+
+Package: python3-pyqt5.qtwebsockets-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python3-dbg,
+         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.qtwebsockets (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for Qt5's WebSockets module (debug extensions)
+ The WebSockets module of PyQt5 provides Python 3 bindings for the              
+ WebSockets specification (both client and server).
+ .
+ This package contains the extension built for the Python 3 debug interpreter.
 
 Package: python3-pyqt5.qtxmlpatterns
 Architecture: any
@@ -605,6 +631,31 @@ Description: Python bindings for Qt5's WebKit module (debug extensions)
  to embed HTML content into your PyQt application.
  .
  This package contains the extensions built for the Python debug interpreter.
+
+Package: python-pyqt5.qtwebsockets
+Architecture: any
+Depends: python-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt5's WebSockets module
+ The WebSockets module of PyQt5 provides Python 3 bindings for the
+ WebSockets specification (both client and server).
+
+Package: python-pyqt5.qtwebsockets-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python-dbg,
+         python-pyqt5-dbg (= ${binary:Version}),
+         python-pyqt5.qtwebsockets (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt5's WebSockets module (debug extension)
+ The WebSockets module of PyQt5 provides Python 2 bindings for the
+ WebSockets specification (both client and server).
+ .
+ This package contains the extension built for the Python debug interpreter.
 
 Package: python-pyqt5.qtxmlpatterns
 Architecture: any
