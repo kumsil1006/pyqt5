@@ -799,11 +799,11 @@ Depends: python-dbg,
          python-pyqt5.qtquick (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtQuick module (debug extension)
+Description: Python bindings for QtQuick module (debug extensions)
  The QtQuick module of PyQt5 provides a framework for developing applications
  and libraries with the QML language.
  .
- This package contains the extensions built for the Python 3 debug interpreter.
+ This package contains the extensions built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtserialport
 Architecture: any
