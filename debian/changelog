@@ -1,3 +1,11 @@
+pyqt5 (5.3.2+dfsg-3) unstable; urgency=medium
+
+  * Fix a typo in debian/tests/control.
+  * Test Enginio and QtWebSockets modules in autopkgtest.
+  * Add a patch from OpenSUSE to make pyqt5 build against Qt 5.3.2.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 24 Sep 2014 13:21:26 +0400
+
 pyqt5 (5.3.2+dfsg-2) unstable; urgency=medium
 
   * Add new package for Enginio module.
