@@ -281,8 +281,8 @@ Depends: python3-pyqt5 (= ${binary:Version}),
          ${python3:Depends},
          ${shlibs:Depends}
 Description: Python 3 bindings for Qt5's SVG module
- The SVG module of PyQt5 provides The QtSvg module provides classes for
- displaying the contents of SVG files.
+ The SVG module of PyQt5 provides classes for displaying the contents of
+ SVG files.
  .
  This package contains the Python 3 version of this module.
 
@@ -731,8 +731,8 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${python:Depends},
          ${shlibs:Depends}
 Description: Python bindings for Qt5's SVG module
- The SVG module of PyQt5 provides The QtSvg module provides classes for
- displaying the contents of SVG files.
+ The SVG module of PyQt5 provides classes for displaying the contents of
+ SVG files.
  .
  This package contains the Python 2 version of this module.
 
