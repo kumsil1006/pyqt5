@@ -296,8 +296,8 @@ Depends: python3-dbg,
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Python 3 bindings for Qt5's SVG module (debug extension)
- The SVG module of PyQt5 provides The QtSvg module provides classes for
- displaying the contents of SVG files.
+ The SVG module of PyQt5 provides classes for displaying the contents of
+ SVG files.
  .
  This package contains the extension built for the Python 3 debug interpreter.
 
@@ -746,10 +746,10 @@ Depends: python-dbg,
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Python bindings for Qt5's SVG module (debug extension)
- The SVG module of PyQt5 provides The QtSvg module provides classes for
- displaying the contents of SVG files.
+ The SVG module of PyQt5 provides classes for displaying the contents of
+ SVG files.
  .
- This package contains the extension built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtmultimedia
 Architecture: any
