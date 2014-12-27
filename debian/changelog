@@ -1,6 +1,7 @@
 pyqt5 (5.4.0+dfsg-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Drop add_dependency.diff, applied upstream.
   * Fix descriptions of some binary packages (closes: #769468, #771713).
   * Add missing licensing information to debian/copyright.
 
