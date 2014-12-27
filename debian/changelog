@@ -2,6 +2,7 @@ pyqt5 (5.4.0+dfsg-1) UNRELEASED; urgency=medium
 
   * New upstream release.
   * Drop add_dependency.diff, applied upstream.
+  * Bump required sip dependency to 4.16.4.
   * Install QtXml module.
   * Build against Qt 5.4.
   * Fix descriptions of some binary packages (closes: #769468, #771713).
