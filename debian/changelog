@@ -5,6 +5,7 @@ pyqt5 (5.4.0+dfsg-1) UNRELEASED; urgency=medium
   * Install QtXml module.
   * Fix descriptions of some binary packages (closes: #769468, #771713).
   * Add missing licensing information to debian/copyright.
+  * Bump Standards-Version to 3.9.6, no changes needed.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Wed, 24 Sep 2014 15:01:19 +0400
 
