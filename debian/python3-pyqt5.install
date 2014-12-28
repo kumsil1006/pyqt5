@@ -8,6 +8,7 @@ usr/lib/python3*/*-packages/PyQt5/QtNetwork.so
 usr/lib/python3*/*-packages/PyQt5/QtPrintSupport.so
 usr/lib/python3*/*-packages/PyQt5/QtTest.so
 usr/lib/python3*/*-packages/PyQt5/QtWidgets.so
+usr/lib/python3*/*-packages/PyQt5/QtXml.so
 usr/lib/python3*/*-packages/PyQt5/__init__.py
 usr/lib/python3*/*-packages/PyQt5/uic/*
 usr/lib/*/qt5/plugins/designer/libpyqt5.so

@@ -1,3 +1,16 @@
+pyqt5 (5.4+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Drop add_dependency.diff, applied upstream.
+  * Bump required sip dependency to 4.16.4.
+  * Install QtXml module.
+  * Build against Qt 5.4.
+  * Fix descriptions of some binary packages (closes: #769468, #771713).
+  * Add missing licensing information to debian/copyright.
+  * Bump Standards-Version to 3.9.6, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 28 Dec 2014 19:49:12 +0300
+
 pyqt5 (5.3.2+dfsg-3) unstable; urgency=medium
 
   * Fix a typo in debian/tests/control.
