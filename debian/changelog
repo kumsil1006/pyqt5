@@ -1,4 +1,4 @@
-pyqt5 (5.4.0+dfsg-1) UNRELEASED; urgency=medium
+pyqt5 (5.4+dfsg-1) experimental; urgency=medium
 
   * New upstream release.
   * Drop add_dependency.diff, applied upstream.
@@ -9,7 +9,7 @@ pyqt5 (5.4.0+dfsg-1) UNRELEASED; urgency=medium
   * Add missing licensing information to debian/copyright.
   * Bump Standards-Version to 3.9.6, no changes needed.
 
- -- Dmitry Shachnev <mitya57@debian.org>  Wed, 24 Sep 2014 15:01:19 +0400
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 28 Dec 2014 19:49:12 +0300
 
 pyqt5 (5.3.2+dfsg-3) unstable; urgency=medium
 
