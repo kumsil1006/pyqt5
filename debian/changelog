@@ -5,6 +5,9 @@ pyqt5 (5.4+dfsg-2) UNRELEASED; urgency=medium
     files, to enable reproducible builds in packages build-depending
     on pyqt5 (closes: #774510).
 
+  [ Dmitry Shachnev ]
+  * Update list of possible options in pylupdate5 manpage.
+
  -- Dmitry Shachnev <mitya57@debian.org>  Sun, 11 Jan 2015 14:44:46 +0300
 
 pyqt5 (5.4+dfsg-1) experimental; urgency=medium

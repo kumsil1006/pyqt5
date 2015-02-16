@@ -2,7 +2,7 @@
 .\" Created by Torsten Marek <shlomme@debian.org>
 .\" Updated for PyQt5 by Dmitry Shachnev <mitya57@debian.org>
 
-.TH PYLUPDATE5 1 "2013/06/29" "pylupdate 5.0"
+.TH PYLUPDATE5 1 "2015/01/16" "pylupdate 5.4"
 .SH NAME
 pylupdate5 \- create or update Qt Linguist translation files for PyQt5 applications
 .SH SYNOPSIS
@@ -22,14 +22,21 @@ The .ts file format is a simple human-readable XML format that can be used with 
 \fB\-help\fR
 Show a summary of the options.
 .TP
-.B \-version
-Display the version number of the version of Qt which PyQt5 was generated for.
+\fB\-version\fR
+Display the version of pylupdate5 and exit.
 .TP
-.B \-noobsolete
+\fB\-verbose\fR
+Explain what is being done.
+.TP
+\fB\-noobsolete\fR
 Drop all obsolete strings.
-.TP 
-.B \-verbose
-Increase verbosity.
+.TP
+\fB\-tr\-function\fR \fIname\fR
+Specify name of function that should be used instead of tr().
+.TP
+\fB\-translate\-function\fR \fIname\fR
+Specify name of function that should be used instead of translate().
 
 .SH AUTHOR
-This manual page was written for Debian GNU/Linux by and Torsten Marek <shlomme@debian.org>, but may freely be used by others.
+This manual page was written for Debian GNU/Linux by Torsten Marek <shlomme@debian.org>
+and Dmitry Shachnev <mitya57@debian.org>, but may freely be used by others.
