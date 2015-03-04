@@ -4,14 +4,14 @@ Priority: optional
 Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
 Uploaders: Dmitry Shachnev <mitya57@debian.org>,
            Scott Kitterman <scott@kitterman.com>
-Build-Depends: dpkg-dev (>= 1.16.1~),
-               debhelper (>= 9),
+Build-Depends: debhelper (>= 9),
+               dpkg-dev (>= 1.16.1~),
                fdupes,
                libdbus-1-dev (>= 1.0.2),
                libenginio1-dev (>= 5.4.1),
                libglib2.0-dev,
-               libgstreamer0.10-dev,
                libgstreamer-plugins-base0.10-dev,
+               libgstreamer0.10-dev,
                libicu-dev,
                libpulse-dev,
                libqt5opengl5-dev (>= 5.4.1),
@@ -20,26 +20,26 @@ Build-Depends: dpkg-dev (>= 1.16.1~),
                libqt5svg5-dev (>= 5.4.1),
                libqt5webkit5-dev (>= 5.4.1),
                libqt5websockets5-dev (>= 5.4.1),
-               libqt5xmlpatterns5-dev (>= 5.4.1),
                libqt5x11extras5-dev (>= 5.4.1),
+               libqt5xmlpatterns5-dev (>= 5.4.1),
                libsqlite3-dev,
                libudev-dev [linux-any],
                libxml2-dev,
                libxslt1-dev,
+               python-all-dbg,
+               python-all-dev (>= 2.6.6-3~),
+               python-dbus,
+               python-dbus-dbg,
+               python-dbus-dev,
+               python-sip-dbg,
+               python-sip-dev (>= 4.16.4),
                python3-all-dbg,
                python3-all-dev (>= 3.3.2-5~),
                python3-dbus,
                python3-dbus-dbg,
                python3-sip-dbg,
                python3-sip-dev (>= 4.16.4),
-               python-all-dbg,
-               python-all-dev (>= 2.6.6-3~),
-               python-dbus,
-               python-dbus-dbg,
-               python-sip-dbg,
-               python-sip-dev (>= 4.16.4),
                python3-sphinx,
-               python-dbus-dev,
                qtdeclarative5-dev (>= 5.4.1),
                qtmultimedia5-dev (>= 5.4.1),
                qtpositioning5-dev (>= 5.4.1),
@@ -54,7 +54,10 @@ XS-Testsuite: autopkgtest
 
 Package: python3-pyqt5
 Architecture: any
-Depends: ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends}, ${sip3:Depends}
+Depends: ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends},
+         ${sip3:Depends}
 Suggests: python3-pyqt5-dbg
 Description: Python 3 bindings for Qt5
  PyQt5 exposes the Qt5 API to Python 3. This package contains the following
@@ -85,10 +88,7 @@ Description: Python 3 bindings for Qt5 (debug extensions)
 
 Package: python3-dbus.mainloop.pyqt5
 Architecture: any
-Depends: python3-dbus,
-         ${misc:Depends},
-         ${python3:Depends},
-         ${shlibs:Depends}
+Depends: python3-dbus, ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends}
 Description: D-Bus Support for PyQt5 with Python 3
  The D-Bus module of PyQt5 provides integration of PyQt5 applications
  with the D-Bus main loop for Python 3.
@@ -242,7 +242,7 @@ Depends: python3-dbg,
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Python 3 bindings for Qt5's WebSockets module (debug extensions)
- The WebSockets module of PyQt5 provides Python 3 bindings for the              
+ The WebSockets module of PyQt5 provides Python 3 bindings for the
  WebSockets specification (both client and server).
  .
  This package contains the extension built for the Python 3 debug interpreter.
@@ -476,7 +476,7 @@ Description: Development files for PyQt5
 Package: pyqt5-doc
 Architecture: all
 Section: doc
-Depends: ${sphinxdoc:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}, ${sphinxdoc:Depends}
 Suggests: pyqt5-examples
 Description: Documentation for PyQt5
  PyQt5 exposes the Qt5 GUI toolkit in Python.
@@ -486,7 +486,7 @@ Description: Documentation for PyQt5
 Package: pyqt5-examples
 Architecture: all
 Suggests: qt5-doc
-Depends: python3-pyqt5 | python-pyqt5, libjs-jquery, ${misc:Depends}
+Depends: libjs-jquery, python3-pyqt5 | python-pyqt5, ${misc:Depends}
 Description: Examples and demos for PyQt5
  PyQt5 exposes the Qt5 GUI toolkit in Python.
  .
@@ -537,10 +537,7 @@ Description: Python bindings for Qt5 (debug extensions)
 
 Package: python-dbus.mainloop.pyqt5
 Architecture: any
-Depends: python-dbus,
-         ${misc:Depends},
-         ${python:Depends},
-         ${shlibs:Depends}
+Depends: python-dbus, ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}
 Description: D-Bus Support for PyQt5 with Python
  The D-Bus module of PyQt5 provides integration of PyQt5 applications
  with the D-Bus main loop for Python.

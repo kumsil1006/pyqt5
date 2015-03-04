@@ -1,3 +1,4 @@
+usr/lib/*/qt5/plugins/designer/libpyqt5.so
 usr/lib/python3*/*-packages/PyQt5/Qt.so
 usr/lib/python3*/*-packages/PyQt5/QtCore.so
 usr/lib/python3*/*-packages/PyQt5/QtDBus.so
@@ -11,4 +12,3 @@ usr/lib/python3*/*-packages/PyQt5/QtWidgets.so
 usr/lib/python3*/*-packages/PyQt5/QtXml.so
 usr/lib/python3*/*-packages/PyQt5/__init__.py
 usr/lib/python3*/*-packages/PyQt5/uic/*
-usr/lib/*/qt5/plugins/designer/libpyqt5.so
