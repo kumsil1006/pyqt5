@@ -1,11 +1,8 @@
-pyqt5 (5.4+dfsg-2) UNRELEASED; urgency=medium
+pyqt5 (5.4.1+dfsg-1) UNRELEASED; urgency=medium
 
-  [ Reiner Herrmann ]
-  * Added patch which removes embedding of timestamps in generated
-    files, to enable reproducible builds in packages build-depending
-    on pyqt5 (closes: #774510).
-
-  [ Dmitry Shachnev ]
+  * New upstream release.
+    - No longer inserts timestamps into generated files (closes: #774510).
+  * Build against Qt 5.4.1.
   * Update list of possible options in pylupdate5 manpage.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Sun, 11 Jan 2015 14:44:46 +0300
