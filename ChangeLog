@@ -1,8 +1,260 @@
+2015-02-26  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 5.4.1 for changeset 0a5d7730c142
+	[e9b5f2d5bd48] [tip] <5.4-maint>
+
+	* NEWS:
+	Released as v5.4.1.
+	[0a5d7730c142] [5.4.1] <5.4-maint>
+
+2015-02-25  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Completed the changes for Qt v5.4.1.
+	[368c0d736e49] <5.4-maint>
+
+	* PyQt5.msp:
+	Scanned Qt v5.4.1.
+	[2045a358e1e4] <5.4-maint>
+
+	* installers/PyQt5-Qt5-gpl.nsi:
+	Updated the installer for Qt v5.4.1.
+	[22974f5a4007] <5.4-maint>
+
+	* NEWS:
+	Updated the NEWS file.
+	[fd53bf1f9638] <5.4-maint>
+
+2015-02-24  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/LicenseFAQ.txt:
+	Slight clarification in the license FAQ.
+	[a4e16da29a86] <5.4-maint>
+
+	* examples/opengl/grabber.py:
+	grabber.py now uses QtOpenGLWidget and no longer uses PyOpenGL.
+	[cf42f047f5af] <5.4-maint>
+
+	* examples/opengl/samplebuffers.py, examples/qtdemo/examples.xml,
+	examples/qtdemo/mainwindow.py, examples/qtdemo/menumanager.py,
+	examples/qtdemo/qtdemo.py, examples/qtdemo/qtdemo.qrc,
+	examples/qtdemo/qtdemo_rc.py, examples/qtdemo/xml/examples.xml:
+	qtdemo.py no longer uses pyrcc. Removed the samplebuffers.py
+	example.
+	[9dd44e33dbf2] <5.4-maint>
+
+2015-02-15  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* examples/opengl/overpainting.py:
+	overpainting.py no longer uses PyOpenGL.
+	[0095ac30f3f1] <5.4-maint>
+
+	* examples/opengl/hellogl.py:
+	hellogl.py no longer uses PyOpenGL.
+	[2466595ffaa8] <5.4-maint>
+
+	* examples/opengl/textures/textures.py:
+	textures.py no longer uses PyOpenGL.
+	[cea54a81d734] <5.4-maint>
+
+	* examples/opengl/textures/textures.py,
+	examples/opengl/textures/textures.qrc,
+	examples/opengl/textures/textures_rc.py:
+	The textures.py example now uses QOpenGLWidget and does not use
+	pyrcc.
+	[0038f626c540] <5.4-maint>
+
+	* examples/opengl/overpainting.py:
+	overpainting.py now uses QOpenGLWidget.
+	[adb738a8823d] <5.4-maint>
+
+	* PyQt5.msp:
+	Added the _QOpenGLFunctions_2_1 module.
+	[831d9420cdb9] <5.4-maint>
+
+	* PyQt5.msp:
+	Initial scan of the _QOpenGLFunctions_2_1 module.
+	[87965430e499] <5.4-maint>
+
+	* examples/opengl/2dpainting.py:
+	Updated 2dpainting.py to match Qt v5.4.
+	[2444297431e1] <5.4-maint>
+
+	* examples/opengl/2dpainting.py, examples/opengl/hellogl.py:
+	2dpainting.py and hellogl.py now use QOpenGLWidget.
+	[7570b3ee5137] <5.4-maint>
+
+2015-02-14  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Makefile:
+	Default to sip4.
+	[56103de21ca0] <5.4-maint>
+
+	* Makefile, lib/configure.py:
+	Installing into a virtual env should now work.
+	[d18494d4f984] <5.4-maint>
+
+2015-02-12  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* examples/graphicsview/dragdroprobot/dragdroprobot.py,
+	examples/graphicsview/dragdroprobot/dragdroprobot.qrc,
+	examples/graphicsview/dragdroprobot/dragdroprobot_rc.py:
+	Fixed the dragdroprobot.py example.
+	[29d42f347e05] <5.4-maint>
+
+	* examples/widgets/calendarwidget.py:
+	Fixed the calendarwidget.py example so it doesn't use obsolete
+	methods.
+	[5bfdad59eee6] <5.4-maint>
+
+2015-02-08  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Makefile, lib/configure.py:
+	Improved the implementation of the executable search.
+	[c8a254ad3b53] <5.4-maint>
+
+	* Makefile:
+	Switch the internal build system to sip5.
+	[8553ce1a8cff] <5.4-maint>
+
+	* lib/configure.py:
+	Use sip5 in preference to sip4.
+	[e104f5f49120] <5.4-maint>
+
+2015-02-06  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	QEvent.None is now QEvent.None_.
+	[21c5779b9a9a] <5.4-maint>
+
+	* PyQt5.msp:
+	Added some missing QEvent.Type values.
+	[09db852ff2ee] <5.4-maint>
+
+2015-02-05  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Fixed all the pseudo-ctors that take a QVariant argument.
+	[1507018b0814] <5.4-maint>
+
+2015-02-03  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Enabled the simplest calls in OpenGL 4.0-core.
+	[bcb234196361] <5.4-maint>
+
+2015-02-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Updated OpenGL 4.1Core from 2.0.
+	[2197f1d1f00b] <5.4-maint>
+
+	* PyQt5.msp:
+	Get the name right for the _QOpenGLFunctions_4_1_Core module.
+	[8ce7c02e45da] <5.4-maint>
+
+	* PyQt5.msp:
+	Added the stub of the _QOpenGLFunctions_4_1_core module.
+	[cc4b33b46918] <5.4-maint>
+
+2015-02-01  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/configure.py:
+	configure.py will now ignore old moc generated C++ files.
+	[b9f4e00ddb92] <5.4-maint>
+
+2015-01-31  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/configure.py, sphinx/installation.rst:
+	Added the --license-dir command line option to configure.py.
+	[bc8255a4dd33] <5.4-maint>
+
+2015-01-30  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/configure.py:
+	configure.py will now handle a blank licensee.
+	[0db0131e1ac0] <5.4-maint>
+
+	* lib/configure.py:
+	Fixed the handling of the --qml-plugindir option to configure.py.
+	[c4f830debfc8] <5.4-maint>
+
+	* qpy/QtCore/qpycore_public_api.cpp:
+	Converting argv now uses the current locale codec rather than
+	Latin-1.
+	[73c52f636ad1] <5.4-maint>
+
+	* pyuic/uic/uiparser.py:
+	pyuic now supports the z-order of widgets.
+	[f9b37fb09d6e] <5.4-maint>
+
+	* pyuic/uic/properties.py, pyuic/uic/uiparser.py:
+	Improved the fix for handling frame shadows of lines.
+	[9904222abd9b] <5.4-maint>
+
+2015-01-29  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* pyuic/uic/properties.py, pyuic/uic/uiparser.py:
+	Fixed pyuic's handling of the frame shadow of lines.
+	[0b20cc5fda6f] <5.4-maint>
+
+	* pyrcc/rcc.cpp, pyuic/uic/__init__.py:
+	Removed the timestamp from the header generated by pyrcc.
+	[a56bb17ad8ce] <5.4-maint>
+
+	* pyuic/uic/__init__.py:
+	Removed the timestamp from the header generated by pyuic.
+	[83ff904a1929] <5.4-maint>
+
+2015-01-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtCore/qpycore_qstring.cpp:
+	Fixed a regression converting a QString with a surrogate pair as the
+	last character.
+	[55f521ae431b] <5.4-maint>
+
+2015-01-14  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtCore/qpycore_types.cpp:
+	Fixed the previous fix.
+	[0d0762e7b5ef] <5.4-maint>
+
+2015-01-12  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtCore/qpycore_types.cpp:
+	Ensure any exception is cleared after introspecting QObject class
+	attributes.
+	[afaaea82b022] <5.4-maint>
+
+2015-01-03  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/configure.py:
+	The QtWebChannel and QtWebSockets modules don't need a GUI.
+	[154b7ed4e071] <5.4-maint>
+
+	* PyQt5.msp:
+	The loadUrl() methods of QQmlComponent now release the GIL.
+	[c7a9f34318ad] <5.4-maint>
+
+2015-01-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/LICENSE.commercial.short, lib/LICENSE.gpl,
+	lib/LICENSE.gpl.short, lib/LICENSE.internal, sphinx/conf.py:
+	Updated the copyright notices.
+	[83f2a9f8495b] <5.4-maint>
+
+	* PyQt5.msp, lib/SubclassCode/QtWidgets.versions, lib/configure.py,
+	qpy/QtWidgets/qmaccocoaviewcontainer.sip, sphinx/api_metadata.cfg,
+	sphinx/introduction.rst:
+	Added the QMacCocoaViewContainer class.
+	[4e2f742ce34d] <5.4-maint>
+
 2014-12-25  Phil Thompson  <phil@riverbankcomputing.com>
 
 	* .hgtags:
 	Added tag 5.4 for changeset 51e7270c0aad
-	[5bf7aad36927] [tip]
+	[5bf7aad36927]
 
 	* NEWS:
 	Released as v5.4.

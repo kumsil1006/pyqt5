@@ -1,3 +1,17 @@
+pyqt5 (5.4.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+    - No longer inserts timestamps into generated files (closes: #774510).
+    - Require sip 4.16.6 for building.
+  * Build against Qt 5.4.1.
+  * Update list of possible options in pylupdate5 manpage.
+  * Add some Suggests to pyqt5-examples package (closes: #779369).
+  * No-op wrap and sort.
+  * Bump years in debian/copyright.
+  * Remove .pyc and .DS_Store files when cleaning.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 05 Mar 2015 22:14:15 +0300
+
 pyqt5 (5.4+dfsg-1) experimental; urgency=medium
 
   * New upstream release.
