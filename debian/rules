@@ -241,7 +241,9 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -rf $(ALLPYTHONS:%=build-%) $(ALLPYTHONS:%=dbg-build-%)
-	find . -type d -name __pycache__ | xargs rm -rf
+	find . -type f -name .DS_Store -delete
+	find . -type f -name *.pyc -delete
+	find . -type d -name __pycache__ -delete
 	cd sip; rm -rf Qt opengl_types.sip pyqt-gpl.sip5
 	rm -f examples/quick/tutorials/extending/chapter6-plugins/Charts/qmldir
 	dh_clean
