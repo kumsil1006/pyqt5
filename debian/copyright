@@ -16,7 +16,7 @@ Files: examples/*
 Copyright: 2010-2011, Nokia Corporation and/or its subsidiary(-ies)
            2010,      Hans-Peter Jansen <hpj@urpla.net>
            2012-2013, Digia Plc and/or its subsidiary(-ies)
-           2013-2014, Riverbank Computing Limited
+           2013-2015, Riverbank Computing Limited
 License: BSD-3-clause
 
 Files: examples/designer/plugins/python/*
@@ -46,19 +46,19 @@ Copyright: 2002-2007, Detlev Offenbach <detlev@die-offenbachs.de>
 License: LGPL-2.1 with Digia-1.1 exception or GPL-3
 
 Files: pyrcc/*
-Copyright: 2013, Digia Plc and/or its subsidiary(-ies)
-           2014, Riverbank Computing Limited
+Copyright: 2013,      Digia Plc and/or its subsidiary(-ies)
+           2014-2015, Riverbank Computing Limited
 License: LGPL-2.1 with Digia-1.1 exception or GPL-3
 
 Files: pyuic/*
 Copyright: 2005-2006, Thorsten Marek <shlomme@gmx.net>
-           2014,      Riverbank Computing Limited
+           2014-2015, Riverbank Computing Limited
 License: GPL-3 or BSD-3-clause
 
 Files: debian/*
 Copyright: 2006-2010, Thorsten Marek <shlomme@debian.org>
            2011-2014, Scott Kitterman <scott@kitterman.com>
-           2013-2014, Dmitry Shachnev <mitya57@debian.org>
+           2013-2015, Dmitry Shachnev <mitya57@debian.org>
 License: GPL-2+
 
 License: GPL-2+

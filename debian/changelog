@@ -5,6 +5,7 @@ pyqt5 (5.4.1+dfsg-1) UNRELEASED; urgency=medium
   * Build against Qt 5.4.1.
   * Update list of possible options in pylupdate5 manpage.
   * No-op wrap and sort.
+  * Bump years in debian/copyright.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Sun, 11 Jan 2015 14:44:46 +0300
 
