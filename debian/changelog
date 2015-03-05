@@ -5,6 +5,7 @@ pyqt5 (5.4.1+dfsg-1) UNRELEASED; urgency=medium
     - Require sip 4.16.6 for building.
   * Build against Qt 5.4.1.
   * Update list of possible options in pylupdate5 manpage.
+  * Add some Suggests to pyqt5-examples package (closes: #779369).
   * No-op wrap and sort.
   * Bump years in debian/copyright.
 

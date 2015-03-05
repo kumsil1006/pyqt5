@@ -84,7 +84,12 @@ Description: Documentation for PyQt5
 
 Package: pyqt5-examples
 Architecture: all
-Suggests: qt5-doc
+Suggests: pyqt5-dev-tools,
+          python3-pyqt5.qtmultimedia,
+          python3-pyqt5.qtopengl,
+          python3-pyqt5.qtquick,
+          python3-pyqt5.qtsvg,
+          qt5-doc
 Depends: libjs-jquery, python3-pyqt5 | python-pyqt5, ${misc:Depends}
 Description: Examples and demos for PyQt5
  PyQt5 exposes the Qt5 GUI toolkit in Python.
