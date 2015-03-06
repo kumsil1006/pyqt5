@@ -1,4 +1,4 @@
-pyqt5 (5.4.1+dfsg-1) UNRELEASED; urgency=medium
+pyqt5 (5.4.1+dfsg-1) experimental; urgency=medium
 
   * New upstream release.
     - No longer inserts timestamps into generated files (closes: #774510).
@@ -10,7 +10,7 @@ pyqt5 (5.4.1+dfsg-1) UNRELEASED; urgency=medium
   * Bump years in debian/copyright.
   * Remove .pyc and .DS_Store files when cleaning.
 
- -- Dmitry Shachnev <mitya57@debian.org>  Sun, 11 Jan 2015 14:44:46 +0300
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 05 Mar 2015 22:14:15 +0300
 
 pyqt5 (5.4+dfsg-1) experimental; urgency=medium
 
