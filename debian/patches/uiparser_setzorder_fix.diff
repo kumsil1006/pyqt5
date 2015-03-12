@@ -1,0 +1,25 @@
+Description: fix crashes in setZOrder function in pyuic
+Origin: upstream, changesets 28704a096a3a and a0dcd07b7e72
+Last-Update: 2015-03-12
+
+--- a/pyuic/uic/uiparser.py
++++ b/pyuic/uic/uiparser.py
+@@ -754,7 +754,17 @@
+                     self.row_counter += 1
+ 
+     def setZOrder(self, elem):
+-        getattr(self.toplevelWidget, elem.text).raise_()
++        # Designer can generate empty zorder elements.
++        if elem.text is None:
++            return
++
++        # Designer allows the z-order of spacer items to be specified even
++        # though they can't be raised, so ignore any missing raise_() method.
++        try:
++            getattr(self.toplevelWidget, elem.text).raise_()
++        except AttributeError:
++            # Note that uic issues a warning message.
++            pass
+ 
+     def createAction(self, elem):
+         self.setupObject("QAction", self.currentActionGroup or self.toplevelWidget,
