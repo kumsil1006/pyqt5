@@ -1,4 +1,4 @@
-pyqt5 (5.4.1+dfsg-2) UNRELEASED; urgency=medium
+pyqt5 (5.4.1+dfsg-2) experimental; urgency=medium
 
   * Backport some fixes to setZOrder() function from upstream
     (uiparser_setzorder_fix.diff).
