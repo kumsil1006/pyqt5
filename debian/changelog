@@ -1,3 +1,9 @@
+pyqt5 (5.4.1+dfsg-3) UNRELEASED; urgency=medium
+
+  * Update and unify descriptions of binary packages.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 18 Mar 2015 12:40:29 +0300
+
 pyqt5 (5.4.1+dfsg-2) experimental; urgency=medium
 
   * Backport some fixes to setZOrder() function from upstream

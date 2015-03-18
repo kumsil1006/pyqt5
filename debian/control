@@ -116,6 +116,7 @@ Description: Python 3 bindings for Qt5
   * QtPrintSupport
   * QtTest
   * QtWidgets
+  * QtXml
 
 Package: python3-pyqt5-dbg
 Priority: extra
@@ -134,9 +135,10 @@ Description: Python 3 bindings for Qt5 (debug extensions)
 Package: python3-dbus.mainloop.pyqt5
 Architecture: any
 Depends: python3-dbus, ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends}
-Description: D-Bus Support for PyQt5 with Python 3
- The D-Bus module of PyQt5 provides integration of PyQt5 applications
- with the D-Bus main loop for Python 3.
+Description: D-Bus Qt main loop support for Python 3
+ The dbus.mainloop.pyqt5 module provides support for Qt main loop for
+ applications that use dbus-python. By default Qt uses main loop from
+ GLib on UNIX-like systems, not its own one.
  .
  This package contains the Python 3 version of this module.
 
@@ -149,11 +151,12 @@ Depends: python3-dbg,
          python3-dbus.mainloop.pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: D-Bus Support for PyQt5 (debug extensions for Python 3)
- The D-Bus module of PyQt5 provides integration of PyQt5 applications
- with the D-Bus main loop for Python 3.
+Description: D-Bus Qt main loop support for Python 3 (debug extension)
+ The dbus.mainloop.pyqt5 module provides support for Qt main loop for
+ applications that use dbus-python. By default Qt uses main loop from
+ GLib on UNIX-like systems, not its own one.
  .
- This package contains the extensions built for the Python 3 debug interpreter.
+ This package contains the extension built for the Python 3 debug interpreter.
 
 Package: python3-pyqt5.enginio
 Architecture: any
@@ -514,8 +517,8 @@ Package: python-pyqt5
 Architecture: any
 Depends: ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}, ${sip:Depends}
 Suggests: python-pyqt5-dbg
-Description: Python bindings for Qt5
- PyQt5 exposes the Qt5 API to Python. This package contains the following
+Description: Python 2 bindings for Qt5
+ PyQt5 exposes the Qt5 API to Python 2. This package contains the following
  modules:
   * QtCore
   * QtDBus
@@ -526,6 +529,7 @@ Description: Python bindings for Qt5
   * QtPrintSupport
   * QtTest
   * QtWidgets
+  * QtXml
 
 Package: python-pyqt5-dbg
 Priority: extra
@@ -536,17 +540,18 @@ Depends: python-dbg,
          python-sip-dbg,
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5 (debug extensions)
+Description: Python 2 bindings for Qt5 (debug extensions)
  PyQt5 exposes the Qt5 API to Python.
  .
- This package contains the extensions built for the Python debug interpreter.
+ This package contains the extensions built for the Python 2 debug interpreter.
 
 Package: python-dbus.mainloop.pyqt5
 Architecture: any
 Depends: python-dbus, ${misc:Depends}, ${python:Depends}, ${shlibs:Depends}
-Description: D-Bus Support for PyQt5 with Python
- The D-Bus module of PyQt5 provides integration of PyQt5 applications
- with the D-Bus main loop for Python.
+Description: D-Bus Qt main loop support for Python 2
+ The dbus.mainloop.pyqt5 module provides support for Qt main loop for
+ applications that use dbus-python. By default Qt uses main loop from
+ GLib on UNIX-like systems, not its own one.
  .
  This package contains the Python 2 version of this module.
 
@@ -559,11 +564,12 @@ Depends: python-dbg,
          python-dbus.mainloop.pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: D-Bus Support for PyQt5 (debug extensions for Python)
- The D-Bus module of PyQt5 provides integration of PyQt5 applications
- with the D-Bus main loop for Python.
+Description: D-Bus Qt main loop support for Python 2 (debug extension)
+ The dbus.mainloop.pyqt5 module provides support for Qt main loop for
+ applications that use dbus-python. By default Qt uses main loop from
+ GLib on UNIX-like systems, not its own one.
  .
- This package contains the extensions built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.enginio
 Architecture: any
@@ -590,7 +596,7 @@ Description: Python 2 bindings for Enginio library (debug extension)
  The Enginio module of PyQt provides Python 3 bindings for the
  Qt Enginio cloud data storage library.
  .
- This package contains the extension built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtopengl
 Architecture: any
@@ -598,7 +604,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's OpenGL module
+Description: Python 2 bindings for Qt5's OpenGL module
  The OpenGL module of PyQt5 provides widgets and utility classes
  for OpenGL rendering in a PyQt5 application.
  .
@@ -613,11 +619,11 @@ Depends: python-dbg,
          python-pyqt5.qtopengl (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's OpenGL module (debug extension)
+Description: Python 2 bindings for Qt5's OpenGL module (debug extension)
  The OpenGL module of PyQt5 provides widgets and utility classes
  for OpenGL rendering in a PyQt5 application.
  .
- This package contains the extension built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtsql
 Architecture: any
@@ -625,7 +631,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's SQL module
+Description: Python 2 bindings for Qt5's SQL module
  The SQL module of PyQt5 provides widgets and utility classes for
  Python SQL database access.
  .
@@ -640,11 +646,11 @@ Depends: python-dbg,
          python-pyqt5.qtsql (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's SQL module (debug extension)
+Description: Python 2 bindings for Qt5's SQL module (debug extension)
  The SQL module of PyQt5 provides widgets and utility classes for
  Python SQL database access.
  .
- This package contains the extension built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtwebkit
 Architecture: any
@@ -652,7 +658,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's WebKit module
+Description: Python 2 bindings for Qt5's WebKit module
  The WebKit module of PyQt5 provides a Web browser engine that makes it easy
  to embed HTML content into your PyQt application.
  .
@@ -667,11 +673,11 @@ Depends: python-dbg,
          python-pyqt5.qtwebkit (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's WebKit module (debug extensions)
+Description: Python 2 bindings for Qt5's WebKit module (debug extensions)
  The WebKit module of PyQt5 provides a Web browser engine that makes it easy
  to embed HTML content into your PyQt application.
  .
- This package contains the extensions built for the Python debug interpreter.
+ This package contains the extensions built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtwebsockets
 Architecture: any
@@ -679,7 +685,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's WebSockets module
+Description: Python 2 bindings for Qt5's WebSockets module
  The WebSockets module of PyQt5 provides Python 3 bindings for the
  WebSockets specification (both client and server).
  .
@@ -694,11 +700,11 @@ Depends: python-dbg,
          python-pyqt5.qtwebsockets (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's WebSockets module (debug extension)
+Description: Python 2 bindings for Qt5's WebSockets module (debug extension)
  The WebSockets module of PyQt5 provides Python 2 bindings for the
  WebSockets specification (both client and server).
  .
- This package contains the extension built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtxmlpatterns
 Architecture: any
@@ -706,7 +712,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's XmlPatterns module
+Description: Python 2 bindings for Qt5's XmlPatterns module
  QtXmlPatterns is a XQuery and XPath engine for XML and custom data models.
  This package provides a PyQt binding for QtXmlPatterns.
  .
@@ -721,11 +727,11 @@ Depends: python-dbg,
          python-pyqt5.qtxmlpatterns (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's XmlPatterns module (debug extension)
+Description: Python 2 bindings for Qt5's XmlPatterns module (debug extension)
  QtXmlPatterns is a XQuery and XPath engine for XML and custom data models.
  This package provides a PyQt binding for QtXmlPatterns.
  .
- This package contains the extension built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtsvg
 Architecture: any
@@ -733,7 +739,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's SVG module
+Description: Python 2 bindings for Qt5's SVG module
  The SVG module of PyQt5 provides classes for displaying the contents of
  SVG files.
  .
@@ -748,7 +754,7 @@ Depends: python-dbg,
          python-pyqt5.qtsvg (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's SVG module (debug extension)
+Description: Python 2 bindings for Qt5's SVG module (debug extension)
  The SVG module of PyQt5 provides classes for displaying the contents of
  SVG files.
  .
@@ -760,7 +766,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's Multimedia module
+Description: Python 2 bindings for Qt5's Multimedia module
  The Multimedia module of PyQt5 provides a set of APIs to play and record
  media, and manage a collection of media content.
  .
@@ -775,11 +781,11 @@ Depends: python-dbg,
          python-pyqt5.qtmultimedia (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for Qt5's Multimedia module (debug extensions)
+Description: Python 2 bindings for Qt5's Multimedia module (debug extensions)
  The Multimedia module of PyQt5 provides a set of APIs to play and record
  media, and manage a collection of media content.
  .
- This package contains the extensions built for the Python debug interpreter.
+ This package contains the extensions built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtquick
 Architecture: any
@@ -787,7 +793,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtQuick module
+Description: Python 2 bindings for QtQuick module
  The QtQuick module of PyQt5 provides a framework for developing applications
  and libraries with the QML language.
  .
@@ -802,7 +808,7 @@ Depends: python-dbg,
          python-pyqt5.qtquick (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtQuick module (debug extensions)
+Description: Python 2 bindings for QtQuick module (debug extensions)
  The QtQuick module of PyQt5 provides a framework for developing applications
  and libraries with the QML language.
  .
@@ -814,7 +820,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtSerialPort module
+Description: Python 2 bindings for QtSerialPort module
  The QtSerialPort module of PyQt5 provides a set of APIs to use serial ports
  from PyQt applications.
  .
@@ -829,11 +835,11 @@ Depends: python-dbg,
          python-pyqt5.qtserialport (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtSerialPort module (debug extension)
+Description: Python 2 bindings for QtSerialPort module (debug extension)
  The QtSerialPort module of PyQt5 provides a set of APIs to use serial ports
  from PyQt applications.
  .
- This package contains the extension built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtsensors
 Architecture: any
@@ -841,7 +847,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python3:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtSensors module
+Description: Python 2 bindings for QtSensors module
  The QtSensors module of PyQt5 provides a set of APIs to access sensors
  hardware from PyQt applications.
  .
@@ -856,11 +862,11 @@ Depends: python-dbg,
          python-pyqt5.qtsensors (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtSensors module (debug extension)
+Description: Python 2 bindings for QtSensors module (debug extension)
  The QtSensors module of PyQt5 provides a set of APIs to access sensors
  hardware from PyQt applications.
  .
- This package contains the extension built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtx11extras
 Architecture: any
@@ -868,7 +874,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python3:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtX11Extras module
+Description: Python 2 bindings for QtX11Extras module
  The QtX11Extras module of PyQt5 provides an API to access X11-specific
  information and classes.
  .
@@ -883,11 +889,11 @@ Depends: python-dbg,
          python-pyqt5.qtx11extras (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtX11Extras module (debug extension)
+Description: Python 2 bindings for QtX11Extras module (debug extension)
  The QtX11Extras module of PyQt5 provides an API to access X11-specific
  information and classes.
  .
- This package contains the extension built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtpositioning
 Architecture: any
@@ -895,7 +901,7 @@ Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtPositioning module
+Description: Python 2 bindings for QtPositioning module
  The QtPositioning module of PyQt5 provides an API to access location and
  positioning information.
  .
@@ -910,8 +916,8 @@ Depends: python-dbg,
          python-pyqt5.qtpositioning (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Python bindings for QtPositioning module (debug extension)
+Description: Python 2 bindings for QtPositioning module (debug extension)
  The QtPositioning module of PyQt5 provides an API to access location and
  positioning information.
  .
- This package contains the extension built for the Python debug interpreter.
+ This package contains the extension built for the Python 2 debug interpreter.
