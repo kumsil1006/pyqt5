@@ -1,4 +1,4 @@
-pyqt5 (5.4.1+dfsg-3) UNRELEASED; urgency=medium
+pyqt5 (5.4.1+dfsg-3) experimental; urgency=medium
 
   * Update and unify descriptions of binary packages.
   * Backport upstream change to add support for Qt 5.4.2.
