@@ -2,8 +2,10 @@ pyqt5 (5.4.1+dfsg-3) UNRELEASED; urgency=medium
 
   * Update and unify descriptions of binary packages.
   * Backport upstream change to add support for Qt 5.4.2.
+  * Let pyuic sort the import order (closes: #787251, thanks to Reiner
+    Herrmann for the patch).
 
- -- Dmitry Shachnev <mitya57@debian.org>  Wed, 18 Mar 2015 12:40:29 +0300
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 06 Jun 2015 12:10:46 +0300
 
 pyqt5 (5.4.1+dfsg-2) experimental; urgency=medium
 
