@@ -1,3 +1,13 @@
+pyqt5 (5.4.1+dfsg-3) experimental; urgency=medium
+
+  * Update and unify descriptions of binary packages.
+  * Backport upstream change to add support for Qt 5.4.2.
+  * Let pyuic sort the import order (closes: #787251, thanks to Reiner
+    Herrmann for the patch).
+  * Build against Qt 5.4.2 to make sure we are ready for the transition.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 06 Jun 2015 12:10:46 +0300
+
 pyqt5 (5.4.1+dfsg-2) experimental; urgency=medium
 
   * Backport some fixes to setZOrder() function from upstream
