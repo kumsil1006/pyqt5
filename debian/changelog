@@ -2,6 +2,8 @@ pyqt5 (5.4.2+dfsg-1) UNRELEASED; urgency=medium
 
   * New upstream release.
   * Drop all patches, applied upstream.
+  * Add a temporary hack to use upstream stylesheet when building the
+    documentation with Sphinx 1.2.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Wed, 24 Jun 2015 12:38:29 +0300
 
