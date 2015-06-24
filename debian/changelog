@@ -1,3 +1,10 @@
+pyqt5 (5.4.2+dfsg-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+  * Drop all patches, applied upstream.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 24 Jun 2015 12:38:29 +0300
+
 pyqt5 (5.4.1+dfsg-3) experimental; urgency=medium
 
   * Update and unify descriptions of binary packages.
