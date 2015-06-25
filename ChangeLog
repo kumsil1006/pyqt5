@@ -1,8 +1,167 @@
+2015-06-11  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 5.4.2 for changeset 5a34feb6b31d
+	[6f80aa2771d3] [tip] <5.4-maint>
+
+	* NEWS:
+	Released as v5.4.2.
+	[5a34feb6b31d] [5.4.2] <5.4-maint>
+
+	* installers/PyQt5-Qt5-gpl.nsi:
+	Fixed a missing image plugin in the Windows installer.
+	[29760ab3d5f9] <5.4-maint>
+
+	* Makefile:
+	Clean up any extra Mac crap.
+	[dcbc92d15a8b] <5.4-maint>
+
+2015-06-07  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* pyuic/uic/Compiler/compiler.py,
+	pyuic/uic/Compiler/qobjectcreator.py:
+	Make sure all generedt imports are sorted and therefore repeatable.
+	[9ad1a251d97b] <5.4-maint>
+
+2015-06-05  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt5.msp:
+	Completed the support for Qt v5.4.2.
+	[02c99f5affde] <5.4-maint>
+
+	* PyQt5.msp:
+	Scanned Qt v5.4.2.
+	[7fbd795f8c5e] <5.4-maint>
+
+	* installers/PyQt5-Qt5-gpl.nsi:
+	Updated the Windows installer for Qt v5.4.2.
+	[74c080b5bdb2] <5.4-maint>
+
+	* PyQt5.msp:
+	Added missing /Factory/ annotations from the create() and
+	beginCreate() methods of QQmlComponent.
+	[56be1a87fd2c] <5.4-maint>
+
+2015-06-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Fixed the handling of the value returned by Python re-
+	implementations of QSGMaterialShader.attributeNames().
+	[cb620297cbc8] <5.4-maint>
+
+2015-05-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/configure.py, sphinx/installation.rst:
+	Added the --no-python-dbus option to configure.py.
+	[df17d3eace7a] <5.4-maint>
+
+2015-05-18  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* pyuic/uic/uiparser.py:
+	Fixed another deprecation warning in pyuic.
+	[6333c15a9a6b] <5.4-maint>
+
+	* pyuic/uic/driver.py, pyuic/uic/objcreator.py,
+	pyuic/uic/port_v2/load_plugin.py, pyuic/uic/port_v3/load_plugin.py:
+	Fixed all the deprecation warnings from pyuic.
+	[e8f96fbc8cf0] <5.4-maint>
+
+2015-05-08  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Makefile:
+	Fixed the path to SIP on OS/X.
+	[39ecf0bc71e1] <5.4-maint>
+
+2015-05-06  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* pyuic/uic/Compiler/qobjectcreator.py,
+	pyuic/uic/Loader/qobjectcreator.py, pyuic/uic/icon_cache.py,
+	pyuic/uic/objcreator.py:
+	Fixed the handling of themed icons by uic.loadUi().
+	[506c268c8f43] <5.4-maint>
+
+2015-04-24  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtCore/qpycore_chimera.cpp:
+	Handle properties that are objects that are defined in QML.
+	[aebd6aab85d4] <5.4-maint>
+
+2015-04-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* pyuic/uic/properties.py, pyuic/uic/uiparser.py:
+	Fixed pyuic's handling of default margins.
+	[6a7e3e6175c8] <5.4-maint>
+
+	* pyuic/uic/properties.py, pyuic/uic/uiparser.py:
+	Fixed pyuic's handling of the default spacing.
+	[12193d5afbe1] <5.4-maint>
+
+2015-04-03  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* pylupdate/main.cpp:
+	pylupdate now saves locations as relative to the .ts file.
+	[1757d2e318f6] <5.4-maint>
+
+2015-04-01  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Added QWIDGETSIZE_MAX to QtWidgets.
+	[b136fd7c485e] <5.4-maint>
+
+2015-03-25  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* sphinx/static/classic.css, sphinx/static/default.css:
+	Fixed the stylesheet.
+	[d35996e57f02] <5.4-maint>
+
+2015-03-16  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	The GIL is now released for all QImage ctors and methods that might
+	block.
+	[3fd70eec66b9] <5.4-maint>
+
+	* PyQt5.msp:
+	Removed the internal QGraphicsSceneEvent.setWidget().
+	[622e5b5ebcfc] <5.4-maint>
+
+2015-03-11  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* installers/PyQt5-Qt5-gpl.nsi:
+	Added the OpenGL v2.1 backend to the Windows installer.
+	[ca1e4c121c78] <5.4-maint>
+
+	* sphinx/conf.py:
+	Updated for sphinx v1.3.
+	[1c1cd1eac7ce] <5.4-maint>
+
+	* qpy/QtCore/qsysinfo.sip:
+	Added Yosemite and iOS v8.0 to QSysInfo.
+	[01d4d1af5961] <5.4-maint>
+
+	* pyuic/uic/uiparser.py:
+	pyuic now handles empty zorder elements.
+	[a0dcd07b7e72] <5.4-maint>
+
+	* lib/configure.py:
+	Added nostrup to the generated .pro file.
+	[d6445df281a6] <5.4-maint>
+
+2015-03-01  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* pyuic/uic/uiparser.py:
+	pyuic will now ignore spacer items when setting the z-order.
+	[28704a096a3a] <5.4-maint>
+
 2015-02-26  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* installers/PyQt5-Qt5-gpl.nsi:
+	Installer fix for Qt v5.4.1.
+	[0b21a7fa6750] <5.4-maint>
 
 	* .hgtags:
 	Added tag 5.4.1 for changeset 0a5d7730c142
-	[e9b5f2d5bd48] [tip] <5.4-maint>
+	[e9b5f2d5bd48] <5.4-maint>
 
 	* NEWS:
 	Released as v5.4.1.
