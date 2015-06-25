@@ -4,8 +4,10 @@ pyqt5 (5.4.2+dfsg-1) UNRELEASED; urgency=medium
   * Drop all patches, applied upstream.
   * Add a temporary hack to use upstream stylesheet when building the
     documentation with Sphinx 1.2.
+  * Build-depend on sip 4.16.8+dfsg-2, as the previous upload would
+    generate wrong dependencies for Python 3 packages.
 
- -- Dmitry Shachnev <mitya57@debian.org>  Wed, 24 Jun 2015 12:38:29 +0300
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 25 Jun 2015 14:30:12 +0300
 
 pyqt5 (5.4.1+dfsg-3) experimental; urgency=medium
 
