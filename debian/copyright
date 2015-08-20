@@ -5,7 +5,7 @@ Files-Excluded: doc/html
                 examples/webkit/fancybrowser/jquery_rc.py
 
 Files: *
-Copyright: 2007-2014, Riverbank Computing Limited
+Copyright: 2007-2015, Riverbank Computing Limited
 License: GPL-3
 
 Files: dbus/*

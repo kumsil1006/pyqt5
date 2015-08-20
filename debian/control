@@ -5,23 +5,23 @@ Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.
 Uploaders: Dmitry Shachnev <mitya57@debian.org>,
            Scott Kitterman <scott@kitterman.com>
 Build-Depends: debhelper (>= 9),
+               dh-python,
                dpkg-dev (>= 1.16.1~),
                fdupes,
                libdbus-1-dev (>= 1.0.2),
-               libenginio1-dev (>= 5.4.2),
                libglib2.0-dev,
                libgstreamer-plugins-base0.10-dev,
                libgstreamer0.10-dev,
                libicu-dev,
                libpulse-dev,
-               libqt5opengl5-dev (>= 5.4.2),
-               libqt5sensors5-dev (>= 5.4.2),
-               libqt5serialport5-dev (>= 5.4.2),
-               libqt5svg5-dev (>= 5.4.2),
-               libqt5webkit5-dev (>= 5.4.2),
-               libqt5websockets5-dev (>= 5.4.2),
-               libqt5x11extras5-dev (>= 5.4.2),
-               libqt5xmlpatterns5-dev (>= 5.4.2),
+               libqt5opengl5-dev (>= 5.5.0),
+               libqt5sensors5-dev (>= 5.5.0),
+               libqt5serialport5-dev (>= 5.5.0),
+               libqt5svg5-dev (>= 5.5.0),
+               libqt5webkit5-dev (>= 5.5.0),
+               libqt5websockets5-dev (>= 5.5.0),
+               libqt5x11extras5-dev (>= 5.5.0),
+               libqt5xmlpatterns5-dev (>= 5.5.0),
                libsqlite3-dev,
                libudev-dev [linux-any],
                libxml2-dev,
@@ -39,18 +39,18 @@ Build-Depends: debhelper (>= 9),
                python3-dbus-dbg,
                python3-sip-dbg,
                python3-sip-dev (>= 4.16.8+dfsg-2~),
-               python3-sphinx,
-               qtdeclarative5-dev (>= 5.4.2),
-               qtmultimedia5-dev (>= 5.4.2),
-               qtpositioning5-dev (>= 5.4.2),
-               qttools5-dev (>= 5.4.2)
+               python3-sphinx (>= 1.3),
+               qtdeclarative5-dev (>= 5.5.0),
+               qtlocation5-dev (>= 5.5.0),
+               qtmultimedia5-dev (>= 5.5.0),
+               qtpositioning5-dev (>= 5.5.0),
+               qttools5-dev (>= 5.5.0)
 X-Python-Version: >= 2.7
 X-Python3-Version: >= 3.3
 Standards-Version: 3.9.6
 Homepage: http://www.riverbankcomputing.co.uk/software/pyqt/
 Vcs-Svn: svn://anonscm.debian.org/python-modules/packages/pyqt5/trunk/
 Vcs-Browser: http://anonscm.debian.org/viewvc/python-modules/packages/pyqt5/trunk/
-XS-Testsuite: autopkgtest
 
 Package: pyqt5-dev
 Architecture: all
@@ -155,33 +155,6 @@ Description: D-Bus Qt main loop support for Python 3 (debug extension)
  The dbus.mainloop.pyqt5 module provides support for Qt main loop for
  applications that use dbus-python. By default Qt uses main loop from
  GLib on UNIX-like systems, not its own one.
- .
- This package contains the extension built for the Python 3 debug interpreter.
-
-Package: python3-pyqt5.enginio
-Architecture: any
-Depends: python3-pyqt5 (= ${binary:Version}),
-         ${misc:Depends},
-         ${python3:Depends},
-         ${shlibs:Depends}
-Description: Python 3 bindings for Enginio library
- The Enginio module of PyQt provides Python 3 bindings for the
- Qt Enginio cloud data storage library.
- .
- This package contains the Python 3 version of this module.
-
-Package: python3-pyqt5.enginio-dbg
-Priority: extra
-Section: debug
-Architecture: any
-Depends: python3-dbg,
-         python3-pyqt5-dbg (= ${binary:Version}),
-         python3-pyqt5.enginio (= ${binary:Version}),
-         ${misc:Depends},
-         ${shlibs:Depends}
-Description: Python 3 bindings for Enginio library (debug extension)
- The Enginio module of PyQt provides Python 3 bindings for the
- Qt Enginio cloud data storage library.
  .
  This package contains the extension built for the Python 3 debug interpreter.
 
@@ -568,33 +541,6 @@ Description: D-Bus Qt main loop support for Python 2 (debug extension)
  The dbus.mainloop.pyqt5 module provides support for Qt main loop for
  applications that use dbus-python. By default Qt uses main loop from
  GLib on UNIX-like systems, not its own one.
- .
- This package contains the extension built for the Python 2 debug interpreter.
-
-Package: python-pyqt5.enginio
-Architecture: any
-Depends: python-pyqt5 (= ${binary:Version}),
-         ${misc:Depends},
-         ${python:Depends},
-         ${shlibs:Depends}
-Description: Python 2 bindings for Enginio library
- The Enginio module of PyQt provides Python 3 bindings for the
- Qt Enginio cloud data storage library.
- .
- This package contains the Python 2 version of this module.
-
-Package: python-pyqt5.enginio-dbg
-Priority: extra
-Section: debug
-Architecture: any
-Depends: python-dbg,
-         python-pyqt5-dbg (= ${binary:Version}),
-         python-pyqt5.enginio (= ${binary:Version}),
-         ${misc:Depends},
-         ${shlibs:Depends}
-Description: Python 2 bindings for Enginio library (debug extension)
- The Enginio module of PyQt provides Python 3 bindings for the
- Qt Enginio cloud data storage library.
  .
  This package contains the extension built for the Python 2 debug interpreter.
 

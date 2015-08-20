@@ -160,9 +160,6 @@ install-arch-3.%:
 	for module in opengl sql webkit websockets xmlpatterns svg multimedia quick serialport sensors x11extras positioning; do \
 		mkdir -p debian/python3-pyqt5.qt$$module-dbg/usr/lib/python3.$*/dist-packages/PyQt5; \
 	done
-	mkdir -p debian/python3-pyqt5.enginio-dbg/usr/lib/python3.$*/dist-packages/PyQt5
-	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/Enginio.so \
-		debian/python3-pyqt5.enginio-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/*OpenGL*.so \
 		debian/python3-pyqt5.qtopengl-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtSql.so \
@@ -187,6 +184,7 @@ install-arch-3.%:
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtX11Extras.so \
 		debian/python3-pyqt5.qtx11extras-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtPositioning.so \
+	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtLocation.so \
 		debian/python3-pyqt5.qtpositioning-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 
 d_qt5_dbg = debian/python-pyqt5-dbg
@@ -209,9 +207,6 @@ install-arch-2.%:
 	for module in opengl sql webkit websockets xmlpatterns svg multimedia quick serialport sensors x11extras positioning; do \
 		mkdir -p debian/python-pyqt5.qt$$module-dbg/usr/lib/python2.$*/dist-packages/PyQt5; \
 	done
-	mkdir -p debian/python-pyqt5.enginio-dbg/usr/lib/python2.$*/dist-packages/PyQt5
-	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/Enginio.so \
-		debian/python-pyqt5.enginio-dbg/usr/lib/python2.$*/dist-packages/PyQt5
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/*OpenGL*.so \
 		debian/python-pyqt5.qtopengl-dbg/usr/lib/python2.$*/dist-packages/PyQt5
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtSql.so \
@@ -236,6 +231,7 @@ install-arch-2.%:
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtX11Extras.so \
 		debian/python-pyqt5.qtx11extras-dbg/usr/lib/python2.$*/dist-packages/PyQt5
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtPositioning.so \
+	   $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtLocation.so \
 		debian/python-pyqt5.qtpositioning-dbg/usr/lib/python2.$*/dist-packages/PyQt5
 clean:
 	dh_testdir
@@ -260,8 +256,6 @@ binary-common:
 ifeq (,$(findstring -a, $(DH_OPTIONS)))
 	sphinx-build $(CURDIR)/doc/sphinx \
 	$(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/html
-	# Temporary hack to use upstream stylesheet with Sphinx 1.2
-	cd $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/html/_static && mv classic.css default.css
 	dh_sphinxdoc
 endif
 	dh_sip
@@ -269,7 +263,7 @@ endif
 ifeq (,$(findstring -i, $(DH_OPTIONS)))
 	DH_OPTIONS= dh_strip -ppyqt5-dev-tools
 	set -e; \
-	for p in python3-pyqt5 python3-pyqt5.enginio \
+	for p in python3-pyqt5 \
 	  python3-pyqt5.qtopengl python3-pyqt5.qtsql \
 	  python3-pyqt5.qtwebkit python3-pyqt5.qtwebsockets \
 	  python3-pyqt5.qtmultimedia \
@@ -277,7 +271,7 @@ ifeq (,$(findstring -i, $(DH_OPTIONS)))
 	  python3-pyqt5.qtquick python3-pyqt5.qtserialport \
 	  python3-pyqt5.qtsensors python3-pyqt5.qtx11extras \
 	  python3-pyqt5.qtpositioning python3-dbus.mainloop.pyqt5 \
-	  python-pyqt5 python-pyqt5.enginio \
+	  python-pyqt5 \
 	  python-pyqt5.qtopengl python-pyqt5.qtsql \
 	  python-pyqt5.qtwebkit python-pyqt5.qtwebsockets \
 	  python-pyqt5.qtmultimedia \
