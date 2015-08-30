@@ -5,6 +5,7 @@ pyqt5 (5.5.0+dfsg-1) UNRELEASED; urgency=medium
   * Add explicit build-dependency on dh-python.
   * Drop Enginio packages. QtEnginio is no longer developed and
     pending deprecation.
+  * Build with Sphinx 1.3.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Thu, 20 Aug 2015 12:59:06 +0300
 

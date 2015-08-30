@@ -254,8 +254,6 @@ binary-common:
 ifeq (,$(findstring -a, $(DH_OPTIONS)))
 	sphinx-build $(CURDIR)/doc/sphinx \
 	$(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/html
-	# Temporary hack to use upstream stylesheet with Sphinx 1.2
-	cd $(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/html/_static && mv classic.css default.css
 	dh_sphinxdoc
 endif
 	dh_sip
