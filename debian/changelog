@@ -9,6 +9,7 @@ pyqt5 (5.5+dfsg-1) UNRELEASED; urgency=medium
   * Specify repacksuffix in debian/watch.
   * Drop XS-Testsuite header, no longer needed with new dpkg versions.
   * Bump year in debian/copyright.
+  * Add QtLocation library to QtPositioning packages.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Thu, 20 Aug 2015 12:59:06 +0300
 

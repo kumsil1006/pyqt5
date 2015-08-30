@@ -184,6 +184,7 @@ install-arch-3.%:
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtX11Extras.so \
 		debian/python3-pyqt5.qtx11extras-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtPositioning.so \
+	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtLocation.so \
 		debian/python3-pyqt5.qtpositioning-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 
 d_qt5_dbg = debian/python-pyqt5-dbg
@@ -230,6 +231,7 @@ install-arch-2.%:
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtX11Extras.so \
 		debian/python-pyqt5.qtx11extras-dbg/usr/lib/python2.$*/dist-packages/PyQt5
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtPositioning.so \
+	   $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtLocation.so \
 		debian/python-pyqt5.qtpositioning-dbg/usr/lib/python2.$*/dist-packages/PyQt5
 clean:
 	dh_testdir
