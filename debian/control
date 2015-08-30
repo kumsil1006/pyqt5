@@ -50,7 +50,6 @@ Standards-Version: 3.9.6
 Homepage: http://www.riverbankcomputing.co.uk/software/pyqt/
 Vcs-Svn: svn://anonscm.debian.org/python-modules/packages/pyqt5/trunk/
 Vcs-Browser: http://anonscm.debian.org/viewvc/python-modules/packages/pyqt5/trunk/
-XS-Testsuite: autopkgtest
 
 Package: pyqt5-dev
 Architecture: all
