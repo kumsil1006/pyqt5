@@ -1,6 +1,6 @@
 # PyQt5 NSIS installer script.
 # 
-# Copyright (c) 2014 Riverbank Computing Limited <info@riverbankcomputing.com>
+# Copyright (c) 2015 Riverbank Computing Limited <info@riverbankcomputing.com>
 # 
 # This file is part of PyQt5.
 # 
@@ -19,7 +19,7 @@
 
 
 # These will change with different releases.
-!define PYQT_VERSION        "5.4"
+!define PYQT_VERSION        "5.4.1"
 !define PYQT_INSTALLER      ""
 #!define PYQT_INSTALLER      "-2"
 !define PYQT_LICENSE        "GPL"
@@ -27,7 +27,7 @@
 !define PYQT_PYTHON_MAJOR   "3"
 !define PYQT_PYTHON_MINOR   "4"
 !define PYQT_ARCH           "x64"
-!define PYQT_QT_VERS        "5.4.0"
+!define PYQT_QT_VERS        "5.4.1"
 !define PYQT_QT_DOC_VERS    "5"
 
 # These are all derived from the above.
