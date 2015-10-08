@@ -296,7 +296,8 @@ static int pyqtSignal_init(PyObject *self, PyObject *args, PyObject *kwd_args)
                 if (!name)
                 {
                     PyErr_Format(PyExc_TypeError,
-                            "signal 'name' must be a str, not %S", value);
+                            "signal 'name' must be a str, not %s",
+                            Py_TYPE(value)->tp_name);
 
                     return -1;
                 }
@@ -314,7 +315,8 @@ static int pyqtSignal_init(PyObject *self, PyObject *args, PyObject *kwd_args)
                 if (PyErr_Occurred())
                 {
                     PyErr_Format(PyExc_TypeError,
-                            "signal 'revision' must be an int, not %S", value);
+                            "signal 'revision' must be an int, not %s",
+                            Py_TYPE(value)->tp_name);
 
                     Py_XDECREF(name_obj);
                     return -1;
@@ -369,7 +371,8 @@ static int pyqtSignal_init(PyObject *self, PyObject *args, PyObject *kwd_args)
                 if (!ok)
                 {
                     PyErr_Format(PyExc_TypeError,
-                            "signal 'attribute_names' must be a sequence of str, not %S", value);
+                            "signal 'attribute_names' must be a sequence of str, not %s",
+                            Py_TYPE(value)->tp_name);
 
                     if (parameter_names)
                         delete parameter_names;

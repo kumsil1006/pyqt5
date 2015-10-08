@@ -24,6 +24,8 @@
 #include "qpyopengl_api.h"
 
 
+#if QT_VERSION >= 0x050100
+
 // Convert a GLint array to a Python object.
 PyObject *qpyopengl_from_GLint(int *eflag, const GLint *array, SIP_SSIZE_T len)
 {
@@ -186,3 +188,5 @@ PyObject *qpyopengl_from_GLdouble(int *eflag, const GLdouble *array,
 
     return tuple;
 }
+
+#endif

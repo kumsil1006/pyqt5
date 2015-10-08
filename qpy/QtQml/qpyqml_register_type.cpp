@@ -139,6 +139,32 @@ static int register_type(QQmlPrivate::RegisterType *rt)
         break
 
 
+// This is needed for GCC v4.6 and earlier.
+#define QPYQML_TYPE_IMPL(n) \
+    template void QQmlPrivate::createInto<QPyQmlObject##n>(void *)
+
+QPYQML_TYPE_IMPL(0);
+QPYQML_TYPE_IMPL(1);
+QPYQML_TYPE_IMPL(2);
+QPYQML_TYPE_IMPL(3);
+QPYQML_TYPE_IMPL(4);
+QPYQML_TYPE_IMPL(5);
+QPYQML_TYPE_IMPL(6);
+QPYQML_TYPE_IMPL(7);
+QPYQML_TYPE_IMPL(8);
+QPYQML_TYPE_IMPL(9);
+QPYQML_TYPE_IMPL(10);
+QPYQML_TYPE_IMPL(11);
+QPYQML_TYPE_IMPL(12);
+QPYQML_TYPE_IMPL(13);
+QPYQML_TYPE_IMPL(14);
+QPYQML_TYPE_IMPL(15);
+QPYQML_TYPE_IMPL(16);
+QPYQML_TYPE_IMPL(17);
+QPYQML_TYPE_IMPL(18);
+QPYQML_TYPE_IMPL(19);
+
+
 // Return a pointer to the initialised registration structure for a type.
 static QQmlPrivate::RegisterType *init_type(PyTypeObject *py_type, bool ctor,
         int revision, PyTypeObject *attached)
@@ -298,7 +324,8 @@ QObject *qpyqml_find_proxy_for(QObject *proxied)
             return proxy;
     }
 
-    PyErr_Format(PyExc_TypeError, "%S was not created from QML", proxied);
+    PyErr_Format(PyExc_TypeError,
+            "QObject instance at %p was not created from QML", proxied);
 
     return 0;
 }

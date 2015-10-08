@@ -73,8 +73,22 @@ PyObject *qpycore_pyqtconfigure(PyObject *self, PyObject *args, PyObject *kwds)
 
         if (as == AsUnknown)
         {
+#if PY_MAJOR_VERSION >= 3
             PyErr_Format(PyExc_AttributeError,
-                    "'%S' is not a Qt property or a signal", name_obj);
+                    "'%S' is not the name of a Qt property or signal",
+                    name_obj);
+#else   
+            PyObject *name_s = PyObject_Str(name_obj);
+    
+            if (name_s != NULL)
+            {   
+                PyErr_Format(PyExc_AttributeError,
+                        "'%s' is not the name of a Qt property or signal", 
+                        PyString_AsString(name_s));
+
+                Py_DECREF(name_s);
+            }   
+#endif
 
             return 0;
         }

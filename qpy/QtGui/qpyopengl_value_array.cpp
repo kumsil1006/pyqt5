@@ -20,6 +20,10 @@
 
 #include <Python.h>
 
+#include <QtGlobal>
+
+#if QT_VERSION >= 0x050100
+
 #include "sipAPIQtGui.h"
 
 #include "qpyopengl_api.h"
@@ -415,3 +419,5 @@ static void convert_double(PyObject *itm, void *array, SIP_SSIZE_T i)
 {
     reinterpret_cast<GLdouble *>(array)[i] = PyFloat_AsDouble(itm);
 }
+
+#endif
