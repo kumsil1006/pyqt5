@@ -28,7 +28,7 @@ import sys
 
 
 # Initialise the constants.
-PYQT_VERSION_STR = "5.4.1"
+PYQT_VERSION_STR = "5.4.2"
 
 SIP_MIN_VERSION = '4.16.6'
 
@@ -491,6 +491,7 @@ class TargetConfiguration:
         self.license_dir = source_path('sip')
         self.no_designer_plugin = False
         self.no_docstrings = False
+        self.no_pydbus = False
         self.no_qml_plugin = False
         self.no_tools = False
         self.prot_is_public = (self.py_platform.startswith('linux') or self.py_platform == 'darwin')
@@ -891,6 +892,9 @@ int main(int argc, char **argv)
         if opts.nodocstrings:
             self.no_docstrings = True
 
+        if opts.nopydbus:
+            self.no_pydbus = True
+
         if opts.noqmlplugin:
             self.no_qml_plugin = True
 
@@ -1118,6 +1122,10 @@ def create_optparser(target_config):
             help="the directory containing the sip.h header file is DIR "
                     "[default: %s]" % target_config.sip_inc_dir)
 
+    g.add_option("--no-python-dbus", dest='nopydbus',
+            default=False, action='store_true',
+            help="disable the Qt support for the standard Python DBus "
+                    "bindings [default: enabled]")
     g.add_option("--dbus", "-s", dest='pydbusincdir', type='string',
             default=None, action='callback', callback=store_abspath_dir,
             metavar="DIR",
@@ -1469,7 +1477,7 @@ def generate_makefiles(target_config, verbose, no_timestamp, parts, tracing):
     out_f = open_for_writing(toplevel_pro)
 
     out_f.write('''TEMPLATE = subdirs
-CONFIG += ordered
+CONFIG += ordered nostrip
 SUBDIRS = %s
 
 init_py.files = %s
@@ -1501,10 +1509,9 @@ INSTALLS += qscintilla_api
 
     out_f.close()
 
-    # Make the pyuic5 wrapper executable on platforms that support it.  This
-    # means that qmake will try and strip it after installing it resulting in
-    # an (ignored) error.  However if we did it after running qmake then (on
-    # Linux) the execute bits would be stripped on installation.
+    # Make the pyuic5 wrapper executable on platforms that support it.  If we
+    # did it after running qmake then (on Linux) the execute bits would be
+    # stripped on installation.
     if not target_config.no_tools and target_config.py_platform != 'win32':
         inform("Making the %s wrapper executable..." % pyuic_wrapper)
 
@@ -2008,7 +2015,7 @@ def check_dbus(target_config, verbose):
     verbose is set if the output is to be displayed.
     """
 
-    if not os.path.isdir(source_path('dbus')):
+    if target_config.no_pydbus or not os.path.isdir(source_path('dbus')):
         return
 
     inform("Checking to see if the dbus support module should be built...")

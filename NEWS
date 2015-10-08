@@ -1,3 +1,8 @@
+v5.4.2 11th June 2015
+  - Added support for Qt v5.4.2.
+  - Added QWIDGETSIZE_MAX to QtWidgets.
+  - Added the --no-python-dbus command line option to configure.py.
+
 v5.4.1 26th February 2015
   - Added support for Qt v5.4.1.
   - Added the QMacCocoaViewContainer class.
