@@ -6,3 +6,6 @@
 pyqt5_5.5+dfsg.orig.tar.gz
 d05e92f6e227355835d42974f894cb43e18c859d
 3055555
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"
