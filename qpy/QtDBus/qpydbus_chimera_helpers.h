@@ -27,7 +27,7 @@
 #include <QVariant>
 
 
-// Keep this in sync. with that defined in public API.
+// Keep this in sync. with that defined in the public API.
 typedef bool (*FromQVariantConvertorFn)(const QVariant &, PyObject **);
 
 

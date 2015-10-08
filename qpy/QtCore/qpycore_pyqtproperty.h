@@ -61,6 +61,9 @@ typedef struct {
     // The DESIGNABLE, SCRIPTABLE, STORED, USER, CONSTANT and FINAL flags.
     unsigned pyqtprop_flags;
 
+    // The REVISION.
+    int pyqtprop_revision;
+
     // The property's sequence number that determines the position of the
     // property in the QMetaObject.
     uint pyqtprop_sequence;

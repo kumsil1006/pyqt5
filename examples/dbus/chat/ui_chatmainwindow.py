@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'chatmainwindow.ui'
 #
-# Created: Fri May  3 08:40:29 2013
-#      by: PyQt5 UI code generator snapshot-5.0-e46cc7cf20da
+# Created: Fri Jul 26 06:48:06 2013
+#      by: PyQt5 UI code generator 5.0.1-snapshot-2a99e59669ee
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -16,11 +16,11 @@ class Ui_ChatMainWindow(object):
         self.centralwidget = QtWidgets.QWidget(ChatMainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.hboxlayout = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.hboxlayout.setMargin(9)
+        self.hboxlayout.setContentsMargins(9, 9, 9, 9)
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
         self.vboxlayout = QtWidgets.QVBoxLayout()
-        self.vboxlayout.setMargin(0)
+        self.vboxlayout.setContentsMargins(0, 0, 0, 0)
         self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
         self.chatHistory = QtWidgets.QTextBrowser(self.centralwidget)
@@ -29,7 +29,7 @@ class Ui_ChatMainWindow(object):
         self.chatHistory.setObjectName("chatHistory")
         self.vboxlayout.addWidget(self.chatHistory)
         self.hboxlayout1 = QtWidgets.QHBoxLayout()
-        self.hboxlayout1.setMargin(0)
+        self.hboxlayout1.setContentsMargins(0, 0, 0, 0)
         self.hboxlayout1.setSpacing(6)
         self.hboxlayout1.setObjectName("hboxlayout1")
         self.label = QtWidgets.QLabel(self.centralwidget)

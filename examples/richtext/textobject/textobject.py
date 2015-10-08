@@ -42,14 +42,14 @@
 #############################################################################
 
 
-from PyQt5.QtCore import QFile, QIODevice, QSizeF
-from PyQt5.QtGui import QPyTextObject, QTextCharFormat, QTextFormat
+from PyQt5.QtCore import QFile, QIODevice, QObject, QSizeF
+from PyQt5.QtGui import QTextCharFormat, QTextFormat, QTextObjectInterface
 from PyQt5.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit,
         QMessageBox, QPushButton, QTextEdit, QVBoxLayout, QWidget)
 from PyQt5.QtSvg import QSvgRenderer
 
 
-class SvgTextObject(QPyTextObject):
+class SvgTextObject(QObject, QTextObjectInterface):
     def intrinsicSize(self, doc, posInDocument, format):
         renderer = QSvgRenderer(format.property(Window.SvgData))
         size = renderer.defaultSize()

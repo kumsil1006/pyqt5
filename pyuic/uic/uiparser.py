@@ -58,16 +58,34 @@ QtWidgets = None
 def gridPosition(elem):
     """gridPosition(elem) -> tuple
 
-    Return the 4-tuple of (row, column, rowspan, colspan)
+    Return the 4 or 5-tuple of (row, column, rowspan, colspan, alignment)
     for a widget element, or an empty tuple.
     """
     try:
-        return (int(elem.attrib["row"]),
-                int(elem.attrib["column"]),
-                int(elem.attrib.get("rowspan", 1)),
-                int(elem.attrib.get("colspan", 1)))
+        row = int(elem.attrib['row'])
+        column = int(elem.attrib['column'])
     except KeyError:
         return ()
+
+    rowspan = int(elem.attrib.get('rowspan', 1))
+    colspan = int(elem.attrib.get('colspan', 1))
+    alignment = elem.attrib.get('alignment')
+
+    if alignment is None:
+        return (row, column, rowspan, colspan)
+
+    # This should be Qt::Align...|Qt::Align...
+    align_flags = None
+    for qt_align in alignment.split('|'):
+        _, qt_align = qt_align.split('::')
+        align = getattr(QtCore.Qt, qt_align)
+
+        if align_flags is None:
+            align_flags = align
+        else:
+            align_flags |= align
+
+    return (row, column, rowspan, colspan, align_flags)
 
 
 class WidgetStack(list):

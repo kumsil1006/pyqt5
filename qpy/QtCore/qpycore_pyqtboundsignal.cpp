@@ -328,8 +328,16 @@ static PyObject *pyqtBoundSignal_connect(PyObject *self, PyObject *args,
     Chimera::Signature *signal_signature = bs->unbound_signal->signature;
     QByteArray slot_signature;
 
-    if (qpycore_get_receiver_slot_signature(py_slot, q_tx, signal_signature, false, &q_rx, slot_signature) != sipErrorNone)
+    sipErrorState estate = qpycore_get_receiver_slot_signature(py_slot, q_tx,
+            signal_signature, false, &q_rx, slot_signature);
+
+    if (estate != sipErrorNone)
+    {
+        if (estate == sipErrorContinue)
+            sipBadCallableArg(0, py_slot);
+
         return 0;
+    }
 
     // Connect the signal to the slot and handle any errors.
 

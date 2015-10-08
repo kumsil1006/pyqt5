@@ -57,20 +57,22 @@ class BorderLayout(QLayout):
     West, North, South, East, Center = range(5)
     MinimumSize, SizeHint = range(2)
 
-    def __init__(self, parent=None, margin=0, spacing=-1):
+    def __init__(self, parent=None, margin=None, spacing=-1):
         super(BorderLayout, self).__init__(parent)
 
-        self.setMargin(margin)
+        if margin is not None:
+            self.setContentsMargins(margin, margin, margin, margin)
+
         self.setSpacing(spacing)
         self.list = []
 
     def __del__(self):
         l = self.takeAt(0)
-        while l:
+        while l is not None:
             l = self.takeAt(0)
 
     def addItem(self, item):
-        self.add(item, BorderLayout.West)
+        self.add(item, self.West)
 
     def addWidget(self, widget, position):
         self.add(QWidgetItem(widget), position)
@@ -91,7 +93,7 @@ class BorderLayout(QLayout):
         return None
 
     def minimumSize(self):
-        return self.calculateSize(BorderLayout.MinimumSize)
+        return self.calculateSize(self.MinimumSize)
 
     def setGeometry(self, rect):
         center = None
@@ -107,13 +109,13 @@ class BorderLayout(QLayout):
             item = wrapper.item
             position = wrapper.position
 
-            if position == BorderLayout.North:
+            if position == self.North:
                 item.setGeometry(QRect(rect.x(), northHeight,
                         rect.width(), item.sizeHint().height()))    
 
                 northHeight += item.geometry().height() + self.spacing()
 
-            elif position == BorderLayout.South:
+            elif position == self.South:
                 item.setGeometry(QRect(item.geometry().x(),
                         item.geometry().y(), rect.width(),
                         item.sizeHint().height()))
@@ -124,7 +126,7 @@ class BorderLayout(QLayout):
                         rect.y() + rect.height() - southHeight + self.spacing(),
                         item.geometry().width(), item.geometry().height()))
 
-            elif position == BorderLayout.Center:
+            elif position == self.Center:
                 center = wrapper
 
         centerHeight = rect.height() - northHeight - southHeight
@@ -133,13 +135,13 @@ class BorderLayout(QLayout):
             item = wrapper.item
             position = wrapper.position
 
-            if position == BorderLayout.West:
+            if position == self.West:
                 item.setGeometry(QRect(rect.x() + westWidth,
                         northHeight, item.sizeHint().width(), centerHeight))    
 
                 westWidth += item.geometry().width() + self.spacing()
 
-            elif position == BorderLayout.East:
+            elif position == self.East:
                 item.setGeometry(QRect(item.geometry().x(),
                         item.geometry().y(), item.sizeHint().width(),
                         centerHeight))
@@ -155,7 +157,7 @@ class BorderLayout(QLayout):
                     rect.width() - eastWidth - westWidth, centerHeight))
 
     def sizeHint(self):
-        return self.calculateSize(BorderLayout.SizeHint)
+        return self.calculateSize(self.SizeHint)
 
     def takeAt(self, index):
         if index >= 0 and index < len(self.list):
@@ -174,15 +176,15 @@ class BorderLayout(QLayout):
             position = wrapper.position
             itemSize = QSize()
 
-            if sizeType == BorderLayout.MinimumSize:
+            if sizeType == self.MinimumSize:
                 itemSize = wrapper.item.minimumSize()
-            else: # sizeType == BorderLayout.SizeHint
+            else: # sizeType == self.SizeHint
                 itemSize = wrapper.item.sizeHint()
 
-            if position in (BorderLayout.North, BorderLayout.South, BorderLayout.Center):
+            if position in (self.North, self.South, self.Center):
                 totalSize.setHeight(totalSize.height() + itemSize.height())
 
-            if position in (BorderLayout.West, BorderLayout.East, BorderLayout.Center):
+            if position in (self.West, self.East, self.Center):
                 totalSize.setWidth(totalSize.width() + itemSize.width())
 
         return totalSize

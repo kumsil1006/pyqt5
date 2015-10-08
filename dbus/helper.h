@@ -1,7 +1,7 @@
 // This is the declaration of the helper class for the Qt specific support for
 // the standard Python DBus bindings.
 //
-// Copyright (c) 2012 Riverbank Computing Limited
+// Copyright (c) 2013 Riverbank Computing Limited
 //
 // Licensed under the Academic Free License version 2.1
 //
@@ -33,7 +33,7 @@
 class QTimerEvent;
 
 
-class pyqtDBusHelper : public QObject
+class pyqt5DBusHelper : public QObject
 {
     Q_OBJECT
 
@@ -51,7 +51,7 @@ public:
     typedef QHash<int, DBusTimeout *> Timeouts;
     typedef QList<DBusConnection *>Connections;
 
-    pyqtDBusHelper();
+    pyqt5DBusHelper();
 
     Watchers watchers;
     Timeouts timeouts;

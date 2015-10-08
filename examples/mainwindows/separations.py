@@ -327,7 +327,7 @@ class Viewer(QMainWindow):
         frame = QFrame(self)
         grid = QGridLayout(frame)
         grid.setSpacing(8)
-        grid.setMargin(4)
+        grid.setContentsMargins(4, 4, 4, 4)
 
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
 

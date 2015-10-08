@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Support for Qt Properties &mdash; PyQt 5.0 Reference Guide</title>
+    <title>Support for Qt Properties &mdash; PyQt 5.0.1 Reference Guide</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '5.0',
+        VERSION:     '5.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,8 +26,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/logo_tn.ico"/>
-    <link rel="top" title="PyQt 5.0 Reference Guide" href="index.html" />
-    <link rel="next" title="Support for QVariant" href="pyqt_qvariant.html" />
+    <link rel="top" title="PyQt 5.0.1 Reference Guide" href="index.html" />
+    <link rel="next" title="Support for Qt Interfaces" href="qt_interfaces.html" />
     <link rel="prev" title="Support for Signals and Slots" href="signals_slots.html" /> 
   </head>
   <body>
@@ -41,12 +41,12 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="pyqt_qvariant.html" title="Support for QVariant"
+          <a href="qt_interfaces.html" title="Support for Qt Interfaces"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="signals_slots.html" title="Support for Signals and Slots"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -84,7 +84,7 @@ function.  In fact, Qt properties defined in this way also behave as Python
 properties.</p>
 <dl class="function">
 <dt id="PyQt5.QtCore.pyqtProperty">
-<tt class="descclassname">PyQt5.QtCore.</tt><tt class="descname">pyqtProperty</tt><big>(</big><em>type</em><span class="optional">[</span>, <em>fget=None</em><span class="optional">[</span>, <em>fset=None</em><span class="optional">[</span>, <em>freset=None</em><span class="optional">[</span>, <em>fdel=None</em><span class="optional">[</span>, <em>doc=None</em><span class="optional">[</span>, <em>designable=True</em><span class="optional">[</span>, <em>scriptable=True</em><span class="optional">[</span>, <em>stored=True</em><span class="optional">[</span>, <em>user=False</em><span class="optional">[</span>, <em>constant=False</em><span class="optional">[</span>, <em>final=False</em><span class="optional">[</span>, <em>notify=None</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#PyQt5.QtCore.pyqtProperty" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">PyQt5.QtCore.</tt><tt class="descname">pyqtProperty</tt><big>(</big><em>type</em><span class="optional">[</span>, <em>fget=None</em><span class="optional">[</span>, <em>fset=None</em><span class="optional">[</span>, <em>freset=None</em><span class="optional">[</span>, <em>fdel=None</em><span class="optional">[</span>, <em>doc=None</em><span class="optional">[</span>, <em>designable=True</em><span class="optional">[</span>, <em>scriptable=True</em><span class="optional">[</span>, <em>stored=True</em><span class="optional">[</span>, <em>user=False</em><span class="optional">[</span>, <em>constant=False</em><span class="optional">[</span>, <em>final=False</em><span class="optional">[</span>, <em>notify=None</em><span class="optional">[</span>, <em>revision=0</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#PyQt5.QtCore.pyqtProperty" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a property that behaves as both a Python property and a Qt property.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -107,6 +107,7 @@ Qt.</li>
 <li><strong>constant</strong> &#8211; optionally sets the Qt <tt class="docutils literal"><span class="pre">CONSTANT</span></tt> flag.  It is ignored by Python</li>
 <li><strong>final</strong> &#8211; optionally sets the Qt <tt class="docutils literal"><span class="pre">FINAL</span></tt> flag.  It is ignored by Python</li>
 <li><strong>notify</strong> &#8211; the optional unbound notify signal.  It is ignored by Python</li>
+<li><strong>revision</strong> &#8211; the revision exported to QML.  It is ignored by Python</li>
 </ul>
 </td>
 </tr>
@@ -164,8 +165,8 @@ example shows how to define an <tt class="docutils literal"><span class="pre">in
   <p class="topless"><a href="signals_slots.html"
                         title="previous chapter">Support for Signals and Slots</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="pyqt_qvariant.html"
-                        title="next chapter">Support for <tt class="docutils literal docutils literal docutils literal"><span class="pre">QVariant</span></tt></a></p>
+  <p class="topless"><a href="qt_interfaces.html"
+                        title="next chapter">Support for Qt Interfaces</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -193,12 +194,12 @@ example shows how to define an <tt class="docutils literal"><span class="pre">in
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="pyqt_qvariant.html" title="Support for QVariant"
+          <a href="qt_interfaces.html" title="Support for Qt Interfaces"
              >next</a> |</li>
         <li class="right" >
           <a href="signals_slots.html" title="Support for Signals and Slots"
              >previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

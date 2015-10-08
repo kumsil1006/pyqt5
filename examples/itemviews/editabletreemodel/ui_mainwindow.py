@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Sun May 12 13:01:04 2013
-#      by: PyQt5 UI code generator 5.0-snapshot-b0831183bf83
+# Created: Fri Jul 26 06:51:23 2013
+#      by: PyQt5 UI code generator 5.0.1-snapshot-2a99e59669ee
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.vboxlayout = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.vboxlayout.setMargin(0)
+        self.vboxlayout.setContentsMargins(0, 0, 0, 0)
         self.vboxlayout.setSpacing(0)
         self.vboxlayout.setObjectName("vboxlayout")
         self.view = QtWidgets.QTreeView(self.centralwidget)

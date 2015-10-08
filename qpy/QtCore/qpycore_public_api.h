@@ -30,6 +30,7 @@
 
 QT_BEGIN_NAMESPACE
 class QByteArray;
+struct QMetaObject;
 class QObject;
 class QVariant;
 QT_END_NAMESPACE
@@ -50,6 +51,10 @@ sipErrorState pyqt5_get_connection_parts(PyObject *slot, QObject *transmitter,
         const char *signal_signature, bool single_shot, QObject **receiver,
         QByteArray &slot_signature);
 
+// Get the QMetaObject instance for a Python type.  The Python type must be a
+// sub-type of QObject's Python type.
+const QMetaObject *pyqt5_get_qmetaobject(PyTypeObject *type);
+
 // Get the transmitter object and signal signature from a bound signal.
 // Returns the error state.  If this is sipErrorFail then a Python exception
 // will have been raised.
@@ -69,16 +74,27 @@ sipErrorState pyqt5_get_pyqtslot_parts(PyObject *slot, QObject **receiver,
 sipErrorState pyqt5_get_signal_signature(PyObject *signal,
         const QObject *transmitter, QByteArray &signal_signature);
 
-// Get the sender of a signal to the current slot proxy.  This is only intended
-// to be used by the QObject.sender() %MethodCode.
-QObject *pyqt5_qobject_sender();
-
 // Register a convertor function that converts a QVariant to a Python object.
 // The convertor will return true if the QVariant was handled, so that no other
 // convertor need be tried.  If the Python object returned was 0 then there was
 // an error and a Python exception raised.
 void pyqt5_register_from_qvariant_convertor(
         bool (*convertor)(const QVariant &, PyObject **));
+
+// Register a convertor function that converts a Python object to a QVariant.
+// The convertor will return true if the Python object was handled, so that no
+// other convertor need be tried.  If the flag set was false then there was an
+// error and a Python exception raised.
+void pyqt5_register_to_qvariant_convertor(
+        bool (*convertor)(PyObject *, QVariant &, bool *));
+
+// Register a convertor function that converts a Python object to the
+// pre-allocated data of a QVariant with a specific meta-type.  The convertor
+// will return true if the Python object was handled, so that no other
+// convertor need be tried.  If the flag set was false then there was an error
+// and a Python exception raised.
+void pyqt5_register_to_qvariant_data_convertor(
+        bool (*convertor)(PyObject *, void *, int, bool *));
 
 // Update an Python list from a standard C array of command line arguments and
 // an argument count.

@@ -50,7 +50,8 @@ static qpycore_pyqtProperty *clone(qpycore_pyqtProperty *orig);
 PyDoc_STRVAR(pyqtProperty_doc,
 "pyqtProperty(type, fget=None, fset=None, freset=None, fdel=None, doc=None,\n"
 "        designable=True, scriptable=True, stored=True, user=False,\n"
-"        constant=False, final=False, notify=None) -> property attribute\n"
+"        constant=False, final=False, notify=None,\n"
+"        revision=0) -> property attribute\n"
 "\n"
 "type is the type of the property.  It is either a type object or a string\n"
 "that is the name of a C++ type.\n"
@@ -63,6 +64,7 @@ PyDoc_STRVAR(pyqtProperty_doc,
 "constant sets the CONSTANT flag.\n"
 "final sets the FINAL flag.\n"
 "notify is the NOTIFY signal.\n"
+"revision is the REVISION.\n"
 "The other parameters are the same as those required by the standard Python\n"
 "property type.  Properties defined using pyqtProperty behave as both Python\n"
 "and Qt properties."
@@ -309,19 +311,19 @@ static int pyqtProperty_init(PyObject *self, PyObject *args, PyObject *kwds)
     PyObject *type, *get = 0, *set = 0, *reset = 0, *del = 0, *doc = 0,
             *notify = 0;
     int scriptable = 1, stored = 1, user = 0, constant = 0, final = 0;
-    int designable = 1;
+    int designable = 1, revision = 0;
     static const char *kwlist[] = {"type", "fget", "fset", "freset", "fdel",
             "doc", "designable", "scriptable", "stored", "user", "constant",
-            "final", "notify", 0};
+            "final", "notify", "revision", 0};
     qpycore_pyqtProperty *pp = (qpycore_pyqtProperty *)self;
 
     pp->pyqtprop_sequence = pyqtprop_sequence_nr++;
 
     if (!PyArg_ParseTupleAndKeywords(args, kwds,
-            "O|OOOOOiiiiiiO!:pyqtProperty",
+            "O|OOOOOiiiiiiO!i:pyqtProperty",
             const_cast<char **>(kwlist), &type, &get, &set, &reset, &del, &doc,
             &designable, &scriptable, &stored, &user, &constant, &final,
-            &qpycore_pyqtSignal_Type, &notify))
+            &qpycore_pyqtSignal_Type, &notify, &revision))
         return -1;
 
     if (get == Py_None)
@@ -404,6 +406,8 @@ static int pyqtProperty_init(PyObject *self, PyObject *args, PyObject *kwds)
         flags |= 0x00000800;
 
     pp->pyqtprop_flags = flags;
+
+    pp->pyqtprop_revision = revision;
 
     return 0;
 }
@@ -548,6 +552,7 @@ static qpycore_pyqtProperty *clone(qpycore_pyqtProperty *orig)
         pp->pyqtprop_parsed_type = new Chimera(*orig->pyqtprop_parsed_type);
 
         pp->pyqtprop_flags = orig->pyqtprop_flags;
+        pp->pyqtprop_revision = orig->pyqtprop_revision;
         pp->pyqtprop_sequence = orig->pyqtprop_sequence;
     }
 

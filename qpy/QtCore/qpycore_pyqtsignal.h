@@ -24,6 +24,9 @@
 
 #include <Python.h>
 
+#include <QByteArray>
+#include <QList>
+
 #include "qpycore_chimera.h"
 
 
@@ -42,6 +45,12 @@ typedef struct _qpycore_pyqtSignal {
 
     // The docstring.
     const char *docstring;
+
+    // The optional parameter names.
+    const QList<QByteArray> *parameter_names;
+
+    // The revision.
+    int revision;
 
     // The parsed signature.
     Chimera::Signature *signature;

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'stylesheeteditor.ui'
 #
-# Created: Wed May 15 13:04:07 2013
-#      by: PyQt5 UI code generator 5.0-snapshot-3507ed3a4178
+# Created: Fri Jul 26 06:50:07 2013
+#      by: PyQt5 UI code generator 5.0.1-snapshot-2a99e59669ee
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -14,7 +14,7 @@ class Ui_StyleSheetEditor(object):
         StyleSheetEditor.setObjectName("StyleSheetEditor")
         StyleSheetEditor.resize(445, 289)
         self.gridlayout = QtWidgets.QGridLayout(StyleSheetEditor)
-        self.gridlayout.setMargin(9)
+        self.gridlayout.setContentsMargins(9, 9, 9, 9)
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
         spacerItem = QtWidgets.QSpacerItem(32, 20, QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Minimum)
@@ -47,7 +47,7 @@ class Ui_StyleSheetEditor(object):
         self.gridlayout.addWidget(self.label_7, 0, 1, 1, 1)
         self.hboxlayout = QtWidgets.QHBoxLayout()
         self.hboxlayout.setSpacing(6)
-        self.hboxlayout.setMargin(0)
+        self.hboxlayout.setContentsMargins(0, 0, 0, 0)
         self.hboxlayout.setObjectName("hboxlayout")
         spacerItem3 = QtWidgets.QSpacerItem(321, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem3)

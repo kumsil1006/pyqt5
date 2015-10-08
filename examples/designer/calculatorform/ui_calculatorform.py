@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'calculatorform.ui'
 #
-# Created: Sat May  4 10:18:52 2013
-#      by: PyQt5 UI code generator snapshot-5.0-e46cc7cf20da
+# Created: Fri Jul 26 06:41:48 2013
+#      by: PyQt5 UI code generator 5.0.1-snapshot-2a99e59669ee
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -19,7 +19,7 @@ class Ui_CalculatorForm(object):
         sizePolicy.setHeightForWidth(CalculatorForm.sizePolicy().hasHeightForWidth())
         CalculatorForm.setSizePolicy(sizePolicy)
         self.gridlayout = QtWidgets.QGridLayout(CalculatorForm)
-        self.gridlayout.setMargin(9)
+        self.gridlayout.setContentsMargins(9, 9, 9, 9)
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
@@ -30,7 +30,7 @@ class Ui_CalculatorForm(object):
         self.label_3_2.setObjectName("label_3_2")
         self.gridlayout.addWidget(self.label_3_2, 0, 4, 1, 1)
         self.vboxlayout = QtWidgets.QVBoxLayout()
-        self.vboxlayout.setMargin(1)
+        self.vboxlayout.setContentsMargins(1, 1, 1, 1)
         self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
         self.label_2_2_2 = QtWidgets.QLabel(CalculatorForm)
@@ -48,7 +48,7 @@ class Ui_CalculatorForm(object):
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridlayout.addItem(spacerItem1, 1, 2, 1, 1)
         self.vboxlayout1 = QtWidgets.QVBoxLayout()
-        self.vboxlayout1.setMargin(1)
+        self.vboxlayout1.setContentsMargins(1, 1, 1, 1)
         self.vboxlayout1.setSpacing(6)
         self.vboxlayout1.setObjectName("vboxlayout1")
         self.label_2 = QtWidgets.QLabel(CalculatorForm)
@@ -66,7 +66,7 @@ class Ui_CalculatorForm(object):
         self.label_3.setObjectName("label_3")
         self.gridlayout.addWidget(self.label_3, 0, 1, 1, 1)
         self.vboxlayout2 = QtWidgets.QVBoxLayout()
-        self.vboxlayout2.setMargin(1)
+        self.vboxlayout2.setContentsMargins(1, 1, 1, 1)
         self.vboxlayout2.setSpacing(6)
         self.vboxlayout2.setObjectName("vboxlayout2")
         self.label = QtWidgets.QLabel(CalculatorForm)

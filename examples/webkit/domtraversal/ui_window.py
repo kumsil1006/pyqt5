@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'window.ui'
 #
-# Created: Tue May 14 17:42:18 2013
-#      by: PyQt5 UI code generator 5.0-snapshot-b0831183bf83
+# Created: Fri Jul 26 06:50:59 2013
+#      by: PyQt5 UI code generator 5.0.1-snapshot-2a99e59669ee
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -36,7 +36,7 @@ class Ui_Window(object):
         self.dockWidgetContents = QtWidgets.QWidget()
         self.dockWidgetContents.setObjectName("dockWidgetContents")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.dockWidgetContents)
-        self.verticalLayout.setMargin(4)
+        self.verticalLayout.setContentsMargins(4, 4, 4, 4)
         self.verticalLayout.setObjectName("verticalLayout")
         self.treeWidget = QtWidgets.QTreeWidget(self.dockWidgetContents)
         self.treeWidget.setObjectName("treeWidget")

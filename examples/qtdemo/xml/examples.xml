@@ -17,6 +17,22 @@
     <example filename="states" name="States" />
     <example filename="stickman" name="Stickman" />
   </category>
+  <category dirname="quick" name="Quick">
+    <example filename="animation" name="Animation" />
+    <example filename="canvas" name="Canvas" />
+    <example filename="models/abstractitemmodel" name="Abstract Item Model" />
+    <example filename="models/objectlistmodel" name="Object List Model" />
+    <example filename="models/stringlistmodel" name="String List Model" />
+    <example filename="scenegraph/customgeometry" name="Custom Geometry" />
+  </category>
+  <category dirname="quick/tutorials/extending" name="Quick Tutorial">
+    <example filename="chapter1-basics" name="Basics" />
+    <example filename="chapter2-methods" name="Methods" />
+    <example filename="chapter3-bindings" name="Bindings" />
+    <example filename="chapter4-customPropertyTypes" name="Custom Property Types" />
+    <example filename="chapter5-listproperties" name="List Properties" />
+    <example filename="chapter6-plugins/app" name="Plugins" executable="false" qml="true" />
+  </category>
   <category dirname="designer" name="Qt Designer">
     <example filename="calculatorform" name="Calculator Form" />
     <example filename="plugins" name="Custom Widget Plugins" />
@@ -90,6 +106,16 @@
     <example filename="menus" name="Menus" />
     <example filename="recentfiles" name="Recent Files" />
     <example filename="separations" name="Color Separations" />
+  </category>
+  <category dirname="multimedia" name="Multimedia">
+    <example filename="audiodevices" name="Audio Devices" />
+    <example filename="audiooutput" name="Audio Output" />
+  </category>
+  <category dirname="multimediawidgets" name="Multimedia Widgets">
+    <example filename="player" name="Audio and Video Player" />
+    <example filename="camera" name="Camera" />
+    <example filename="videographicsitem" name="Video Graphics Item" />
+    <example filename="videowidget" name="Video Widget" />
   </category>
   <category dirname="network" name="Networking">
     <example filename="blockingfortuneclient" name="Blocking Fortune Client" />

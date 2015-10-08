@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Support for Signals and Slots &mdash; PyQt 5.0 Reference Guide</title>
+    <title>Support for Signals and Slots &mdash; PyQt 5.0.1 Reference Guide</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '5.0',
+        VERSION:     '5.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/logo_tn.ico"/>
-    <link rel="top" title="PyQt 5.0 Reference Guide" href="index.html" />
+    <link rel="top" title="PyQt 5.0.1 Reference Guide" href="index.html" />
     <link rel="next" title="Support for Qt Properties" href="qt_properties.html" />
     <link rel="prev" title="QXmlStreamWriter" href="api/qxmlstreamwriter.html" /> 
   </head>
@@ -46,7 +46,7 @@
         <li class="right" >
           <a href="api/qxmlstreamwriter.html" title="QXmlStreamWriter"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -105,7 +105,7 @@ can be defined as class attributes using the <a class="reference internal" href=
 factory.</p>
 <dl class="function">
 <dt id="PyQt5.QtCore.pyqtSignal">
-<tt class="descclassname">PyQt5.QtCore.</tt><tt class="descname">pyqtSignal</tt><big>(</big><em>types</em><span class="optional">[</span>, <em>name</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#PyQt5.QtCore.pyqtSignal" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">PyQt5.QtCore.</tt><tt class="descname">pyqtSignal</tt><big>(</big><em>types[, name][, revision=0][, arguments=[]]</em><big>)</big><a class="headerlink" href="#PyQt5.QtCore.pyqtSignal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create one or more overloaded unbound signals as a class attribute.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -119,6 +119,10 @@ each sequence defines the signature of a different signal overload.
 The first overload will be the default.</li>
 <li><strong>name</strong> &#8211; the name of the signal.  If it is omitted then the name of the class
 attribute is used.  This may only be given as a keyword argument.</li>
+<li><strong>revision</strong> &#8211; the revision of the signal that is exported to QML.  This may only be
+given as a keyword argument.</li>
+<li><strong>arguments</strong> &#8211; the sequence of the names of the signal&#8217;s arguments that is exported to
+QML.  This may only be given as a keyword argument.</li>
 </ul>
 </td>
 </tr>
@@ -295,7 +299,7 @@ a Qt slot and to provide a C++ signature for it.  PyQt5 provides the
 <a class="reference internal" href="#PyQt5.QtCore.pyqtSlot" title="PyQt5.QtCore.pyqtSlot"><tt class="xref py py-func docutils literal"><span class="pre">pyqtSlot()</span></tt></a> function decorator to do this.</p>
 <dl class="function">
 <dt id="PyQt5.QtCore.pyqtSlot">
-<tt class="descclassname">PyQt5.QtCore.</tt><tt class="descname">pyqtSlot</tt><big>(</big><em>types[, name][, result]</em><big>)</big><a class="headerlink" href="#PyQt5.QtCore.pyqtSlot" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">PyQt5.QtCore.</tt><tt class="descname">pyqtSlot</tt><big>(</big><em>types[, name][, result][, revision=0]</em><big>)</big><a class="headerlink" href="#PyQt5.QtCore.pyqtSlot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decorate a Python method to create a Qt slot.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -307,6 +311,8 @@ a Python type object or a string that is the name of a C++ type.</li>
 <li><strong>name</strong> &#8211; the name of the slot that will be seen by C++.  If omitted the name of
 the Python method being decorated will be used.  This may only be given
 as a keyword argument.</li>
+<li><strong>revision</strong> &#8211; the revision of the slot that is exported to QML.  This may only be
+given as a keyword argument.</li>
 <li><strong>result</strong> &#8211; the type of the result and may be a Python type object or a string that
 specifies a C++ type.  This may only be given as a keyword argument.</li>
 </ul>
@@ -478,7 +484,7 @@ the optional argument:</p>
         <li class="right" >
           <a href="api/qxmlstreamwriter.html" title="QXmlStreamWriter"
              >previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

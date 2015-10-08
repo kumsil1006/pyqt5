@@ -40,7 +40,12 @@ QT_END_NAMESPACE
 PyObject *qpycore_pyqtslot(PyObject *args, PyObject *kwds);
 
 // Support for pyqtConfigure().
-int qpycore_pyqtconfigure(PyObject *self, QObject *qobj, PyObject *kwds);
+PyObject *qpycore_pyqtconfigure(PyObject *self, PyObject *args,
+        PyObject *kwds);
+
+// Support for the QObject %FinalisationCode.
+int qpycore_qobject_finalisation(PyObject *self, QObject *qobj, PyObject *kwds,
+        PyObject **updated_kwds);
 
 // Support for converting between PyObject and QString.
 PyObject *qpycore_PyObject_FromQString(const QString &qstr);
@@ -67,7 +72,7 @@ PyObject *qpycore_ReturnFactory(PyObject *type);
 PyObject *qpycore_ReturnValue(PyObject *gra);
 
 // Support for QObject.__getattr__().
-PyObject *qpycore_qobject_getattr(QObject *qobj, PyObject *py_qobj,
+PyObject *qpycore_qobject_getattr(const QObject *qobj, PyObject *py_qobj,
         const char *name);
 
 // Support for QObject.staticMetaObject %GetCode.

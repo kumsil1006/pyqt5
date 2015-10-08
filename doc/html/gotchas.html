@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Things to be Aware Of &mdash; PyQt 5.0 Reference Guide</title>
+    <title>Things to be Aware Of &mdash; PyQt 5.0.1 Reference Guide</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '5.0',
+        VERSION:     '5.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,9 +26,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/logo_tn.ico"/>
-    <link rel="top" title="PyQt 5.0 Reference Guide" href="index.html" />
+    <link rel="top" title="PyQt 5.0.1 Reference Guide" href="index.html" />
     <link rel="next" title="Using Qt Designer" href="designer.html" />
-    <link rel="prev" title="Support for QSettings" href="pyqt_qsettings.html" /> 
+    <link rel="prev" title="Support for Cooperative Multi-inheritance" href="multiinheritance.html" /> 
   </head>
   <body>
     <div class="related">
@@ -44,9 +44,9 @@
           <a href="designer.html" title="Using Qt Designer"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="pyqt_qsettings.html" title="Support for QSettings"
+          <a href="multiinheritance.html" title="Support for Cooperative Multi-inheritance"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -154,7 +154,9 @@ reference to it:</p>
 <div class="section" id="multiple-inheritance">
 <h2>Multiple Inheritance<a class="headerlink" href="#multiple-inheritance" title="Permalink to this headline">¶</a></h2>
 <p>It is not possible to define a new Python class that sub-classes from more than
-one Qt class.</p>
+one Qt class.  The exception is classes specifically intended to act as mixin
+classes such as those (like <tt class="xref py py-class docutils literal"><span class="pre">QQmlParserStatus</span></tt>) that
+implement Qt interfaces.</p>
 </div>
 <div class="section" id="access-to-protected-member-functions">
 <h2>Access to Protected Member Functions<a class="headerlink" href="#access-to-protected-member-functions" title="Permalink to this headline">¶</a></h2>
@@ -216,8 +218,8 @@ memory, memory mapped files or shared memory.</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="pyqt_qsettings.html"
-                        title="previous chapter">Support for <tt class="docutils literal"><span class="pre">QSettings</span></tt></a></p>
+  <p class="topless"><a href="multiinheritance.html"
+                        title="previous chapter">Support for Cooperative Multi-inheritance</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="designer.html"
                         title="next chapter">Using Qt Designer</a></p>
@@ -251,9 +253,9 @@ memory, memory mapped files or shared memory.</p>
           <a href="designer.html" title="Using Qt Designer"
              >next</a> |</li>
         <li class="right" >
-          <a href="pyqt_qsettings.html" title="Support for QSettings"
+          <a href="multiinheritance.html" title="Support for Cooperative Multi-inheritance"
              >previous</a> |</li>
-        <li><a href="index.html">PyQt 5.0 Reference Guide</a> &raquo;</li> 
+        <li><a href="index.html">PyQt 5.0.1 Reference Guide</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
