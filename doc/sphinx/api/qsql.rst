@@ -5,4 +5,4 @@ QSql
 
 .. class:: QSql
 
-    `C++ documentation <http://qt-project.org/doc/qt-5.0/qtsql/qsql.html>`_
+    `C++ documentation <http://qt-project.org/doc/qt-5.1/qtsql/qsql.html>`_

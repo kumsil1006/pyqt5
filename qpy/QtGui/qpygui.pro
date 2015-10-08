@@ -23,8 +23,15 @@ TARGET      = qpygui
 TEMPLATE    = lib
 
 SOURCES   = \
+            qpyopengl_add_constants.c \
+            qpyopengl_array_convertors.cpp \
             qpyopengl_attribute_array.cpp \
-            qpyopengl_uniform_value_array.cpp
+            qpyopengl_data_cache.cpp \
+            qpyopengl_init.cpp \
+            qpyopengl_uniform_value_array.cpp \
+            qpyopengl_value_array.cpp \
+            qpyopengl_version_functions.cpp
 
 HEADERS   = \
-            qpyopengl_api.h
+            qpyopengl_api.h \
+            qpyopengl_data_cache.h

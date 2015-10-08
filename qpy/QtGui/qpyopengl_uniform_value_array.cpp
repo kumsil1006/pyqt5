@@ -19,7 +19,6 @@
 
 
 #include <Python.h>
-#include <sip.h>
 
 #include <QOpenGLShaderProgram>
 #include <QMatrix2x2>
@@ -36,6 +35,8 @@
 #include <QVector4D>
 
 #include "sipAPIQtGui.h"
+
+#include "qpyopengl_api.h"
 
 
 // Forward declaratations.

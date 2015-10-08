@@ -45,9 +45,10 @@
 import sys
 
 from PyQt5.QtCore import pyqtSignal, QPoint, QSize, Qt, QTimer
-from PyQt5.QtGui import QColor, QMatrix4x4, QPixmap
+from PyQt5.QtGui import (QColor, QMatrix4x4, QOpenGLShader,
+        QOpenGLShaderProgram, QPixmap)
 from PyQt5.QtWidgets import QApplication, QGridLayout, QMessageBox, QWidget
-from PyQt5.QtOpenGL import QGLShader, QGLShaderProgram, QGLWidget
+from PyQt5.QtOpenGL import QGLWidget
 
 try:
     from OpenGL.GL import *
@@ -131,13 +132,13 @@ void main(void)
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_CULL_FACE)
 
-        vshader = QGLShader(QGLShader.Vertex, self)
+        vshader = QOpenGLShader(QOpenGLShader.Vertex, self)
         vshader.compileSourceCode(self.vsrc)
 
-        fshader = QGLShader(QGLShader.Fragment, self)
+        fshader = QOpenGLShader(QOpenGLShader.Fragment, self)
         fshader.compileSourceCode(self.fsrc)
 
-        self.program = QGLShaderProgram(self)
+        self.program = QOpenGLShaderProgram(self)
         self.program.addShader(vshader)
         self.program.addShader(fshader)
         self.program.bindAttributeLocation('vertex',
@@ -175,7 +176,7 @@ void main(void)
 
     def resizeGL(self, width, height):
         side = min(width, height)
-        glViewport((width - side) / 2, (height - side) / 2, side, side)
+        glViewport((width - side) // 2, (height - side) // 2, side, side)
 
     def mousePressEvent(self, event):
         self.lastPos = event.pos()

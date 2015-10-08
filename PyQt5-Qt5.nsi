@@ -19,7 +19,7 @@
 
 
 # These will change with different releases.
-!define PYQT_VERSION        "5.0.1"
+!define PYQT_VERSION        "5.1"
 !define PYQT_INSTALLER      ""
 #!define PYQT_INSTALLER      "-2"
 !define PYQT_LICENSE        "GPL"
@@ -27,8 +27,8 @@
 !define PYQT_PYTHON_MAJOR   "3"
 !define PYQT_PYTHON_MINOR   "3"
 !define PYQT_ARCH           "x64"
-!define PYQT_QT_VERS        "5.1.0"
-!define PYQT_QT_DOC_VERS    "5.0"
+!define PYQT_QT_VERS        "5.1.1"
+!define PYQT_QT_DOC_VERS    "5.1"
 
 # These are all derived from the above.
 !define PYQT_PYTHON_DIR     "C:\Python${PYQT_PYTHON_MAJOR}${PYQT_PYTHON_MINOR}"
@@ -202,6 +202,8 @@ Section "Extension modules" SecModules
     File .\build\QtPrintSupport\QtPrintSupport.pyd
     File .\build\QtQml\QtQml.pyd
     File .\build\QtQuick\QtQuick.pyd
+    File .\build\QtSensors\QtSensors.pyd
+    File .\build\QtSerialPort\QtSerialPort.pyd
     File .\build\QtSql\QtSql.pyd
     File .\build\QtSvg\QtSvg.pyd
     File .\build\QtTest\QtTest.pyd
@@ -210,6 +212,7 @@ Section "Extension modules" SecModules
     File .\build\QtWidgets\QtWidgets.pyd
     File .\build\QtXmlPatterns\QtXmlPatterns.pyd
     File .\build\QAxContainer\QAxContainer.pyd
+    File .\build\_QOpenGLFunctions_ES2\_QOpenGLFunctions_ES2.pyd
 SectionEnd
 
 Section "QScintilla" SecQScintilla
@@ -253,6 +256,8 @@ Section "Qt runtime" SecQt
     File "${QT_SRC_DIR}\bin\Qt5Qml.dll"
     File "${QT_SRC_DIR}\bin\Qt5Quick.dll"
     File "${QT_SRC_DIR}\bin\Qt5QuickParticles.dll"
+    File "${QT_SRC_DIR}\bin\Qt5Sensors.dll"
+    File "${QT_SRC_DIR}\bin\Qt5SerialPort.dll"
     File "${QT_SRC_DIR}\bin\Qt5Sql.dll"
     File "${QT_SRC_DIR}\bin\Qt5Svg.dll"
     File "${QT_SRC_DIR}\bin\Qt5Test.dll"

@@ -30,8 +30,6 @@
 #include <QCoreApplication>
 #include <QDesignerCustomWidgetInterface>
 #include <QDir>
-#include <QLibrary>
-#include <QLibraryInfo>
 #include <QStringList>
 #include <QVector>
 
@@ -124,19 +122,9 @@ PyCustomWidgets::PyCustomWidgets(QObject *parent) : QObject(parent)
         if (!plugins.size())
             continue;
 
-        // Make sure the interpreter is loaded and initialised.  Leave this as
-        // late as possible.
-        if (!Py_IsInitialized())
-        {
-            QLibrary library(PYTHON_LIB);
-
-            library.setLoadHints(QLibrary::ExportExternalSymbolsHint);
-
-            if (!library.load())
-                return;
-
-            Py_Initialize();
-        }
+        // Make sure the interpreter is initialised.  Leave this as late as
+        // possible.
+        Py_Initialize();
 
         // Make sure we have sys.path.
         if (!sys_path)

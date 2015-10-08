@@ -5,4 +5,4 @@ QSvgRenderer
 
 .. class:: QSvgRenderer
 
-    `C++ documentation <http://qt-project.org/doc/qt-5.0/qtsvg/qsvgrenderer.html>`_
+    `C++ documentation <http://qt-project.org/doc/qt-5.1/qtsvg/qsvgrenderer.html>`_

@@ -364,8 +364,6 @@ bool Chimera::parse_py_type(PyTypeObject *type_obj)
         }
         else
         {
-            bool is_a_QObject = PyType_IsSubtype(type_obj, sipTypeAsPyTypeObject(sipType_QObject));
-
             // If there is no assignment helper then assume it is a
             // pointer-type.
             if (!get_assign_helper())
@@ -373,51 +371,39 @@ bool Chimera::parse_py_type(PyTypeObject *type_obj)
 
             _metatype = QMetaType::type(_name.constData());
 
-            // This will deal with cases where the registered type is a
-            // super-class and specifically allows for multiple inheritance.
-            // The problem we are solving is that we want a QGraphicsWidget to
-            // be handled as a QGraphicsItem (which Qt registers) rather than a
-            // QObject, specifically in the value passed as a QVariant to
-            // QGraphicsItem::itemChange().  This solution means that it will
-            // always be passed as a QGraphicsItem, even if there are
-            // circumstances where it should be passed as a QObject.  If we
-            // come across such a circumstance then we may need to remove this
-            // and implement a more specific solution in %MethodCode for the
-            // various itemChange() implementations.
-            if (_metatype == 0 && is_a_QObject)
+            if (_metatype == 0)
             {
-                static int QWidget_metatype = -1;
+                // We need to handle QGraphicsItem differently, both because it
+                // has its own class hierarchy and because we don't want
+                // QGraphicsItemWidget to be seen as a QWidget or a QObject.
+                // Without this reimplementations of QGraphicsItem.itemChange()
+                // will have problems.
 
-                // Qt5 seems to register QWidget.
-                if (QWidget_metatype < 0)
-                    QWidget_metatype = QMetaType::type("QWidget*");
+                static const char *norm_QGraphicsItem = "QGraphicsItem*";
 
-                PyObject *mro = type_obj->tp_mro;
+                static int QGraphicsItem_metatype = -1;
 
-                Q_ASSERT(PyTuple_Check(mro));
-                Q_ASSERT(PyTuple_GET_SIZE(mro) >= 3);
+                if (QGraphicsItem_metatype < 0)
+                    QGraphicsItem_metatype = QMetaType::type(
+                            norm_QGraphicsItem);
 
-                for (SIP_SSIZE_T i = 1; i < PyTuple_GET_SIZE(mro) - 1; ++i)
+                static const sipTypeDef *sipType_QGraphicsItem = 0;
+
+                if (!sipType_QGraphicsItem)
+                    sipType_QGraphicsItem = sipFindType("QGraphicsItem");
+
+                if (QGraphicsItem_metatype >= 0 && sipType_QGraphicsItem)
                 {
-                    PyTypeObject *sc = (PyTypeObject *)PyTuple_GET_ITEM(mro, i);
+                    PyTypeObject *py_QGraphicsItem = sipTypeAsPyTypeObject(
+                            sipType_QGraphicsItem);
 
-                    if (sc == sipSimpleWrapper_Type || sc == sipWrapper_Type)
-                        continue;
-
-                    QByteArray sc_name(sc->tp_name);
-
-                    // QObjects are always pointers.
-                    sc_name.append('*');
-
-                    int sc_metatype = QMetaType::type(sc_name.constData());
-
-                    if (sc_metatype >= QMetaType::User && sc_metatype != QWidget_metatype)
+                    if (PyType_IsSubtype(type_obj, py_QGraphicsItem))
                     {
-                        _metatype = sc_metatype;
-                        _type = sipTypeFromPyTypeObject(sc);
-                        _name = sc_name;
+                        _metatype = QGraphicsItem_metatype;
+                        _type = sipType_QGraphicsItem;
+                        _name = norm_QGraphicsItem;
 
-                        _py_type = sc;
+                        _py_type = py_QGraphicsItem;
                         Py_INCREF((PyObject *)_py_type);
 
                         return true;
@@ -429,15 +415,14 @@ bool Chimera::parse_py_type(PyTypeObject *type_obj)
             // about but was registered by Qt.
             if (_metatype < QMetaType::User)
             {
-                if (is_a_QObject)
+                if (PyType_IsSubtype(type_obj, sipTypeAsPyTypeObject(sipType_QObject)))
                 {
                     _metatype = QMetaType::QObjectStar;
                 }
                 else if (!sipIsExactWrappedType((sipWrapperType *)type_obj))
                 {
-                    // It must be a (non-QObject, non-QWidget) Python
-                    // sub-class so make sure it gets wrapped in a
-                    // PyQt_PyObject.
+                    // It must be a (non-QObject, non-QWidget) Python sub-class
+                    // so make sure it gets wrapped in a PyQt_PyObject.
                     _type = 0;
                     _metatype = PyQt_PyObject::metatype;
                     _name.clear();

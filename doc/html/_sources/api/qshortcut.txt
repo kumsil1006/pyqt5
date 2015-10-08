@@ -5,4 +5,4 @@ QShortcut
 
 .. class:: QShortcut
 
-    `C++ documentation <http://qt-project.org/doc/qt-5.0/qtwidgets/qshortcut.html>`_
+    `C++ documentation <http://qt-project.org/doc/qt-5.1/qtwidgets/qshortcut.html>`_

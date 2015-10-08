@@ -5,4 +5,4 @@ QStyleOptionFocusRect
 
 .. class:: QStyleOptionFocusRect
 
-    `C++ documentation <http://qt-project.org/doc/qt-5.0/qtwidgets/qstyleoptionfocusrect.html>`_
+    `C++ documentation <http://qt-project.org/doc/qt-5.1/qtwidgets/qstyleoptionfocusrect.html>`_

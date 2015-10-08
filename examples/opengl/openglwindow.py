@@ -42,17 +42,7 @@
 #############################################################################
 
 
-import sys
-
-try:
-    from OpenGL.GL import *
-except ImportError:
-    from PyQt5.QtWidgets import QApplication, QMessageBox
-
-    app = QApplication(sys.argv)
-    QMessageBox.critical(None, "OpenGLWindow",
-            "PyOpenGL must be installed to run this example.")
-    sys.exit(1)
+import array
 
 from PyQt5.QtCore import QEvent
 from PyQt5.QtGui import (QGuiApplication, QMatrix4x4, QOpenGLContext,
@@ -66,6 +56,7 @@ class OpenGLWindow(QWindow):
         self.m_update_pending = False
         self.m_animating = False
         self.m_context = None
+        self.m_gl = None
 
         self.setSurfaceType(QWindow.OpenGLSurface)
 
@@ -101,9 +92,12 @@ class OpenGLWindow(QWindow):
         self.m_context.makeCurrent(self)
 
         if needsInitialize:
+            self.m_gl = self.m_context.versionFunctions()
+            self.m_gl.initializeOpenGLFunctions()
+
             self.initialize()
 
-        self.render()
+        self.render(self.m_gl)
 
         self.m_context.swapBuffers(self)
 
@@ -167,10 +161,10 @@ void main() {
         self.m_colAttr = self.m_program.attributeLocation('colAttr')
         self.m_matrixUniform = self.m_program.uniformLocation('matrix')
 
-    def render(self):
-        glViewport(0, 0, self.width(), self.height())
+    def render(self, gl):
+        gl.glViewport(0, 0, self.width(), self.height())
 
-        glClear(GL_COLOR_BUFFER_BIT)
+        gl.glClear(gl.GL_COLOR_BUFFER_BIT)
 
         self.m_program.bind()
 
@@ -182,24 +176,25 @@ void main() {
 
         self.m_program.setUniformValue(self.m_matrixUniform, matrix)
 
-        vertices = [ 0.0,  0.707,
-                    -0.5, -0.5,
-                     0.5, -0.5]
+        vertices = array.array('f', [
+                 0.0,  0.707,
+                -0.5, -0.5,
+                 0.5, -0.5])
 
-        colors = [1.0, 0.0, 0.0,
-                  0.0, 1.0, 0.0,
-                  0.0, 0.0, 1.0]
+        gl.glVertexAttribPointer(self.m_posAttr, 2, gl.GL_FLOAT, False, 0,
+                vertices)
+        gl.glEnableVertexAttribArray(self.m_posAttr)
 
-        glVertexAttribPointer(self.m_posAttr, 2, GL_FLOAT, GL_FALSE, 0, vertices)
-        glVertexAttribPointer(self.m_colAttr, 3, GL_FLOAT, GL_FALSE, 0, colors)
+        colors = array.array('f', [
+                1.0, 0.0, 0.0,
+                0.0, 1.0, 0.0,
+                0.0, 0.0, 1.0])
 
-        glEnableVertexAttribArray(0)
-        glEnableVertexAttribArray(1)
+        gl.glVertexAttribPointer(self.m_colAttr, 3, gl.GL_FLOAT, False, 0,
+                colors)
+        gl.glEnableVertexAttribArray(self.m_colAttr)
 
-        glDrawArrays(GL_TRIANGLES, 0, 3)
-
-        glDisableVertexAttribArray(1)
-        glDisableVertexAttribArray(0)
+        gl.glDrawArrays(gl.GL_TRIANGLES, 0, 3)
 
         self.m_program.release()
 
@@ -207,6 +202,8 @@ void main() {
 
 
 if __name__ == '__main__':
+
+    import sys
 
     app = QGuiApplication(sys.argv)
 

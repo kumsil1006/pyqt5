@@ -5,4 +5,4 @@ QTextFormat
 
 .. class:: QTextFormat
 
-    `C++ documentation <http://qt-project.org/doc/qt-5.0/qtgui/qtextformat.html>`_
+    `C++ documentation <http://qt-project.org/doc/qt-5.1/qtgui/qtextformat.html>`_
