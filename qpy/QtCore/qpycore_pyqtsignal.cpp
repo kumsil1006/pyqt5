@@ -1,6 +1,6 @@
 // This contains the implementation of the pyqtSignal type.
 //
-// Copyright (c) 2013 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2014 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -287,7 +287,7 @@ static int pyqtSignal_init(PyObject *self, PyObject *args, PyObject *kwd_args)
 #else
             Q_ASSERT(PyString_Check(key));
 
-            if (qstrcmp(PyString_AS_STRING(key), "name") != 0)
+            if (qstrcmp(PyString_AS_STRING(key), "name") == 0)
 #endif
             {
                 name_obj = value;
@@ -305,7 +305,7 @@ static int pyqtSignal_init(PyObject *self, PyObject *args, PyObject *kwd_args)
 #if PY_MAJOR_VERSION >= 3
             else if (PyUnicode_CompareWithASCIIString(key, "revision") == 0)
 #else
-            else if (qstrcmp(PyString_AS_STRING(key), "revision") != 0)
+            else if (qstrcmp(PyString_AS_STRING(key), "revision") == 0)
 #endif
             {
                 PyErr_Clear();
@@ -325,7 +325,7 @@ static int pyqtSignal_init(PyObject *self, PyObject *args, PyObject *kwd_args)
 #if PY_MAJOR_VERSION >= 3
             else if (PyUnicode_CompareWithASCIIString(key, "arguments") == 0)
 #else
-            else if (qstrcmp(PyString_AS_STRING(key), "arguments") != 0)
+            else if (qstrcmp(PyString_AS_STRING(key), "arguments") == 0)
 #endif
             {
                 bool ok = true;

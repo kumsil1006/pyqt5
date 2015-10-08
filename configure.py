@@ -1,6 +1,6 @@
 # This script generates the Makefiles for building PyQt5.
 #
-# Copyright (c) 2013 Riverbank Computing Limited <info@riverbankcomputing.com>
+# Copyright (c) 2014 Riverbank Computing Limited <info@riverbankcomputing.com>
 # 
 # This file is part of PyQt5.
 # 
@@ -32,9 +32,9 @@ except ImportError:
 
 
 # Initialise the constants.
-PYQT_VERSION_STR = "5.1.1"
+PYQT_VERSION_STR = "5.2"
 
-SIP_MIN_VERSION = '4.15'
+SIP_MIN_VERSION = '4.15.4'
 
 
 class ModuleMetadata:
@@ -64,6 +64,7 @@ MODULE_METADATA = {
                                     in_consolidated=False),
     'QAxContainer':         ModuleMetadata(qmake_QT=['axcontainer']),
     'Qt':                   ModuleMetadata(qmake_QT=['-core', '-gui']),
+    'QtBluetooth':          ModuleMetadata(qmake_QT=['bluetooth']),
     'QtCore':               ModuleMetadata(qmake_QT=['-gui'],
                                     qpy_lib='qpycore'),
     'QtDBus':               ModuleMetadata(qmake_QT=['dbus', '-gui'],
@@ -72,12 +73,14 @@ MODULE_METADATA = {
                                     qpy_lib='qpydesigner'),
     'QtGui':                ModuleMetadata(qpy_lib='qpygui'),
     'QtHelp':               ModuleMetadata(qmake_QT=['help']),
+    'QtMacExtras':          ModuleMetadata(qmake_QT=['macextras']),
     'QtMultimedia':         ModuleMetadata(qmake_QT=['multimedia']),
     'QtMultimediaWidgets':  ModuleMetadata(
                                     qmake_QT=['multimediawidgets',
                                             'multimedia']),
     'QtNetwork':            ModuleMetadata(qmake_QT=['network', '-gui']),
     'QtOpenGL':             ModuleMetadata(qmake_QT=['opengl']),
+    'QtPositioning':        ModuleMetadata(qmake_QT=['positioning']),
     'QtPrintSupport':       ModuleMetadata(qmake_QT=['printsupport']),
     'QtQml':                ModuleMetadata(qmake_QT=['qml'], qpy_lib='qpyqml'),
     'QtQuick':              ModuleMetadata(qmake_QT=['quick'],
@@ -90,6 +93,8 @@ MODULE_METADATA = {
     'QtWebKit':             ModuleMetadata(qmake_QT=['webkit', 'network']),
     'QtWebKitWidgets':      ModuleMetadata(qmake_QT=['webkitwidgets']),
     'QtWidgets':            ModuleMetadata(qmake_QT=['widgets']),
+    'QtWinExtras':          ModuleMetadata(qmake_QT=['winextras', 'widgets']),
+    'QtX11Extras':          ModuleMetadata(qmake_QT=['x11extras']),
     'QtXmlPatterns':        ModuleMetadata(
                                     qmake_QT=['xmlpatterns', '-gui',
                                             'network']),
@@ -131,7 +136,8 @@ COMPOSITE_COMPONENTS = (
     'QtMultimedia', 'QtQml', 'QtWebKit', 'QtWidgets', 'QtXmlPatterns',
     'QtAxContainer', 'QtDesigner', 'QtHelp', 'QtMultimediaWidgets', 'QtOpenGL',
         'QtPrintSupport', 'QtQuick', 'QtSql', 'QtSvg', 'QtTest',
-    'QtWebKitWidgets'
+    'QtWebKitWidgets', 'QtBluetooth', 'QtMacExtras', 'QtPositioning',
+    'QtWinExtras', 'QtX11Extras'
 )
 
 
@@ -187,7 +193,8 @@ def version_to_sip_tag(version):
     tags = {
         0x050000: None,
         0x050100: 'Qt_5_0_0',
-        0x060000: 'Qt_5_1_0'
+        0x050200: 'Qt_5_1_0',
+        0x060000: 'Qt_5_2_0'
     }
 
     v_list = list(tags.keys())
@@ -968,10 +975,6 @@ def check_modules(target_config, verbose):
             'new QJSEngine()')
     check_module(target_config, verbose, 'QtQuick', 'qquickwindow.h',
             'new QQuickWindow()')
-    check_module(target_config, verbose, 'QtSensors', 'qsensor.h',
-            'new QSensor(QByteArray())')
-    check_module(target_config, verbose, 'QtSerialPort', 'qserialport.h',
-            'new QSerialPort()')
     check_module(target_config, verbose, 'QtSql', 'qsqldatabase.h',
             'new QSqlDatabase()')
     check_module(target_config, verbose, 'QtSvg', 'qsvgwidget.h',
@@ -986,6 +989,32 @@ def check_modules(target_config, verbose):
             'new QWidget()')
     check_module(target_config, verbose, 'QtXmlPatterns', 'qxmlname.h',
             'new QXmlName()')
+
+    if target_config.qt_shared:
+        check_module(target_config, verbose, 'QtDesigner', 'QExtensionFactory',
+                'new QExtensionFactory()')
+    else:
+        inform("QtDesigner module disabled with static Qt libraries.")
+
+    check_module(target_config, verbose, 'QAxContainer', 'qaxobject.h',
+            'new QAxObject()')
+
+    check_module(target_config, verbose, 'QtDBus', 'qdbusconnection.h',
+            'QDBusConnection::systemBus()')
+    check_dbus(target_config, verbose)
+
+    if target_config.qt_version >= 0x050100:
+        check_5_1_modules(target_config, verbose)
+
+    if target_config.qt_version >= 0x050200:
+        check_5_2_modules(target_config, verbose)
+
+
+def check_5_1_modules(target_config, verbose):
+    """ Check which modules introduced in Qt v5.1 can be built and update the
+    target configuration accordingly.  target_config is the target
+    configuration.  verbose is set if the output is to be displayed.
+    """
 
     # Check the OpenGL functions.
     if 'PyQt_Desktop_OpenGL' in target_config.qt_disabled_features:
@@ -1010,18 +1039,28 @@ def check_modules(target_config, verbose):
 
             check_module(target_config, verbose, ogl_module, ogl_h, ogl_ctor)
 
-    if target_config.qt_shared:
-        check_module(target_config, verbose, 'QtDesigner', 'QExtensionFactory',
-                'new QExtensionFactory()')
-    else:
-        inform("QtDesigner module disabled with static Qt libraries.")
+    check_module(target_config, verbose, 'QtSensors', 'qsensor.h',
+            'new QSensor(QByteArray())')
+    check_module(target_config, verbose, 'QtSerialPort', 'qserialport.h',
+            'new QSerialPort()')
+    check_module(target_config, verbose, 'QtX11Extras', 'QX11Info',
+            'QX11Info::isPlatformX11()')
 
-    check_module(target_config, verbose, 'QAxContainer', 'qaxobject.h',
-            'new QAxObject()')
 
-    check_module(target_config, verbose, 'QtDBus', 'qdbusconnection.h',
-            'QDBusConnection::systemBus()')
-    check_dbus(target_config, verbose)
+def check_5_2_modules(target_config, verbose):
+    """ Check which modules introduced in Qt v5.2 can be built and update the
+    target configuration accordingly.  target_config is the target
+    configuration.  verbose is set if the output is to be displayed.
+    """
+
+    check_module(target_config, verbose, 'QtBluetooth', 'qbluetoothaddress.h',
+            'new QBluetoothAddress()')
+    check_module(target_config, verbose, 'QtMacExtras', 'qmacpasteboardmime.h',
+            'class Foo : public QMacPasteboardMime {}')
+    check_module(target_config, verbose, 'QtPositioning', 'qgeoaddress.h',
+            'new QGeoAddress()')
+    check_module(target_config, verbose, 'QtWinExtras', 'QtWin',
+            'QtWin::isCompositionEnabled()')
 
 
 def generate_makefiles(target_config, verbose, no_timestamp, parts, tracing):
@@ -1331,6 +1370,8 @@ INCLUDEPATH += %s
 VPATH = %s
 ''' % (qmake_quote(sp_plugin_dir), qmake_quote(sp_plugin_dir)))
 
+    fout.write('\n'.join(target_config.qmake_variables) + '\n')
+
     fout.close()
 
     # Create the makefile.
@@ -1373,6 +1414,7 @@ def generate_application_makefile(target_config, verbose, src_dir):
         pro_lines.append('VPATH = %s' % qmake_quote(sp_src_dir))
 
     pro_lines.extend(pro_sources(sp_src_dir))
+    pro_lines.extend(target_config.qmake_variables)
 
     pro_name = os.path.join(src_dir, app + '.pro')
 
@@ -1890,7 +1932,7 @@ def pro_add_qt_dependencies(target_config, metadata, pro_lines, debug=None):
         pro_lines.append('QT += %s' % ' '.join(add))
 
     pro_lines.append(
-            'CONFIG += %s' % ('debug' if debug else 'release'))
+            'CONFIG += %s' % ('debug qml_debug' if debug else 'release'))
 
     pro_lines.extend(target_config.qmake_variables)
 

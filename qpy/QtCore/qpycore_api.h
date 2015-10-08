@@ -1,7 +1,7 @@
 // This defines the API provided by this library.  It must not be explicitly
 // included by the library itself.
 //
-// Copyright (c) 2013 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2014 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -60,11 +60,10 @@ int qpycore_PySequence_Check_QStringList(PyObject *obj);
 PyObject *qpycore_PyObject_FromQVariant(const QVariant &qvar);
 QVariant qpycore_PyObject_AsQVariant(PyObject *obj, int *is_err);
 
-// Support for Q_CLASSINFO().
+// Support for Q_CLASSINFO(), Q_ENUMS() and Q_FLAGS().
 PyObject *qpycore_ClassInfo(const char *name, const char *value);
-
-// Support for Q_FLAGS and Q_ENUMS.
-PyObject *qpycore_register_int_types(PyObject *type_names);
+PyObject *qpycore_Enums(PyObject *args);
+PyObject *qpycore_Flags(PyObject *args);
 
 // Support for creating QGenericArgument and QGenericReturnArgument instances.
 PyObject *qpycore_ArgumentFactory(PyObject *type, PyObject *data);

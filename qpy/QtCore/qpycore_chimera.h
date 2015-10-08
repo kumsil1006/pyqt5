@@ -1,6 +1,6 @@
 // This is the interface of the Chimera and related classes.
 //
-// Copyright (c) 2013 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2014 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt5.
 // 
@@ -227,8 +227,8 @@ public:
     // Returns the SIP generated type structure.
     const sipTypeDef *typeDef() const {return _type;}
 
-    // Register a type name as an int type.
-    static void registerIntType(const char *name);
+    // Register a type as an int type.
+    static void registerIntType(PyObject *int_type);
 
 private:
     // The generated type structure.  This may be 0 if the type is known by Qt
@@ -253,7 +253,7 @@ private:
     QByteArray _name;
 
     // The registered int types.
-    static QList<QByteArray> _registered_int_types;
+    static QList<PyObject *> _registered_int_types;
 
     // The cache of previously parsed argument type lists.
     static QHash<QByteArray, QList<const Chimera *> > _previously_parsed;
