@@ -1,3 +1,8 @@
+v5.3.1 4th July 2014
+  - Added support for Qt v5.3.1.
+  - Added the -tr-function and -translate-function command line options to
+    pylupdate5.
+
 v5.3 26th May 2014
   - By default a Python slot is only invoked if the underlying C++ instance
     still exists.
