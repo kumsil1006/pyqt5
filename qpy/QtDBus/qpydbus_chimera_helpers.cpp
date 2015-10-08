@@ -18,15 +18,17 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-#include "sipAPIQtDBus.h"
-
-#include "qpydbus_chimera_helpers.h"
+#include <Python.h>
 
 #include <QDBusArgument>
 #include <QDBusObjectPath>
 #include <QDBusSignature>
 #include <QDBusVariant>
 #include <QMetaType>
+
+#include "qpydbus_chimera_helpers.h"
+
+#include "sipAPIQtDBus.h"
 
 
 // Forward declarations.

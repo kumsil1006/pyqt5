@@ -19,7 +19,7 @@
 
 
 # These will change with different releases.
-!define PYQT_VERSION        "5.2"
+!define PYQT_VERSION        "5.2.1"
 !define PYQT_INSTALLER      ""
 #!define PYQT_INSTALLER      "-2"
 !define PYQT_LICENSE        "GPL"
@@ -27,7 +27,7 @@
 !define PYQT_PYTHON_MAJOR   "3"
 !define PYQT_PYTHON_MINOR   "3"
 !define PYQT_ARCH           "x64"
-!define PYQT_QT_VERS        "5.2.0"
+!define PYQT_QT_VERS        "5.2.1"
 !define PYQT_QT_DOC_VERS    "5.2"
 
 # These are all derived from the above.

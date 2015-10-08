@@ -20,19 +20,21 @@
 
 #include <Python.h>
 
+#include "sipAPIQtGui.h"
+
+#if defined(SIP_FEATURE_PyQt_OpenGL)
+
 #include <QtGlobal>
 
 #if QT_VERSION >= 0x050100
 
 #include <QList>
 
-#include "sipAPIQtGui.h"
-
 #include "qpyopengl_api.h"
 
 
 // Forward declarations.
-extern "C" int qpyopengl_add_constants(PyObject *obj);
+int qpyopengl_add_constants(PyObject *obj);
 
 
 // The cache of type objects corresponding to each set of functions.
@@ -148,5 +150,8 @@ PyObject *qpyopengl_version_functions(const QOpenGLContext *context,
     return sipConvertFromNewType(funcs, sipTypeFromPyTypeObject(funcs_type),
             py_context);
 }
+
+#endif
+
 
 #endif

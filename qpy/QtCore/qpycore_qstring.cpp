@@ -24,7 +24,7 @@
 #include <QString>
 #include <QVector>
 
-#include "qpycore_sip.h"
+#include "qpycore_api.h"
 
 
 // Work out if we should enable PEP 393 support.  This is complicated by the
@@ -48,17 +48,15 @@ PyObject *qpycore_PyObject_FromQString(const QString &qstr)
     PyObject *obj;
 
 #if defined(PYQT_PEP_393)
-    // Assume that the text is Latin-1.  Note that we could first assume that
-    // it is ASCII then try Latin-1, but the memory saving doesn't justify it.
-    // This is the most common case and means we end up with the smallest
-    // memory footprint and the quickest conversion.
+    // We have to work out exactly which kind to use.  We assume ASCII while we
+    // are checking so that we only go through the string once is the most
+    // common case.  Note that we can't use PyUnicode_FromKindAndData() because
+    // it doesn't handle surrogates in UCS2 strings.
     int py_len = qstr.length();
 
-    if ((obj = PyUnicode_New(py_len, 0x00ff)) == NULL)
+    if ((obj = PyUnicode_New(py_len, 0x007f)) == NULL)
         return NULL;
 
-    // Populate the object but check if we have actually got UCS2 or UCS4
-    // characters.
     int kind = PyUnicode_KIND(obj);
     void *data = PyUnicode_DATA(obj);
     const QChar *qch = qstr.data();
@@ -67,25 +65,31 @@ PyObject *qpycore_PyObject_FromQString(const QString &qstr)
     {
         ushort uch = qch->unicode();
 
-        if (uch > 0x00ff)
+        if (uch > 0x007f)
         {
             // This is useless.
             Py_DECREF(obj);
 
             // Work out what kind we really need and what the Python length
             // should be.
-            Py_UCS4 maxchar = 0x00ffff;
+            Py_UCS4 maxchar = 0x00ff;
 
             do
             {
-                // See if this is a surrogate pair.  We don't need to bounds
-                // check because Qt puts a null QChar on the end.
-                if (qch->isHighSurrogate() && (qch + 1)->isLowSurrogate())
+                if (uch > 0x00ff)
                 {
-                    maxchar = 0x10ffff;
-                    --py_len;
-                    ++i;
-                    ++qch;
+                    if (maxchar == 0x00ff)
+                        maxchar = 0x00ffff;
+
+                    // See if this is a surrogate pair.  We don't need to
+                    // bounds check because Qt puts a null QChar on the end.
+                    if (qch->isHighSurrogate() && (qch + 1)->isLowSurrogate())
+                    {
+                        maxchar = 0x10ffff;
+                        --py_len;
+                        ++i;
+                        ++qch;
+                    }
                 }
             }
             while (++i < qstr.length());

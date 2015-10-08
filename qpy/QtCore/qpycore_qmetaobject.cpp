@@ -23,9 +23,11 @@
 #include <QGenericArgument>
 #include <QGenericReturnArgument>
 
+#include "qpycore_api.h"
 #include "qpycore_chimera.h"
 #include "qpycore_misc.h"
-#include "qpycore_sip.h"
+
+#include "sipAPIQtCore.h"
 
 
 // Forward declarations.

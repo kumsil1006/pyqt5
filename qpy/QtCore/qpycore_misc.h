@@ -24,10 +24,10 @@
 
 #include <Python.h>
 
-#include "qpycore_sip.h"
+#include "sipAPIQtCore.h"
 
 
-bool qpycore_is_pyqt4_class(const sipTypeDef *td);
+bool qpycore_is_pyqt_class(const sipTypeDef *td);
 
 
 #endif

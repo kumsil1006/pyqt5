@@ -22,6 +22,7 @@
 
 #include <QVariant>
 
+#include "qpycore_api.h"
 #include "qpycore_chimera.h"
 
 

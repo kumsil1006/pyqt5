@@ -1,5 +1,4 @@
-// This defines the API provided by this library.  It must not be explicitly
-// included by the library itself.
+// This defines the API provided by this library.
 //
 // Copyright (c) 2014 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 

@@ -25,7 +25,8 @@
 
 #include "qpycore_chimera.h"
 #include "qpycore_enums_flags.h"
-#include "qpycore_sip.h"
+
+#include "sipAPIQtCore.h"
 
 
 // Forward declarations.

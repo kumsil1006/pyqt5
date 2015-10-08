@@ -18,13 +18,15 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
-#include "sipAPIQtQuick.h"
-
-#include "qpyquick_chimera_helpers.h"
+#include <Python.h>
 
 #include <QList>
 #include <QMetaType>
 #include <QObject>
+
+#include "qpyquick_chimera_helpers.h"
+
+#include "sipAPIQtQuick.h"
 
 
 // Forward declarations.

@@ -155,7 +155,10 @@ PyTypeObject qpycore_pyqtProperty_Type = {
     0,
     0,
     0,
-    0
+    0,
+#if PY_VERSION_HEX >= 0x03040000
+    0,
+#endif
 };
 
 

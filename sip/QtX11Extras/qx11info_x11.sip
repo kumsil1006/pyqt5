@@ -31,7 +31,9 @@ class QX11Info
 %End
 
 public:
+%If (Qt_5_2_0 -)
     static bool isPlatformX11();
+%End
 
     static int appDpiX(int screen = -1);
     static int appDpiY(int screen = -1);
@@ -45,7 +47,9 @@ public:
     static void setAppTime(unsigned long time);
     static void setAppUserTime(unsigned long time);
 
+%If (Qt_5_2_0 -)
     static unsigned long getTimestamp();
+%End
 
     static Display *display();
     static xcb_connection_t *connection();

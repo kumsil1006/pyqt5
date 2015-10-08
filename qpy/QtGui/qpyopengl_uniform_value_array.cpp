@@ -20,6 +20,10 @@
 
 #include <Python.h>
 
+#include "sipAPIQtGui.h"
+
+#if defined(SIP_FEATURE_PyQt_OpenGL)
+
 #include <QOpenGLShaderProgram>
 #include <QMatrix2x2>
 #include <QMatrix2x3>
@@ -33,8 +37,6 @@
 #include <QVector2D>
 #include <QVector3D>
 #include <QVector4D>
-
-#include "sipAPIQtGui.h"
 
 #include "qpyopengl_api.h"
 
@@ -438,4 +440,7 @@ static void array_dtor(void *array, void *td)
 {
     delete_array(array, reinterpret_cast<const sipTypeDef *>(td));
 }
+#endif
+
+
 #endif

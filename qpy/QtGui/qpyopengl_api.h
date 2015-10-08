@@ -23,7 +23,10 @@
 
 
 #include <Python.h>
-#include <sip.h>
+
+#include "sipAPIQtGui.h"
+
+#if defined(SIP_FEATURE_PyQt_OpenGL)
 
 #include <QOpenGLContext>
 
@@ -66,5 +69,9 @@ PyObject *qpyopengl_from_GLfloat(int *eflag, const GLfloat *array,
 PyObject *qpyopengl_from_GLdouble(int *eflag, const GLdouble *array,
         SIP_SSIZE_T len);
 #endif
+
+
+#endif
+
 
 #endif

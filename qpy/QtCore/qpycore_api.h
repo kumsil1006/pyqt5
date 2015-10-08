@@ -1,5 +1,4 @@
-// This defines the API provided by this library.  It must not be explicitly
-// included by the library itself.
+// This defines the API provided by this library.
 //
 // Copyright (c) 2014 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
@@ -51,11 +50,6 @@ int qpycore_qobject_finalisation(PyObject *self, QObject *qobj, PyObject *kwds,
 PyObject *qpycore_PyObject_FromQString(const QString &qstr);
 QString qpycore_PyObject_AsQString(PyObject *obj);
 
-// Support for converting between PyObject and QStringList.
-PyObject *qpycore_PyObject_FromQStringList(const QStringList &qstrlst);
-QStringList qpycore_PySequence_AsQStringList(PyObject *obj);
-int qpycore_PySequence_Check_QStringList(PyObject *obj);
-
 // Support for converting between PyObject and QVariant.
 PyObject *qpycore_PyObject_FromQVariant(const QVariant &qvar);
 QVariant qpycore_PyObject_AsQVariant(PyObject *obj, int *is_err);
@@ -76,9 +70,6 @@ PyObject *qpycore_qobject_getattr(const QObject *qobj, PyObject *py_qobj,
 
 // Support for QObject.staticMetaObject %GetCode.
 PyObject *qpycore_qobject_staticmetaobject(PyObject *type_obj);
-
-// Support for emitting signals.
-bool qpycore_qobject_emit(QObject *qtx, const char *sig, PyObject *sigargs);
 
 // Support for QMetaObject.connectSlotsByName().
 void qpycore_qmetaobject_connectslotsbyname(QObject *qobj,

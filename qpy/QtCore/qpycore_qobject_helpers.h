@@ -26,7 +26,7 @@
 
 #include <QMetaObject>
 
-#include "qpycore_sip.h"
+#include "sipAPIQtCore.h"
 
 
 const QMetaObject *qpycore_qobject_metaobject(sipSimpleWrapper *pySelf,

@@ -27,14 +27,16 @@
 #include <QObject>
 #include <QVariant>
 
+#include "qpycore_api.h"
 #include "qpycore_chimera.h"
 #include "qpycore_pyqtboundsignal.h"
 #include "qpycore_pyqtproperty.h"
 #include "qpycore_pyqtpyobject.h"
 #include "qpycore_pyqtslot.h"
 #include "qpycore_qobject_helpers.h"
-#include "qpycore_sip.h"
 #include "qpycore_types.h"
+
+#include "sipAPIQtCore.h"
 
 
 // Forward declarations.
@@ -51,7 +53,7 @@ const QMetaObject *qpycore_qobject_metaobject(sipSimpleWrapper *pySelf,
         return ((pyqtWrapperType *)Py_TYPE(pySelf))->metaobject->mo;
 
     // Fall back to the static Qt meta-object.
-    return reinterpret_cast<const QMetaObject *>(((pyqt4ClassTypeDef *)base)->qt4_static_metaobject);
+    return reinterpret_cast<const QMetaObject *>(((pyqt5ClassTypeDef *)base)->static_metaobject);
 }
 
 
@@ -252,7 +254,7 @@ bool qpycore_qobject_qt_metacast(sipSimpleWrapper *pySelf,
             break;
         }
 
-        if (((pyqt4ClassTypeDef *)td)->qt_interface && qstrcmp(((pyqt4ClassTypeDef *)td)->qt_interface, _clname) == 0)
+        if (((pyqt5ClassTypeDef *)td)->qt_interface && qstrcmp(((pyqt5ClassTypeDef *)td)->qt_interface, _clname) == 0)
         {
             *sipCpp = sipGetMixinAddress(pySelf, td);
             is_py_class = true;
@@ -280,9 +282,9 @@ PyObject *qpycore_qobject_staticmetaobject(PyObject *type_obj)
     else
     {
         // It's a wrapped type.
-        pyqt4ClassTypeDef *p4ctd = (pyqt4ClassTypeDef *)((sipWrapperType *)pyqt_wt)->type;
+        pyqt5ClassTypeDef *pyqt_ctd = (pyqt5ClassTypeDef *)((sipWrapperType *)pyqt_wt)->type;
 
-        if (!p4ctd)
+        if (!pyqt_ctd)
         {
             /*
              * This is a side effect of a wrapped class not being fully ready
@@ -294,7 +296,7 @@ PyObject *qpycore_qobject_staticmetaobject(PyObject *type_obj)
             return 0;
         }
 
-        mo = reinterpret_cast<const QMetaObject *>(p4ctd->qt4_static_metaobject);
+        mo = reinterpret_cast<const QMetaObject *>(pyqt_ctd->static_metaobject);
     }
 
     return sipConvertFromType(const_cast<QMetaObject *>(mo), sipType_QMetaObject, 0);

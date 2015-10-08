@@ -19,7 +19,10 @@
 
 
 #include <Python.h>
-#include <sip.h>
+
+#include "sipAPIQtGui.h"
+
+#if defined(SIP_FEATURE_PyQt_OpenGL)
 
 #include "qpyopengl_api.h"
 
@@ -188,5 +191,8 @@ PyObject *qpyopengl_from_GLdouble(int *eflag, const GLdouble *array,
 
     return tuple;
 }
+
+#endif
+
 
 #endif

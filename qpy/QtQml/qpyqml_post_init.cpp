@@ -20,10 +20,11 @@
 
 #include <Python.h>
 
-#include "sipAPIQtQml.h"
-
+#include "qpyqml_api.h"
 #include "qpyqmllistproperty.h"
 #include "qpyqmlobject.h"
+
+#include "sipAPIQtQml.h"
 
 
 // Perform any required initialisation.

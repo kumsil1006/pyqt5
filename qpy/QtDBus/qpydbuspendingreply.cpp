@@ -20,9 +20,9 @@
 
 #include <Python.h>
 
-#include "sipAPIQtDBus.h"
-
 #include "qpydbuspendingreply.h"
+
+#include "sipAPIQtDBus.h"
 
 
 // Default ctor.

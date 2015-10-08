@@ -24,6 +24,10 @@
 
 #include <Python.h>
 
+#include "sipAPIQtGui.h"
+
+#if defined(SIP_FEATURE_PyQt_OpenGL)
+
 #include <QHash>
 
 
@@ -94,6 +98,9 @@ extern PyTypeObject qpyopengl_dataCache_Type;
 
 // Create a new data cache.
 qpyopengl_dataCache *qpyopengl_dataCache_New();
+
+
+#endif
 
 
 #endif
