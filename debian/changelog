@@ -1,3 +1,10 @@
+pyqt5 (5.5+dfsg-3) UNRELEASED; urgency=medium
+
+  * Move fdupes from Build-Depends to Build-Depends-Indep, it is only
+    used to build pyqt5-examples package.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 22 Oct 2015 15:47:12 +0300
+
 pyqt5 (5.5+dfsg-2) unstable; urgency=medium
 
   * Remove gstreamer 0.10 packages from build-depends, no longer needed.
