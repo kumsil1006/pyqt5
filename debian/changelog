@@ -1,8 +1,12 @@
 pyqt5 (5.5+dfsg-3) UNRELEASED; urgency=medium
 
+  [ Dmitry Shachnev ]
   * Move fdupes from Build-Depends to Build-Depends-Indep, it is only
     used to build pyqt5-examples package.
   * Sort debian/pyqt5-dev-tools.manpages file.
+
+  [ Matthias Klose ]
+  * pyuic5: Call the unversioned python3 interpreter.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Thu, 22 Oct 2015 15:47:12 +0300
 
