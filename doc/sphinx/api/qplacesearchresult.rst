@@ -5,4 +5,4 @@ QPlaceSearchResult
 
 .. class:: QPlaceSearchResult
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qplacesearchresult.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qplacesearchresult.html>`_

@@ -5,4 +5,4 @@ QPlaceCategory
 
 .. class:: QPlaceCategory
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qplacecategory.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qplacecategory.html>`_

@@ -5,4 +5,4 @@ QPlaceSupplier
 
 .. class:: QPlaceSupplier
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qplacesupplier.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qplacesupplier.html>`_

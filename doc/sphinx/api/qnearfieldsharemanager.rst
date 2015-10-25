@@ -5,4 +5,4 @@ QNearFieldShareManager
 
 .. class:: QNearFieldShareManager
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qnearfieldsharemanager.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qnearfieldsharemanager.html>`_

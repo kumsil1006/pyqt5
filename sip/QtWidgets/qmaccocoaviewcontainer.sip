@@ -19,6 +19,7 @@
 
 
 %If (WS_MACX)
+%If (PyQt_MacCocoaViewContainer)
 
 class QMacCocoaViewContainer : QWidget /FileExtension=".mm"/
 {
@@ -37,4 +38,5 @@ private:
     QMacCocoaViewContainer(const QMacCocoaViewContainer &);
 };
 
+%End
 %End

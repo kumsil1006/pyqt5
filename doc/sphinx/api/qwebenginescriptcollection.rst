@@ -5,4 +5,4 @@ QWebEngineScriptCollection
 
 .. class:: QWebEngineScriptCollection
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qwebenginescriptcollection.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qwebenginescriptcollection.html>`_

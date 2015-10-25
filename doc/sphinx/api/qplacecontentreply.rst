@@ -5,4 +5,4 @@ QPlaceContentReply
 
 .. class:: QPlaceContentReply
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qplacecontentreply.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qplacecontentreply.html>`_
