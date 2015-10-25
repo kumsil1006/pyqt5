@@ -6,6 +6,7 @@ pyqt5 (5.5+dfsg-3) UNRELEASED; urgency=medium
   * Sort debian/pyqt5-dev-tools.manpages file.
   * Remove examples/webkit/fancybrowser/__pycache__ from orig tarball,
     it contains a compiled file without source.
+  * Remove uupdate call from debian/rules, not needed with git-dpm.
 
   [ Matthias Klose ]
   * pyuic5: Call the unversioned python3 interpreter.
