@@ -1,4 +1,4 @@
-pyqt5 (5.5.1+dfsg-3) UNRELEASED; urgency=medium
+pyqt5 (5.5.1+dfsg-3) unstable; urgency=medium
 
   * Move pyuic5-related sed call to install-arch target, it should not
     be run during indep builds.
