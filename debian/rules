@@ -300,7 +300,7 @@ endif
 	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/webkit/googlechat
 	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/designer/plugins/python/__pycache__
 	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/designer/plugins/widgets/__pycache__
-	sed -i 's,/usr/bin/python3[.0-9]*,/usr/bin/python3,' debian/tmp/usr/bin/pyuic5
+	sed -i 's,/usr/bin/python3[.0-9]*,/usr/bin/python3,' debian/pyqt5-dev-tools/usr/bin/pyuic5
 	dh_fixperms
 	dh_compress -X/examples
 	dh_installdeb
