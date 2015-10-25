@@ -4,6 +4,8 @@ pyqt5 (5.5+dfsg-3) UNRELEASED; urgency=medium
   * Move fdupes from Build-Depends to Build-Depends-Indep, it is only
     used to build pyqt5-examples package.
   * Sort debian/pyqt5-dev-tools.manpages file.
+  * Remove examples/webkit/fancybrowser/__pycache__ from orig tarball,
+    it contains a compiled file without source.
 
   [ Matthias Klose ]
   * pyuic5: Call the unversioned python3 interpreter.
