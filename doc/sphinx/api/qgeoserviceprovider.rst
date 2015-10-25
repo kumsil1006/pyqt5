@@ -5,4 +5,4 @@ QGeoServiceProvider
 
 .. class:: QGeoServiceProvider
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qgeoserviceprovider.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qgeoserviceprovider.html>`_

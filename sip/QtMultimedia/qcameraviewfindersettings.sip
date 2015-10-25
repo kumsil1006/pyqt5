@@ -21,12 +21,6 @@
 
 
 %If (Qt_5_5_0 -)
-%ModuleCode
-#include <qcameraviewfindersettings.h>
-%End
-%End
-
-%If (Qt_5_5_0 -)
 
 class QCameraViewfinderSettings
 {

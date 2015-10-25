@@ -5,4 +5,4 @@ QLocation
 
 .. class:: QLocation
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qlocation.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qlocation.html>`_

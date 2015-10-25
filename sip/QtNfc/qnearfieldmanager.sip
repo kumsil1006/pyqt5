@@ -21,12 +21,6 @@
 
 
 %If (Qt_5_5_0 -)
-%ModuleCode
-#include <qnearfieldmanager.h>
-%End
-%End
-
-%If (Qt_5_5_0 -)
 
 class QNearFieldManager : QObject
 {

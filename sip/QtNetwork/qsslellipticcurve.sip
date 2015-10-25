@@ -21,12 +21,7 @@
 
 
 %If (Qt_5_5_0 -)
-%ModuleCode
-#include <qsslellipticcurve.h>
-%End
-%End
-
-%If (Qt_5_5_0 -)
+%If (PyQt_SSL)
 
 class QSslEllipticCurve
 {
@@ -49,9 +44,14 @@ public:
 };
 
 %End
-%If (Qt_5_5_0 -)
-bool operator==(QSslEllipticCurve lhs, QSslEllipticCurve rhs);
 %End
 %If (Qt_5_5_0 -)
+%If (PyQt_SSL)
+bool operator==(QSslEllipticCurve lhs, QSslEllipticCurve rhs);
+%End
+%End
+%If (Qt_5_5_0 -)
+%If (PyQt_SSL)
 bool operator!=(QSslEllipticCurve lhs, QSslEllipticCurve rhs);
+%End
 %End

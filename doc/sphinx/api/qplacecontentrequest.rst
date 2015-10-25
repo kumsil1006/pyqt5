@@ -5,4 +5,4 @@ QPlaceContentRequest
 
 .. class:: QPlaceContentRequest
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qplacecontentrequest.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qplacecontentrequest.html>`_

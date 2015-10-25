@@ -5,4 +5,4 @@ QGeoRoutingManagerEngine
 
 .. class:: QGeoRoutingManagerEngine
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qgeoroutingmanagerengine.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qgeoroutingmanagerengine.html>`_

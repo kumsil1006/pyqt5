@@ -39,6 +39,8 @@
 %Feature PyQt_OpenGL
 %Feature PyQt_Desktop_OpenGL
 %Feature PyQt_NotBootstrapped
+%Feature PyQt_Process
+%Feature PyQt_MacCocoaViewContainer
 
 %Copying
 Copyright (c) 2015 Riverbank Computing Limited <info@riverbankcomputing.com>

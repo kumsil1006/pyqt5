@@ -5,4 +5,4 @@ QGeoRoute
 
 .. class:: QGeoRoute
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qgeoroute.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qgeoroute.html>`_

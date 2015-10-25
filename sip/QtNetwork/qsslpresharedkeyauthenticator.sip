@@ -21,12 +21,6 @@
 
 
 %If (Qt_5_5_0 -)
-%ModuleCode
-#include <qsslpresharedkeyauthenticator.h>
-%End
-%End
-
-%If (Qt_5_5_0 -)
 %If (PyQt_SSL)
 
 class QSslPreSharedKeyAuthenticator
@@ -52,8 +46,12 @@ public:
 %End
 %End
 %If (Qt_5_5_0 -)
+%If (PyQt_SSL)
 bool operator==(const QSslPreSharedKeyAuthenticator &lhs, const QSslPreSharedKeyAuthenticator &rhs);
 %End
+%End
 %If (Qt_5_5_0 -)
+%If (PyQt_SSL)
 bool operator!=(const QSslPreSharedKeyAuthenticator &lhs, const QSslPreSharedKeyAuthenticator &rhs);
+%End
 %End

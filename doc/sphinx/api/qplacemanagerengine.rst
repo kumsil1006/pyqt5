@@ -5,4 +5,4 @@ QPlaceManagerEngine
 
 .. class:: QPlaceManagerEngine
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qplacemanagerengine.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qplacemanagerengine.html>`_

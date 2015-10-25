@@ -5,4 +5,4 @@ QGeoCodeReply
 
 .. class:: QGeoCodeReply
 
-    `C++ documentation <http://qt-project.org/doc/qt-5/qgeocodereply.html>`_
+    `C++ documentation <http://doc.qt.io/qt-5/qgeocodereply.html>`_
