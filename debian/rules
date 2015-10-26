@@ -234,6 +234,7 @@ install-arch-2.%:
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtPositioning.so \
 	   $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtLocation.so \
 		debian/python-pyqt5.qtpositioning-dbg/usr/lib/python2.$*/dist-packages/PyQt5
+
 clean:
 	dh_testdir
 	dh_testroot
