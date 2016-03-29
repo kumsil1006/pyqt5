@@ -1,6 +1,10 @@
 pyqt5 (5.5.1+dfsg-4) UNRELEASED; urgency=medium
 
+  [ Dmitry Shachnev ]
   * Add missing newline before clean target in debian/rules.
+
+  [ Ondřej Nový ]
+  * Fixed VCS URL (https)
 
  -- Dmitry Shachnev <mitya57@debian.org>  Mon, 26 Oct 2015 13:18:50 +0300
 
