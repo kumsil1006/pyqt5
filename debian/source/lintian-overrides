@@ -1,0 +1,4 @@
+# This was generated from SVG (tiger.svg can be found in qtsvg-opensource-src package),
+# but it is trivial to convert back to SVG so both forms can be considered source forms.
+pyqt5 source: source-is-missing examples/quick/canvas/tiger/tiger.js *
+pyqt5 source: source-contains-prebuilt-javascript-object examples/quick/canvas/tiger/tiger.js *
