@@ -9,6 +9,7 @@ pyqt5 (5.6+dfsg-1) UNRELEASED; urgency=medium
   * Bump Standards-Version to 3.9.8, no changes needed.
   * Override Lintian false positive error about tiger.js file.
   * Fix detection of D-Bus include directories.
+  * Install Python type hint (*.pyi) files.
 
   [ Ondřej Nový ]
   * Fixed VCS URL (https)

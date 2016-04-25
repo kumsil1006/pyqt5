@@ -1,1 +1,2 @@
-usr/lib/python3*/*-packages/PyQt5/QtSerialPort.so
+usr/lib/python3*/dist-packages/PyQt5/QtSerialPort.pyi
+usr/lib/python3*/dist-packages/PyQt5/QtSerialPort.so

@@ -1,1 +1,2 @@
-usr/lib/python3*/*-packages/PyQt5/QtSensors.so
+usr/lib/python3*/dist-packages/PyQt5/QtSensors.pyi
+usr/lib/python3*/dist-packages/PyQt5/QtSensors.so

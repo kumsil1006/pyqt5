@@ -1,1 +1,2 @@
-usr/lib/python3*/*-packages/PyQt5/QtX11Extras.so
+usr/lib/python3*/dist-packages/PyQt5/QtX11Extras.pyi
+usr/lib/python3*/dist-packages/PyQt5/QtX11Extras.so

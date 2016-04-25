@@ -1,2 +1,4 @@
-usr/lib/python3*/*-packages/PyQt5/QtLocation.so
-usr/lib/python3*/*-packages/PyQt5/QtPositioning.so
+usr/lib/python3*/dist-packages/PyQt5/QtLocation.pyi
+usr/lib/python3*/dist-packages/PyQt5/QtLocation.so
+usr/lib/python3*/dist-packages/PyQt5/QtPositioning.pyi
+usr/lib/python3*/dist-packages/PyQt5/QtPositioning.so

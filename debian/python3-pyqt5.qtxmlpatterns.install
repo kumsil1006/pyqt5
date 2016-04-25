@@ -1,1 +1,2 @@
-usr/lib/python3*/*-packages/PyQt5/QtXmlPatterns.so
+usr/lib/python3*/dist-packages/PyQt5/QtXmlPatterns.pyi
+usr/lib/python3*/dist-packages/PyQt5/QtXmlPatterns.so

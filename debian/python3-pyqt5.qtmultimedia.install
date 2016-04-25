@@ -1,2 +1,4 @@
-usr/lib/python3*/*-packages/PyQt5/QtMultimedia.so
-usr/lib/python3*/*-packages/PyQt5/QtMultimediaWidgets.so
+usr/lib/python3*/dist-packages/PyQt5/QtMultimedia.pyi
+usr/lib/python3*/dist-packages/PyQt5/QtMultimedia.so
+usr/lib/python3*/dist-packages/PyQt5/QtMultimediaWidgets.pyi
+usr/lib/python3*/dist-packages/PyQt5/QtMultimediaWidgets.so
