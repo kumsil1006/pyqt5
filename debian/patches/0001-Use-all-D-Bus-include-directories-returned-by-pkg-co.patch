@@ -1,0 +1,22 @@
+From c1ca9b88b7f817506f3967c87a28cc874d064f7f Mon Sep 17 00:00:00 2001
+From: Dmitry Shachnev <mitya57@gmail.com>
+Date: Mon, 25 Apr 2016 10:52:59 +0300
+Subject: Use all D-Bus include directories returned by pkg-config
+
+---
+ configure.py | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/configure.py b/configure.py
+index ca753ee..95e88fc 100644
+--- a/configure.py
++++ b/configure.py
+@@ -2140,8 +2140,6 @@ def check_dbus(target_config, verbose):
+     else:
+         dlist = target_config.dbus_inc_dirs
+ 
+-    target_config.dbus_inc_dirs = []
+-
+     for d in dlist:
+         if os.access(os.path.join(d, 'dbus', 'dbus-python.h'), os.F_OK):
+             if d not in target_config.dbus_inc_dirs:

@@ -2140,8 +2140,6 @@ def check_dbus(target_config, verbose):
     else:
         dlist = target_config.dbus_inc_dirs
 
-    target_config.dbus_inc_dirs = []
-
     for d in dlist:
         if os.access(os.path.join(d, 'dbus', 'dbus-python.h'), os.F_OK):
             if d not in target_config.dbus_inc_dirs:

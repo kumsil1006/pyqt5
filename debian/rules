@@ -58,7 +58,6 @@ build-%/configure-stamp:
 			-m $(shell python$*-config --configdir) \
 			-d /usr/lib/python$*/dist-packages \
 			--sip-incdir /usr/include/python$*$(if $(filter 3.%, $*),m,) \
-			--dbus /usr/include/dbus-1.0 \
 			$(if $(filter $(DEFAULT_PYTHON),$*),,--no-designer-plugin --no-qml-plugin --no-tools)
 	sed -i '/strip/d' build-$*/*/Makefile
 	touch $@

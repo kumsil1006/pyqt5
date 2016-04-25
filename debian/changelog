@@ -8,6 +8,7 @@ pyqt5 (5.6+dfsg-1) UNRELEASED; urgency=medium
   * Drop custom get-orig-source target, it makes no sense.
   * Bump Standards-Version to 3.9.8, no changes needed.
   * Override Lintian false positive error about tiger.js file.
+  * Fix detection of D-Bus include directories.
 
   [ Ondřej Nový ]
   * Fixed VCS URL (https)
