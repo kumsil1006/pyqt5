@@ -1,3 +1,9 @@
+pyqt5 (5.6+dfsg-2) experimental; urgency=medium
+
+  * Build against Qt 5.6 for experimental.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 30 Apr 2016 15:49:27 +0300
+
 pyqt5 (5.6+dfsg-1) unstable; urgency=medium
 
   [ Dmitry Shachnev ]
