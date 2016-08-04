@@ -39,9 +39,10 @@
 **
 ****************************************************************************/
 
-#include "metatranslator.h"
-#include "simtexth.h"
 #include <stdio.h>
+
+#include "pylupdate.h"
+#include "simtexth.h"
 
 // defined in numberh.cpp
 extern int applyNumberHeuristic( MetaTranslator *tor );

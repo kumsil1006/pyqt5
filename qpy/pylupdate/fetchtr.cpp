@@ -1,5 +1,5 @@
 /**********************************************************************
-** Copyright (C) 2014 Riverbank Computing Limited
+** Copyright (C) 2016 Riverbank Computing Limited
 ** Copyright (C) 2002-2007 Detlev Offenbach <detlev@die-offenbachs.de>
 **
 ** This is a modified version of lupdate. The original is part of Qt-Linguist.
@@ -53,8 +53,6 @@
 **
 ****************************************************************************/
 
-#include <metatranslator.h>
-
 #include <qfile.h>
 #include <qregexp.h>
 #include <qstring.h>
@@ -68,6 +66,8 @@
 
 #include <QTextCodec>
 #include <QtXml>
+
+#include "pylupdate.h"
 
 static const char MagicComment[] = "TRANSLATOR ";
 
@@ -755,7 +755,7 @@ static void parse( MetaTranslator *tor, const char *initialContext,
 
 void fetchtr_py(const char *fileName, MetaTranslator *tor,
         const char *defaultContext, bool mustExist,
-        const QByteArray &codecForSource, const char *tr_func,
+        const char *codecForSource, const char *tr_func,
         const char *translate_func)
 {
     tr_function = tr_func;
