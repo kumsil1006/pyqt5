@@ -2,10 +2,10 @@
 c1ca9b88b7f817506f3967c87a28cc874d064f7f
 c1ca9b88b7f817506f3967c87a28cc874d064f7f
 a7b13e3af78fd6bf0e0e3e87db12884768306d62
-a7b13e3af78fd6bf0e0e3e87db12884768306d62
-pyqt5_5.6+dfsg.orig.tar.gz
-919ec6bf88ac0a9ec6fd3a2e0d193b634cb8e268
-3079879
+5dba8adc259ac59a6c48bb424a42bc723b40db66
+pyqt5_5.7+dfsg.orig.tar.gz
+21aec345deb6ac1aa4ab372113a5a5e22a7f74f4
+3080141
 debianTag="debian/%e%v"
 patchedTag="patched/%e%v"
 upstreamTag="upstream/%e%u"
