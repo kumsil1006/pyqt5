@@ -57,10 +57,11 @@
 
 #include <qmap.h>
 #include <qstring.h>
-#include <translator.h>
 #include <qlist.h>
 #include <qlocale.h>
 #include <qdir.h>
+
+#include "translator.h"
 
 #if !defined(QT_BEGIN_NAMESPACE)
 #define QT_BEGIN_NAMESPACE

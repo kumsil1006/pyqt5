@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (c) 2015 Riverbank Computing Limited. All rights reserved.
+** Copyright (c) 2016 Riverbank Computing Limited. All rights reserved.
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
@@ -40,17 +40,13 @@
 **
 ****************************************************************************/
 
-#include <qstring.h>
-#include <qstringlist.h>
 #include <qfile.h>
-#include <qfileinfo.h>
-#include <qlocale.h>
 #include <qtextstream.h>
 #include <qbytearray.h>
-#include <qhash.h>
 #include <qdir.h>
 #include <qstack.h>
 #include <qdom.h>
+
 #include "rcc.h"
 
 
@@ -386,31 +382,53 @@ RCCResourceLibrary::dataFiles() const
     return ret;
 }
 
-bool RCCResourceLibrary::output(FILE *out)
+bool RCCResourceLibrary::output(const QString &out_name)
 {
-    //write out
+    FILE *out;
+
+    // Create the output file or use stdout if not specified.
+    if (out_name.isEmpty())
+    {
+        out = stdout;
+    }
+#if defined(_MSC_VER) && _MSC_VER >= 1400
+    else if (fopen_s(&out, out_name.toLocal8Bit().constData(), "w"))
+#else
+    else if ((out = fopen(out_name.toLocal8Bit().constData(), "w")) == NULL)
+#endif
+    {
+        fprintf(stderr, "Unable to open %s for writing\n",
+                out_name.toLatin1().constData());
+        return false;
+    }
+
     if (mVerbose)
         fprintf(stderr, "Outputting code\n");
-    if (!writeHeader(out)) {
-        fprintf(stderr, "Couldn't write header\n");
+
+    const char *error;
+
+    if (!writeHeader(out))
+        error = "header";
+    else if (!writeDataBlobs(out))
+        error = "data blob";
+    else if (!writeDataNames(out))
+        error = "file names";
+    else if (!writeDataStructure(out))
+        error = "data tree";
+    else if (!writeInitializer(out))
+        error = "footer";
+    else
+        error = 0;
+
+    if (out != stdout)
+        fclose(out);
+
+    if (error)
+    {
+        fprintf(stderr, "Couldn't write %s\n", error);
         return false;
     }
-    if (!writeDataBlobs(out)) {
-        fprintf(stderr, "Couldn't write data blob\n");
-        return false;
-    }
-    if (!writeDataNames(out)) {
-        fprintf(stderr, "Couldn't write file names\n");
-        return false;
-    }
-    if (!writeDataStructure(out)) {
-        fprintf(stderr, "Couldn't write data tree\n");
-        return false;
-    }
-    if (!writeInitializer(out)) {
-        fprintf(stderr, "Couldn't write footer\n");
-        return false;
-    }
+
     return true;
 }
 

@@ -42,6 +42,15 @@
 #ifndef RCC_H
 #define RCC_H
 
+#include <stdio.h>
+
+#include <QFileInfo>
+#include <QHash>
+#include <QIODevice>
+#include <QLocale>
+#include <QString>
+#include <QStringList>
+
 #define TAG_RCC "RCC"
 #define TAG_RESOURCE "qresource"
 #define TAG_FILE "file"
@@ -65,7 +74,7 @@ public:
     inline RCCResourceLibrary();
     ~RCCResourceLibrary();
 
-    bool output(FILE *out);
+    bool output(const QString &out_name);
 
     bool readFiles();
 
