@@ -3,7 +3,6 @@ Upstream-Contact: pyqt@riverbankcomputing.com
 Files-Excluded: doc/html
                 examples/webkit/fancybrowser/jquery.min.js
                 examples/webkit/fancybrowser/jquery_rc.py
-                examples/webkit/fancybrowser/__pycache__
 
 Files: *
 Copyright: 2007-2015, Riverbank Computing Limited
