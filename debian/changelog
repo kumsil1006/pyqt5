@@ -4,6 +4,7 @@ pyqt5 (5.7+dfsg-1) UNRELEASED; urgency=medium
   * Drop 0001-Use-all-D-Bus-include-directories-returned-by-pkg-co.patch,
     applied upstream.
   * Drop rule to remove pycache from orig tarball, it is no longer there.
+  * Update debian/copyright.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Thu, 04 Aug 2016 21:26:03 +0300
 

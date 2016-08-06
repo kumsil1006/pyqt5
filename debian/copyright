@@ -5,7 +5,7 @@ Files-Excluded: doc/html
                 examples/webkit/fancybrowser/jquery_rc.py
 
 Files: *
-Copyright: 2007-2015, Riverbank Computing Limited
+Copyright: 2016, Riverbank Computing Limited
 License: GPL-3
 
 Files: dbus/*
@@ -21,7 +21,7 @@ License: BSD-3-clause
 
 Files: examples/designer/plugins/python/*
        examples/designer/plugins/widgets/*
-Copyright: 2006,      David Boddie <david@boddie.org.uk>
+Copyright: 2006-2007, David Boddie <david@boddie.org.uk>
            2005-2006, Trolltech ASA,
            2008,      Denviso GmbH
 License: GPL-2+
@@ -39,15 +39,15 @@ Copyright: 2010, Hans-Peter Jansen <hpj@urpla.net>
            2013, Riverbank Computing Limited
 License: LGPL-2.1 with Digia-1.1 exception or GPL-3
 
-Files: pylupdate/*
+Files: qpy/pylupdate/*
 Copyright: 2002-2007, Detlev Offenbach <detlev@die-offenbachs.de>
            2013,      Digia Plc and/or its subsidiary(-ies)
-           2014,      Riverbank Computing Limited
+           2016,      Riverbank Computing Limited
 License: LGPL-2.1 with Digia-1.1 exception or GPL-3
 
-Files: pyrcc/*
-Copyright: 2013,      Digia Plc and/or its subsidiary(-ies)
-           2014-2015, Riverbank Computing Limited
+Files: qpy/pyrcc/*
+Copyright: 2013, Digia Plc and/or its subsidiary(-ies)
+           2016, Riverbank Computing Limited
 License: LGPL-2.1 with Digia-1.1 exception or GPL-3
 
 Files: pyuic/*
@@ -58,7 +58,7 @@ License: GPL-3 or BSD-3-clause
 Files: debian/*
 Copyright: 2006-2010, Thorsten Marek <shlomme@debian.org>
            2011-2014, Scott Kitterman <scott@kitterman.com>
-           2013-2015, Dmitry Shachnev <mitya57@debian.org>
+           2013-2016, Dmitry Shachnev <mitya57@debian.org>
 License: GPL-2+
 
 License: GPL-2+
