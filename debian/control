@@ -59,7 +59,7 @@ Description: Development files for PyQt5
 
 Package: pyqt5-dev-tools
 Depends: python3,
-         python3-pyqt5 (= ${binary:Version}),
+         python3-pyqt5 (>= ${source:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
 Architecture: all
