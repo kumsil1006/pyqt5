@@ -1,5 +1,4 @@
 usr/lib/*/qt5/plugins/designer/libpyqt5.so
-usr/lib/python3*/dist-packages/PyQt5/Qt.pyi
 usr/lib/python3*/dist-packages/PyQt5/Qt.so
 usr/lib/python3*/dist-packages/PyQt5/QtCore.pyi
 usr/lib/python3*/dist-packages/PyQt5/QtCore.so

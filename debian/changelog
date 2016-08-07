@@ -5,6 +5,7 @@ pyqt5 (5.7+dfsg-1) UNRELEASED; urgency=medium
     applied upstream.
   * Drop rule to remove pycache from orig tarball, it is no longer there.
   * Update debian/copyright.
+  * Stop installing Qt.pyi, it is no longer generated.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Thu, 04 Aug 2016 21:26:03 +0300
 
