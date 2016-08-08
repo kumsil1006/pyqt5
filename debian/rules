@@ -96,6 +96,7 @@ install-indep: build-indep
 	dh_prep -i
 	dh_installdirs -i
 	dh_install -i --fail-missing
+	sed -i 's,/usr/bin/python3[.0-9]*,/usr/bin/python3,' debian/pyqt5-dev-tools/usr/bin/*
 	dh_installexamples -Xactiveqt -i
 	# Use python3 shebangs and regenerate resource files
 	cd $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/; \
@@ -130,7 +131,6 @@ install-arch: build-arch
 	done
 
 	dh_install -a --fail-missing
-	sed -i 's,/usr/bin/python3[.0-9]*,/usr/bin/python3,' debian/pyqt5-dev-tools/usr/bin/pyuic5
 
 	find debian/python*-dbg ! -type d \
 		! \( -name '*.so' -o -name '*config_*d*.py' \) | xargs rm -f
