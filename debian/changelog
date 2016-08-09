@@ -11,6 +11,8 @@ pyqt5 (5.7+dfsg-1) UNRELEASED; urgency=medium
     - Fix shebangs in /usr/bin/pylupdate5 and /usr/bin/pyrcc5 files.
   * Use --no-sip-files configure option instead of removing the .sip files
     after they are installed.
+  * Remove useless dependency of build-indep on default Python build stamp,
+    to avoid compiling the code during arch-indep builds.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Thu, 04 Aug 2016 21:26:03 +0300
 

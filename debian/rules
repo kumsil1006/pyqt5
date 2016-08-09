@@ -79,7 +79,7 @@ dbg-build-%/configure-stamp:
 
 build: build-arch build-indep
 build-arch: $(ALLPYTHONS:%=build-%/build-stamp) $(ALLPYTHONS:%=dbg-build-%/build-stamp)
-build-indep: build-$(DEFAULT_PYTHON)/build-stamp
+build-indep:
 
 build-%/build-stamp: build-%/configure-stamp
 	dh_testdir
