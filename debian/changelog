@@ -7,9 +7,8 @@ pyqt5 (5.7+dfsg-1) UNRELEASED; urgency=medium
   * Update debian/copyright.
   * Stop installing Qt.pyi, it is no longer generated.
   * Update for upstream changes to pyrcc5 and pylupdate5:
-    - The actual code is now in python3-pyqt5 package.
-    - pyqt5-dev-tools is now an Architecure: all package containing
-      only executable wrappers.
+    - Add new files to debian/pyqt5-dev-tools.install.
+    - Fix shebangs in /usr/bin/pylupdate5 and /usr/bin/pyrcc5 files.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Thu, 04 Aug 2016 21:26:03 +0300
 

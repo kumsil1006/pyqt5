@@ -21,8 +21,4 @@ usr/lib/python3*/dist-packages/PyQt5/QtWidgets.so
 usr/lib/python3*/dist-packages/PyQt5/QtXml.pyi
 usr/lib/python3*/dist-packages/PyQt5/QtXml.so
 usr/lib/python3*/dist-packages/PyQt5/__init__.py
-usr/lib/python3*/dist-packages/PyQt5/pylupdate.so
-usr/lib/python3*/dist-packages/PyQt5/pylupdate_main.py
-usr/lib/python3*/dist-packages/PyQt5/pyrcc.so
-usr/lib/python3*/dist-packages/PyQt5/pyrcc_main.py
 usr/lib/python3*/dist-packages/PyQt5/uic/*
