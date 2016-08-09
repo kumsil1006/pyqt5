@@ -58,7 +58,8 @@ build-%/configure-stamp:
 			-m $(shell python$*-config --configdir) \
 			-d /usr/lib/python$*/dist-packages \
 			--sip-incdir /usr/include/python$*$(if $(filter 3.%, $*),m,) \
-			$(if $(filter $(DEFAULT_PYTHON),$*),,--no-designer-plugin --no-qml-plugin --no-tools)
+			$(if $(filter $(DEFAULT_PYTHON),$*),,--no-designer-plugin --no-qml-plugin --no-tools) \
+			--no-sip-files
 	sed -i '/strip/d' build-$*/*/Makefile
 	touch $@
 
@@ -70,7 +71,7 @@ dbg-build-%/configure-stamp:
 			-l /usr/include/python$*$(if $(filter 3.%, $*),dm,_d) \
 			-d /usr/lib/python$*/dist-packages \
 			--sip-incdir /usr/include/python$*$(if $(filter 3.%, $*),dm,_d) \
-			--debug --no-designer-plugin --no-qml-plugin --no-tools
+			--debug --no-designer-plugin --no-qml-plugin --no-tools --no-sip-files
 	sed -i '/strip/d' dbg-build-$*/*/Makefile
 	sed -i 's/-isystem/-I/' dbg-build-$*/*/Makefile
 	touch $@
@@ -145,7 +146,6 @@ d3_qt5_dbg = debian/python3-pyqt5-dbg
 install-arch-3.%:
 	$(MAKE) -C build-3.$* install INSTALL_ROOT=$(CURDIR)/debian/tmp DESTDIR=$(CURDIR)/debian/tmp
 	$(MAKE) -C dbg-build-3.$* install INSTALL_ROOT=$(CURDIR)/$(d3_qt5_dbg) DESTDIR=$(CURDIR)/$(d3_qt5_dbg)
-	rm -rf $(CURDIR)/debian/tmp/usr/share/sip
 
 	mkdir -p $(CURDIR)/debian/python3-dbus.mainloop.pyqt5/usr/lib/python3.$*/dist-packages/dbus/mainloop; \
 	mv $(CURDIR)/debian/tmp$(py3_dbusmoddir)/pyqt5.so \
@@ -192,7 +192,6 @@ d_qt5_dbg = debian/python-pyqt5-dbg
 install-arch-2.%:
 	$(MAKE) -C build-2.$* install INSTALL_ROOT=$(CURDIR)/debian/tmp DESTDIR=$(CURDIR)/debian/tmp
 	$(MAKE) -C dbg-build-2.$* install INSTALL_ROOT=$(CURDIR)/$(d_qt5_dbg) DESTDIR=$(CURDIR)/$(d_qt5_dbg)
-	rm -rf $(CURDIR)/debian/tmp/usr/share/sip
 
 	mkdir -p $(CURDIR)/debian/python-dbus.mainloop.pyqt5/usr/lib/python2.$*/dist-packages/dbus/mainloop; \
 	mv $(CURDIR)/debian/tmp$(py_dbusmoddir)/pyqt5.so \
@@ -289,13 +288,11 @@ endif
 	dh_python2 --no-dbg-cleaning -N pyqt5-dev-tools -N pyqt5-examples
 	rm -rf $(CURDIR)/debian/python-pyqt5/usr/lib/python2.7/dist-packages/PyQt5/uic/port_v3
 	rm -rf $(CURDIR)/debian/python-pyqt5-dbg/usr/bin
-	rm -rf $(CURDIR)/debian/python-pyqt5-dbg/usr/share/sip
 	rm -rf $(CURDIR)/debian/python-pyqt5-dbg/usr/lib/python2.7/dist-packages/PyQt5/uic
 	rm -rf $(CURDIR)/debian/python-pyqt5-dbg/usr/lib/python2.7/dist-packages/dbus
 	dh_python3 --no-dbg-cleaning -N pyqt5-dev-tools -N pyqt5-examples
 	rm -rf $(CURDIR)/debian/python3-pyqt5/usr/lib/python3/dist-packages/PyQt5/uic/port_v2
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/bin
-	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/share/sip
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/lib/python3/dist-packages/PyQt5/uic
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/lib/python3/dist-packages/dbus
 	rm -rf $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/webkit/googlechat
