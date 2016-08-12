@@ -1,4 +1,4 @@
-pyqt5 (5.7+dfsg-1) UNRELEASED; urgency=medium
+pyqt5 (5.7+dfsg-1) unstable; urgency=medium
 
   * New upstream release.
   * Drop 0001-Use-all-D-Bus-include-directories-returned-by-pkg-co.patch,
@@ -14,8 +14,9 @@ pyqt5 (5.7+dfsg-1) UNRELEASED; urgency=medium
   * Use --no-sip-files configure option instead of removing the .sip files
     after they are installed.
   * Only ship files installed by upstream build system in pyqt5-dev.
+  * Upload to unstable.
 
- -- Dmitry Shachnev <mitya57@debian.org>  Thu, 04 Aug 2016 21:26:03 +0300
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 12 Aug 2016 10:25:00 +0300
 
 pyqt5 (5.6+dfsg-2) experimental; urgency=medium
 
