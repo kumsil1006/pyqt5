@@ -10,6 +10,7 @@ pyqt5 (5.7+dfsg-1) UNRELEASED; urgency=medium
     - Add new files to debian/pyqt5-dev-tools.install.
     - Fix shebangs in /usr/bin/pylupdate5 and /usr/bin/pyrcc5 files.
     - Call make install to temporary location to be able to run pyrcc5.
+    - Call dh_python3 against pyqt5-dev-tools.
   * Use --no-sip-files configure option instead of removing the .sip files
     after they are installed.
   * Only ship files installed by upstream build system in pyqt5-dev.

@@ -300,7 +300,7 @@ endif
 	rm -rf $(CURDIR)/debian/python-pyqt5-dbg/usr/bin
 	rm -rf $(CURDIR)/debian/python-pyqt5-dbg/usr/lib/python2.7/dist-packages/PyQt5/uic
 	rm -rf $(CURDIR)/debian/python-pyqt5-dbg/usr/lib/python2.7/dist-packages/dbus
-	dh_python3 --no-dbg-cleaning -N pyqt5-dev-tools -N pyqt5-examples
+	dh_python3 --no-dbg-cleaning -N pyqt5-examples
 	rm -rf $(CURDIR)/debian/python3-pyqt5/usr/lib/python3/dist-packages/PyQt5/uic/port_v2
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/bin
 	rm -rf $(CURDIR)/debian/python3-pyqt5-dbg/usr/lib/python3/dist-packages/PyQt5/uic
