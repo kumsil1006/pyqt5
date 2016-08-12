@@ -9,10 +9,10 @@ pyqt5 (5.7+dfsg-1) UNRELEASED; urgency=medium
   * Update for upstream changes to pyrcc5 and pylupdate5:
     - Add new files to debian/pyqt5-dev-tools.install.
     - Fix shebangs in /usr/bin/pylupdate5 and /usr/bin/pyrcc5 files.
+    - Call make install to temporary location to be able to run pyrcc5.
   * Use --no-sip-files configure option instead of removing the .sip files
     after they are installed.
-  * Remove useless dependency of build-indep on default Python build stamp,
-    to avoid compiling the code during arch-indep builds.
+  * Only ship files installed by upstream build system in pyqt5-dev.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Thu, 04 Aug 2016 21:26:03 +0300
 
