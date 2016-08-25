@@ -416,11 +416,6 @@ bool Chimera::parse_py_type(PyTypeObject *type_obj)
         _type = sipType_QString;
         _metatype = QMetaType::QString;
     }
-    else if (type_obj == &PyBytes_Type)
-    {
-        _metatype = -1;
-        _name = "const char*";
-    }
 #else
     else if (type_obj == &PyString_Type || type_obj == &PyUnicode_Type)
     {
