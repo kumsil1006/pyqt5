@@ -18,7 +18,7 @@ takes a Qt5 user interface description file and compiles it to Python code. It c
 Show a summary of the options.
 .TP
 .B \-\-version
-Display the version number of the version of Qt which PyQt5 was generated for.
+Display the pyuic and Qt version numbers and exit.
 .TP
 \fB\-p\fR, \fB\-\-preview\fR
 Show a preview of the UI instead of generating Python code.
@@ -34,5 +34,17 @@ Generate extra code to test and display the class when executed as a script.
 .TP
 \fB\-i\fR, \fB\-\-indent\fR=\fINUM\fR
 Set the indentation width to \fINUM\fR spaces. A TAB character will be used if \fINUM\fR is 0 (default: 4).
+
+.SH CODE GENERATION OPTIONS
+.TP
+\fB\-\-import\-from\fR=\fIPACKAGE\fR
+Generate imports of pyrcc5 generated modules in the style "from \fIPACKAGE\fR import ...".
+.TP
+\fB\-\-from\-imports\fR
+The equivalent of "\-\-import\-from=.".
+.TP
+\fB\-\-resource\-suffix\fR=\fISUFFIX\fR
+Append \fISUFFIX\fR to the basename of resource files (default: _rc).
+
 .SH AUTHOR
 This manual page was written for Debian GNU/Linux by Torsten Marek <shlomme@debian.org>, but may freely be used by others.
