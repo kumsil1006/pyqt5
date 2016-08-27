@@ -1,9 +1,0 @@
-Preparing DFSG free tarball:
-
-To repack upstream source without non-free files, use 'get-orig-source'
-target in debian/rules. Non-free files are:
-
-examples/webkit/fancybrowser/jquery.min.js
-examples/webkit/fancybrowser/jquery_rc.py
-doc/html/_static/jquery.js
-doc/html/_static/underscore.js

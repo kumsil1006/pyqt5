@@ -3,6 +3,7 @@ pyqt5 (5.7+dfsg-2) UNRELEASED; urgency=medium
   * Backport an upstream change to fix conversion of bytes values
     (bytes_conversion.diff; closes: #834875).
   * Update the pyuic5 and pyrcc5 manpages.
+  * Drop obsolete debian/README.source.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Thu, 25 Aug 2016 21:16:17 +0300
 
