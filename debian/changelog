@@ -1,8 +1,8 @@
-pyqt5 (5.7+dfsg-3) UNRELEASED; urgency=medium
+pyqt5 (5.7+dfsg-3) experimental; urgency=medium
 
   * Build against Qt 5.7 for experimental.
 
- -- Dmitry Shachnev <mitya57@debian.org>  Mon, 12 Sep 2016 17:00:48 +0300
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 13 Sep 2016 12:01:27 +0300
 
 pyqt5 (5.7+dfsg-2) unstable; urgency=medium
 
