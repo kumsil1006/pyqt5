@@ -1,11 +1,11 @@
 # see git-dpm(1) from git-dpm package
-d56759aaff209204957b25a5449de33efb7718ea
-d56759aaff209204957b25a5449de33efb7718ea
-5dba8adc259ac59a6c48bb424a42bc723b40db66
-5dba8adc259ac59a6c48bb424a42bc723b40db66
-pyqt5_5.7+dfsg.orig.tar.gz
-21aec345deb6ac1aa4ab372113a5a5e22a7f74f4
-3080141
+6af41bd8c615d2ec9d23b7187ad4d4b7b44b8c3f
+6af41bd8c615d2ec9d23b7187ad4d4b7b44b8c3f
+6af41bd8c615d2ec9d23b7187ad4d4b7b44b8c3f
+6af41bd8c615d2ec9d23b7187ad4d4b7b44b8c3f
+pyqt5_5.7.1+dfsg.orig.tar.gz
+25ca60afaac628c231ae40eac3201d92101174b4
+3087956
 debianTag="debian/%e%v"
 patchedTag="patched/%e%v"
 upstreamTag="upstream/%e%u"

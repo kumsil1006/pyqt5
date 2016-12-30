@@ -18,4 +18,4 @@ number of reasons:
   developer and would need their own commercial PyQt5 license.
 
 The recommended solution to all of these issues is to use `pyqtdeploy 
-<http://www.riverbankcomputing.com/software/pyqtdeploy/>`__.
+<https://www.riverbankcomputing.com/software/pyqtdeploy/>`__.

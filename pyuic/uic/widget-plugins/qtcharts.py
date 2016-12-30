@@ -20,24 +20,14 @@
 #############################################################################
 
 
-from ..exceptions import WidgetPluginError
+# If pluginType is MODULE, the plugin loader will call moduleInformation.  The
+# variable MODULE is inserted into the local namespace by the plugin loader.
+pluginType = MODULE
 
 
-def load_plugin(filename, plugin_globals, plugin_locals):
-    """ Load the plugin from the given file.  Return True if the plugin was
-    loaded, or False if it wanted to be ignored.  Raise an exception if there
-    was an error.
-    """
-
-    plugin = open(filename, 'r')
-
-    try:
-        exec(plugin.read(), plugin_globals, plugin_locals)
-    except ImportError:
-        return False
-    except Exception as e:
-        raise WidgetPluginError("%s: %s" % (e.__class__, str(e)))
-    finally:
-        plugin.close()
-
-    return True
+# moduleInformation() must return a tuple (module, widget_list).  If "module"
+# is "A" and any widget from this module is used, the code generator will write
+# "import A".  If "module" is "A[.B].C", the code generator will write
+# "from A[.B] import C".  Each entry in "widget_list" must be unique.
+def moduleInformation():
+    return "PyQt5.QtChart", ("QChartView", )

@@ -1,7 +1,7 @@
 Introduction
 ============
 
-This is the reference guide for PyQt5 5.7.  PyQt5 is a set of
+This is the reference guide for PyQt5 5.7.1.  PyQt5 is a set of
 `Python <http://www.python.org>`__ bindings for v5 of the Qt application
 framework from `The Qt Company <http://www.qt.io>`__.
 
@@ -14,15 +14,18 @@ classes as a set of Python modules.
 
 PyQt5 supports the Windows, Linux, UNIX, Android, OS X and iOS platforms.
 
-PyQt5 does not include Qt itself - you must obtain it separately.
+PyQt does not include a copy of Qt. You must obtain a correctly licensed copy
+of Qt yourself.  However, binary wheels of the GPL version of PyQt5 are
+provided and these include a copy of the appropriate parts of the LGPL version
+of Qt.
 
-The homepage for PyQt5 is http://www.riverbankcomputing.com/software/pyqt/.
+The homepage for PyQt5 is https://www.riverbankcomputing.com/software/pyqt/.
 Here you will always find the latest stable version, current development
 previews, and the latest version of this documentation.
 
 PyQt5 is built using the `SIP bindings generator
-<http://www.riverbankcomputing.com/software/sip/>`__.  SIP must be installed in
-order to build and use PyQt5.
+<https://www.riverbankcomputing.com/software/sip/>`__.  SIP must be installed
+in order to build and use PyQt5.
 
 Earlier versions of Qt are supported by PyQt4.
 
@@ -38,7 +41,7 @@ license.
 PyQt5, unlike Qt, is not available under the LGPL.
 
 You can purchase a commercial PyQt5 license `here
-<http://www.riverbankcomputing.com/commercial/buy>`__.
+<https://www.riverbankcomputing.com/commercial/buy>`__.
 
 
 PyQt5 Components
@@ -204,6 +207,11 @@ number of Python extension modules.  These are all installed in the
 - :mod:`~PyQt5.QtWebChannel` contains classes for transparently accessing
   :class:`~PyQt5.QtCore.QObject` or QML objects from HTML clients.
 
+.. module:: PyQt5.QtWebEngine
+
+- :mod:`~PyQt5.QtWebEngine` contains classes that exposes further functionality
+  of Web Engine objects created in QML to Python.
+
 .. module:: PyQt5.QtWebEngineCore
 
 - :mod:`~PyQt5.QtWebEngineCore` contains core classes used by the
@@ -215,7 +223,8 @@ number of Python extension modules.  These are all installed in the
   implementation of a web browser.  This supercedes the :mod:`~PyQt5.QtWebKit`
   module and provides better and up-to-date support for HTML, CSS and
   JavaScript features.  However it also consumes more resources and doesn't
-  give direct access to the network stack and the HTML document via C++ APIs.
+  give direct access to the network stack and the HTML document via Python
+  APIs.
 
   .. note::
 
@@ -318,10 +327,10 @@ Qt-like interface to DBus.
 
 When PyQt5 is configured a file called :file:`PyQt5.api` is generated.  This
 can be used by the
-`QScintilla <http://www.riverbankcomputing.com/software/qscintilla/>`_
+`QScintilla <https://www.riverbankcomputing.com/software/qscintilla/>`_
 editor component to enable the use of auto-completion and call tips when
 editing PyQt5 code.  The API file is installed automatically if
-`QScintilla <http://www.riverbankcomputing.com/software/qscintilla/>`_
+`QScintilla <https://www.riverbankcomputing.com/software/qscintilla/>`_
 is already installed.
 
 PyQt5 includes a large number of examples.  These are ports to Python of many

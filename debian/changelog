@@ -1,3 +1,10 @@
+pyqt5 (5.7.1+dfsg-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+  * Drop bytes_conversion.diff, applied in the new release.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 31 Dec 2016 00:09:57 +0300
+
 pyqt5 (5.7+dfsg-3) experimental; urgency=medium
 
   * Build against Qt 5.7 for experimental.

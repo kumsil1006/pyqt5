@@ -5,7 +5,7 @@ The PyQt5 Extension API
 
 An important feature of PyQt5 (and SIP generated modules in general) is the
 ability for other extension modules to build on top of it.
-`QScintilla <http://www.riverbankcomputing.com/software/qscintilla/>`__ is
+`QScintilla <https://www.riverbankcomputing.com/software/qscintilla/>`__ is
 such an example.
 
 PyQt5 provides an extension API that can be used by other modules.  This has
