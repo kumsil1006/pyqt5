@@ -2,6 +2,7 @@ pyqt5 (5.7.1+dfsg-1) UNRELEASED; urgency=medium
 
   * New upstream release.
   * Drop bytes_conversion.diff, applied in the new release.
+  * Bump sip build-dependencies to 4.19, following configure.py.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Sat, 31 Dec 2016 00:09:57 +0300
 
