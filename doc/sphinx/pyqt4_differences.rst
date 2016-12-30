@@ -107,7 +107,7 @@ and :mod:`~PyQt5.QtWebKitWidgets` modules.
 PyQt4's ``pyqtconfig`` module is not supported.  The section
 :ref:`ref-build-system` describes the support that PyQt5 provides to
 third-party packages (e.g.
-`QScintilla <http://www.riverbankcomputing.com/software/qscintilla/>`__) that
+`QScintilla <https://www.riverbankcomputing.com/software/qscintilla/>`__) that
 want to build on top of PyQt5.
 
 

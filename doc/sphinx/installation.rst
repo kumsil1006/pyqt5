@@ -79,6 +79,12 @@ The following describes the command line options of :program:`pyqtlicense`.
 
     Display the version number and exit.
 
+.. cmdoption:: --build-tag TAG
+
+    This specifies that ``TAG`` should be used as the build tag in the name of
+    the generated wheel.  If ``TAG`` is an empty string then the build tag is
+    omitted.
+
 .. cmdoption:: --license FILE
 
     This specifies that ``FILE`` is the license file.
@@ -111,15 +117,27 @@ The following describes the command line options of :program:`pyqtlicense`.
     This specifies that ``DIR`` contains the LGPL or commercial Qt installation
     to be included in the licensed wheel.  It must be specified.
 
+.. cmdoption:: --qt-version VERSION
+
+    This specifies the 3-part version number of the Qt installation.  If it is
+    not specified then it will be extracted from the value specified by the
+    :option:`--qt` option.
+
 .. cmdoption:: --quiet
 
     This specifies that all progress messages should be suppressed.
+
+.. cmdoption:: --wheel-qt-version VERSION
+
+    This specifies the 3-part version number of the Qt installation that the
+    wheel was built against.  If it is not specified then it will be extracted
+    from the name of the wheel file.
 
 .. cmdoption:: --verbose
 
     This specifies that additional progress messages should be displayed.
 
-The remaining arguments are the names of the unlicensed wheel files to license.
+The remaining argument is the name of the unlicensed wheel file to license.
 
 To uninstall the commercial version, run::
 
@@ -136,17 +154,17 @@ Downloading SIP
 
 SIP must be installed before building and using PyQt5.  You can get the latest
 release of the SIP source code from
-http://www.riverbankcomputing.com/software/sip/download.
+https://www.riverbankcomputing.com/software/sip/download.
 
 The SIP installation instructions can be found at
-http://pyqt.sourceforge.net/Docs/sip4/installation.html.
+https://pyqt.sourceforge.net/Docs/sip4/installation.html.
 
 
 Downloading PyQt5
 .................
 
 You can get the latest release of the GPL version of the PyQt5 source code from
-http://www.riverbankcomputing.com/software/pyqt/download5.
+https://www.riverbankcomputing.com/software/pyqt/download5.
 
 If you are using the commercial version of PyQt5 then you should use the
 download instructions which were sent to you when you made your purchase.  You
