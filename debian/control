@@ -15,6 +15,7 @@ Build-Depends: debhelper (>= 9),
                libqt5sensors5-dev (>= 5.7.0),
                libqt5serialport5-dev (>= 5.7.0),
                libqt5svg5-dev (>= 5.7.0),
+               libqt5webchannel5-dev (>= 5.7.1),
                libqt5webkit5-dev (>= 5.7.0),
                libqt5websockets5-dev (>= 5.7.0),
                libqt5x11extras5-dev (>= 5.7.0),
@@ -210,6 +211,37 @@ Depends: python3-dbg,
 Description: Python 3 bindings for Qt5's SQL module (debug extension)
  The SQL module of PyQt5 provides widgets and utility classes for
  Python 3 SQL database access.
+ .
+ This package contains the extension built for the Python 3 debug interpreter.
+
+Package: python3-pyqt5.qtwebchannel
+Architecture: any
+Depends: python3-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for Qt5's WebChannel module
+ Qt WebChannel enables peer-to-peer communication between the host (PyQt5
+ application) and the client (HTML/JavaScript application). The transport
+ mechanism is supported out of the box by the two popular web engines, Qt
+ WebKit 2 and Qt WebEngine (experimental).
+ .
+ This package contains the Python 3 version of this module.
+
+Package: python3-pyqt5.qtwebchannel-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python3-dbg,
+         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.qtwebchannel (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 3 bindings for Qt5's Webchannel module (debug extension)
+ Qt WebChannel enables peer-to-peer communication between the host (PyQt5
+ application) and the client (HTML/JavaScript application). The transport
+ mechanism is supported out of the box by the two popular web engines, Qt
+ WebKit 2 and Qt WebEngine (experimental).
  .
  This package contains the extension built for the Python 3 debug interpreter.
 
@@ -621,6 +653,37 @@ Depends: python-dbg,
 Description: Python 2 bindings for Qt5's SQL module (debug extension)
  The SQL module of PyQt5 provides widgets and utility classes for
  Python SQL database access.
+ .
+ This package contains the extension built for the Python 2 debug interpreter.
+
+Package: python-pyqt5.qtwebchannel
+Architecture: any
+Depends: python-pyqt5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python:Depends},
+         ${shlibs:Depends}
+Description: Python 2 bindings for Qt5's WebChannel module
+ Qt WebChannel enables peer-to-peer communication between the host (PyQt5
+ application) and the client (HTML/JavaScript application). The transport
+ mechanism is supported out of the box by the two popular web engines, Qt
+ WebKit 2 and Qt WebEngine (experimental).
+ .
+ This package contains the Python 2 version of this module.
+
+Package: python-pyqt5.qtwebchannel-dbg
+Priority: extra
+Section: debug
+Architecture: any
+Depends: python-dbg,
+         python-pyqt5-dbg (= ${binary:Version}),
+         python-pyqt5.qtwebchannel (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Python 2 bindings for Qt5's Webchannel module (debug extension)
+ Qt WebChannel enables peer-to-peer communication between the host (PyQt5
+ application) and the client (HTML/JavaScript application). The transport
+ mechanism is supported out of the box by the two popular web engines, Qt
+ WebKit 2 and Qt WebEngine (experimental).
  .
  This package contains the extension built for the Python 2 debug interpreter.
 

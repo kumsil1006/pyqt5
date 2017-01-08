@@ -37,8 +37,8 @@ ALLPYTHONS := $(PYTHON3S) $(PYTHON)
 DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 QTWEBENGINE_ARCHS := amd64 i386
 
-PYQT_MODULES := opengl sql webkit websockets xmlpatterns svg multimedia quick \
-	serialport sensors x11extras positioning
+PYQT_MODULES := opengl sql webchannel webkit websockets xmlpatterns svg \
+	multimedia quick serialport sensors x11extras positioning
 ifneq (,$(filter $(DEB_HOST_ARCH),$(QTWEBENGINE_ARCHS)))
 	PYQT_MODULES += webengine
 endif
@@ -184,6 +184,8 @@ install-arch-3.%:
 		debian/python3-pyqt5.qtopengl-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtSql.so \
 		debian/python3-pyqt5.qtsql-dbg/usr/lib/python3.$*/dist-packages/PyQt5
+	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtWebChannel.so \
+		debian/python3-pyqt5.qtwebchannel-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtWebKit*.so \
 		debian/python3-pyqt5.qtwebkit-dbg/usr/lib/python3.$*/dist-packages/PyQt5
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtWebSockets.so \
@@ -235,6 +237,8 @@ install-arch-2.%:
 		debian/python-pyqt5.qtopengl-dbg/usr/lib/python2.$*/dist-packages/PyQt5
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtSql.so \
 		debian/python-pyqt5.qtsql-dbg/usr/lib/python2.$*/dist-packages/PyQt5
+	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtWebChannel.so \
+		debian/python-pyqt5.qtwebchannel-dbg/usr/lib/python2.$*/dist-packages/PyQt5
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtWebKit*.so \
 		debian/python-pyqt5.qtwebkit-dbg/usr/lib/python2.$*/dist-packages/PyQt5
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtWebSockets.so \
