@@ -34,6 +34,17 @@ DEFAULT_PYTHON := $(shell py3versions -vd)
 PYTHON := 2.7
 ALLPYTHONS := $(PYTHON3S) $(PYTHON)
 
+DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+QTWEBENGINE_ARCHS := amd64 i386
+
+PYQT_MODULES := opengl sql webkit websockets xmlpatterns svg multimedia quick \
+	serialport sensors x11extras positioning
+ifneq (,$(filter $(DEB_HOST_ARCH),$(QTWEBENGINE_ARCHS)))
+	PYQT_MODULES += webengine
+endif
+
+PY_PACKAGE_NAMES := pyqt5 $(PYQT_MODULES:%=pyqt5.qt%) dbus.mainloop.pyqt5
+
 export QT_SELECT=qt5
 
 # LIBS_* is unset to avoid linking to too many libraries
@@ -166,7 +177,7 @@ install-arch-3.%:
 
 	# Don't initiate the uic/widget-plugins
 	touch $(CURDIR)/debian/tmp/usr/lib/python3.$*/dist-packages/PyQt5/uic/widget-plugins/.noinit
-	for module in opengl sql webkit websockets xmlpatterns svg multimedia quick serialport sensors x11extras positioning; do \
+	for module in $(PYQT_MODULES); do \
 		mkdir -p debian/python3-pyqt5.qt$$module-dbg/usr/lib/python3.$*/dist-packages/PyQt5; \
 	done
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/*OpenGL*.so \
@@ -195,6 +206,11 @@ install-arch-3.%:
 	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtPositioning.so \
 	   $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtLocation.so \
 		debian/python3-pyqt5.qtpositioning-dbg/usr/lib/python3.$*/dist-packages/PyQt5
+ifneq (,$(filter $(DEB_HOST_ARCH),$(QTWEBENGINE_ARCHS)))
+	mv $(d3_qt5_dbg)/usr/lib/python3.$*/dist-packages/PyQt5/QtWebEngine*.so \
+		debian/python3-pyqt5.qtwebengine-dbg/usr/lib/python3.$*/dist-packages/PyQt5
+endif
+
 
 d_qt5_dbg = debian/python-pyqt5-dbg
 
@@ -212,7 +228,7 @@ install-arch-2.%:
 
 	# Don't initiate the uic/widget-plugins
 	touch $(CURDIR)/debian/tmp/usr/lib/python2.$*/dist-packages/PyQt5/uic/widget-plugins/.noinit
-	for module in opengl sql webkit websockets xmlpatterns svg multimedia quick serialport sensors x11extras positioning; do \
+	for module in $(PYQT_MODULES); do \
 		mkdir -p debian/python-pyqt5.qt$$module-dbg/usr/lib/python2.$*/dist-packages/PyQt5; \
 	done
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/*OpenGL*.so \
@@ -241,6 +257,10 @@ install-arch-2.%:
 	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtPositioning.so \
 	   $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtLocation.so \
 		debian/python-pyqt5.qtpositioning-dbg/usr/lib/python2.$*/dist-packages/PyQt5
+ifneq (,$(filter $(DEB_HOST_ARCH),$(QTWEBENGINE_ARCHS)))
+	mv $(d_qt5_dbg)/usr/lib/python2.$*/dist-packages/PyQt5/QtWebEngine*.so \
+		debian/python-pyqt5.qtwebengine-dbg/usr/lib/python2.$*/dist-packages/PyQt5
+endif
 
 clean:
 	dh_testdir
@@ -273,22 +293,7 @@ endif
 ifeq (,$(findstring -i, $(DH_OPTIONS)))
 	DH_OPTIONS= dh_strip -ppyqt5-dev-tools
 	set -e; \
-	for p in python3-pyqt5 \
-	  python3-pyqt5.qtopengl python3-pyqt5.qtsql \
-	  python3-pyqt5.qtwebkit python3-pyqt5.qtwebsockets \
-	  python3-pyqt5.qtmultimedia \
-	  python3-pyqt5.qtsvg python3-pyqt5.qtxmlpatterns \
-	  python3-pyqt5.qtquick python3-pyqt5.qtserialport \
-	  python3-pyqt5.qtsensors python3-pyqt5.qtx11extras \
-	  python3-pyqt5.qtpositioning python3-dbus.mainloop.pyqt5 \
-	  python-pyqt5 \
-	  python-pyqt5.qtopengl python-pyqt5.qtsql \
-	  python-pyqt5.qtwebkit python-pyqt5.qtwebsockets \
-	  python-pyqt5.qtmultimedia \
-	  python-pyqt5.qtsvg python-pyqt5.qtxmlpatterns \
-	  python-pyqt5.qtquick python-pyqt5.qtserialport \
-	  python-pyqt5.qtsensors python-pyqt5.qtx11extras \
-	  python-pyqt5.qtpositioning python-dbus.mainloop.pyqt5; do \
+	for p in $(PY_PACKAGE_NAMES:%=python3-%) $(PY_PACKAGE_NAMES:%=python-%); do \
 		DH_OPTIONS= dh_strip -p$$p --dbg-package=$$p-dbg; \
 		rm -rf debian/$$p-dbg/usr/share/doc/$$p-dbg; \
 		mkdir -p debian/$$p-dbg/usr/share/doc; \
