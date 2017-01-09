@@ -1,9 +1,10 @@
-pyqt5 (5.7+dfsg-4) UNRELEASED; urgency=medium
+pyqt5 (5.7+dfsg-4) unstable; urgency=medium
 
   * Add Qt WebEngine support for amd64 and i386 (closes: #841830).
   * Add Qt WebChannel support.
+  * Upload to unstable.
 
- -- Dmitry Shachnev <mitya57@debian.org>  Sun, 08 Jan 2017 11:42:40 +0300
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 09 Jan 2017 12:47:01 +0300
 
 pyqt5 (5.7+dfsg-3) experimental; urgency=medium
 
