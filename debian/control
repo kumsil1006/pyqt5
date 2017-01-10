@@ -247,7 +247,7 @@ Description: Python 3 bindings for Qt5's Webchannel module (debug extension)
 
 Package: python3-pyqt5.qtwebengine
 Architecture: amd64 i386
-Depends: python3-pyqt5 (= ${binary:Version}),
+Depends: python3-pyqt5.qtwebchannel (= ${binary:Version}),
          ${misc:Depends},
          ${python3:Depends},
          ${shlibs:Depends}
@@ -262,7 +262,7 @@ Priority: extra
 Section: debug
 Architecture: amd64 i386
 Depends: python3-dbg,
-         python3-pyqt5-dbg (= ${binary:Version}),
+         python3-pyqt5.qtwebchannel-dbg (= ${binary:Version}),
          python3-pyqt5.qtwebengine (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
@@ -689,7 +689,7 @@ Description: Python 2 bindings for Qt5's Webchannel module (debug extension)
 
 Package: python-pyqt5.qtwebengine
 Architecture: amd64 i386
-Depends: python-pyqt5 (= ${binary:Version}),
+Depends: python-pyqt5.qtwebchannel (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
          ${shlibs:Depends}
@@ -704,7 +704,7 @@ Priority: extra
 Section: debug
 Architecture: amd64 i386
 Depends: python-dbg,
-         python-pyqt5-dbg (= ${binary:Version}),
+         python-pyqt5.qtwebchannel-dbg (= ${binary:Version}),
          python-pyqt5.qtwebengine (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
