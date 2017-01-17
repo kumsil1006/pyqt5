@@ -11,7 +11,7 @@ Patch-Name: bytes_conversion.diff
  1 file changed, 5 deletions(-)
 
 diff --git a/qpy/QtCore/qpycore_chimera.cpp b/qpy/QtCore/qpycore_chimera.cpp
-index 920fee6..2c8f8b8 100644
+index 920fee67..2c8f8b86 100644
 --- a/qpy/QtCore/qpycore_chimera.cpp
 +++ b/qpy/QtCore/qpycore_chimera.cpp
 @@ -416,11 +416,6 @@ bool Chimera::parse_py_type(PyTypeObject *type_obj)

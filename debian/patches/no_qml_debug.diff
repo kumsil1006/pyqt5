@@ -1,0 +1,27 @@
+From 07a7844cecb63f4e5462cf1d0bcd66d86de6bead Mon Sep 17 00:00:00 2001
+From: Dmitry Shachnev <mitya57@gmail.com>
+Date: Tue, 17 Jan 2017 16:40:52 +0300
+Subject: Disable implicit qml_debug option for debug builds
+
+We build PyQt in debug mode, but do not want the qml_debug option
+because it has security implication (opens a local network port).
+
+Origin: openSUSE, https://www.riverbankcomputing.com/pipermail/pyqt/2017-January/038608.html
+Patch-Name: no_qml_debug.diff
+---
+ configure.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.py b/configure.py
+index a44c237a..cb580084 100644
+--- a/configure.py
++++ b/configure.py
+@@ -2244,7 +2244,7 @@ def pro_add_qt_dependencies(target_config, metadata, pro_lines, debug=None):
+         pro_lines.append('QT += %s' % ' '.join(add))
+ 
+     pro_lines.append(
+-            'CONFIG += %s' % ('debug qml_debug' if debug else 'release'))
++            'CONFIG += %s' % ('debug' if debug else 'release'))
+ 
+     if metadata.cpp11:
+         pro_lines.append('CONFIG += c++11')
