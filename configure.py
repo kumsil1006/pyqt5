@@ -2244,7 +2244,7 @@ def pro_add_qt_dependencies(target_config, metadata, pro_lines, debug=None):
         pro_lines.append('QT += %s' % ' '.join(add))
 
     pro_lines.append(
-            'CONFIG += %s' % ('debug qml_debug' if debug else 'release'))
+            'CONFIG += %s' % ('debug' if debug else 'release'))
 
     if metadata.cpp11:
         pro_lines.append('CONFIG += c++11')
