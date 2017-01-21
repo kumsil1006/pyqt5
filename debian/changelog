@@ -1,10 +1,10 @@
-pyqt5 (5.7+dfsg-5) UNRELEASED; urgency=medium
+pyqt5 (5.7+dfsg-5) unstable; urgency=medium
 
   * Make WebEngine packages depend on WebChannel, to avoid import errors.
   * Disable implicit qml_debug option for debug builds (no_qml_debug.diff).
     Patch taken from openSUSE, thanks Hans-Peter Jansen!
 
- -- Dmitry Shachnev <mitya57@debian.org>  Tue, 10 Jan 2017 18:58:43 +0300
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 21 Jan 2017 11:26:05 +0300
 
 pyqt5 (5.7+dfsg-4) unstable; urgency=medium
 
