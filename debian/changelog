@@ -1,4 +1,4 @@
-pyqt5 (5.7.1+dfsg-1) UNRELEASED; urgency=medium
+pyqt5 (5.8+dfsg-1) UNRELEASED; urgency=medium
 
   * New upstream release.
   * Drop bytes_conversion.diff, applied in the new release.
