@@ -1,4 +1,67 @@
+2017-03-07  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v5.8.1.
+	[7426ab9ba43b] [5.8.1] <5.8-maint>
+
+2017-03-03  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtCore/qpycore_chimera.cpp:
+	Special case a QVariant containing std::nullptr_t.
+	[001ad7fc01fb] <5.8-maint>
+
+2017-02-27  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* METADATA.in:
+	Updated the Requires-Dist meta-data so it includes the values from
+	the release file.
+	[2933ac7bf19d] <5.8-maint>
+
+2017-02-24  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/configure.py:
+	Disable desktop OpenGL if OpenGLES v3 or v3.1 is detected.
+	[4ba0f0b49e2a] <5.8-maint>
+
+	* qpy/QtQml/qpyqml_register_type.cpp:
+	Fixed the handling of properties in Qml because of changes to the
+	internals in Qt v5.8.0.
+	[feeab3eb94fa] <5.8-maint>
+
+2017-02-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Fixed QLocale.toString() for Python v2.
+	[027b070ff19e] <5.8-maint>
+
+	* PyQt5.msp:
+	Anticipate that Qt v5.9.0 will be released before Qt v5.8.1 to avoid
+	problems building PyQt v5.9 against Qt v5.8.1.
+	[6022c9537b69] <5.8-maint>
+
+2017-02-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtPrintSupport/qpyprintsupport_qlist.sip:
+	The QtPrintSupport mapped types are only included if printers are
+	supported.
+	[7b3afef45f92] <5.8-maint>
+
+	* sphinx/pyqt_qvariant.rst:
+	Updated the docs regarding support for QVariant.
+	[657a7b5e45ce] <5.8-maint>
+
+2017-02-16  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtQml/qpyqmlobject.cpp:
+	Fixed signals in QML registered types that are defined in a Python
+	sub-class of the registered type.
+	[e5d27b6ce571] <5.8-maint>
+
 2017-02-15  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 5.8 for changeset a04bf1746ae4
+	[f12c11450b7f]
 
 	* NEWS:
 	Released as v5.8.

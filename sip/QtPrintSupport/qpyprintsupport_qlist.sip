@@ -19,6 +19,8 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
+%If (PyQt_Printer)
+
 %MappedType QList<QPagedPaintDevice::PageSize>
         /TypeHintIn="Iterable[QPagedPaintDevice.PageSize]",
         TypeHintOut="List[QPagedPaintDevice.PageSize]", TypeHintValue="[]"/
@@ -121,6 +123,10 @@
 %End
 };
 
+%End
+
+
+%If (PyQt_Printer)
 
 %If (Qt_5_4_0 -)
 
@@ -225,5 +231,7 @@
     return sipGetState(sipTransferObj);
 %End
 };
+
+%End
 
 %End

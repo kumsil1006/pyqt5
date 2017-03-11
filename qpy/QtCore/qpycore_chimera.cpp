@@ -1579,8 +1579,17 @@ PyObject *Chimera::toAnyPyObject(const QVariant &var)
     }
 
     const char *type_name = var.typeName();
-    const sipTypeDef *td = sipFindType(type_name);
 
+    // Qt v5.8.0 changed the way it was handling null in QML.  We treat it as a
+    // special case though there may be other implications still to be
+    // discovered.
+    if (qstrcmp(type_name, "std::nullptr_t") == 0)
+    {
+        Py_INCREF(Py_None);
+        return Py_None;
+    }
+
+    const sipTypeDef *td = sipFindType(type_name);
     Chimera *ct = new Chimera;
 
     ct->_type = td;
