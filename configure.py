@@ -28,7 +28,7 @@ import sys
 
 
 # Initialise the constants.
-PYQT_VERSION_STR = "5.8"
+PYQT_VERSION_STR = "5.8.1"
 
 SIP_MIN_VERSION = '4.19.1'
 
@@ -683,7 +683,7 @@ int main(int argc, char **argv)
 #if defined(QT_NO_OPENGL)
     out << "PyQt_OpenGL\\n";
     out << "PyQt_Desktop_OpenGL\\n";
-#elif defined(QT_OPENGL_ES_2)
+#elif defined(QT_OPENGL_ES_2) || defined(QT_OPENGL_ES_3) || defined(QT_OPENGL_ES_3_1)
     out << "PyQt_Desktop_OpenGL\\n";
 #endif
 

@@ -111,6 +111,13 @@ int QPyQmlObjectProxy::qt_metacall(QMetaObject::Call call, int idx, void **args)
     // Note that we used to use sender() but this proved unreliable.
     if (call == QMetaObject::InvokeMetaMethod && proxied_mo->method(idx).methodType() == QMetaMethod::Signal)
     {
+        // Get the meta-object of the class that defines the signal.
+        while (idx < proxied_mo->methodOffset())
+        {
+            proxied_mo = proxied_mo->superClass();
+            Q_ASSERT(proxied_mo);
+        }
+
         // Relay the signal to QML.
         QMetaObject::activate(this, proxied_mo,
                 idx - proxied_mo->methodOffset(), args);

@@ -1,3 +1,6 @@
+v5.8.1 7th March 2017
+  - This is a bug fix release.
+
 v5.8 15th February 2017
   - Added support for Qt v5.8.0.
   - Added __fspath__() to QFileInfo.
