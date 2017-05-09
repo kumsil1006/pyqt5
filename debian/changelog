@@ -1,6 +1,7 @@
 pyqt5 (5.8.2+dfsg-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Update debian/copyright.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Tue, 09 May 2017 10:25:24 +0300
 

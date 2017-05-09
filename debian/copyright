@@ -5,7 +5,7 @@ Files-Excluded: doc/html
                 examples/webkit/fancybrowser/jquery_rc.py
 
 Files: *
-Copyright: 2016, Riverbank Computing Limited
+Copyright: 2017, Riverbank Computing Limited
 License: GPL-3
 
 Files: dbus/*
@@ -22,9 +22,13 @@ License: BSD-3-clause
 Files: examples/designer/plugins/python/*
        examples/designer/plugins/widgets/*
 Copyright: 2006-2007, David Boddie <david@boddie.org.uk>
-           2005-2006, Trolltech ASA,
-           2008,      Denviso GmbH
+           2005-2006, Trolltech ASA
 License: GPL-2+
+
+Files: examples/designer/plugins/python/datetimeeditplugin.py
+       examples/designer/plugins/widgets/datetimeedit.py
+Copyright: 2008, Denviso GmbH, <ulrich.berning@denviso.de>
+License: ISC-Denviso
 
 Files: examples/draganddrop/delayedencoding/images/example.svg
        examples/graphicsview/embeddeddialogs/embeddeddialogs.py
@@ -50,15 +54,22 @@ Copyright: 2013, Digia Plc and/or its subsidiary(-ies)
            2016, Riverbank Computing Limited
 License: LGPL-2.1 with Digia-1.1 exception or GPL-3
 
-Files: pyuic/*
+Files: pyuic/uic/Compiler/*.py
+       pyuic/uic/Loader/*.py
+       pyuic/uic/__init__.py
+       pyuic/uic/exceptions.py
+       pyuic/uic/objcreator.py
+       pyuic/uic/properties.py
+       pyuic/uic/uiparser.py
+       pyuic/uic/widget-plugins/qtwebkit.py
 Copyright: 2005-2006, Thorsten Marek <shlomme@gmx.net>
-           2014-2015, Riverbank Computing Limited
-License: GPL-3 or BSD-3-clause
+           2014-2017, Riverbank Computing Limited
+License: GPL-2 or BSD-3-clause
 
 Files: debian/*
 Copyright: 2006-2010, Thorsten Marek <shlomme@debian.org>
            2011-2014, Scott Kitterman <scott@kitterman.com>
-           2013-2016, Dmitry Shachnev <mitya57@debian.org>
+           2013-2017, Dmitry Shachnev <mitya57@debian.org>
 License: GPL-2+
 
 License: GPL-2+
@@ -167,3 +178,17 @@ License: Expat
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  DEALINGS IN THE SOFTWARE.
+
+License: ISC-Denviso
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose and without fee is hereby granted, provided
+ that the above copyright notice appear in all copies and that both that
+ copyright notice and this permission notice appear in supporting
+ documentation.
+ .
+ DENVISO DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL DENVISO
+ BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+ OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+ CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
