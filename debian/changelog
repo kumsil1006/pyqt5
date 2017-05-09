@@ -1,4 +1,4 @@
-pyqt5 (5.8.2+dfsg-1) UNRELEASED; urgency=medium
+pyqt5 (5.8.2+dfsg-1) experimental; urgency=medium
 
   * New upstream release.
   * Update debian/copyright.
