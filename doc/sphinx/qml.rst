@@ -26,6 +26,17 @@ particular:
 - Python properties, signals and slots can be given revision numbers that only
   those implemented by a specific version are made available to QML.
 
+.. note::
+
+    The PyQt support for QML requires knowledge of the internals of the C++
+    code that implements QML.  This can (and does) change between Qt versions
+    and may mean that some features only work with specific Qt versions and may
+    not work at all with some future version of Qt.
+
+    It is recommended that, in an MVC architecture, QML should only be used to
+    implement the view.  The model and controller should be implemented in
+    Python.
+
 
 Registering Python Types
 ------------------------

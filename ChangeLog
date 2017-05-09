@@ -1,4 +1,67 @@
+2017-03-30  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v5.8.2.
+	[96c86cda6415] [5.8.2] <5.8-maint>
+
+2017-03-29  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/configure.py:
+	Fixes for the OpenGL detection needed by the incompatible
+	configuration changes in Qt v5.8.0.
+	[bf6caed84fd3] <5.8-maint>
+
+2017-03-27  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtCore/qpycore_chimera.cpp:
+	When parsing a Python type map list and dict to QVariantList and
+	QVariantMap.
+	[e7158e3e2a31] <5.8-maint>
+
+2017-03-24  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/LICENSE.commercial, lib/LICENSE.commercial.short,
+	lib/LICENSE.gpl, lib/LICENSE.gpl.short, lib/LICENSE.internal:
+	Remove the license copies that are now part of rb-tools.
+	[c15cf2c0c055] <5.8-maint>
+
+2017-03-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* pyuic/uic/uiparser.py:
+	Fixed the margins of the top layout in a tab by pyuic.
+	[f5594ddfb6ee] <5.8-maint>
+
+	* pyuic/uic/driver.py, pyuic/uic/exceptions.py,
+	pyuic/uic/properties.py, pyuic/uic/pyuic.py:
+	Improved the error handling of an unknown C++ class.
+	[c4dab2a95dc6] <5.8-maint>
+
+2017-03-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* sphinx/qml.rst:
+	Added explicit warnings about PyQt's ability to support QML to the
+	docs.
+	[e0c7e29a7852] <5.8-maint>
+
+2017-03-16  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Added a comment about why opengl_types.sip is included twice.
+	[95518ec3931a] <5.8-maint>
+
+	* PyQt5.msp:
+	Only enable QOpenGLTextureBlitter if OpenGL is supported.
+	[ef351b9d8f03] <5.8-maint>
+
+	* PyQt5.msp:
+	Avoid a deadlock when using asynchronous image providers in QML.
+	[33ed4db6949b] <5.8-maint>
+
 2017-03-07  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 5.8.1 for changeset 7426ab9ba43b
+	[0ddf209259b4] <5.8-maint>
 
 	* NEWS:
 	Released as v5.8.1.

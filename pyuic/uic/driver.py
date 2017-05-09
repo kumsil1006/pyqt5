@@ -119,6 +119,11 @@ class Driver(object):
 
         sys.stderr.write("Error in input file: %s\n" % e)
 
+    def on_NoSuchClassError(self, e):
+        """ Handle a NoSuchClassError exception. """
+
+        sys.stderr.write(str(e) + "\n")
+
     def on_NoSuchWidgetError(self, e):
         """ Handle a NoSuchWidgetError exception. """
 
