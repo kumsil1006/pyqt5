@@ -28,7 +28,7 @@ import sys
 
 
 # Initialise the constants.
-PYQT_VERSION_STR = "5.8.1"
+PYQT_VERSION_STR = "5.8.2"
 
 SIP_MIN_VERSION = '4.19.1'
 
@@ -625,7 +625,21 @@ class TargetConfiguration:
 
         out_file = 'qtdetail.out'
 
-        source = '''#include <QCoreApplication>
+        # Note that the new configuration internals of Qt v5.8 are not
+        # backwards compatible with previous versions.  Before, module-specific
+        # details were defined in QtCore, but now they are defined in the
+        # modules themselves.  This leads to a Catch-22 situation where we have
+        # to assume certain modules exist before checking that they actually
+        # do.  For the moment we only assume QtGui is present (in addition to
+        # QtCore) because we need the OpenGL features to be properly reported.
+        # The QtPrintSupport related tests will all be invalid but we can get
+        # away with this because they will only be wrong for platforms that we
+        # cross-compile for and we use explicit configuration files for those
+        # anyway.  It does need fixing properly by splitting this test program
+        # into module-specific tests that are run instead of the current
+        # module check program.
+
+        source = '''#include <QGuiApplication>
 #include <QFile>
 #include <QLibraryInfo>
 #include <QTextStream>
@@ -640,6 +654,7 @@ int main(int argc, char **argv)
 
     QTextStream out(&outf);
 
+    // Defined in QtCore.
 #if defined(QT_SHARED) || defined(QT_DLL)
     out << "shared\\n";
 #else
@@ -648,42 +663,51 @@ int main(int argc, char **argv)
 
     // Determine which features should be disabled.
 
+    // Defined in ???.
 #if defined(QT_NO_ACCESSIBILITY)
     out << "PyQt_Accessibility\\n";
 #endif
 
+    // Defined in ???.
 #if defined(QT_NO_SESSIONMANAGER)
     out << "PyQt_SessionManager\\n";
 #endif
 
+    // Defined in ???.
 #if defined(QT_NO_SSL)
     out << "PyQt_SSL\\n";
 #endif
 
+    // Defined in QtPrintSupport.
 #if defined(QT_NO_PRINTDIALOG)
     out << "PyQt_PrintDialog\\n";
 #endif
 
+    // Defined in QtPrintSupport.
 #if defined(QT_NO_PRINTER)
     out << "PyQt_Printer\\n";
 #endif
 
+    // Defined in QtPrintSupport.
 #if defined(QT_NO_PRINTPREVIEWDIALOG)
     out << "PyQt_PrintPreviewDialog\\n";
 #endif
 
+    // Defined in QtPrintSupport.
 #if defined(QT_NO_PRINTPREVIEWWIDGET)
     out << "PyQt_PrintPreviewWidget\\n";
 #endif
 
+    // Defined in ???.
 #if defined(QT_NO_RAWFONT)
     out << "PyQt_RawFont\\n";
 #endif
 
+    // Defined in QtGui.
 #if defined(QT_NO_OPENGL)
     out << "PyQt_OpenGL\\n";
     out << "PyQt_Desktop_OpenGL\\n";
-#elif defined(QT_OPENGL_ES_2) || defined(QT_OPENGL_ES_3) || defined(QT_OPENGL_ES_3_1)
+#elif defined(QT_OPENGL_ES) || defined(QT_OPENGL_ES_2) || defined(QT_OPENGL_ES_3)
     out << "PyQt_Desktop_OpenGL\\n";
 #endif
 
@@ -698,6 +722,7 @@ int main(int argc, char **argv)
         out << "PyQt_qreal_double\\n";
 #endif
 
+    // Defined in QtCore.
 #if defined(QT_NO_PROCESS)
     out << "PyQt_Process\\n";
 #endif
@@ -706,7 +731,7 @@ int main(int argc, char **argv)
 }
 ''' % out_file
 
-        cmd = compile_qt_program(self, verbose, 'qtdetail', source, 'QtCore',
+        cmd = compile_qt_program(self, verbose, 'qtdetail', source, 'QtGui',
                 debug=debug)
 
         if cmd is None:

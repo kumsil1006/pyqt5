@@ -45,6 +45,7 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 %DefaultSupertype sip.simplewrapper
 
+// Note this is also appended by configure.py but is explicitly needed here (probably a SIP bug).
 %Include opengl_types.sip
 
 %Include qabstracttextdocumentlayout.sip

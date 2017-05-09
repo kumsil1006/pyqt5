@@ -21,6 +21,7 @@
 
 
 %If (Qt_5_8_0 -)
+%If (PyQt_OpenGL)
 
 class QOpenGLTextureBlitter
 {
@@ -55,4 +56,5 @@ private:
     QOpenGLTextureBlitter(const QOpenGLTextureBlitter &);
 };
 
+%End
 %End
