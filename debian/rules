@@ -51,7 +51,7 @@ export QT_SELECT=qt5
 # STRIP is unset to let stripping be handled by dh_strip
 SHARED_CONFIGURE_OPTIONS=--confirm-license --verbose \
 	-q /usr/bin/qmake -c -j $(SPLIT) \
-	LIBDIR_QT=/usr/lib STRIP="" MOC=/usr/bin/moc \
+	STRIP="" MOC=/usr/bin/moc \
 	LIBS_OPENGL="" LIBS_X11="" LIBS_THREAD="" \
 	QMAKE_CFLAGS+="${CFLAGS} ${CPPFLAGS}" \
 	QMAKE_CXXFLAGS+="${CXXFLAGS} ${CPPFLAGS}" \
