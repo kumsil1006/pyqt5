@@ -43,7 +43,7 @@ Build-Depends: debhelper (>= 9),
                qtmultimedia5-dev (>= 5.9.1),
                qtpositioning5-dev (>= 5.9.1),
                qttools5-dev (>= 5.9.1),
-               qtwebengine5-dev (>= 5.9.1) [amd64 i386]
+               qtwebengine5-dev (>= 5.9.1) [amd64 arm64 armhf i386]
 Build-Depends-Indep: fdupes
 X-Python-Version: >= 2.7
 X-Python3-Version: >= 3.3
@@ -237,7 +237,7 @@ Description: Python 3 bindings for Qt5's Webchannel module (debug extension)
  This package contains the extension built for the Python 3 debug interpreter.
 
 Package: python3-pyqt5.qtwebengine
-Architecture: amd64 i386
+Architecture: amd64 arm64 armhf i386
 Depends: python3-pyqt5.qtwebchannel (= ${binary:Version}),
          ${misc:Depends},
          ${python3:Depends},
@@ -251,7 +251,7 @@ Description: Python 3 bindings for Qt5's WebEngine module
 Package: python3-pyqt5.qtwebengine-dbg
 Priority: extra
 Section: debug
-Architecture: amd64 i386
+Architecture: amd64 arm64 armhf i386
 Depends: python3-dbg,
          python3-pyqt5.qtwebchannel-dbg (= ${binary:Version}),
          python3-pyqt5.qtwebengine (= ${binary:Version}),
@@ -679,7 +679,7 @@ Description: Python 2 bindings for Qt5's Webchannel module (debug extension)
  This package contains the extension built for the Python 2 debug interpreter.
 
 Package: python-pyqt5.qtwebengine
-Architecture: amd64 i386
+Architecture: amd64 arm64 armhf i386
 Depends: python-pyqt5.qtwebchannel (= ${binary:Version}),
          ${misc:Depends},
          ${python:Depends},
@@ -693,7 +693,7 @@ Description: Python 2 bindings for Qt5's WebEngine module
 Package: python-pyqt5.qtwebengine-dbg
 Priority: extra
 Section: debug
-Architecture: amd64 i386
+Architecture: amd64 arm64 armhf i386
 Depends: python-dbg,
          python-pyqt5.qtwebchannel-dbg (= ${binary:Version}),
          python-pyqt5.qtwebengine (= ${binary:Version}),

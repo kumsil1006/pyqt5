@@ -10,6 +10,7 @@ pyqt5 (5.9+dfsg-1) UNRELEASED; urgency=medium
   * Build against Qt 5.9.1 in experimental.
   * Copy config-tests directory to build directories before configure.
   * Add explicit build-dependency on libjs-jquery.
+  * Enable Qt WebEngine support on arm64 and armhf (closes: #867733).
 
  -- Dmitry Shachnev <mitya57@debian.org>  Sun, 16 Jul 2017 22:17:22 +0300
 
