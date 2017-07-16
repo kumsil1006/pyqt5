@@ -7,10 +7,6 @@ export DH_OPTIONS=${EXTRA_DH_OPTIONS}
 py3_dbusmoddir = $(shell python3 -c 'import dbus.mainloop; print(dbus.mainloop.__path__[0])')
 py_dbusmoddir = $(shell python -c 'import dbus.mainloop; print(dbus.mainloop.__path__[0])')
 
-debian_version = $(word 2,$(shell dpkg-parsechangelog | grep ^Version:))
-upstream_dfsg_version = $(firstword $(subst -, ,$(debian_version)))
-upstream_version = $(subst ~,,$(firstword $(subst +, ,$(debian_version))))
-
 CFLAGS=
 CPPFLAGS=
 CXXFLAGS=
