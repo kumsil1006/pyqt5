@@ -43,7 +43,7 @@ Build-Depends: debhelper (>= 9),
                qtpositioning5-dev (>= 5.7.0),
                qttools5-dev (>= 5.7.0),
                qtwebengine5-dev (>= 5.7.1+dfsg-3~) [amd64 i386]
-Build-Depends-Indep: fdupes, python3-sphinx (>= 1.3)
+Build-Depends-Indep: fdupes
 X-Python-Version: >= 2.7
 X-Python3-Version: >= 3.3
 Standards-Version: 3.9.8
@@ -71,16 +71,6 @@ Description: Development tools for PyQt5
   * a user interface compiler (pyuic5)
   * a resource file generator (pyrcc5)
   * a translation string finder (pylupdate5)
-
-Package: pyqt5-doc
-Architecture: all
-Section: doc
-Depends: ${misc:Depends}, ${sphinxdoc:Depends}
-Suggests: pyqt5-examples
-Description: Documentation for PyQt5
- PyQt5 exposes the Qt5 GUI toolkit in Python.
- .
- This package contains Python-specific documentation for PyQt5.
 
 Package: pyqt5-examples
 Architecture: all

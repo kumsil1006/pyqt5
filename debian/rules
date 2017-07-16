@@ -287,11 +287,6 @@ binary-common:
 	dh_installman
 	dh_installchangelogs NEWS
 	dh_installdocs
-ifeq (,$(findstring -a, $(DH_OPTIONS)))
-	sphinx-build $(CURDIR)/doc/sphinx \
-	$(CURDIR)/debian/pyqt5-doc/usr/share/doc/pyqt5-doc/html
-	dh_sphinxdoc
-endif
 	dh_sip
 	dh_sip3
 ifeq (,$(findstring -i, $(DH_OPTIONS)))

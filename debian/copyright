@@ -1,7 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Contact: pyqt@riverbankcomputing.com
-Files-Excluded: doc/html
-                examples/webkit/fancybrowser/jquery.min.js
+Files-Excluded: examples/webkit/fancybrowser/jquery.min.js
                 examples/webkit/fancybrowser/jquery_rc.py
 
 Files: *
