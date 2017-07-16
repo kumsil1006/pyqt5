@@ -5,6 +5,7 @@ pyqt5 (5.9+dfsg-1) UNRELEASED; urgency=medium
     - Stop building pyqt5-doc package.
     - Update debian/copyright to not exclude doc/html from the tarball.
     - Drop python3-sphinx build-dependency.
+  * Bump sip build-dependencies to 4.19.3, following configure.py.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Sun, 16 Jul 2017 22:17:22 +0300
 
