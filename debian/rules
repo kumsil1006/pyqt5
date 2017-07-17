@@ -61,6 +61,7 @@ configure: $(ALLPYTHONS:%=build-%/configure-stamp) $(ALLPYTHONS:%=dbg-build-%/co
 build-%/configure-stamp:
 	dh_testdir
 	mkdir -p build-$*
+	cp -r config-tests build-$*/
 	cd build-$* && python$* ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-config --configdir) \
 			-d /usr/lib/python$*/dist-packages \
@@ -72,6 +73,7 @@ build-%/configure-stamp:
 dbg-build-%/configure-stamp:
 	dh_testdir
 	mkdir -p dbg-build-$*
+	cp -r config-tests dbg-build-$*/
 	cd dbg-build-$* && python$*-dbg ../configure.py $(SHARED_CONFIGURE_OPTIONS) \
 			-m $(shell python$*-dbg-config --configdir) \
 			-l /usr/include/python$*$(if $(filter 3.%, $*),dm,_d) \

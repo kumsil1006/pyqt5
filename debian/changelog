@@ -8,6 +8,7 @@ pyqt5 (5.9+dfsg-1) UNRELEASED; urgency=medium
   * Bump sip build-dependencies to 4.19.3, following configure.py.
   * Remove unused variables from debian/rules.
   * Build against Qt 5.9.1 in experimental.
+  * Copy config-tests directory to build directories before configure.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Sun, 16 Jul 2017 22:17:22 +0300
 
