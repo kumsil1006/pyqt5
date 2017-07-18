@@ -1,4 +1,4 @@
-pyqt5 (5.9+dfsg-1) UNRELEASED; urgency=medium
+pyqt5 (5.9+dfsg-1) experimental; urgency=medium
 
   * New upstream release.
   * Upstream no longer ships Sphinx documentation in this source.
@@ -13,7 +13,7 @@ pyqt5 (5.9+dfsg-1) UNRELEASED; urgency=medium
   * Enable Qt WebEngine support on arm64 and armhf (closes: #867733).
   * Bump Standards-Version to 4.0.0, no changes needed.
 
- -- Dmitry Shachnev <mitya57@debian.org>  Sun, 16 Jul 2017 22:17:22 +0300
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 18 Jul 2017 11:30:02 +0300
 
 pyqt5 (5.8.2+dfsg-1) experimental; urgency=medium
 
