@@ -1,3 +1,10 @@
+pyqt5 (5.9+dfsg-2) UNRELEASED; urgency=medium
+
+  * Backport upstream patch to fix handling of disabled features (fixes
+    build on architectures with OpenGL ES).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 16 Aug 2017 11:37:20 +0300
+
 pyqt5 (5.9+dfsg-1) experimental; urgency=medium
 
   * New upstream release.
