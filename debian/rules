@@ -31,7 +31,7 @@ PYTHON := 2.7
 ALLPYTHONS := $(PYTHON3S) $(PYTHON)
 
 DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
-QTWEBENGINE_ARCHS := amd64 arm64 armhf i386
+QTWEBENGINE_ARCHS := amd64 arm64 armhf i386 mipsel
 
 PYQT_MODULES := opengl sql webchannel webkit websockets xmlpatterns svg \
 	multimedia quick serialport sensors x11extras positioning
