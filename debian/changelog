@@ -41,6 +41,17 @@ pyqt5 (5.8.1+dfsg-1) experimental; urgency=medium
 
  -- Dmitry Shachnev <mitya57@debian.org>  Mon, 13 Mar 2017 17:51:47 +0300
 
+pyqt5 (5.7+dfsg-6) unstable; urgency=medium
+
+  * Add patches from upstream to support Qt 5.9 (closes: #872892):
+    - no_license_check.diff
+    - qt59_support.diff
+    - opengl_detection.diff
+  * Build against Qt 5.9.1.
+  * Enable Qt WebEngine support on arm64, armhf and mipsel (closes: #867733).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 22 Aug 2017 14:41:04 +0300
+
 pyqt5 (5.7+dfsg-5) unstable; urgency=medium
 
   * Make WebEngine packages depend on WebChannel, to avoid import errors.
