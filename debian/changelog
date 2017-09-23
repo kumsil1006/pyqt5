@@ -1,12 +1,13 @@
-pyqt5 (5.9+dfsg-2) UNRELEASED; urgency=medium
+pyqt5 (5.9+dfsg-2) unstable; urgency=medium
 
   * Backport upstream patch to fix handling of disabled features (fixes
     build on architectures with OpenGL ES).
   * Enable Qt WebEngine support on mipsel.
   * Drop Breaks/Replaces on versions that are not even in oldstable.
   * Bump Standards-Version to 4.1.0, stop using deprecated Priority: extra.
+  * Upload to unstable.
 
- -- Dmitry Shachnev <mitya57@debian.org>  Wed, 16 Aug 2017 11:37:20 +0300
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 23 Sep 2017 22:18:04 +0300
 
 pyqt5 (5.9+dfsg-1) experimental; urgency=medium
 
