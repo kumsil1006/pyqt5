@@ -64,6 +64,7 @@ template<_TYPE_>
 
     if (!sipIsErr)
     {
+        PyErr_Clear();
         Py_XDECREF(iter);
 
         return (iter
@@ -182,6 +183,7 @@ template<_TYPE_>
 
     if (!sipIsErr)
     {
+        PyErr_Clear();
         Py_XDECREF(iter);
 
         return (iter

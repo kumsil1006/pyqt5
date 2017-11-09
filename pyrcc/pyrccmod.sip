@@ -65,7 +65,6 @@ public:
     QStringList dataFiles() const;
 
     void setVerbose(bool b);
-    void setInitName(const QString &n);
     void setCompressLevel(int c);
     void setCompressThreshold(int t);
     void setResourceRoot(QString str);

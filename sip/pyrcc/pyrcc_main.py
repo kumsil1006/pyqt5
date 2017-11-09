@@ -24,7 +24,6 @@ from .pyrcc import *
 
 
 # Initialise the globals.
-initName = ''
 verbose = False
 compressLevel = CONSTANT_COMPRESSLEVEL_DEFAULT
 compressThreshold = CONSTANT_COMPRESSTHRESHOLD_DEFAULT
@@ -38,7 +37,6 @@ def processResourceFile(filenamesIn, filenameOut, listFiles):
     # Setup.
     library = RCCResourceLibrary()
     library.setInputFiles(filenamesIn)
-    library.setInitName(initName)
     library.setVerbose(verbose)
     library.setCompressLevel(compressLevel)
     library.setCompressThreshold(compressThreshold)
@@ -84,7 +82,6 @@ def showHelp(error):
 "\n"
 "Options:\n"
 "    -o file           Write output to file rather than stdout\n"
-"    -name name        Create an external initialization function with name\n"
 "    -threshold level  Threshold to consider compressing files\n"
 "    -compress level   Compress input files by level\n"
 "    -root path        Prefix resource access path with root path\n"
@@ -118,14 +115,6 @@ def main():
                     break
 
                 outFilename = sys.argv[i]
-                i += 1
-
-            elif opt == "name":
-                if i >= argc:
-                    errorMsg = "Missing target name"
-                    break
-
-                initName = sys.argv[i]
                 i += 1
 
             elif opt == "root":

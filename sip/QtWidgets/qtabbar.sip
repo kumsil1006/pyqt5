@@ -166,10 +166,14 @@ protected:
 
 public:
 %If (Qt_5_8_0 -)
+%If (PyQt_Accessibility)
     QString accessibleTabName(int index) const;
 %End
+%End
 %If (Qt_5_8_0 -)
+%If (PyQt_Accessibility)
     void setAccessibleTabName(int index, const QString &name);
+%End
 %End
 
 private:

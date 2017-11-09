@@ -60,7 +60,12 @@ public:
     static const QOperatingSystemVersion AndroidMarshmallow;
     static const QOperatingSystemVersion AndroidNougat;
     static const QOperatingSystemVersion AndroidNougat_MR1;
+%If (Qt_5_9_2 -)
+    static const QOperatingSystemVersion AndroidOreo;
+%End
+%If (- Qt_5_9_2)
     QOperatingSystemVersion(const QOperatingSystemVersion &other);
+%End
     QOperatingSystemVersion(QOperatingSystemVersion::OSType osType, int vmajor, int vminor = -1, int vmicro = -1);
     static QOperatingSystemVersion current();
     int majorVersion() const;

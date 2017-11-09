@@ -84,7 +84,8 @@ int qpycore_current_context(const char **file, const char **function)
 #endif
     *file = SIPBytes_AsString(saved_file);
 
-    linenr = SIPLong_AsLong(linenr_obj);
+    // Ignore any overflow exception.
+    linenr = sipLong_AsInt(linenr_obj);
 
     Py_XDECREF(saved_function);
 #if PY_MAJOR_VERSION >= 3

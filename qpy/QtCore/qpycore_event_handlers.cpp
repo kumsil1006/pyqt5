@@ -75,8 +75,10 @@ void PyQtMonitor::monitor(QObject *cppInst)
     // to monitoring.  Note that subsequently calling disconnect() would cause
     // a crash - this is why we keep a separate record of C++ instances
     // currently being monitored and never explicitly disconnect the monitor.
+    Py_BEGIN_ALLOW_THREADS
     connect(cppInst, SIGNAL(destroyed(QObject *)),
-            SLOT(on_destroyed(QObject *)));
+            SLOT(on_destroyed(QObject *)), Qt::UniqueConnection);
+    Py_END_ALLOW_THREADS
 }
 
 

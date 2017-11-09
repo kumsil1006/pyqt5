@@ -48,6 +48,18 @@ public:
 %If (Qt_5_1_0 -)
         Sha3_512,
 %End
+%If (Qt_5_9_2 -)
+        Keccak_224,
+%End
+%If (Qt_5_9_2 -)
+        Keccak_256,
+%End
+%If (Qt_5_9_2 -)
+        Keccak_384,
+%End
+%If (Qt_5_9_2 -)
+        Keccak_512,
+%End
     };
 
     explicit QCryptographicHash(QCryptographicHash::Algorithm method);

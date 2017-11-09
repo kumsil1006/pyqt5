@@ -99,14 +99,14 @@ template<_TYPE_>
         return 0;
     }
 
-    PyErr_Clear();
-    int second = SIPLong_AsLong(secondobj);
+    int second = sipLong_AsInt(secondobj);
 
     if (PyErr_Occurred())
     {
-        PyErr_Format(PyExc_TypeError,
-                "the second element has type '%s' but 'int' is expected",
-                sipPyTypeName(Py_TYPE(secondobj)));
+        if (PyErr_ExceptionMatches(PyExc_TypeError))
+            PyErr_Format(PyExc_TypeError,
+                    "the second element has type '%s' but 'int' is expected",
+                    sipPyTypeName(Py_TYPE(secondobj)));
 
         Py_DECREF(secondobj);
         sipReleaseType(first, sipType__TYPE_, firststate);
@@ -170,14 +170,14 @@ template<_TYPE_>
         return 0;
     }
 
-    PyErr_Clear();
-    int first = SIPLong_AsLong(firstobj);
+    int first = sipLong_AsInt(firstobj);
 
     if (PyErr_Occurred())
     {
-        PyErr_Format(PyExc_TypeError,
-                "the first element has type '%s' but 'int' is expected",
-                sipPyTypeName(Py_TYPE(firstobj)));
+        if (PyErr_ExceptionMatches(PyExc_TypeError))
+            PyErr_Format(PyExc_TypeError,
+                    "the first element has type '%s' but 'int' is expected",
+                    sipPyTypeName(Py_TYPE(firstobj)));
 
         *sipIsErr = 1;
 
@@ -194,14 +194,14 @@ template<_TYPE_>
         return 0;
     }
 
-    PyErr_Clear();
-    int second = SIPLong_AsLong(secondobj);
+    int second = sipLong_AsInt(secondobj);
 
     if (PyErr_Occurred())
     {
-        PyErr_Format(PyExc_TypeError,
-                "the second element has type '%s' but 'int' is expected",
-                sipPyTypeName(Py_TYPE(secondobj)));
+        if (PyErr_ExceptionMatches(PyExc_TypeError))
+            PyErr_Format(PyExc_TypeError,
+                    "the second element has type '%s' but 'int' is expected",
+                    sipPyTypeName(Py_TYPE(secondobj)));
 
         Py_DECREF(secondobj);
         Py_DECREF(firstobj);

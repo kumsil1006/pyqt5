@@ -79,7 +79,9 @@
             return 0;
         }
 
-        if (!sipCanConvertToEnum(itm, sipType_QFontDatabase_WritingSystem))
+        int v = sipConvertToEnum(itm, sipType_QFontDatabase_WritingSystem);
+
+        if (PyErr_Occurred())
         {
             PyErr_Format(PyExc_TypeError,
                     "element %zd has type '%s' but 'QFontDatabase.WritingSystem' is expected",
@@ -92,9 +94,7 @@
             return 0;
         }
 
-        ql->append(
-                static_cast<QFontDatabase::WritingSystem>(
-                        SIPLong_AsLong(itm)));
+        ql->append(static_cast<QFontDatabase::WritingSystem>(v));
 
         Py_DECREF(itm);
     }
