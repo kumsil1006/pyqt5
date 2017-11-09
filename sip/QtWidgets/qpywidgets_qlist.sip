@@ -56,6 +56,7 @@
 
     if (!sipIsErr)
     {
+        PyErr_Clear();
         Py_XDECREF(iter);
 
         return (iter
@@ -93,7 +94,9 @@
             break;
         }
 
-        if (!sipCanConvertToEnum(itm, sipType_QWizard_WizardButton))
+        int v = sipConvertToEnum(itm, sipType_QWizard_WizardButton);
+
+        if (PyErr_Occurred())
         {
             PyErr_Format(PyExc_TypeError,
                     "index %zd has type '%s' but 'QWizard.WizardButton' is expected",
@@ -107,7 +110,7 @@
             return 0;
         }
 
-        ql->append(static_cast<QWizard::WizardButton>(SIPLong_AsLong(itm)));
+        ql->append(static_cast<QWizard::WizardButton>(v));
 
         Py_DECREF(itm);
     }

@@ -385,7 +385,9 @@ static PyObject *pyqtBoundSignal_connect(PyObject *self, PyObject *args,
 
     if (py_type)
     {
-        if (!sipCanConvertToEnum(py_type, sipType_Qt_ConnectionType))
+        int v = sipConvertToEnum(py_type, sipType_Qt_ConnectionType);
+
+        if (PyErr_Occurred())
         {
             PyErr_Format(PyExc_TypeError,
                     "Qt.ConnectionType expected, not '%s'",
@@ -394,7 +396,7 @@ static PyObject *pyqtBoundSignal_connect(PyObject *self, PyObject *args,
             return 0;
         }
 
-        q_type = (Qt::ConnectionType)SIPLong_AsLong(py_type);
+        q_type = static_cast<Qt::ConnectionType>(v);
     }
 
     QObject *q_tx = bs->bound_qobject, *q_rx;

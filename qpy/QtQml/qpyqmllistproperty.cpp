@@ -309,9 +309,7 @@ static int list_count(QQmlListProperty<QObject> *p)
 
         if (py_res)
         {
-            PyErr_Clear();
-
-            res = SIPLong_AsLong(py_res);
+            res = sipLong_AsInt(py_res);
 
             if (PyErr_Occurred())
             {

@@ -90,7 +90,7 @@ static PyObject *parse_enums_flags(PyObject *args, bool flags)
         {
             PyErr_Clear();
 
-            int i_value = SIPLong_AsLong(value);
+            int i_value = sipLong_AsInt(value);
 
             if (PyErr_Occurred())
                 continue;

@@ -28,6 +28,7 @@
 // See if a Python object can be converted to a QJsonValue.
 int qpycore_canConvertTo_QJsonValue(PyObject *py)
 {
+    // Note that the API doesn't provide a test for constrained named enums.
     if (PyObject_TypeCheck(py, sipTypeAsPyTypeObject(sipType_QJsonValue_Type)))
         return 1;
 
@@ -65,7 +66,15 @@ int qpycore_convertTo_QJsonValue(PyObject *py, PyObject *transferObj,
 {
     if (PyObject_TypeCheck(py, sipTypeAsPyTypeObject(sipType_QJsonValue_Type)))
     {
-        *cpp = new QJsonValue((QJsonValue::Type)SIPLong_AsLong(py));
+        int v = sipConvertToEnum(py, sipType_QJsonValue_Type);
+
+        if (PyErr_Occurred())
+        {
+            *isErr = 1;
+            return 0;
+        }
+
+        *cpp = new QJsonValue(static_cast<QJsonValue::Type>(v));
 
         return sipGetState(transferObj);
     }

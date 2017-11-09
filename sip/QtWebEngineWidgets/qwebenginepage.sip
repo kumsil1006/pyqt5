@@ -499,7 +499,7 @@ public:
     void replaceMisspelledWord(const QString &replacement);
 %End
 %If (Qt_5_8_0 -)
-    void save(const QString &filePath, QWebEngineDownloadItem::SavePageFormat format = QWebEngineDownloadItem::SavePageFormat::MimeHtmlSaveFormat) const;
+    void save(const QString &filePath, QWebEngineDownloadItem::SavePageFormat format = QWebEngineDownloadItem::MimeHtmlSaveFormat) const /ReleaseGIL/;
 %End
 %If (Qt_5_8_0 -)
 %If (Py_v3)
