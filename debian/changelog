@@ -1,3 +1,9 @@
+pyqt5 (5.9.1+dfsg-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 09 Nov 2017 15:59:38 +0300
+
 pyqt5 (5.9+dfsg-2) unstable; urgency=medium
 
   * Backport upstream patch to fix handling of disabled features (fixes
