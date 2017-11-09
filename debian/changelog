@@ -1,6 +1,7 @@
 pyqt5 (5.9.1+dfsg-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+  * Bump sip build-dependencies to 4.19.4, following configure.py.
 
  -- Dmitry Shachnev <mitya57@debian.org>  Thu, 09 Nov 2017 15:59:38 +0300
 
