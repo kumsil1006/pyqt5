@@ -120,7 +120,7 @@ install-indep: build-indep
 	cd $(CURDIR)/debian/pyqt5-examples/usr/share/doc/pyqt5-examples/examples/; \
 		cp /usr/share/javascript/jquery/jquery.min.js webkit/fancybrowser/; \
 		find . -name '*.py' -exec sed -i 's/\/env python/\/python3/g' {} +; \
-		find . -name '*.qrc' | sed 's/\.qrc//g' | xargs -I {} \
+		find . -name '*.qrc' | sed 's/\.qrc//g' | QT_HASH_SEED=0 xargs -I {} \
 		$(CURDIR)/tmp_install_root/usr/bin/pyrcc5 {}.qrc -o {}_rc.py
 	# Symlink duplicate files in examples. Based on Andrew Starr-Bochicchio's
 	# code in ubuntu-packaging-guide.
