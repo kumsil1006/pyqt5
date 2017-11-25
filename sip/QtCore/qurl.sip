@@ -268,9 +268,7 @@ public:
     QString toDisplayString(QUrlTwoFlags<QUrl::UrlFormattingOption, QUrl::ComponentFormattingOption> options = QUrl::PrettyDecoded) const;
     void setQuery(const QString &query, QUrl::ParsingMode mode = QUrl::TolerantMode);
     void setQuery(const QUrlQuery &query);
-%If (Qt_5_9_1 -)
     QString query(QUrl::ComponentFormattingOptions options = QUrl::PrettyDecoded) const;
-%End
 %If (Qt_5_1_0 -)
     static QStringList toStringList(const QList<QUrl> &uris, QUrlTwoFlags<QUrl::UrlFormattingOption, QUrl::ComponentFormattingOption> options = QUrl::PrettyDecoded);
 %End

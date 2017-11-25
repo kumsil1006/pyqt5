@@ -20,6 +20,8 @@
 
 %If (Qt_5_2_0 -)
 
+%If (PyQt_MacOSXOnly)
+
 class QMacPasteboardMime
 {
 %TypeHeaderCode
@@ -56,5 +58,7 @@ public:
 %End
 
 void qRegisterDraggedTypes(const QStringList &types);
+
+%End
 
 %End

@@ -28,7 +28,7 @@ import sys
 
 
 # Initialise the constants.
-PYQT_VERSION_STR = "5.9.1"
+PYQT_VERSION_STR = "5.9.2"
 
 SIP_MIN_VERSION = '4.19.4'
 
@@ -62,6 +62,7 @@ MODULE_METADATA = {
                                     qmake_TARGET='pyqt5'),
     'QAxContainer':         ModuleMetadata(qmake_QT=['axcontainer']),
     'Qt':                   ModuleMetadata(qmake_QT=['-core', '-gui']),
+    'QtAndroidExtras':      ModuleMetadata(qmake_QT=['androidextras']),
     'QtBluetooth':          ModuleMetadata(qmake_QT=['bluetooth']),
     'QtCore':               ModuleMetadata(qmake_QT=['-gui'], qpy_lib=True),
     'QtDBus':               ModuleMetadata(qmake_QT=['dbus', '-gui'],
@@ -155,9 +156,10 @@ MODULE_METADATA = {
 # any modules that depend on it.
 COMPOSITE_COMPONENTS = (
     'QtCore',
-    'QtDBus', 'QtGui', 'QtNetwork', 'QtSensors', 'QtSerialPort',
-    'QtMultimedia', 'QtQml', 'QtWebKit', 'QtWidgets', 'QtXml', 'QtXmlPatterns',
-    'QtAxContainer', 'QtDesigner', 'QtHelp', 'QtMultimediaWidgets', 'QtOpenGL',
+    'QtAndroidExtras', 'QtDBus', 'QtGui', 'QtNetwork', 'QtSensors',
+    'QtSerialPort', 'QtMultimedia', 'QtQml', 'QtWebKit', 'QtWidgets', 'QtXml',
+    'QtXmlPatterns', 'QtAxContainer', 'QtDesigner', 'QtHelp',
+    'QtMultimediaWidgets', 'QtOpenGL',
         'QtPrintSupport', 'QtQuick', 'QtSql', 'QtSvg', 'QtTest',
     'QtWebKitWidgets', 'QtBluetooth', 'QtMacExtras', 'QtPositioning',
         'QtWinExtras', 'QtX11Extras', 'QtQuickWidgets', 'QtWebSockets',
@@ -2525,7 +2527,9 @@ def generate_module_makefile(target_config, verbose, mname, include_paths=None, 
 
     pro_lines = ['TEMPLATE = lib']
 
-    pro_lines.append('CONFIG += warn_on exceptions_off %s' % ('staticlib hide_symbols' if target_config.static else 'plugin'))
+    # Note some version of Qt5 (probably incorrectly) implements
+    # 'plugin_bundle' instead of 'plugin' so we specify both.
+    pro_lines.append('CONFIG += warn_on exceptions_off %s' % ('staticlib hide_symbols' if target_config.static else 'plugin plugin_bundle'))
 
     pro_add_qt_dependencies(target_config, metadata, pro_lines)
 
@@ -2535,25 +2539,61 @@ def generate_module_makefile(target_config, verbose, mname, include_paths=None, 
     # Work around QTBUG-39300.
     pro_lines.append('CONFIG -= android_install')
 
+    pro_lines.append('TARGET = %s' % target_name)
+
     if not target_config.static:
         debug_suffix = target_config.get_win32_debug_suffix()
 
-        shared = '''
-win32 {
-    PY_MODULE = %s%s.pyd
-    target.files = %s%s.pyd
-} else {
-    PY_MODULE = %s.so
-    target.files = %s.so
-}
-''' % (target_name, debug_suffix, target_name, debug_suffix, target_name, target_name)
+        # For Qt v5.5 make sure these frameworks are already loaded by the time
+        # the libqcocoa.dylib plugin gets loaded.  This problem seems to be
+        # fixed in Qt v5.6.
+        extra_lflags = ''
 
-        pro_lines.extend(shared.split('\n'))
+        if mname == 'QtGui':
+            # Note that this workaround is flawed because it looks at the PyQt
+            # configuration rather than the Qt configuration.  It will fail if
+            # the user is building a PyQt without the QtDBus module against a
+            # Qt with the QtDBus library.  However it will be fine for the
+            # common case where the PyQt configuration reflects the Qt
+            # configuration.
+            fwks = []
+            for m in ('QtPrintSupport', 'QtDBus', 'QtWidgets'):
+                if m in target_config.pyqt_modules:
+                    fwks.append('-framework ' + m)
+
+            if len(fwks) != 0:
+                extra_lflags = 'QMAKE_LFLAGS += "%s"\n        ' % ' '.join(fwks)
 
         # Without the 'no_check_exist' magic the target.files must exist when
         # qmake is run otherwise the install and uninstall targets are not
         # generated.
-        pro_lines.append('target.CONFIG = no_check_exist')
+        shared = '''
+win32 {
+    PY_MODULE = %s%s.pyd
+    PY_MODULE_SRC = $(DESTDIR_TARGET)
+} else {
+    PY_MODULE = %s.so
+
+    macx {
+        PY_MODULE_SRC = $(TARGET).plugin/Contents/MacOS/$(TARGET)
+
+        QMAKE_LFLAGS += "-undefined dynamic_lookup"
+
+        equals(QT_MINOR_VERSION, 5) {
+            %sQMAKE_RPATHDIR += $$[QT_INSTALL_LIBS]
+        }
+    } else {
+        PY_MODULE_SRC = $(TARGET)
+    }
+}
+
+QMAKE_POST_LINK = $(COPY_FILE) $$PY_MODULE_SRC $$PY_MODULE
+
+target.CONFIG = no_check_exist
+target.files = $$PY_MODULE
+''' % (target_name, debug_suffix, target_name, extra_lflags)
+
+        pro_lines.extend(shared.split('\n'))
 
     if install_path == '':
         install_path = target_config.pyqt_module_dir + '/PyQt5'
@@ -2602,47 +2642,6 @@ win32 {
 
     if libs != '':
         pro_lines.append('LIBS += %s' % libs)
-
-    if not target_config.static:
-        # For Qt v5.5 make sure these frameworks are already loaded by the time
-        # the libqcocoa.dylib plugin gets loaded.  This problem seems to be
-        # fixed in Qt v5.6.
-        extra_lflags = ''
-
-        if mname == 'QtGui':
-            # Note that this workaround is flawed because it looks at the PyQt
-            # configuration rather than the Qt configuration.  It will fail if
-            # the user is building a PyQt without the QtDBus module against a
-            # Qt with the QtDBus library.  However it will be fine for the
-            # common case where the PyQt configuration reflects the Qt
-            # configuration.
-            fwks = []
-            for m in ('QtPrintSupport', 'QtDBus', 'QtWidgets'):
-                if m in target_config.pyqt_modules:
-                    fwks.append('-framework ' + m)
-
-            if len(fwks) != 0:
-                extra_lflags = 'QMAKE_LFLAGS += "%s"\n        ' % ' '.join(fwks)
-
-        shared = '''
-win32 {
-    QMAKE_POST_LINK = $(COPY_FILE) $(DESTDIR_TARGET) $$PY_MODULE
-} else {
-    QMAKE_POST_LINK = $(COPY_FILE) $(TARGET) $$PY_MODULE
-}
-macx {
-    QMAKE_LFLAGS += "-undefined dynamic_lookup"
-    QMAKE_LFLAGS += "-install_name $$absolute_path($$PY_MODULE, $$target.path)"
-
-    equals(QT_MINOR_VERSION, 5) {
-        %sQMAKE_RPATHDIR += $$[QT_INSTALL_LIBS]
-    }
-}
-''' % extra_lflags
-
-        pro_lines.extend(shared.split('\n'))
-
-    pro_lines.append('TARGET = %s' % target_name)
 
     if src_dir != mname:
         pro_lines.append('INCLUDEPATH += %s' % qmake_quote(src_dir))
@@ -2926,6 +2925,11 @@ def main(argv):
     # Check which modules to build if we haven't been told.
     if len(target_config.pyqt_modules) == 0:
         check_modules(target_config, opts.disabled_modules, opts.verbose)
+    else:
+        # Check that the user supplied module names are valid.
+        for mname in target_config.pyqt_modules:
+            if mname not in MODULE_METADATA:
+                error("'%s' is not a valid module name." % mname)
 
     check_dbus(target_config, opts.verbose)
 
