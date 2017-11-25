@@ -103,9 +103,12 @@ void PyQtMonitor::on_destroyed(QObject *cppInst)
     {
         monitored.erase(it);
 
-        PyObject *pyObj = sipGetPyObject(cppInst, sipType_QObject);
+        if (sipGetInterpreter())
+        {
+            PyObject *pyObj = sipGetPyObject(cppInst, sipType_QObject);
 
-        if (pyObj)
-            sipInstanceDestroyed((sipSimpleWrapper *)pyObj);
+            if (pyObj)
+                sipInstanceDestroyed((sipSimpleWrapper *)pyObj);
+        }
     }
 }

@@ -1,4 +1,84 @@
+2017-11-23  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Released as v5.9.2.
+	[7fac90c2d528] [5.9.2] <5.9-maint>
+
+	* PyQt5.msp:
+	Updated for Qt v5.9.3.
+	[5fffc2c72bd5] <5.9-maint>
+
+2017-11-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Added /NewThread/ to QRunnable::run().
+	[17c89f899276] <5.9-maint>
+
+2017-11-19  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtCore/qpycore_event_handlers.cpp:
+	Ignore destroyed QObjects when there is no interpreter.
+	[276966407f1c] <5.9-maint>
+
+2017-11-18  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* QtAndroidExtras/qtandroid.sip:
+	Fixed the name of the QtAndroid header file.
+	[58b1a3f4108d] <5.9-maint>
+
+	* QtAndroidExtras/qtandroid.sip:
+	Fixed the name of the QtAndroid namespace.
+	[87890f4acfe5] <5.9-maint>
+
+2017-11-15  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* QtAndroidExtras/qtandroid.sip:
+	Added the missing QtAndroid .sip file.
+	[ee26f550ab15] <5.9-maint>
+
+	* QtMacExtras/qmacpasteboardmime.sip, QtMacExtras/qmactoolbar.sip,
+	QtMacExtras/qmactoolbaritem.sip:
+	Fixed QtMacExtras for iOS.
+	[058934cee148] <5.9-maint>
+
+	* QtAndroidExtras/QtAndroidExtrasmod.sip:
+	Added the QtAndroid namespace to QtAndroidExtras.
+	[170c3a17042e] <5.9-maint>
+
+2017-11-14  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/configure.py:
+	Check that user supplied module names are valid.
+	[b1154438a794] <5.9-maint>
+
+2017-11-10  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* QtAndroidExtras/QtAndroidExtrasmod.sip,
+	QtAndroidExtras/qandroidjniobject.sip, lib/configure.py:
+	Added the QtAndroidExtras module containing a sub-set of the
+	QAndroidJniObject class.
+	[bad8eb717c80] <5.9-maint>
+
+2017-11-06  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt5.msp:
+	Restored QUrl.query() for Qt v5.9.0 and earlier.
+	[3a40388e51bc] <5.9-maint>
+
 2017-11-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* lib/configure.py:
+	Module .pro fixes for static builds.
+	[08ccbbe1325c] <5.9-maint>
+
+	* lib/configure.py:
+	Extension modules on macOS are now bundles rather than shared
+	libraries.
+	[2f298782351f] <5.9-maint>
+
+	* .hgtags:
+	Added tag 5.9.1 for changeset 6a8d6710ba64
+	[b68eec6b9b94] <5.9-maint>
 
 	* NEWS:
 	Released as v5.9.1.

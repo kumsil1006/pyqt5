@@ -20,6 +20,8 @@
 
 %If (Qt_5_3_0 -)
 
+%If (PyQt_MacOSXOnly)
+
 class NSToolbarItem;
 
 class QMacToolBarItem : QObject
@@ -59,5 +61,7 @@ signals:
 private:
     QMacToolBarItem(const QMacToolBarItem &);
 };
+
+%End
 
 %End

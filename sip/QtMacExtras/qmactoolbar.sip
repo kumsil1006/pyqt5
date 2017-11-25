@@ -20,6 +20,8 @@
 
 %If (Qt_5_3_0 -)
 
+%If (PyQt_MacOSXOnly)
+
 class NSToolbar;
 
 class QMacToolBar : QObject
@@ -59,5 +61,7 @@ private:
         sipType = 0;
 %End
 };
+
+%End
 
 %End
