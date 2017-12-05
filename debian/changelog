@@ -1,4 +1,4 @@
-pyqt5 (5.9.2+dfsg-1) UNRELEASED; urgency=medium
+pyqt5 (5.9.2+dfsg-1) unstable; urgency=medium
 
   * New upstream release.
   * Bump sip build-dependencies to 4.19.4, following configure.py.
@@ -7,7 +7,7 @@ pyqt5 (5.9.2+dfsg-1) UNRELEASED; urgency=medium
   * Regenerate the resources with QT_HASH_SEED=0, for reproducibility.
   * Bump Standards-Version to 4.1.2, no changes needed.
 
- -- Dmitry Shachnev <mitya57@debian.org>  Thu, 09 Nov 2017 15:59:38 +0300
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 05 Dec 2017 15:51:35 +0300
 
 pyqt5 (5.9+dfsg-2) unstable; urgency=medium
 
