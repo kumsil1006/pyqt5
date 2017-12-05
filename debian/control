@@ -47,7 +47,7 @@ Build-Depends: debhelper (>= 9),
 Build-Depends-Indep: fdupes
 X-Python-Version: >= 2.7
 X-Python3-Version: >= 3.3
-Standards-Version: 4.1.0
+Standards-Version: 4.1.2
 Homepage: http://www.riverbankcomputing.co.uk/software/pyqt/
 Vcs-Git: https://anonscm.debian.org/git/python-modules/packages/pyqt5.git
 Vcs-Browser: https://anonscm.debian.org/cgit/python-modules/packages/pyqt5.git
