@@ -1,3 +1,10 @@
+pyqt5 (5.9.2+dfsg-2) UNRELEASED; urgency=medium
+
+  * Preserve timestamps when copying jquery.min.js, to make pyrcc generate
+    the resource file reproducibly.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 09 Dec 2017 21:25:16 +0300
+
 pyqt5 (5.9.2+dfsg-1) unstable; urgency=medium
 
   * New upstream release.
