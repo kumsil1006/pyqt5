@@ -110,7 +110,7 @@ install-indep: build-indep
 	$(MAKE) -C build-$(DEFAULT_PYTHON) install INSTALL_ROOT=$(CURDIR)/tmp_install_root
 
 	dh_installdirs -i
-	dh_install -i --fail-missing
+	dh_install -i
 	dh_installexamples -Xactiveqt -i
 	# Use python3 shebangs and regenerate resource files
 	export PYTHONPATH=$(CURDIR)/tmp_install_root/usr/lib/python$(DEFAULT_PYTHON)/dist-packages; \
@@ -145,7 +145,8 @@ install-arch: build-arch
 		$(MAKE) -f debian/rules install-arch-$$p;\
 	done
 
-	dh_install -a --fail-missing
+	dh_install -a
+	dh_missing --fail-missing
 	sed -i 's,/usr/bin/python3[.0-9]*,/usr/bin/python3,' debian/pyqt5-dev-tools/usr/bin/*
 
 	find debian/python*-dbg ! -type d \
