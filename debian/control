@@ -865,7 +865,7 @@ Package: python-pyqt5.qtsensors
 Architecture: any
 Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
-         ${python3:Depends},
+         ${python:Depends},
          ${shlibs:Depends}
 Description: Python 2 bindings for QtSensors module
  The QtSensors module of PyQt5 provides a set of APIs to access sensors
@@ -891,7 +891,7 @@ Package: python-pyqt5.qtx11extras
 Architecture: any
 Depends: python-pyqt5 (= ${binary:Version}),
          ${misc:Depends},
-         ${python3:Depends},
+         ${python:Depends},
          ${shlibs:Depends}
 Description: Python 2 bindings for QtX11Extras module
  The QtX11Extras module of PyQt5 provides an API to access X11-specific
